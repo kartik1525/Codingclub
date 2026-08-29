@@ -5,6 +5,8 @@ export const CLUB_INFO = {
   location: "BBS Campus, India",
   coordinates: "28.6139° N, 77.2090° E",
   tagline: "Build. Learn. Compete. Connect.",
+  logo: "/bbs-logo.jpg",
+  collegeLogo: "/bbs-college-logo.png",
   missionStatement: "A student coding community where developers, designers, and curious builders learn together, collaborate on real projects, and compete in hackathons.",
   status: "ACTIVE",
   socials: {

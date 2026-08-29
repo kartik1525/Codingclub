@@ -113,14 +113,14 @@ export default function FloatingNav({ onJoinClick }) {
     >
       {/* 100% Solid Opaque Dock Container */}
       <div className="flex items-center gap-1 sm:gap-1.5 p-1.5 sm:p-2 rounded-full bg-bbs-surface border border-bbs-border-light shadow-2xl shadow-black/40 hover:border-bbs-border-focus transition-colors">
-        {/* BBS Monogram Button */}
+        {/* BBS Logo Button */}
         <button
           onClick={() => handleNavClick('hero')}
-          className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-bbs-raised border border-bbs-border text-bbs-text font-mono font-bold text-xs hover:border-bbs-accent transition-colors shrink-0 ml-0.5 cursor-pointer"
+          className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border border-bbs-border hover:border-bbs-accent transition-colors shrink-0 ml-0.5 cursor-pointer shadow-sm"
           title="BBS Coding Club — Top"
           aria-label="Scroll to top"
         >
-          B
+          <img src="/bbs-logo.jpg" alt="BBS Coding Club Logo" className="w-full h-full object-cover" />
         </button>
 
         {/* Divider */}

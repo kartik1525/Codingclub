@@ -15,9 +15,11 @@ export default function SiteFooter({ onOpenPrivacy, onOpenTerms, onOpen404Demo }
         <div className="flex flex-wrap justify-between items-start gap-8 mb-14">
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-7 h-7 bg-bbs-surface border border-bbs-border-light rounded flex items-center justify-center font-mono font-bold text-xs text-bbs-text">
-                B
-              </div>
+              <img 
+                src="/bbs-logo.jpg" 
+                alt="BBS Coding Club Logo" 
+                className="w-8 h-8 rounded-full object-cover border border-bbs-border-light shadow-sm" 
+              />
               <span className="font-display text-xl font-bold tracking-tight text-bbs-text">
                 {CLUB_INFO.name.toUpperCase()}
               </span>
@@ -27,8 +29,9 @@ export default function SiteFooter({ onOpenPrivacy, onOpenTerms, onOpen404Demo }
               {CLUB_INFO.missionStatement}
             </p>
 
-            <div className="font-mono text-xs text-bbs-dim">
-              AFFILIATED WITH {CLUB_INFO.institution.toUpperCase()}
+            <div className="font-mono text-xs text-bbs-dim flex items-center gap-2">
+              <img src="/bbs-college-logo.png" alt="BBS College Emblem" className="h-5 w-auto object-contain shrink-0" />
+              <span>AFFILIATED WITH {CLUB_INFO.institution.toUpperCase()}</span>
             </div>
           </div>
 

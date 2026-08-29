@@ -17,13 +17,23 @@ export default function SiteHeader({ onJoinClick }) {
         {/* Brand Logo / Identity */}
         <a 
           href="#hero" 
-          className="flex items-center gap-3.5 no-underline group focus:outline-none focus:ring-2 focus:ring-bbs-accent rounded"
+          className="flex items-center gap-4 sm:gap-5 no-underline group focus:outline-none focus:ring-2 focus:ring-bbs-accent rounded"
           aria-label="BBS Coding Club Home"
         >
-          <div className="w-8 h-8 bg-bbs-surface border border-bbs-border-light rounded flex items-center justify-center font-mono font-bold text-sm text-bbs-text group-hover:border-bbs-accent transition-colors">
-            B
+          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+            <img 
+              src="/bbs-logo.jpg" 
+              alt="BBS Coding Club Logo" 
+              className="w-10 h-10 sm:w-[50px] sm:h-[50px] object-contain rounded-full border border-bbs-border-light group-hover:border-bbs-accent transition-colors shadow-sm shrink-0"
+            />
+            <img 
+              src="/bbs-college-logo.png" 
+              alt="BBS College of Engineering & Technology" 
+              className="w-[38px] h-[38px] sm:w-[46px] sm:h-[46px] object-contain group-hover:scale-105 transition-transform shrink-0"
+              title="BBS College of Engineering & Technology"
+            />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col justify-center">
             <span className="font-display font-bold text-base tracking-tight text-bbs-text leading-tight">
               {CLUB_INFO.name.toUpperCase()}
             </span>
@@ -33,17 +43,8 @@ export default function SiteHeader({ onJoinClick }) {
           </div>
         </a>
 
-        {/* Right Actions: Status + Theme Toggle + CTA */}
+        {/* Right Actions: Theme Toggle + CTA */}
         <div className="flex items-center gap-3.5 sm:gap-5">
-          {/* Status Indicator (Desktop only) */}
-          <div className="hidden md:inline-flex items-center gap-2 font-mono text-xs text-bbs-muted">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span>{CLUB_INFO.status}</span>
-          </div>
-
           {/* Theme Switcher */}
           <ThemeToggle />
 

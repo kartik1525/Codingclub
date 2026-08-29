@@ -68,11 +68,7 @@ export default function Hero({ onJoinClick }) {
       <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
         {/* Top Club Identity Bar */}
         <div className="hero-status-bar flex justify-between items-center flex-wrap gap-4 mb-8">
-          <div className="inline-flex items-center gap-3 px-3 py-1.5 bg-bbs-surface border border-bbs-border rounded">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
+          <div className="inline-flex items-center px-3 py-1.5 bg-bbs-surface border border-bbs-border rounded">
             <span className="font-mono text-xs font-semibold tracking-wider text-bbs-text">
               {CLUB_INFO.name.toUpperCase()} // STUDENT DEVELOPER COLLECTIVE
             </span>
