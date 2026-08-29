@@ -1,26 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { CLUB_INFO } from '../data/clubInfo.js';
 import ThemeToggle from './ThemeToggle.jsx';
 
-export default function SiteHeader({ onOpenMenu, isMenuOpen, onJoinClick }) {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+/**
+ * SiteHeader - State 1 Top Navbar
+ * 
+ * - Part of the normal document flow at the top of the website (NOT permanently fixed/sticky).
+ * - Visible while the user is in the hero section.
+ * - Naturally scrolls away out of view as the user scrolls down past the hero.
+ * - Restores into view when the user scrolls back to the top of the page.
+ */
+export default function SiteHeader({ onJoinClick }) {
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-bbs-bg/90 backdrop-blur-md border-b border-bbs-border py-3' 
-          : 'bg-transparent border-b border-transparent py-5'
-      }`}
-    >
+    <header className="relative w-full z-30 py-5 sm:py-6 border-b border-bbs-border/40 transition-colors duration-300">
       <div className="max-w-container mx-auto px-5 sm:px-8 flex items-center justify-between">
         {/* Brand Logo / Identity */}
         <a 
@@ -41,8 +33,8 @@ export default function SiteHeader({ onOpenMenu, isMenuOpen, onJoinClick }) {
           </div>
         </a>
 
-        {/* Right Actions: Status + CTA + Menu Toggle */}
-        <div className="flex items-center gap-4 sm:gap-5">
+        {/* Right Actions: Status + Theme Toggle + CTA */}
+        <div className="flex items-center gap-3.5 sm:gap-5">
           {/* Status Indicator (Desktop only) */}
           <div className="hidden md:inline-flex items-center gap-2 font-mono text-xs text-bbs-muted">
             <span className="relative flex h-2 w-2">
@@ -52,30 +44,16 @@ export default function SiteHeader({ onOpenMenu, isMenuOpen, onJoinClick }) {
             <span>{CLUB_INFO.status}</span>
           </div>
 
+          {/* Theme Switcher */}
+          <ThemeToggle />
+
+          {/* Primary CTA */}
           <button
             onClick={onJoinClick}
-            className="hidden sm:inline-flex items-center gap-1.5 font-mono text-xs font-semibold px-3.5 py-2 border border-bbs-border-light bg-transparent text-bbs-text rounded hover:bg-bbs-surface hover:border-bbs-muted transition-all"
+            className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold px-3.5 py-2 border border-bbs-border-light bg-bbs-surface text-bbs-text rounded hover:border-bbs-accent transition-all"
             id="desktop-join-btn"
           >
             JOIN ↗
-          </button>
-
-          {/* Minimal Theme Switcher */}
-          <ThemeToggle />
-
-          {/* Minimal Menu Trigger */}
-          <button
-            onClick={onOpenMenu}
-            aria-expanded={isMenuOpen}
-            aria-controls="main-menu"
-            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-            className={`inline-flex items-center gap-2 font-mono text-xs font-semibold tracking-wider px-4 py-2 border border-bbs-border-light rounded transition-all ${
-              isMenuOpen ? 'bg-bbs-raised text-bbs-text' : 'bg-bbs-surface text-bbs-text hover:bg-bbs-hover'
-            }`}
-            id="nav-menu-btn"
-          >
-            <span>{isMenuOpen ? "CLOSE" : "MENU"}</span>
-            <span className="text-bbs-accent-light">{isMenuOpen ? "✕" : "↗"}</span>
           </button>
         </div>
       </div>

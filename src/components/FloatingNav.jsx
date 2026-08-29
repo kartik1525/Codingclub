@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { 
   Home, 
   Compass, 
@@ -9,7 +9,7 @@ import {
   ArrowUpRight 
 } from 'lucide-react';
 import { useSmoothScroll } from './SmoothScroll.jsx';
-import { CLUB_INFO } from '../data/clubInfo.js';
+import ThemeToggle from './ThemeToggle.jsx';
 
 const NAV_ITEMS = [
   { id: 'hero', label: 'Home', icon: Home },
@@ -21,22 +21,56 @@ const NAV_ITEMS = [
 ];
 
 /**
- * FloatingNav - Floating bottom navigation dock inspired by modern developer & studio websites
+ * FloatingNav - State 2 Floating Bottom Navigation Dock
  * 
- * - Fixed near bottom-center of viewport.
- * - Rounded pill with subtle translucent blur & theme-adaptive borders.
- * - Active section tracking with smooth Lenis scroll glide.
- * - Responsive: full icon+text labels on desktop, sleek compact layout on mobile.
- * - Subtle scroll-reactive compaction when scrolling down, expands on pause/scroll-up.
+ * - Appears only when the user scrolls past ~50% of the Hero section.
+ * - Smoothly slides up from below the viewport: translateY(120%) -> translateY(0).
+ * - Smoothly reverses when the user scrolls back above the threshold.
+ * - Zero layout shift (fixed and removed from normal document flow).
+ * - 100% SOLID opaque background in both Dark and Light themes.
+ * - Seamless integration with Lenis smooth scrolling.
  */
 export default function FloatingNav({ onJoinClick }) {
   const { scrollTo } = useSmoothScroll();
+  const [isVisible, setIsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
-  const [isScrollingDown, setIsScrollingDown] = useState(false);
-  const lastScrollY = useRef(0);
-  const scrollTimeout = useRef(null);
 
-  // Active section observer
+  const prefersReducedMotion = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }, []);
+
+  // 1. Hero Visibility Observer: Triggers Floating Nav after scrolling past ~50% of Hero
+  useEffect(() => {
+    const heroEl = document.getElementById('hero');
+    if (!heroEl) return;
+
+    const handleHeroIntersection = (entries) => {
+      const entry = entries[0];
+      // When hero top has scrolled above viewport and less than 50% remains visible
+      const isPastHalfHero = entry.boundingClientRect.top < 0 && entry.intersectionRatio <= 0.5;
+      setIsVisible(isPastHalfHero);
+    };
+
+    // Fine-grained thresholds for accurate 50% detection
+    const thresholds = Array.from({ length: 21 }, (_, i) => i * 0.05);
+
+    const observer = new IntersectionObserver(handleHeroIntersection, {
+      threshold: thresholds,
+    });
+
+    observer.observe(heroEl);
+
+    // Initial check (in case page reloads while scrolled)
+    const initialRect = heroEl.getBoundingClientRect();
+    if (initialRect.top < 0 && initialRect.bottom < window.innerHeight * 0.7) {
+      setIsVisible(true);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // 2. Active Section Observer: Highlights the section currently in view
   useEffect(() => {
     const sectionIds = ['hero', 'about', 'universe', 'projects', 'events', 'stats', 'team', 'terminal', 'join'];
     const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
@@ -45,7 +79,6 @@ export default function FloatingNav({ onJoinClick }) {
       (entries) => {
         const visibleEntries = entries.filter(e => e.isIntersecting);
         if (visibleEntries.length > 0) {
-          // Sort by visibility ratio or top position
           visibleEntries.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
           const topVisible = visibleEntries[0].target.id;
           if (NAV_ITEMS.some(item => item.id === topVisible)) {
@@ -64,32 +97,6 @@ export default function FloatingNav({ onJoinClick }) {
     return () => observer.disconnect();
   }, []);
 
-  // Subtle scroll direction detector for dynamic compaction
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > lastScrollY.current + 8 && currentScrollY > 100) {
-        setIsScrollingDown(true);
-      } else if (currentScrollY < lastScrollY.current - 8) {
-        setIsScrollingDown(false);
-      }
-
-      lastScrollY.current = currentScrollY;
-
-      clearTimeout(scrollTimeout.current);
-      scrollTimeout.current = setTimeout(() => {
-        setIsScrollingDown(false);
-      }, 900);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(scrollTimeout.current);
-    };
-  }, []);
-
   const handleNavClick = (id) => {
     setActiveSection(id);
     scrollTo(`#${id}`, { offset: id === 'hero' ? 0 : -30 });
@@ -97,24 +104,27 @@ export default function FloatingNav({ onJoinClick }) {
 
   return (
     <nav
-      aria-label="Floating Navigation Bar"
-      className={`fixed z-40 transition-all duration-300 ease-out left-1/2 -translate-x-1/2 bottom-4 sm:bottom-6 max-w-[calc(100vw-1.5rem)] sm:max-w-max ${
-        isScrollingDown ? 'scale-[0.97] opacity-80 hover:opacity-100 hover:scale-100' : 'scale-100 opacity-100'
+      aria-label="Floating Navigation Dock"
+      className={`fixed z-50 left-1/2 -translate-x-1/2 bottom-3 sm:bottom-6 max-w-[calc(100vw-1rem)] sm:max-w-max pb-[max(0px,env(safe-area-inset-bottom))] transition-all duration-500 ease-out ${
+        isVisible
+          ? 'translate-y-0 opacity-100 pointer-events-auto'
+          : 'translate-y-[130%] opacity-0 pointer-events-none'
       }`}
     >
-      <div className="flex items-center gap-1 sm:gap-1.5 p-1.5 sm:p-2 rounded-full bg-bbs-surface/85 backdrop-blur-xl border border-bbs-border-light shadow-2xl shadow-black/25 hover:border-bbs-border-focus transition-all">
-        {/* BBS Monogram Logo Button */}
+      {/* 100% Solid Opaque Dock Container */}
+      <div className="flex items-center gap-1 sm:gap-1.5 p-1.5 sm:p-2 rounded-full bg-bbs-surface border border-bbs-border-light shadow-2xl shadow-black/40 hover:border-bbs-border-focus transition-colors">
+        {/* BBS Monogram Button */}
         <button
           onClick={() => handleNavClick('hero')}
-          className="flex items-center justify-center w-8 h-8 rounded-full bg-bbs-raised border border-bbs-border text-bbs-text font-mono font-bold text-xs hover:border-bbs-accent transition-colors shrink-0 ml-0.5"
-          title="BBS Coding Club — Back to top"
-          aria-label="Back to top"
+          className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-bbs-raised border border-bbs-border text-bbs-text font-mono font-bold text-xs hover:border-bbs-accent transition-colors shrink-0 ml-0.5 cursor-pointer"
+          title="BBS Coding Club — Top"
+          aria-label="Scroll to top"
         >
           B
         </button>
 
         {/* Divider */}
-        <div className="w-[1px] h-4 bg-bbs-border-light mx-0.5 sm:mx-1 shrink-0" aria-hidden="true" />
+        <div className="w-[1px] h-4 bg-bbs-border-light mx-0.5 shrink-0" aria-hidden="true" />
 
         {/* Navigation Items */}
         <div className="flex items-center gap-0.5 sm:gap-1">
@@ -124,25 +134,31 @@ export default function FloatingNav({ onJoinClick }) {
               <button
                 key={id}
                 onClick={() => handleNavClick(id)}
-                className={`relative flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-mono transition-all select-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-bbs-accent ${
+                className={`relative flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-full text-xs font-mono transition-all select-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-bbs-accent shrink-0 ${
                   isActive
-                    ? 'text-bbs-accent-light bg-bbs-accent-dim font-semibold shadow-inner'
-                    : 'text-bbs-muted hover:text-bbs-text hover:bg-bbs-hover'
+                    ? 'text-bbs-accent-light bg-bbs-accent-dim font-semibold border border-bbs-accent/25'
+                    : 'text-bbs-muted hover:text-bbs-text hover:bg-bbs-hover border border-transparent'
                 }`}
                 title={label}
                 aria-current={isActive ? 'page' : undefined}
               >
                 <Icon className="w-3.5 h-3.5 shrink-0" />
-                <span className="hidden md:inline">{label}</span>
+                <span className="hidden lg:inline">{label}</span>
               </button>
             );
           })}
         </div>
 
         {/* Divider */}
-        <div className="w-[1px] h-4 bg-bbs-border-light mx-0.5 sm:mx-1 shrink-0" aria-hidden="true" />
+        <div className="w-[1px] h-4 bg-bbs-border-light mx-0.5 shrink-0" aria-hidden="true" />
 
-        {/* Prominent Right CTA: Join Club */}
+        {/* Integrated Theme Toggle */}
+        <ThemeToggle className="rounded-full !py-1 sm:!py-1.5 !px-2 sm:!px-2.5 shrink-0" />
+
+        {/* Divider */}
+        <div className="w-[1px] h-4 bg-bbs-border-light mx-0.5 shrink-0 hidden sm:block" aria-hidden="true" />
+
+        {/* Primary CTA: Join Club */}
         <button
           onClick={() => {
             if (onJoinClick) {
@@ -151,11 +167,11 @@ export default function FloatingNav({ onJoinClick }) {
               handleNavClick('join');
             }
           }}
-          className="inline-flex items-center gap-1 font-mono text-xs font-semibold px-3 sm:px-4 py-1.5 rounded-full bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:scale-105 shadow-md shadow-bbs-accent/25 shrink-0 mr-0.5"
+          className="inline-flex items-center gap-1 font-mono text-xs font-semibold px-2.5 sm:px-4 py-1.5 rounded-full bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:scale-105 shadow-md shadow-bbs-accent/25 shrink-0 mr-0.5 cursor-pointer"
           id="floating-join-btn"
           aria-label="Join BBS Coding Club"
         >
-          <span>JOIN</span>
+          <span className="hidden sm:inline">JOIN</span>
           <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
         </button>
       </div>

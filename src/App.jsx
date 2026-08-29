@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import SiteHeader from './components/SiteHeader.jsx';
-import MenuOverlay from './components/MenuOverlay.jsx';
 import Hero from './components/Hero.jsx';
 import Marquee from './components/Marquee.jsx';
 import AboutSection from './components/AboutSection.jsx';
@@ -19,14 +18,12 @@ import { ThemeProvider } from './context/ThemeContext.jsx';
 import FloatingNav from './components/FloatingNav.jsx';
 
 function AppContent() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentView, setCurrentView] = useState('home'); // 'home' | '404'
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const { scrollTo } = useSmoothScroll();
 
   const scrollToSection = (id) => {
-    setIsMenuOpen(false);
     if (currentView !== 'home') {
       setCurrentView('home');
       setTimeout(() => {
@@ -51,19 +48,8 @@ function AppContent() {
         Skip to main content
       </a>
 
-      {/* Navigation Header */}
-      <SiteHeader 
-        onOpenMenu={() => setIsMenuOpen(!isMenuOpen)} 
-        isMenuOpen={isMenuOpen}
-        onJoinClick={handleJoinClick}
-      />
-
-      {/* Fullscreen Navigation Overlay */}
-      <MenuOverlay 
-        isOpen={isMenuOpen} 
-        onClose={() => setIsMenuOpen(false)} 
-        onNavigate={scrollToSection}
-      />
+      {/* State 1: Top Navbar (Part of normal document flow, scrolls away with hero) */}
+      <SiteHeader onJoinClick={handleJoinClick} />
 
       {/* Primary Page Content */}
       <main id="main-content">
@@ -95,7 +81,7 @@ function AppContent() {
         }}
       />
 
-      {/* Floating Bottom Navigation Dock */}
+      {/* State 2: Floating Bottom Navigation Dock (Appears when scrolled past ~50% of Hero) */}
       <FloatingNav onJoinClick={handleJoinClick} />
 
       {/* System Modals */}

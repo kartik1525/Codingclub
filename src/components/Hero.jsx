@@ -63,7 +63,7 @@ export default function Hero({ onJoinClick }) {
     <section 
       ref={heroRef}
       id="hero" 
-      className="subtle-grid min-h-screen flex flex-col justify-center pt-24 sm:pt-28 pb-14 border-b border-bbs-border relative"
+      className="subtle-grid min-h-screen flex flex-col justify-center pt-14 sm:pt-16 pb-14 border-b border-bbs-border relative"
     >
       <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
         {/* Top Club Identity Bar */}
