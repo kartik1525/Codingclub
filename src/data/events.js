@@ -1,0 +1,63 @@
+export const EVENTS = [
+  {
+    id: "sih-internal-2026",
+    number: "01",
+    title: "SIH Internal Hackathon 2026",
+    tagline: "Build something that matters. 36 hours to innovate and qualify.",
+    date: "2026-08-26",
+    formattedDate: "26 AUG 2026",
+    time: "09:00 AM IST",
+    location: "Main Auditorium & Hybrid Online",
+    category: "hackathon",
+    status: "upcoming",
+    registrationOpen: true,
+    registrationUrl: "#join",
+    tracks: ["Smart Automation", "Clean Energy", "Healthcare AI", "Student Campus Tech"],
+    description: "The official university internal selection rounds for Smart India Hackathon. 36 hours of intensive engineering, architectural reviews with alumni mentors, and live demo rounds."
+  },
+  {
+    id: "systems-deep-dive",
+    number: "02",
+    title: "Systems Architecture: Rust & Distributed Queues",
+    tagline: "Behind high-throughput backend services and concurrent memory management.",
+    date: "2026-07-14",
+    formattedDate: "14 JUL 2026",
+    time: "04:30 PM IST",
+    location: "CS Lab 04 / Streamed",
+    category: "workshop",
+    status: "completed",
+    registrationOpen: false,
+    tracks: ["Rust", "Zero-Copy", "Message Queues"],
+    description: "Deep dive workshop dissecting zero-copy serialization, async Tokio runtimes, and building fault-tolerant task workers."
+  },
+  {
+    id: "spring-dev-sprint",
+    number: "03",
+    title: "DevSprint 48-Hour Open Source Jam",
+    tagline: "Collaborative contribution sprint to open-source developer tooling.",
+    date: "2026-04-18",
+    formattedDate: "18 APR 2026",
+    time: "10:00 AM IST",
+    location: "Innovation Hub",
+    category: "competition",
+    status: "completed",
+    registrationOpen: false,
+    tracks: ["Open Source", "PR Reviews", "Tooling"],
+    description: "Club members merged 42 pull requests to upstream public repositories and built campus starter kits in a single weekend."
+  },
+  {
+    id: "algo-clash-v2",
+    number: "04",
+    title: "BBS Algorithm Clash V2",
+    tagline: "Head-to-head live programming battle tournament.",
+    date: "2026-02-10",
+    formattedDate: "10 FEB 2026",
+    time: "02:00 PM IST",
+    location: "Online Sandbox",
+    category: "competition",
+    status: "completed",
+    registrationOpen: false,
+    tracks: ["Data Structures", "Dynamic Programming", "Graph Theory"],
+    description: "64 student engineers competed in bracket elimination speed-coding on custom test fixtures built on our AlgoArena sandbox."
+  }
+];

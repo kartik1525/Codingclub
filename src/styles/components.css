@@ -1,0 +1,209 @@
+/* Layout Containers */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.container-wide {
+  width: 100%;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.section {
+  position: relative;
+  padding-top: var(--section-space);
+  padding-bottom: var(--section-space);
+  border-top: 1px solid var(--border);
+}
+
+.section-tight {
+  padding-top: var(--section-space-sm);
+  padding-bottom: var(--section-space-sm);
+}
+
+/* Technical Section Label */
+.section-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  color: var(--accent-light);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.section-meta::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent);
+  border-radius: 1px;
+}
+
+.section-heading-editorial {
+  font-size: var(--text-display-l);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--duration-fast) var(--ease-standard);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #ffffff;
+  border: 1px solid var(--accent);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px var(--accent-glow);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text);
+  border: 1px solid var(--border-light);
+}
+
+.btn-secondary:hover {
+  background-color: var(--surface);
+  border-color: var(--text-muted);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  padding: 0.5rem 0.75rem;
+}
+
+.btn-ghost:hover {
+  color: var(--text);
+}
+
+.btn-icon {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.btn-icon:hover {
+  background: var(--surface-raised);
+  border-color: var(--border-focus);
+}
+
+/* Tags and Badges */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.tag-accent {
+  background: var(--accent-dim);
+  border-color: rgba(37, 99, 235, 0.4);
+  color: var(--accent-light);
+}
+
+/* Live Status Dot */
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  color: var(--text-muted);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  background-color: #22C55E;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+  position: relative;
+}
+
+.status-dot.pulse::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  border: 1px solid #22C55E;
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+/* Editorial Surface Cards */
+.editorial-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 2rem;
+  position: relative;
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.editorial-box:hover {
+  border-color: var(--border-focus);
+}
+
+/* Visual Dividers */
+.divider {
+  height: 1px;
+  background: var(--border);
+  width: 100%;
+  margin: 2rem 0;
+}
