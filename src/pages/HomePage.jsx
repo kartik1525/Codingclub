@@ -7,11 +7,11 @@ import StatsSection from '../components/StatsSection.jsx';
 import TerminalBlock from '../components/TerminalBlock.jsx';
 import ViewportText from '../components/ViewportText.jsx';
 import Section from '../components/Section.jsx';
-import { DEPARTMENTS } from '../data/departments.js';
+import AboutBentoGrid from '../components/AboutBentoGrid.jsx';
+import DepartmentDirectory from '../components/DepartmentDirectory.jsx';
 import { PROJECTS } from '../data/projects.js';
 import { EVENTS } from '../data/events.js';
 import { TEAM_LEADERSHIP } from '../data/team.js';
-import { PILLARS } from '../data/pillars.js';
 
 /**
  * HomePage - Concise Overview of BBS Coding Club
@@ -30,7 +30,6 @@ export default function HomePage() {
   const { president, trackLeads } = TEAM_LEADERSHIP;
   const featuredProjects = PROJECTS.slice(0, 2);
   const featuredEvents = EVENTS.slice(0, 2);
-  const featuredDepartments = DEPARTMENTS.slice(0, 4);
 
   return (
     <div className="flex flex-col">
@@ -71,30 +70,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* 4 Pillars Compact Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {PILLARS.map((pillar) => (
-              <div
-                key={pillar.id}
-                className="bg-bbs-surface border border-bbs-border rounded p-5 sm:p-6 flex flex-col justify-between hover:border-bbs-border-focus transition-colors"
-              >
-                <div>
-                  <div className="font-mono text-xs text-bbs-accent-light mb-2">
-                    // {pillar.number}
-                  </div>
-                  <h3 className="font-display text-lg font-bold text-bbs-text mb-2">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-bbs-muted leading-relaxed mb-4">
-                    {pillar.tagline}
-                  </p>
-                </div>
-                <div className="font-mono text-[11px] text-bbs-dim border-t border-bbs-border pt-3">
-                  {pillar.deliverables[0]}
-                </div>
-              </div>
-            ))}
-          </div>
+          {/* Asymmetric Bento Grid (LEARN, BUILD, COMPETE, CONNECT) */}
+          <AboutBentoGrid />
         </div>
       </Section>
 
@@ -120,48 +97,8 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Department Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredDepartments.map((dept) => (
-              <div
-                key={dept.id}
-                className="bg-bbs-surface border border-bbs-border rounded p-6 flex flex-col justify-between hover:border-bbs-border-focus transition-colors shadow-sm group"
-              >
-                <div>
-                  <div className="flex justify-between items-center mb-3">
-                    <span className="font-mono text-[11px] text-bbs-accent-light tracking-wider">
-                      {dept.code}
-                    </span>
-                    <span className="font-mono text-[10px] text-bbs-dim">
-                      LEAD: {dept.leadName.toUpperCase()}
-                    </span>
-                  </div>
-                  <h3 className="font-display text-lg font-bold text-bbs-text mb-2 group-hover:text-bbs-accent-light transition-colors">
-                    {dept.name}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-bbs-muted leading-relaxed mb-5">
-                    {dept.tagline}
-                  </p>
-                </div>
-
-                <div className="border-t border-bbs-border pt-4 flex justify-between items-center">
-                  <div className="flex flex-wrap gap-1">
-                    {dept.skills.slice(0, 2).map((s, idx) => (
-                      <span key={idx} className="font-mono text-[10px] text-bbs-dim px-1.5 py-0.5 bg-bbs-raised rounded">
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                  <Link
-                    to="/departments"
-                    className="font-mono text-xs text-bbs-accent-light hover:text-bbs-text transition-colors ml-2"
-                  >
-                    DETAILS ↗
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
+          {/* Interactive Department Directory with Dynamic Right-Side Detail Panel */}
+          <DepartmentDirectory />
         </div>
       </Section>
 

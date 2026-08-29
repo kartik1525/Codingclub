@@ -77,3 +77,19 @@ body.light,
     linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
 }
+
+@keyframes directoryFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.directory-panel-fade {
+  animation: directoryFadeIn 250ms ease-out forwards;
+}
+
