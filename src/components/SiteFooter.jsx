@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, ArrowUp, Mail } from 'lucide-react';
+import StrokeText from './StrokeText.jsx';
 import { CLUB_INFO } from '../data/clubInfo.js';
 
 /* Technical Social Vector Icons */
@@ -246,32 +247,33 @@ export default function SiteFooter({ onOpenPrivacy, onOpenTerms }) {
             </svg>
           </div>
 
-          {/* Large Brand Statement (Visual Climax of Footer) */}
-          <div className="mb-14 sm:mb-18 text-center">
-            <button
-              onClick={scrollToTop}
-              className="group inline-block w-full max-w-6xl mx-auto cursor-pointer focus:outline-none focus:ring-2 focus:ring-bbs-accent rounded-sm py-3 transition-transform"
-              title="Back to Top — BBS Coding Club"
-              aria-label="BBS Coding Club — Scroll to Top"
+          {/* 5. Lower Footer Brand Signature: Oversized BBS CODING CLUB StrokeText */}
+          <div className="mb-12 sm:mb-16 text-center">
+            <div
+              className="group inline-block w-full max-w-6xl mx-auto cursor-pointer focus:outline-none py-2"
+              title="Click to scroll to top"
             >
-              <div className="relative inline-block w-full">
-                {/* Oversized Brand Typography */}
-                <div className="font-display font-extrabold uppercase tracking-tighter leading-none text-bbs-text/85 group-hover:text-bbs-accent transition-all duration-400 ease-out flex items-center justify-center gap-3 sm:gap-6 text-[clamp(2.3rem,8.6vw,8.5rem)]">
-                  <span className="group-hover:translate-x-1 sm:group-hover:translate-x-2 transition-transform duration-400 ease-out">
-                    BBS CODING CLUB
-                  </span>
-                  <span className="inline-flex items-center justify-center text-bbs-accent opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-400 ease-out shrink-0">
-                    <ArrowUpRight className="w-[0.65em] h-[0.65em]" />
-                  </span>
-                </div>
+              <StrokeText
+                text="BBS CODING CLUB"
+                strokeColor="var(--bbs-text)"
+                fillColor="var(--bbs-bg)"
+                strokeWidth={2.4}
+                drawDuration={1.8}
+                fillDelay={0.2}
+                fontSize={180}
+                fontWeight={900}
+                letterSpacing={-2}
+                trigger="scroll"
+                fillMode="wipe"
+                onClick={scrollToTop}
+              />
 
-                {/* Refined Technical Accent Line */}
-                <div 
-                  className="h-[2px] w-0 group-hover:w-3/4 sm:group-hover:w-1/2 mx-auto bg-bbs-accent transition-all duration-500 ease-out mt-3 sm:mt-4 rounded-full" 
-                  aria-hidden="true"
-                />
-              </div>
-            </button>
+              {/* Refined Technical Accent Line */}
+              <div 
+                className="h-[2px] w-0 group-hover:w-3/4 sm:group-hover:w-1/2 mx-auto bg-bbs-accent transition-all duration-500 ease-out mt-3 sm:mt-4 rounded-full" 
+                aria-hidden="true"
+              />
+            </div>
           </div>
 
           {/* Understated Bottom Metadata */}
