@@ -15,6 +15,8 @@ import SiteFooter from './components/SiteFooter.jsx';
 import NotFoundView from './components/NotFoundView.jsx';
 import { PrivacyModal, TermsModal } from './components/SystemModals.jsx';
 import SmoothScroll, { useSmoothScroll } from './components/SmoothScroll.jsx';
+import { ThemeProvider } from './context/ThemeContext.jsx';
+import FloatingNav from './components/FloatingNav.jsx';
 
 function AppContent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,7 +42,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-bbs-bg text-bbs-text font-display selection:bg-bbs-accent selection:text-white">
+    <div className="min-h-screen bg-bbs-bg text-bbs-text font-display selection:bg-bbs-accent selection:text-white transition-colors duration-300">
       {/* Accessible Skip to Content Link */}
       <a 
         href="#main-content" 
@@ -93,6 +95,9 @@ function AppContent() {
         }}
       />
 
+      {/* Floating Bottom Navigation Dock */}
+      <FloatingNav onJoinClick={handleJoinClick} />
+
       {/* System Modals */}
       <PrivacyModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
       <TermsModal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
@@ -102,8 +107,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <SmoothScroll>
-      <AppContent />
-    </SmoothScroll>
+    <ThemeProvider>
+      <SmoothScroll>
+        <AppContent />
+      </SmoothScroll>
+    </ThemeProvider>
   );
 }

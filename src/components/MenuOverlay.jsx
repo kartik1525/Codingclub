@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { CLUB_INFO } from '../data/clubInfo.js';
+import ThemeToggle from './ThemeToggle.jsx';
 
 export default function MenuOverlay({ isOpen, onClose, onNavigate }) {
   const firstLinkRef = useRef(null);
@@ -54,9 +55,12 @@ export default function MenuOverlay({ isOpen, onClose, onNavigate }) {
       <div className="max-w-5xl mx-auto w-full">
         {/* Navigation Header Meta */}
         <div className="flex justify-between items-center border-b border-bbs-border pb-4 mb-8">
-          <span className="font-mono text-xs text-bbs-accent-light tracking-wider">
-            // SITE NAVIGATION INDEX
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="font-mono text-xs text-bbs-accent-light tracking-wider">
+              // SITE NAVIGATION INDEX
+            </span>
+            <ThemeToggle />
+          </div>
           <button
             onClick={onClose}
             className="font-mono text-xs text-bbs-muted hover:text-bbs-text flex items-center gap-2 transition-colors"

@@ -2,17 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Universal Semantic Theme Variables (Raw CSS for absolute specificity) */
+:root,
+html,
+body,
+[data-theme="dark"] {
+  --bbs-bg: #0A0A0A;
+  --bbs-surface: #111111;
+  --bbs-raised: #181818;
+  --bbs-hover: #202020;
+  --bbs-border: #262626;
+  --bbs-border-light: #333333;
+  --bbs-border-focus: #3F3F46;
+  --bbs-text: #F5F5F0;
+  --bbs-muted: #A0A0A0;
+  --bbs-dim: #707070;
+  --bbs-accent: #2563EB;
+  --bbs-accent-hover: #1D4ED8;
+  --bbs-accent-light: #60A5FA;
+  --bbs-accent-dim: rgba(37, 99, 235, 0.15);
+  --grid-line: rgba(255, 255, 255, 0.025);
+  color-scheme: dark;
+}
+
+:root.light,
+html.light,
+body.light,
+[data-theme="light"],
+.light {
+  --bbs-bg: #F7F7F4 !important;
+  --bbs-surface: #FFFFFF !important;
+  --bbs-raised: #EFEFEA !important;
+  --bbs-hover: #E8E8E2 !important;
+  --bbs-border: #DCDCD6 !important;
+  --bbs-border-light: #E4E4DE !important;
+  --bbs-border-focus: #A1A1AA !important;
+  --bbs-text: #141414 !important;
+  --bbs-muted: #52525B !important;
+  --bbs-dim: #71717A !important;
+  --bbs-accent: #2563EB !important;
+  --bbs-accent-hover: #1D4ED8 !important;
+  --bbs-accent-light: #2563EB !important;
+  --bbs-accent-dim: rgba(37, 99, 235, 0.08) !important;
+  --grid-line: rgba(0, 0, 0, 0.045) !important;
+  color-scheme: light;
+}
+
 @layer base {
   html {
-    background-color: #0A0A0A;
-    color: #F5F5F0;
+    background-color: var(--bbs-bg);
+    color: var(--bbs-text);
     font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    transition: background-color 300ms ease, color 300ms ease;
   }
   
   body {
     overflow-x: hidden;
-    background-color: #0A0A0A;
-    color: #F5F5F0;
+    background-color: var(--bbs-bg);
+    color: var(--bbs-text);
+    transition: background-color 300ms ease, color 300ms ease;
   }
 
   ::selection {
@@ -21,10 +69,10 @@
   }
 }
 
-/* Subtle grid pattern background */
+/* Dynamic subtle grid pattern background using theme variable */
 .subtle-grid {
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
 }

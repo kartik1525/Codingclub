@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CLUB_INFO } from '../data/clubInfo.js';
+import ThemeToggle from './ThemeToggle.jsx';
 
 export default function SiteHeader({ onOpenMenu, isMenuOpen, onJoinClick }) {
   const [scrolled, setScrolled] = useState(false);
@@ -58,6 +59,9 @@ export default function SiteHeader({ onOpenMenu, isMenuOpen, onJoinClick }) {
           >
             JOIN ↗
           </button>
+
+          {/* Minimal Theme Switcher */}
+          <ThemeToggle />
 
           {/* Minimal Menu Trigger */}
           <button

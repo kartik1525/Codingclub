@@ -9,7 +9,7 @@ export default function SiteFooter({ onOpenPrivacy, onOpenTerms, onOpen404Demo }
   };
 
   return (
-    <footer className="bg-[#070707] border-t border-bbs-border pt-16 pb-10">
+    <footer className="bg-bbs-bg border-t border-bbs-border pt-16 pb-24 sm:pb-28 transition-colors duration-300">
       <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
         {/* Brand Banner Top */}
         <div className="flex flex-wrap justify-between items-start gap-8 mb-14">
