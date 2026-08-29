@@ -1,60 +1,45 @@
 import React, { useState } from 'react';
 import { PILLARS } from '../data/pillars.js';
+import ViewportText from './ViewportText.jsx';
 
 export default function AboutSection() {
   const [activePillarId, setActivePillarId] = useState(PILLARS[0].id);
   const activePillar = PILLARS.find(p => p.id === activePillarId) || PILLARS[0];
 
   return (
-    <section id="about" className="section">
-      <div className="container">
+    <section id="about" className="py-20 sm:py-28 border-t border-bbs-border relative">
+      <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
         {/* Section Label */}
-        <div className="section-meta">
+        <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
+          <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
           <span>01 / ABOUT US</span>
         </div>
 
-        {/* Editorial Asymmetric Header */}
-        <div 
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '3rem',
-            alignItems: 'baseline',
-            marginBottom: '4.5rem'
-          }}
-        >
-          <div>
-            <h2 className="section-heading-editorial" style={{ margin: 0 }}>
+        {/* Editorial Asymmetric Header with Viewport-Driven Heading Visibility */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-baseline mb-16">
+          <div className="lg:col-span-6">
+            <ViewportText
+              as="h2"
+              className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-bbs-text leading-tight m-0"
+            >
               WE ARE NOT JUST A CODING CLUB.
-            </h2>
+            </ViewportText>
           </div>
 
-          <div>
-            <p style={{ fontSize: 'var(--text-body-l)', color: 'var(--text-muted)', lineHeight: 1.65 }}>
-              Most clubs stop at weekly slideshows and basic syntax. BBS Coding Club is an incubator for hands-on software craft. We build deployable applications, dissect low-level system designs, challenge algorithms in live arenas, and nurture the next generation of full-stack engineers and researchers.
+          <div className="lg:col-span-6">
+            <p className="text-base sm:text-lg text-bbs-muted leading-relaxed max-w-xl">
+              Most college clubs stop at boring slide presentations and textbook definitions. At BBS Coding Club, we learn by actually writing code, building projects with our friends, preparing for hackathons, and helping each other navigate computer science beyond the classroom syllabus.
             </p>
           </div>
         </div>
 
         {/* Interactive 4 Pillars Showcase */}
-        <div 
-          style={{
-            border: '1px solid var(--border)',
-            borderRadius: 'var(--radius-sm)',
-            backgroundColor: 'var(--surface)',
-            overflow: 'hidden'
-          }}
-        >
+        <div className="border border-bbs-border rounded bg-bbs-surface overflow-hidden">
           {/* Pillar Selector Tabs */}
           <div 
             role="tablist"
             aria-label="Club Pillars"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-              borderBottom: '1px solid var(--border)',
-              backgroundColor: 'var(--bg)'
-            }}
+            className="grid grid-cols-2 sm:grid-cols-4 border-b border-bbs-border bg-bbs-bg"
           >
             {PILLARS.map((pillar) => {
               const isActive = pillar.id === activePillarId;
@@ -66,20 +51,16 @@ export default function AboutSection() {
                   aria-controls={`pillar-panel-${pillar.id}`}
                   id={`pillar-tab-${pillar.id}`}
                   onClick={() => setActivePillarId(pillar.id)}
-                  style={{
-                    padding: '1.25rem 1rem',
-                    textAlign: 'left',
-                    background: isActive ? 'var(--surface)' : 'transparent',
-                    borderBottom: isActive ? '2px solid var(--accent)' : '2px solid transparent',
-                    color: isActive ? 'var(--text)' : 'var(--text-muted)',
-                    transition: 'all var(--duration-fast) var(--ease-standard)',
-                    cursor: 'pointer'
-                  }}
+                  className={`p-4 sm:p-5 text-left transition-all border-b-2 ${
+                    isActive 
+                      ? 'bg-bbs-surface border-bbs-accent text-bbs-text' 
+                      : 'bg-transparent border-transparent text-bbs-muted hover:text-bbs-text hover:bg-bbs-surface/50'
+                  }`}
                 >
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: isActive ? 'var(--accent-light)' : 'var(--text-dim)', marginBottom: '0.25rem' }}>
+                  <div className={`font-mono text-xs mb-1 ${isActive ? 'text-bbs-accent-light' : 'text-bbs-dim'}`}>
                     {pillar.number} // PILLAR
                   </div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.1rem', letterSpacing: '-0.01em' }}>
+                  <div className="font-display font-bold text-base sm:text-lg tracking-tight">
                     {pillar.title}
                   </div>
                 </button>
@@ -92,75 +73,36 @@ export default function AboutSection() {
             id={`pillar-panel-${activePillar.id}`}
             role="tabpanel"
             aria-labelledby={`pillar-tab-${activePillar.id}`}
-            style={{ padding: 'clamp(2rem, 5vw, 3.5rem)' }}
+            className="p-6 sm:p-10 md:p-14"
           >
-            <div 
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                gap: '3rem',
-                alignItems: 'center'
-              }}
-            >
-              <div>
-                <span className="tag tag-accent" style={{ marginBottom: '1.25rem' }}>
-                  CORE FOCUS: {activePillar.title}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              <div className="lg:col-span-7">
+                <span className="inline-flex items-center font-mono text-[11px] font-medium tracking-wider uppercase px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/30 mb-5">
+                  PILLAR FOCUS: {activePillar.title}
                 </span>
 
-                <h3 
-                  style={{ 
-                    fontFamily: 'var(--font-display)', 
-                    fontSize: 'var(--text-display-m)', 
-                    fontWeight: 700, 
-                    color: 'var(--text)',
-                    lineHeight: 1.15,
-                    marginBottom: '1.25rem' 
-                  }}
-                >
+                <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-bbs-text leading-tight mb-4">
                   {activePillar.tagline}
                 </h3>
 
-                <p style={{ fontSize: '1.05rem', color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '55ch' }}>
+                <p className="text-base sm:text-lg text-bbs-muted leading-relaxed max-w-xl">
                   {activePillar.description}
                 </p>
               </div>
 
-              {/* Pillar Execution Deliverables */}
-              <div 
-                style={{
-                  backgroundColor: 'var(--surface-raised)',
-                  border: '1px solid var(--border)',
-                  borderRadius: 'var(--radius-sm)',
-                  padding: '2rem'
-                }}
-              >
-                <div 
-                  style={{ 
-                    fontFamily: 'var(--font-mono)', 
-                    fontSize: '0.75rem', 
-                    color: 'var(--accent-light)', 
-                    letterSpacing: '0.08em',
-                    marginBottom: '1.5rem',
-                    textTransform: 'uppercase'
-                  }}
-                >
-                  // DELIVERABLES & OUTCOMES
+              {/* What We Do List */}
+              <div className="lg:col-span-5 bg-bbs-raised border border-bbs-border rounded p-6 sm:p-8">
+                <div className="font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-5">
+                  // WHAT WE DO TOGETHER
                 </div>
 
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <ul className="list-none flex flex-col gap-4 p-0 m-0">
                   {activePillar.deliverables.map((item, i) => (
                     <li 
                       key={i} 
-                      style={{ 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        gap: '1rem',
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.875rem',
-                        color: 'var(--text)'
-                      }}
+                      className="flex items-center gap-3 font-mono text-sm text-bbs-text"
                     >
-                      <span style={{ color: 'var(--accent-light)', fontWeight: 600 }}>[0{i+1}]</span>
+                      <span className="text-bbs-accent-light font-semibold">[0{i+1}]</span>
                       <span>{item}</span>
                     </li>
                   ))}

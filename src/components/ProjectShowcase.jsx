@@ -1,273 +1,204 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PROJECTS } from '../data/projects.js';
+import ViewportText from './ViewportText.jsx';
 
 export default function ProjectShowcase() {
-  const [filter, setFilter] = useState('all');
-
-  const filteredProjects = PROJECTS.filter(project => {
-    if (filter === 'all') return true;
-    if (filter === 'featured') return project.featured;
-    return true;
-  });
-
   return (
-    <section id="projects" className="section">
-      <div className="container">
+    <section id="projects" className="py-20 sm:py-28 border-t border-bbs-border relative">
+      <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
         {/* Section Meta */}
-        <div className="section-meta">
-          <span>03 / SELECTED BUILDS</span>
+        <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
+          <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
+          <span>03 / SELECTED BUILDS & CASE STUDIES</span>
         </div>
 
-        {/* Section Header */}
-        <div 
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            alignItems: 'flex-end',
-            gap: '2rem',
-            marginBottom: '4rem'
-          }}
-        >
-          <div>
-            <h2 className="section-heading-editorial" style={{ margin: 0 }}>
-              THINGS WE'VE BUILT.
-            </h2>
-            <p style={{ marginTop: '0.75rem', fontSize: 'var(--text-body-l)', color: 'var(--text-muted)' }}>
-              Mini case studies in software architecture, campus utilities, and developer tooling.
-            </p>
-          </div>
-
-          {/* Filter Controls */}
-          <div style={{ display: 'flex', gap: '0.5rem', background: 'var(--surface)', padding: '0.35rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)' }}>
-            <button
-              onClick={() => setFilter('all')}
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
-                padding: '0.45rem 0.85rem',
-                borderRadius: 'var(--radius-sm)',
-                background: filter === 'all' ? 'var(--accent)' : 'transparent',
-                color: filter === 'all' ? '#ffffff' : 'var(--text-muted)',
-                fontWeight: 600
-              }}
-            >
-              ALL BUILDS ({PROJECTS.length})
-            </button>
-            <button
-              onClick={() => setFilter('featured')}
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
-                padding: '0.45rem 0.85rem',
-                borderRadius: 'var(--radius-sm)',
-                background: filter === 'featured' ? 'var(--accent)' : 'transparent',
-                color: filter === 'featured' ? '#ffffff' : 'var(--text-muted)',
-                fontWeight: 600
-              }}
-            >
-              FEATURED ONLY
-            </button>
-          </div>
-        </div>
-
-        {/* Empty State Guard (PRD Section 18.3) */}
-        {filteredProjects.length === 0 ? (
-          <div 
-            style={{
-              padding: '4rem 2rem',
-              textAlign: 'center',
-              backgroundColor: 'var(--surface)',
-              border: '1px dashed var(--border-light)',
-              borderRadius: 'var(--radius-sm)'
-            }}
+        {/* Section Header with Viewport-Driven Heading Visibility */}
+        <div className="mb-14">
+          <ViewportText
+            as="h2"
+            className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-bbs-text leading-tight m-0"
           >
-            <div style={{ fontFamily: 'var(--font-mono)', color: 'var(--accent-light)', marginBottom: '0.75rem' }}>
-              // NO REPOSITORIES FOUND
-            </div>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--text)' }}>
-              NO BUILDS MATCH THIS FILTER CRITERIA
-            </h3>
-            <p style={{ margin: '0 auto 1.5rem auto' }}>
-              Reset your filter to explore our campus tooling and systems prototypes.
-            </p>
-            <button onClick={() => setFilter('all')} className="btn btn-secondary">
-              VIEW ALL BUILDS
-            </button>
-          </div>
-        ) : (
-          /* Editorial Project Case Studies */
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}>
-            {filteredProjects.map((project, index) => {
-              const isEven = index % 2 === 0;
-              return (
-                <article
-                  key={project.id}
-                  style={{
-                    backgroundColor: 'var(--surface)',
-                    border: '1px solid var(--border)',
-                    borderRadius: 'var(--radius-sm)',
-                    overflow: 'hidden',
-                    transition: 'border-color var(--duration-fast) var(--ease-standard)'
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--border-focus)'}
-                  onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--border)'}
-                >
-                  <div 
-                    style={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                      alignItems: 'stretch'
-                    }}
+            THINGS WE'VE BUILT.
+          </ViewportText>
+          <p className="text-base sm:text-lg text-bbs-muted mt-3 max-w-2xl">
+            Real software built by student members. From this very website to campus hackathon tools.
+          </p>
+        </div>
+
+        {/* Editorial Case Studies (Non-repeating visual layouts) */}
+        <div className="flex flex-col gap-16 sm:gap-20">
+          
+          {/* Project 01: Full Editorial Feature with Monitor Visual */}
+          {PROJECTS[0] && (
+            <article className="bg-bbs-surface border border-bbs-border rounded overflow-hidden">
+              {/* Large Visual Showcase Image */}
+              <div className="w-full max-h-[460px] overflow-hidden relative border-b border-bbs-border bg-black">
+                <img 
+                  src={PROJECTS[0].image} 
+                  alt="BBS Coding Club Web Platform Interface Screenshot"
+                  className="w-full h-full max-h-[460px] object-cover object-center block"
+                  loading="lazy"
+                />
+                <div className="absolute bottom-4 left-4 bg-bbs-bg/85 backdrop-blur-sm border border-bbs-border px-3.5 py-1.5 rounded font-mono text-xs text-bbs-text">
+                  LIVE PRODUCTION BUILD // v1.0.4
+                </div>
+              </div>
+
+              {/* Project Content Breakdown */}
+              <div className="p-6 sm:p-10 md:p-14">
+                <div className="flex justify-between items-center flex-wrap gap-4 mb-4">
+                  <span className="font-mono text-xs sm:text-sm text-bbs-accent-light font-semibold">
+                    {PROJECTS[0].number} // {PROJECTS[0].category.toUpperCase()}
+                  </span>
+                  <span className="font-mono text-xs text-bbs-muted px-2.5 py-1 bg-bbs-surface border border-bbs-border rounded">
+                    YEAR {PROJECTS[0].year}
+                  </span>
+                </div>
+
+                <h3 className="font-display text-2xl sm:text-4xl font-bold text-bbs-text mb-4">
+                  {PROJECTS[0].title}
+                </h3>
+
+                <p className="text-base sm:text-lg text-bbs-muted leading-relaxed max-w-3xl mb-6">
+                  {PROJECTS[0].description}
+                </p>
+
+                {/* Real student context */}
+                <div className="bg-bbs-raised border border-bbs-border rounded p-4 sm:p-5 mb-8 font-mono text-xs sm:text-sm text-bbs-muted leading-relaxed">
+                  <span className="text-bbs-accent-light font-semibold block mb-1.5">
+                    // WHY WE BUILT IT:
+                  </span>
+                  {PROJECTS[0].context}
+                </div>
+
+                {/* Tech Stack Pills */}
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {PROJECTS[0].techTags.map((t, idx) => (
+                    <span key={idx} className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/30">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Action Links */}
+                <div className="flex gap-4 flex-wrap">
+                  <a 
+                    href={PROJECTS[0].demoUrl} 
+                    className="inline-flex items-center justify-center font-mono text-xs sm:text-sm font-semibold tracking-wide px-5 py-2.5 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:-translate-y-0.5"
                   >
-                    {/* Project Information */}
-                    <div style={{ padding: 'clamp(2rem, 4vw, 3.5rem)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                      <div>
-                        {/* Meta top bar */}
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--accent-light)', fontWeight: 600 }}>
-                            {project.number} // {project.category.toUpperCase()}
-                          </span>
-                          <span className="tag">
-                            YEAR {project.year}
-                          </span>
-                        </div>
+                    EXPERIENCE PLATFORM ↑
+                  </a>
+                  <a 
+                    href={PROJECTS[0].repoUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center justify-center font-mono text-xs sm:text-sm font-semibold tracking-wide px-5 py-2.5 rounded border border-bbs-border-light text-bbs-text bg-transparent hover:bg-bbs-raised hover:border-bbs-muted transition-all"
+                  >
+                    VIEW CODEBASE ON GITHUB ↗
+                  </a>
+                </div>
+              </div>
+            </article>
+          )}
 
-                        <h3 
-                          style={{ 
-                            fontFamily: 'var(--font-display)', 
-                            fontSize: 'var(--text-heading-l)', 
-                            fontWeight: 700, 
-                            lineHeight: 1.1,
-                            color: 'var(--text)',
-                            marginBottom: '0.75rem' 
-                          }}
-                        >
-                          {project.title}
-                        </h3>
+          {/* Project 02: Split Visual Case Study for Upcoming Hackathon Hub */}
+          {PROJECTS[1] && (
+            <article className="bg-bbs-surface border border-bbs-border rounded overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-stretch">
+              {/* Left Photo of Students Collaborating */}
+              <div className="lg:col-span-5 relative min-h-[260px] sm:min-h-[320px] bg-black border-b lg:border-b-0 lg:border-r border-bbs-border">
+                <img 
+                  src={PROJECTS[1].image} 
+                  alt="Students collaborating during hackathon development"
+                  className="w-full h-full object-cover block"
+                  loading="lazy"
+                />
+                <div className="absolute top-4 left-4 bg-bbs-bg/85 backdrop-blur-sm px-3 py-1 rounded font-mono text-xs text-bbs-accent-light border border-bbs-border">
+                  IN-PERSON SPRINT // FALL '26
+                </div>
+              </div>
 
-                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--accent-light)', marginBottom: '1.25rem' }}>
-                          {project.tagline}
-                        </div>
-
-                        <p style={{ fontSize: '1rem', color: 'var(--text-muted)', lineHeight: 1.65, marginBottom: '1.75rem' }}>
-                          {project.description}
-                        </p>
-
-                        {/* Tech Stack Pills */}
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem', marginBottom: '1.75rem' }}>
-                          {project.techTags.map((tech, i) => (
-                            <span key={i} className="tag tag-accent" style={{ fontSize: '0.6875rem' }}>
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-
-                        {/* Contributors & Impact */}
-                        <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.25rem', marginBottom: '2rem' }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
-                            <div>
-                              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--text-dim)', display: 'block' }}>
-                                CONTRIBUTORS
-                              </span>
-                              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--text)' }}>
-                                {project.contributors.join(', ')}
-                              </span>
-                            </div>
-
-                            {project.metrics && (
-                              <div>
-                                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--text-dim)', display: 'block' }}>
-                                  VERIFIED BENCHMARK
-                                </span>
-                                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--accent-light)', fontWeight: 600 }}>
-                                  {project.metrics}
-                                </span>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Action Links */}
-                      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                        {project.demoUrl && (
-                          <a
-                            href={project.demoUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn btn-primary"
-                            style={{ fontSize: '0.75rem', padding: '0.65rem 1.25rem' }}
-                          >
-                            VIEW LIVE DEMO ↗
-                          </a>
-                        )}
-
-                        {project.repoUrl && (
-                          <a
-                            href={project.repoUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn btn-secondary"
-                            style={{ fontSize: '0.75rem', padding: '0.65rem 1.25rem' }}
-                          >
-                            SOURCE CODE ↗
-                          </a>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Editorial Architectural Schematic / Preview */}
-                    <div 
-                      style={{
-                        backgroundColor: 'var(--surface-raised)',
-                        borderLeft: '1px solid var(--border)',
-                        padding: 'clamp(2rem, 4vw, 3rem)',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                        minHeight: '280px'
-                      }}
-                    >
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-dim)' }}>
-                          // ARCHITECTURE DIAGRAM & SUMMARY
-                        </span>
-                        <span className="tag">{project.featured ? "CORE STABLE BUILD" : "PROTOTYPE"}</span>
-                      </div>
-
-                      <div 
-                        style={{
-                          margin: '2rem 0',
-                          padding: '1.5rem',
-                          background: 'var(--bg)',
-                          border: '1px solid var(--border)',
-                          borderRadius: 'var(--radius-sm)',
-                          fontFamily: 'var(--font-mono)',
-                          fontSize: '0.8125rem',
-                          color: 'var(--text-muted)',
-                          lineHeight: 1.6
-                        }}
-                      >
-                        <div style={{ color: 'var(--accent-light)', marginBottom: '0.5rem', fontWeight: 600 }}>
-                          $ cat engineering_summary.md
-                        </div>
-                        <div>
-                          {project.summary}
-                        </div>
-                      </div>
-
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-dim)' }}>
-                        <span>BUILD {project.number}.0.4</span>
-                        <span>STATUS: ACTIVE // DEPLOYED</span>
-                      </div>
-                    </div>
+              {/* Right Content */}
+              <div className="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between">
+                <div>
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="font-mono text-xs sm:text-sm text-bbs-accent-light font-semibold">
+                      {PROJECTS[1].number} // {PROJECTS[1].category.toUpperCase()}
+                    </span>
+                    <span className="font-mono text-[11px] text-bbs-muted px-2 py-0.5 border border-bbs-border rounded">
+                      STATUS: PROTOTYPE
+                    </span>
                   </div>
-                </article>
-              );
-            })}
-          </div>
-        )}
+
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-bbs-text mb-3">
+                    {PROJECTS[1].title}
+                  </h3>
+
+                  <p className="text-sm sm:text-base text-bbs-muted leading-relaxed mb-5">
+                    {PROJECTS[1].description}
+                  </p>
+
+                  <div className="bg-bbs-raised border border-bbs-border p-4 rounded font-mono text-xs text-bbs-muted mb-5 leading-relaxed">
+                    <span className="text-bbs-accent-light block mb-1">
+                      // STUDENT ORGANIZER NEED:
+                    </span>
+                    {PROJECTS[1].context}
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {PROJECTS[1].techTags.map((t, i) => (
+                      <span key={i} className="font-mono text-xs px-2.5 py-1 bg-bbs-surface border border-bbs-border rounded text-bbs-muted">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <a 
+                    href="#events" 
+                    className="inline-flex items-center justify-center font-mono text-xs font-semibold px-4 py-2 border border-bbs-border-light text-bbs-text rounded hover:bg-bbs-raised hover:border-bbs-muted transition-colors"
+                  >
+                    JOIN THE HACKATHON WORKING GROUP →
+                  </a>
+                </div>
+              </div>
+            </article>
+          )}
+
+          {/* Project 03: Open Member Submission Callout */}
+          {PROJECTS[2] && (
+            <article className="bg-bbs-surface border border-dashed border-bbs-border-light rounded p-6 sm:p-10 flex flex-col justify-between">
+              <div>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="font-mono text-xs text-bbs-accent-light font-semibold">
+                    {PROJECTS[2].number} // COMMUNITY INITIATIVE
+                  </span>
+                  <span className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/30">
+                    SUBMISSIONS OPEN
+                  </span>
+                </div>
+
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-bbs-text mb-3">
+                  {PROJECTS[2].title} — HAVE YOU BUILT A PROJECT?
+                </h3>
+
+                <p className="text-base text-bbs-muted leading-relaxed max-w-2xl mb-6">
+                  {PROJECTS[2].description} {PROJECTS[2].context}
+                </p>
+              </div>
+
+              <div>
+                <a 
+                  href="#join" 
+                  className="inline-flex items-center justify-center font-mono text-xs font-semibold px-5 py-2.5 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-colors"
+                >
+                  PITCH A PROJECT AT NEXT CLUB MEETUP ↗
+                </a>
+              </div>
+            </article>
+          )}
+
+        </div>
       </div>
     </section>
   );

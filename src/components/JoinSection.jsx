@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { CLUB_INFO } from '../data/clubInfo.js';
+import ViewportText from './ViewportText.jsx';
 
 export default function JoinSection() {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
-    departmentYear: 'CS - 2nd Year',
-    interests: 'Distributed Systems & Backend',
+    departmentYear: 'CS - 1st Year',
+    interests: 'Web Development & Apps',
     portfolioUrl: '',
     honeypot: '' // Anti-bot honeypot field
   });
@@ -22,138 +23,113 @@ export default function JoinSection() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Anti-bot check: if honeypot filled, silently drop
     if (formData.honeypot) {
       setFormState('success');
       return;
     }
 
-    // Validation
     if (!formData.fullName.trim()) {
       setFormState('error');
-      setErrorMessage('Full name is required to register credentials.');
+      setErrorMessage('Please enter your full name.');
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email.trim())) {
       setFormState('error');
-      setErrorMessage('Please provide a valid university or personal email.');
+      setErrorMessage('Please enter a valid student or personal email.');
       return;
     }
 
     setFormState('submitting');
     setErrorMessage('');
 
-    // Simulate async submission
     setTimeout(() => {
       setFormState('success');
-    }, 900);
+    }, 800);
   };
 
   return (
-    <section id="join" className="section">
-      <div className="container">
+    <section id="join" className="py-20 sm:py-28 border-t border-bbs-border relative">
+      <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
         {/* Section Meta */}
-        <div className="section-meta">
-          <span>07 / MEMBERSHIP INITIATION</span>
+        <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
+          <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
+          <span>07 / JOIN THE COMMUNITY</span>
         </div>
 
-        <div 
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '4rem',
-            alignItems: 'start'
-          }}
-        >
-          {/* Left Editorial Narrative */}
-          <div>
-            <h2 className="section-heading-editorial" style={{ marginBottom: '1.5rem' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          {/* Left Narrative */}
+          <div className="lg:col-span-6">
+            <ViewportText
+              as="h2"
+              className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-bbs-text leading-tight m-0 mb-6"
+            >
               READY TO BUILD?
-            </h2>
+            </ViewportText>
 
-            <p style={{ fontSize: 'var(--text-body-l)', color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '2rem' }}>
-              Whether you are compiling your first C program or tuning distributed microservices in Go, BBS Coding Club welcomes students with hunger, curiosity, and consistency.
+            <p className="text-base sm:text-lg text-bbs-muted leading-relaxed mb-8 max-w-xl">
+              Whether you wrote your first lines of Python last semester or have already deployed side projects, BBS Coding Club welcomes any student who wants to learn, build, and ship real code.
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginBottom: '2.5rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <span className="tag tag-accent">WHAT WE EXPECT</span>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--text)' }}>
-                  Active attendance in project sprints & hackathons.
+            <div className="flex flex-col gap-4 mb-10">
+              <div className="flex items-center gap-3">
+                <span className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/30">
+                  WHAT WE VALUE
+                </span>
+                <span className="font-mono text-xs sm:text-sm text-bbs-text">
+                  Curiosity, consistency, and a willingness to learn in public.
                 </span>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <span className="tag tag-accent">WHAT YOU GET</span>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--text)' }}>
-                  Production mentorship, team hackathon cohorts, internal lab access.
+              <div className="flex items-center gap-3">
+                <span className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/30">
+                  WHAT YOU GET
+                </span>
+                <span className="font-mono text-xs sm:text-sm text-bbs-text">
+                  Teammates for hackathons, project reviews, and a real community.
                 </span>
               </div>
             </div>
 
             {/* Direct Channel Links */}
-            <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.75rem' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-dim)', marginBottom: '0.75rem' }}>
-                DIRECT COMMUNITY ENTRY
+            <div className="border-t border-bbs-border pt-6">
+              <div className="font-mono text-xs text-bbs-dim mb-3 uppercase">
+                DIRECT COMMUNITY CHANNELS
               </div>
-              <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap' }}>
+              <div className="flex gap-4 flex-wrap">
                 <a
                   href={CLUB_INFO.socials.discord}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-secondary"
-                  style={{ fontSize: '0.8125rem' }}
+                  className="font-mono text-xs font-semibold px-4 py-2 border border-bbs-border-light text-bbs-text rounded hover:bg-bbs-surface hover:border-bbs-muted transition-colors"
                 >
-                  JOIN DISCORD REALM ↗
+                  JOIN CLUB DISCORD ↗
                 </a>
                 <a
                   href={CLUB_INFO.socials.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-secondary"
-                  style={{ fontSize: '0.8125rem' }}
+                  className="font-mono text-xs font-semibold px-4 py-2 border border-bbs-border-light text-bbs-text rounded hover:bg-bbs-surface hover:border-bbs-muted transition-colors"
                 >
-                  CLUB GITHUB ORG ↗
+                  GITHUB ORGANISATION ↗
                 </a>
               </div>
             </div>
           </div>
 
           {/* Right Application Form */}
-          <div 
-            style={{
-              backgroundColor: 'var(--surface)',
-              border: '1px solid var(--border)',
-              borderRadius: 'var(--radius-sm)',
-              padding: 'clamp(2rem, 4vw, 3rem)'
-            }}
-          >
+          <div className="lg:col-span-6 bg-bbs-surface border border-bbs-border rounded p-6 sm:p-10">
             {formState === 'success' ? (
-              <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
-                <div 
-                  style={{ 
-                    width: '56px', 
-                    height: '56px', 
-                    backgroundColor: 'rgba(34, 197, 94, 0.1)', 
-                    border: '1px solid #22C55E', 
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: '0 auto 1.5rem auto',
-                    color: '#22C55E',
-                    fontSize: '1.5rem'
-                  }}
-                >
+              <div className="text-center py-8">
+                <div className="w-14 h-14 bg-emerald-500/10 border border-emerald-500 rounded-full flex items-center justify-center mx-auto mb-5 text-emerald-400 text-2xl">
                   ✓
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 700, color: 'var(--text)', marginBottom: '0.75rem' }}>
-                  APPLICATION TRANSMITTED
+                <h3 className="font-display text-2xl font-bold text-bbs-text mb-3">
+                  WELCOME TO THE SQUAD
                 </h3>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '2rem' }}>
-                  Your credentials have been indexed into the Fall 2026 applicant queue. Expect an onboarding email invitation to the club Discord and workspace within 48 hours.
+                <p className="text-bbs-muted text-sm sm:text-base leading-relaxed mb-8 max-w-md mx-auto">
+                  Your submission has been recorded. Check your inbox for our next hackathon meet details and an invite to our Discord channels.
                 </p>
                 <button
                   onClick={() => {
@@ -161,29 +137,30 @@ export default function JoinSection() {
                     setFormData({
                       fullName: '',
                       email: '',
-                      departmentYear: 'CS - 2nd Year',
-                      interests: 'Distributed Systems & Backend',
+                      departmentYear: 'CS - 1st Year',
+                      interests: 'Web Development & Apps',
                       portfolioUrl: '',
                       honeypot: ''
                     });
                   }}
-                  className="btn btn-secondary"
-                  style={{ fontSize: '0.75rem' }}
+                  className="font-mono text-xs font-semibold px-5 py-2.5 border border-bbs-border-light text-bbs-text rounded hover:bg-bbs-raised transition-colors"
                 >
-                  SUBMIT ANOTHER APPLICATION
+                  SUBMIT ANOTHER RESPONSE
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--accent-light)', fontWeight: 600 }}>
-                    // CANDIDATE APPLICATION FORM
+                <div className="flex justify-between items-center mb-6">
+                  <span className="font-mono text-xs text-bbs-accent-light font-semibold">
+                    // SIGNUP FOR 2026 COHORT
                   </span>
-                  <span className="tag">FALL 2026</span>
+                  <span className="font-mono text-[11px] text-bbs-muted px-2 py-0.5 border border-bbs-border rounded">
+                    FREE MEMBERSHIP
+                  </span>
                 </div>
 
-                {/* Honeypot field (hidden from screen, trapped for spam bots) */}
-                <div style={{ display: 'none' }} aria-hidden="true">
+                {/* Honeypot field */}
+                <div className="hidden" aria-hidden="true">
                   <input
                     type="text"
                     name="honeypot"
@@ -195,10 +172,10 @@ export default function JoinSection() {
                 </div>
 
                 {/* Full Name */}
-                <div style={{ marginBottom: '1.5rem' }}>
+                <div className="mb-5">
                   <label 
                     htmlFor="fullName"
-                    style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}
+                    className="block font-mono text-xs text-bbs-muted mb-2 uppercase"
                   >
                     FULL NAME *
                   </label>
@@ -209,27 +186,18 @@ export default function JoinSection() {
                     required
                     value={formData.fullName}
                     onChange={handleChange}
-                    placeholder="e.g. Alex Rivera"
-                    style={{
-                      width: '100%',
-                      padding: '0.85rem 1rem',
-                      backgroundColor: 'var(--surface-raised)',
-                      border: '1px solid var(--border)',
-                      borderRadius: 'var(--radius-sm)',
-                      color: 'var(--text)',
-                      outline: 'none',
-                      fontFamily: 'inherit'
-                    }}
+                    placeholder="e.g. Rahul Sharma"
+                    className="w-full px-4 py-3 bg-bbs-raised border border-bbs-border rounded text-bbs-text text-sm focus:outline-none focus:border-bbs-accent transition-colors"
                   />
                 </div>
 
                 {/* Email Address */}
-                <div style={{ marginBottom: '1.5rem' }}>
+                <div className="mb-5">
                   <label 
                     htmlFor="email"
-                    style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}
+                    className="block font-mono text-xs text-bbs-muted mb-2 uppercase"
                   >
-                    COLLEGE / PERSONAL EMAIL *
+                    STUDENT / PERSONAL EMAIL *
                   </label>
                   <input
                     id="email"
@@ -238,93 +206,66 @@ export default function JoinSection() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="e.g. alex@bbs.edu.in"
-                    style={{
-                      width: '100%',
-                      padding: '0.85rem 1rem',
-                      backgroundColor: 'var(--surface-raised)',
-                      border: '1px solid var(--border)',
-                      borderRadius: 'var(--radius-sm)',
-                      color: 'var(--text)',
-                      outline: 'none',
-                      fontFamily: 'inherit'
-                    }}
+                    placeholder="e.g. student@college.edu.in"
+                    className="w-full px-4 py-3 bg-bbs-raised border border-bbs-border rounded text-bbs-text text-sm focus:outline-none focus:border-bbs-accent transition-colors"
                   />
                 </div>
 
                 {/* Branch / Year */}
-                <div style={{ marginBottom: '1.5rem' }}>
+                <div className="mb-5">
                   <label 
                     htmlFor="departmentYear"
-                    style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}
+                    className="block font-mono text-xs text-bbs-muted mb-2 uppercase"
                   >
-                    BRANCH & ACADEMIC YEAR
+                    BRANCH & YEAR
                   </label>
                   <select
                     id="departmentYear"
                     name="departmentYear"
                     value={formData.departmentYear}
                     onChange={handleChange}
-                    style={{
-                      width: '100%',
-                      padding: '0.85rem 1rem',
-                      backgroundColor: 'var(--surface-raised)',
-                      border: '1px solid var(--border)',
-                      borderRadius: 'var(--radius-sm)',
-                      color: 'var(--text)',
-                      outline: 'none',
-                      fontFamily: 'inherit'
-                    }}
+                    className="w-full px-4 py-3 bg-bbs-raised border border-bbs-border rounded text-bbs-text text-sm focus:outline-none focus:border-bbs-accent transition-colors"
                   >
-                    <option value="CS - 1st Year">Computer Science — 1st Year</option>
-                    <option value="CS - 2nd Year">Computer Science — 2nd Year</option>
-                    <option value="CS - 3rd Year">Computer Science — 3rd Year</option>
-                    <option value="CS - 4th Year">Computer Science — 4th Year</option>
+                    <option value="CS - 1st Year">CSE — 1st Year (Freshman)</option>
+                    <option value="CS - 2nd Year">CSE — 2nd Year</option>
+                    <option value="CS - 3rd Year">CSE — 3rd Year</option>
+                    <option value="CS - 4th Year">CSE — Final Year</option>
                     <option value="IT / ECE">IT / ECE / Circuit Branches</option>
-                    <option value="Other Engineering">Other Engineering Specialization</option>
+                    <option value="Other Engineering">Other Engineering Branch</option>
                   </select>
                 </div>
 
                 {/* Technical Interests */}
-                <div style={{ marginBottom: '1.5rem' }}>
+                <div className="mb-5">
                   <label 
                     htmlFor="interests"
-                    style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}
+                    className="block font-mono text-xs text-bbs-muted mb-2 uppercase"
                   >
-                    PRIMARY TECHNICAL INTEREST
+                    WHAT ARE YOU EXCITED TO LEARN / BUILD?
                   </label>
                   <select
                     id="interests"
                     name="interests"
                     value={formData.interests}
                     onChange={handleChange}
-                    style={{
-                      width: '100%',
-                      padding: '0.85rem 1rem',
-                      backgroundColor: 'var(--surface-raised)',
-                      border: '1px solid var(--border)',
-                      borderRadius: 'var(--radius-sm)',
-                      color: 'var(--text)',
-                      outline: 'none',
-                      fontFamily: 'inherit'
-                    }}
+                    className="w-full px-4 py-3 bg-bbs-raised border border-bbs-border rounded text-bbs-text text-sm focus:outline-none focus:border-bbs-accent transition-colors"
                   >
-                    <option value="Distributed Systems & Backend">Distributed Systems & Backend</option>
-                    <option value="Modern Frontend & UI Engineering">Modern Frontend & UI Engineering</option>
-                    <option value="Competitive Programming & Algorithms">Competitive Programming & Algorithms</option>
-                    <option value="Open Source & Developer Tooling">Open Source & Developer Tooling</option>
-                    <option value="Applied Machine Learning & AI">Applied Machine Learning & AI</option>
-                    <option value="Cloud, DevOps & Linux">Cloud, DevOps & Linux</option>
+                    <option value="Web Development & Apps">Web Development & Full-Stack Apps</option>
+                    <option value="Competitive Programming">Competitive Programming & Data Structures</option>
+                    <option value="Open Source & Developer Tools">Open Source & Developer Tools</option>
+                    <option value="Hackathon Squads">Hackathon Squads & Rapid Prototyping</option>
+                    <option value="Machine Learning & AI">Machine Learning & Applied AI</option>
+                    <option value="Systems & Linux">Systems, Backend & Linux</option>
                   </select>
                 </div>
 
                 {/* GitHub / Portfolio */}
-                <div style={{ marginBottom: '2rem' }}>
+                <div className="mb-6">
                   <label 
                     htmlFor="portfolioUrl"
-                    style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}
+                    className="block font-mono text-xs text-bbs-muted mb-2 uppercase"
                   >
-                    GITHUB / PORTFOLIO (OPTIONAL)
+                    GITHUB / PORTFOLIO (IF ANY — TOTALLY OPTIONAL)
                   </label>
                   <input
                     id="portfolioUrl"
@@ -332,17 +273,8 @@ export default function JoinSection() {
                     type="url"
                     value={formData.portfolioUrl}
                     onChange={handleChange}
-                    placeholder="https://github.com/your-username"
-                    style={{
-                      width: '100%',
-                      padding: '0.85rem 1rem',
-                      backgroundColor: 'var(--surface-raised)',
-                      border: '1px solid var(--border)',
-                      borderRadius: 'var(--radius-sm)',
-                      color: 'var(--text)',
-                      outline: 'none',
-                      fontFamily: 'inherit'
-                    }}
+                    placeholder="https://github.com/username"
+                    className="w-full px-4 py-3 bg-bbs-raised border border-bbs-border rounded text-bbs-text text-sm focus:outline-none focus:border-bbs-accent transition-colors"
                   />
                 </div>
 
@@ -350,18 +282,9 @@ export default function JoinSection() {
                 {formState === 'error' && (
                   <div 
                     role="alert"
-                    style={{
-                      backgroundColor: 'rgba(239, 68, 68, 0.1)',
-                      border: '1px solid #EF4444',
-                      borderRadius: 'var(--radius-sm)',
-                      padding: '0.85rem 1rem',
-                      color: '#EF4444',
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.8125rem',
-                      marginBottom: '1.5rem'
-                    }}
+                    className="bg-red-500/10 border border-red-500 rounded p-3 text-red-400 font-mono text-xs mb-5"
                   >
-                    ✕ ERROR: {errorMessage}
+                    ✕ {errorMessage}
                   </div>
                 )}
 
@@ -369,14 +292,13 @@ export default function JoinSection() {
                 <button
                   type="submit"
                   disabled={formState === 'submitting'}
-                  className="btn btn-primary"
-                  style={{ width: '100%', padding: '1rem' }}
+                  className="w-full py-3.5 px-6 rounded bg-bbs-accent text-white font-mono text-sm font-semibold tracking-wide hover:bg-bbs-accent-hover transition-colors disabled:opacity-50"
                 >
-                  {formState === 'submitting' ? 'VERIFYING CREDENTIALS...' : 'JOIN THE CLUB ↗'}
+                  {formState === 'submitting' ? 'SENDING RESPONSE...' : 'JOIN BBS CODING CLUB ↗'}
                 </button>
 
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--text-dim)', textAlign: 'center', marginTop: '1rem' }}>
-                  DATA RESPECTED // PROTECTED UNDER OUR PRIVACY CHARTER
+                <div className="font-mono text-[11px] text-bbs-dim text-center mt-3">
+                  NO FEES // ALL STUDENTS WELCOME REGARDLESS OF EXPERIENCE
                 </div>
               </form>
             )}

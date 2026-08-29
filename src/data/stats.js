@@ -1,33 +1,30 @@
 export const STATS = [
   {
-    id: "students",
-    number: "500+",
-    label: "STUDENTS REACHED",
-    subtext: "Across workshops, bootcamps, and competitive tracks."
+    id: "est",
+    number: "2025",
+    label: "FOUNDATION YEAR",
+    subtext: "Established as an independent student-led developer community.",
+    isVerified: true
   },
   {
-    id: "events",
-    number: "25+",
-    label: "EVENTS HOSTED",
-    subtext: "Including hackathons, technical workshops, and talks."
+    id: "student-run",
+    number: "100%",
+    label: "STUDENT RUN",
+    subtext: "Organized, mentored, and maintained entirely by undergraduate builders.",
+    isVerified: true
   },
   {
-    id: "builds",
-    number: "15+",
-    label: "PROJECTS SHIPPED",
-    subtext: "Active tools, campus apps, and public repositories."
-  },
-  {
-    id: "hackathons",
-    number: "10+",
-    label: "HACKATHONS",
-    subtext: "Internal hackathons and national finals representation."
+    id: "sih-track",
+    number: "SIH '26",
+    label: "INTERNAL QUALIFIER",
+    subtext: "Official campus internal hackathon evaluation track.",
+    isVerified: true
   },
   {
     id: "ideas",
     number: "∞",
-    label: "IDEAS EXPLORED",
-    subtext: "Continuous prototyping and collective experimentation.",
+    label: "IDEAS TO SHIP",
+    subtext: "Open hack nights, collaborative repos, and curiosity-driven builds.",
     isConceptual: true
   }
 ];

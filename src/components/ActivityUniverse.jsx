@@ -1,54 +1,40 @@
 import React, { useState } from 'react';
 import { ACTIVITY_ZONES } from '../data/activityZones.js';
+import ViewportText from './ViewportText.jsx';
 
 export default function ActivityUniverse() {
   const [selectedId, setSelectedId] = useState(ACTIVITY_ZONES[0].id);
   const activeZone = ACTIVITY_ZONES.find(z => z.id === selectedId) || ACTIVITY_ZONES[0];
 
   return (
-    <section id="universe" className="section subtle-grid">
-      <div className="container">
+    <section id="universe" className="subtle-grid py-20 sm:py-28 border-t border-bbs-border relative">
+      <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
         {/* Section Header */}
-        <div className="section-meta">
-          <span>02 / ACTIVITY UNIVERSE</span>
+        <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
+          <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
+          <span>02 / WHAT WE ACTUALLY DO</span>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '3.5rem' }}>
+        <div className="flex justify-between items-end flex-wrap gap-4 mb-12">
           <div>
-            <h2 className="section-heading-editorial" style={{ margin: 0 }}>
+            <ViewportText
+              as="h2"
+              className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-bbs-text leading-tight m-0"
+            >
               WHERE BUILDERS CONVERGE.
-            </h2>
+            </ViewportText>
           </div>
           <div>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>
-              SELECT AN ARENA TO INSPECT SPECIFICATIONS [TOUCH / CLICK]
+            <span className="font-mono text-xs sm:text-sm text-bbs-muted">
+              TAP OR HOVER TO EXPLORE HOW SQUADS OPERATE
             </span>
           </div>
         </div>
 
-        {/* Signature Interactive Typographic Constellation */}
-        <div 
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(12, 1fr)',
-            gap: '1.5rem',
-            alignItems: 'stretch'
-          }}
-        >
-          {/* Typographic Matrix (7 cols on desktop) */}
-          <div 
-            style={{
-              gridColumn: 'span 12',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '0.75rem',
-              backgroundColor: 'var(--surface)',
-              border: '1px solid var(--border)',
-              borderRadius: 'var(--radius-sm)',
-              padding: 'clamp(1.5rem, 3vw, 2.5rem)'
-            }}
-            id="universe-matrix"
-          >
+        {/* Matrix & Editorial Inspector Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+          {/* Matrix Selector (5 cols on desktop) */}
+          <div className="lg:col-span-5 flex flex-col gap-2.5">
             {ACTIVITY_ZONES.map((zone) => {
               const isSelected = zone.id === selectedId;
               return (
@@ -56,159 +42,94 @@ export default function ActivityUniverse() {
                   key={zone.id}
                   onClick={() => setSelectedId(zone.id)}
                   onMouseEnter={() => setSelectedId(zone.id)}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: '1rem 1.25rem',
-                    borderRadius: 'var(--radius-sm)',
-                    background: isSelected ? 'var(--surface-raised)' : 'transparent',
-                    border: isSelected ? '1px solid var(--accent)' : '1px solid transparent',
-                    color: isSelected ? '#ffffff' : 'var(--text-muted)',
-                    transition: 'all var(--duration-fast) var(--ease-standard)',
-                    textAlign: 'left',
-                    width: '100%'
-                  }}
+                  className={`flex items-center justify-between p-4 sm:p-5 rounded border text-left w-full transition-all ${
+                    isSelected 
+                      ? 'bg-bbs-raised border-bbs-accent text-white' 
+                      : 'bg-bbs-surface border-bbs-border text-bbs-muted hover:text-bbs-text hover:border-bbs-border-focus'
+                  }`}
                   aria-pressed={isSelected}
                 >
-                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '1.5rem' }}>
-                    <span style={{ 
-                      fontFamily: 'var(--font-mono)', 
-                      fontSize: '0.8125rem', 
-                      color: isSelected ? 'var(--accent-light)' : 'var(--text-dim)',
-                      width: '24px'
-                    }}>
+                  <div className="flex items-baseline gap-4">
+                    <span className={`font-mono text-xs ${isSelected ? 'text-bbs-accent-light' : 'text-bbs-dim'}`}>
                       //
                     </span>
-                    <span style={{ 
-                      fontFamily: 'var(--font-display)', 
-                      fontSize: 'clamp(1.25rem, 3vw, 2rem)', 
-                      fontWeight: 700, 
-                      letterSpacing: '-0.02em',
-                      color: isSelected ? '#ffffff' : 'inherit'
-                    }}>
+                    <span className={`font-display text-lg sm:text-xl font-bold tracking-tight ${isSelected ? 'text-white' : 'inherit'}`}>
                       {zone.title}
                     </span>
                   </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <span 
-                      className="tag"
-                      style={{ 
-                        display: 'none',
-                        borderColor: isSelected ? 'rgba(37, 99, 235, 0.4)' : 'var(--border)'
-                      }}
-                    >
-                      {zone.role}
-                    </span>
-                    <span style={{ 
-                      color: isSelected ? 'var(--accent-light)' : 'var(--text-dim)',
-                      transform: isSelected ? 'translateX(4px)' : 'none',
-                      transition: 'transform var(--duration-fast) var(--ease-standard)'
-                    }}>
-                      →
-                    </span>
-                  </div>
+                  <span className={`transition-transform duration-200 ${
+                    isSelected ? 'text-bbs-accent-light translate-x-1' : 'text-bbs-dim'
+                  }`}>
+                    →
+                  </span>
                 </button>
               );
             })}
           </div>
 
-          {/* Inspector Panel (5 cols on desktop) */}
-          <div 
-            style={{
-              gridColumn: 'span 12',
-              backgroundColor: 'var(--surface-raised)',
-              border: '1px solid var(--border-light)',
-              borderRadius: 'var(--radius-sm)',
-              padding: 'clamp(1.75rem, 3.5vw, 2.75rem)',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between'
-            }}
-            id="universe-inspector"
-          >
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                <span className="tag tag-accent">{activeZone.role}</span>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-dim)' }}>
-                  CADENCE: {activeZone.frequency}
-                </span>
-              </div>
-
-              <h3 
-                style={{ 
-                  fontFamily: 'var(--font-display)', 
-                  fontSize: 'var(--text-heading-l)', 
-                  fontWeight: 700,
-                  marginBottom: '1rem',
-                  color: 'var(--text)'
-                }}
-              >
-                {activeZone.title}
-              </h3>
-
-              <p style={{ fontSize: '1rem', color: 'var(--text-muted)', lineHeight: 1.65, marginBottom: '2rem' }}>
-                {activeZone.description}
-              </p>
-
-              <div style={{ marginBottom: '2rem' }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-dim)', marginBottom: '0.75rem' }}>
-                  KEY TRACKS & INITIATIVES
-                </div>
-                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                  {activeZone.tags.map((tag, i) => (
-                    <span key={i} className="tag">
-                      #{tag}
-                    </span>
-                  ))}
+          {/* Editorial Visual Inspector (7 cols on desktop) */}
+          <div className="lg:col-span-7 bg-bbs-surface border border-bbs-border rounded overflow-hidden flex flex-col">
+            {/* Visual Photo Header */}
+            {activeZone.image && (
+              <div className="w-full h-56 sm:h-64 relative overflow-hidden border-b border-bbs-border bg-black">
+                <img 
+                  src={activeZone.image} 
+                  alt={activeZone.title}
+                  className="w-full h-full object-cover block"
+                  loading="lazy"
+                />
+                <div className="absolute bottom-3 left-3 bg-bbs-bg/85 backdrop-blur-sm px-3 py-1 rounded font-mono text-xs text-bbs-accent-light border border-bbs-border">
+                  FORMAT: {activeZone.howItWorks.toUpperCase()}
                 </div>
               </div>
-            </div>
+            )}
 
-            <div 
-              style={{
-                borderTop: '1px solid var(--border)',
-                paddingTop: '1.5rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between'
-              }}
-            >
+            {/* Inspector Body */}
+            <div className="p-6 sm:p-8 flex flex-col justify-between flex-1">
               <div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--text-dim)' }}>
-                  VERIFIED STATISTIC
+                <div className="font-mono text-xs text-bbs-accent-light uppercase mb-2">
+                  {activeZone.role}
                 </div>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--accent-light)' }}>
-                  {activeZone.stats}
+
+                <h3 className="font-display text-2xl sm:text-3xl font-bold mb-3 text-bbs-text">
+                  {activeZone.title}
+                </h3>
+
+                <p className="text-base text-bbs-muted leading-relaxed mb-6">
+                  {activeZone.description}
+                </p>
+
+                <div className="mb-6">
+                  <div className="font-mono text-xs text-bbs-dim mb-2 uppercase">
+                    COMMON TRACKS & EXPERIENCES:
+                  </div>
+                  <div className="flex gap-2 flex-wrap">
+                    {activeZone.tags.map((tag, i) => (
+                      <span key={i} className="inline-flex items-center font-mono text-[11px] font-medium tracking-wider uppercase px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/30">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              <a 
-                href="#events" 
-                className="btn btn-secondary"
-                style={{ fontSize: '0.75rem', padding: '0.55rem 0.95rem' }}
-              >
-                VIEW ACTIVITIES ↗
-              </a>
+              <div className="border-t border-bbs-border pt-4 flex items-center justify-between flex-wrap gap-3">
+                <div className="font-mono text-xs text-bbs-dim">
+                  OPEN TO ALL UNDERGRADUATE STUDENTS
+                </div>
+
+                <a 
+                  href="#join" 
+                  className="font-mono text-xs font-semibold px-4 py-2 border border-bbs-border-light text-bbs-text rounded hover:bg-bbs-raised hover:border-bbs-muted transition-colors"
+                >
+                  GET INVOLVED ↗
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <style>{`
-        @media (min-width: 900px) {
-          #universe-matrix {
-            grid-column: span 7 !important;
-          }
-          #universe-inspector {
-            grid-column: span 5 !important;
-          }
-          #universe-matrix .tag {
-            display: inline-flex !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

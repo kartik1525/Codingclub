@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { EVENTS } from '../data/events.js';
+import ViewportText from './ViewportText.jsx';
 
 export default function EventsSection({ onRegisterClick }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -13,207 +14,138 @@ export default function EventsSection({ onRegisterClick }) {
   });
 
   return (
-    <section id="events" className="section subtle-grid">
-      <div className="container">
+    <section id="events" className="subtle-grid py-20 sm:py-28 border-t border-bbs-border relative">
+      <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
         {/* Section Meta */}
-        <div className="section-meta">
-          <span>04 / CLUB EVENTS & CALENDAR</span>
+        <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
+          <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
+          <span>04 / CAMPUS EVENTS & HACKATHONS</span>
         </div>
 
-        <div style={{ marginBottom: '3.5rem' }}>
-          <h2 className="section-heading-editorial" style={{ margin: 0 }}>
+        <div className="mb-14">
+          <ViewportText
+            as="h2"
+            className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-bbs-text leading-tight m-0"
+          >
             ENGINEERED UNDER PRESSURE.
-          </h2>
-          <p style={{ marginTop: '0.75rem', fontSize: 'var(--text-body-l)', color: 'var(--text-muted)' }}>
-            Hackathons, systems masterclasses, and open-source contribution sprints.
+          </ViewportText>
+          <p className="text-base sm:text-lg text-bbs-muted mt-3 max-w-2xl">
+            From 36-hour overnight hackathons to hands-on lab workshops with fellow students.
           </p>
         </div>
 
-        {/* Featured Upcoming Event (Editorial Spotlight) */}
-        <div style={{ marginBottom: '5rem' }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--accent-light)', marginBottom: '1rem', letterSpacing: '0.08em' }}>
-            // UPCOMING SPOTLIGHT
-          </div>
+        {/* Featured Upcoming Event with Large Photography */}
+        {upcomingEvents.map((event) => (
+          <div
+            key={event.id}
+            className="bg-bbs-surface border border-bbs-accent rounded overflow-hidden mb-20 shadow-xl"
+          >
+            {/* Top Event Photography Banner */}
+            <div className="w-full max-h-[380px] overflow-hidden relative bg-black border-b border-bbs-border">
+              <img 
+                src={event.image} 
+                alt="Students collaborating during overnight campus hackathon"
+                className="w-full h-full max-h-[380px] object-cover block"
+                loading="lazy"
+              />
+              <div className="absolute top-4 left-4 bg-bbs-bg/85 backdrop-blur-sm px-3.5 py-1.5 rounded font-mono text-xs text-white border border-bbs-border">
+                UPCOMING IN-PERSON HACKATHON // FALL 2026
+              </div>
+            </div>
 
-          {upcomingEvents.length > 0 ? (
-            upcomingEvents.map((event) => (
-              <div
-                key={event.id}
-                style={{
-                  backgroundColor: 'var(--surface)',
-                  border: '1px solid var(--accent)',
-                  borderRadius: 'var(--radius-sm)',
-                  padding: 'clamp(2rem, 5vw, 4rem)',
-                  position: 'relative',
-                  overflow: 'hidden'
-                }}
-              >
-                {/* Glow accent bar */}
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'var(--accent)' }} />
-
-                <div 
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                    gap: '3rem',
-                    alignItems: 'center'
-                  }}
-                >
-                  <div>
-                    <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', marginBottom: '1.25rem' }}>
-                      <span className="tag tag-accent">UPCOMING // {event.category.toUpperCase()}</span>
-                      <span className="status-indicator">
-                        <span className="status-dot pulse"></span>
-                        <span>REGISTRATION OPEN</span>
-                      </span>
-                    </div>
-
-                    <h3 
-                      style={{ 
-                        fontFamily: 'var(--font-display)', 
-                        fontSize: 'clamp(1.75rem, 4vw, 3rem)', 
-                        fontWeight: 800,
-                        lineHeight: 1.05,
-                        color: 'var(--text)',
-                        marginBottom: '1rem' 
-                      }}
-                    >
-                      {event.title}
-                    </h3>
-
-                    <p 
-                      style={{ 
-                        fontFamily: 'var(--font-display)', 
-                        fontSize: '1.25rem', 
-                        fontWeight: 600, 
-                        color: 'var(--accent-light)',
-                        marginBottom: '1.5rem' 
-                      }}
-                    >
-                      {event.tagline}
-                    </p>
-
-                    <p style={{ fontSize: '1rem', color: 'var(--text-muted)', lineHeight: 1.65, marginBottom: '2rem' }}>
-                      {event.description}
-                    </p>
-
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '2.5rem' }}>
-                      {event.tracks && event.tracks.map((track, i) => (
-                        <span key={i} className="tag">
-                          {track}
-                        </span>
-                      ))}
-                    </div>
-
-                    <button
-                      onClick={onRegisterClick}
-                      className="btn btn-primary"
-                      style={{ padding: '0.9rem 1.8rem' }}
-                    >
-                      REGISTER FOR HACKATHON →
-                    </button>
-                  </div>
-
-                  {/* Right Schedule & Location Box */}
-                  <div 
-                    style={{
-                      backgroundColor: 'var(--surface-raised)',
-                      border: '1px solid var(--border)',
-                      borderRadius: 'var(--radius-sm)',
-                      padding: '2.5rem',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '2rem'
-                    }}
-                  >
-                    <div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-dim)', marginBottom: '0.35rem' }}>
-                        DATE & TIME
-                      </div>
-                      <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.75rem', fontWeight: 700, color: 'var(--text)' }}>
-                        {event.formattedDate}
-                      </div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                        {event.time}
-                      </div>
-                    </div>
-
-                    <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.5rem' }}>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-dim)', marginBottom: '0.35rem' }}>
-                        FORMAT & LOCATION
-                      </div>
-                      <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 600, color: 'var(--text)' }}>
-                        {event.location}
-                      </div>
-                    </div>
-
-                    <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.5rem', fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>
-                      <div>ELIGIBILITY: ALL REGISTERED BBS STUDENTS</div>
-                      <div style={{ marginTop: '0.35rem', color: 'var(--accent-light)' }}>TEAMS: 3 TO 6 MEMBERS</div>
-                    </div>
+            {/* Event Details Grid */}
+            <div className="p-6 sm:p-10 md:p-14 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              <div className="lg:col-span-7">
+                <div className="flex gap-3 items-center flex-wrap mb-4">
+                  <span className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/30">
+                    INTERNAL CAMPUS QUALIFIER
+                  </span>
+                  <div className="inline-flex items-center gap-2 font-mono text-xs text-bbs-muted">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <span>REGISTRATIONS ACTIVE</span>
                   </div>
                 </div>
-              </div>
-            ))
-          ) : (
-            /* Empty State per PRD Section 18.3 */
-            <div 
-              style={{
-                padding: '3rem',
-                textAlign: 'center',
-                backgroundColor: 'var(--surface)',
-                border: '1px dashed var(--border)',
-                borderRadius: 'var(--radius-sm)'
-              }}
-            >
-              <div style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-dim)', marginBottom: '0.5rem' }}>
-                // CALENDAR STATUS
-              </div>
-              <h3 style={{ fontSize: '1.25rem', color: 'var(--text)' }}>
-                NOTHING SCHEDULED — YET. CHECK BACK SOON.
-              </h3>
-              <p style={{ margin: '0.5rem auto 0 auto' }}>
-                Follow our community channels for flash hackathons and workshop announcements.
-              </p>
-            </div>
-          )}
-        </div>
 
-        {/* Past Events Archive */}
+                <h3 className="font-display text-2xl sm:text-4xl font-bold text-bbs-text leading-tight mb-3">
+                  {event.title}
+                </h3>
+
+                <p className="text-lg text-bbs-accent-light font-semibold mb-4">
+                  {event.tagline}
+                </p>
+
+                <p className="text-base text-bbs-muted leading-relaxed mb-6">
+                  {event.description}
+                </p>
+
+                <div className="bg-bbs-raised border border-bbs-border rounded p-4 mb-6 font-mono text-xs sm:text-sm text-bbs-muted leading-relaxed">
+                  <span className="text-bbs-accent-light font-semibold">[NOTE FOR FIRST-TIMERS]: </span>
+                  {event.note}
+                </div>
+
+                <button
+                  onClick={onRegisterClick}
+                  className="inline-flex items-center justify-center font-mono text-xs sm:text-sm font-semibold tracking-wide px-6 py-3 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:-translate-y-0.5"
+                >
+                  REGISTER YOUR SQUAD FOR SIH '26 →
+                </button>
+              </div>
+
+              {/* Schedule Box */}
+              <div className="lg:col-span-5 bg-bbs-raised border border-bbs-border rounded p-6 sm:p-8 flex flex-col gap-6">
+                <div>
+                  <div className="font-mono text-xs text-bbs-dim mb-1 uppercase">
+                    DATE & SCHEDULE
+                  </div>
+                  <div className="font-display text-2xl sm:text-3xl font-bold text-bbs-text">
+                    {event.formattedDate}
+                  </div>
+                  <div className="font-mono text-sm text-bbs-muted">
+                    {event.time}
+                  </div>
+                </div>
+
+                <div className="border-t border-bbs-border pt-5">
+                  <div className="font-mono text-xs text-bbs-dim mb-1 uppercase">
+                    CAMPUS VENUE
+                  </div>
+                  <div className="font-display text-lg sm:text-xl font-semibold text-bbs-text">
+                    {event.location}
+                  </div>
+                </div>
+
+                <div className="border-t border-bbs-border pt-5 font-mono text-xs text-bbs-muted">
+                  <div>TEAM SIZE: 3 TO 6 STUDENTS (CROSS-BRANCH ENCOURAGED)</div>
+                  <div className="mt-1 text-bbs-accent-light">NO ENTRY FEE // CAMPUS PASS REQUIRED</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {/* Past Events Timeline */}
         <div>
-          <div 
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              gap: '1.5rem',
-              borderBottom: '1px solid var(--border)',
-              paddingBottom: '1.5rem',
-              marginBottom: '2.5rem'
-            }}
-          >
+          <div className="flex flex-wrap justify-between items-center gap-4 border-b border-bbs-border pb-5 mb-10">
             <div>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 700, margin: 0 }}>
-                EVENT TIMELINE & ARCHIVE
+              <h3 className="font-display text-2xl font-bold text-bbs-text m-0">
+                RECENT SESSIONS & LAB MEETS
               </h3>
             </div>
 
-            {/* Category Filter Pills */}
-            <div style={{ display: 'flex', gap: '0.45rem', flexWrap: 'wrap' }}>
-              {['all', 'workshop', 'competition', 'hackathon'].map((cat) => (
+            {/* Filter Buttons */}
+            <div className="flex gap-2 flex-wrap">
+              {['all', 'workshop', 'community'].map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.75rem',
-                    padding: '0.4rem 0.8rem',
-                    borderRadius: 'var(--radius-sm)',
-                    background: selectedCategory === cat ? 'var(--surface-raised)' : 'transparent',
-                    border: selectedCategory === cat ? '1px solid var(--accent)' : '1px solid var(--border)',
-                    color: selectedCategory === cat ? '#ffffff' : 'var(--text-muted)'
-                  }}
+                  className={`font-mono text-xs px-3 py-1.5 rounded transition-colors ${
+                    selectedCategory === cat 
+                      ? 'bg-bbs-raised border border-bbs-accent text-white' 
+                      : 'bg-transparent border border-bbs-border text-bbs-muted hover:text-bbs-text'
+                  }`}
                 >
                   {cat.toUpperCase()}
                 </button>
@@ -221,52 +153,47 @@ export default function EventsSection({ onRegisterClick }) {
             </div>
           </div>
 
-          {/* Past Event Items */}
-          {filteredPastEvents.length === 0 ? (
-            <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-muted)' }}>
-              No archived events found under this category.
-            </div>
-          ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-              {filteredPastEvents.map((evt) => (
-                <div
-                  key={evt.id}
-                  style={{
-                    backgroundColor: 'var(--surface)',
-                    border: '1px solid var(--border)',
-                    borderRadius: 'var(--radius-sm)',
-                    padding: '1.5rem 2rem',
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-                    gap: '1.5rem',
-                    alignItems: 'center',
-                    transition: 'border-color var(--duration-fast) var(--ease-standard)'
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--border-focus)'}
-                  onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--border)'}
-                >
-                  <div>
-                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-dim)', marginBottom: '0.35rem' }}>
-                      {evt.formattedDate} // {evt.category.toUpperCase()}
-                    </div>
-                    <h4 style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--text)' }}>
-                      {evt.title}
-                    </h4>
+          {/* Past Event List with Workshop photo */}
+          <div className="flex flex-col gap-6">
+            {filteredPastEvents.map((evt) => (
+              <div
+                key={evt.id}
+                className={`bg-bbs-surface border border-bbs-border rounded overflow-hidden items-center ${
+                  evt.image ? 'grid grid-cols-1 md:grid-cols-12' : 'block'
+                }`}
+              >
+                {evt.image && (
+                  <div className="md:col-span-4 h-full min-h-[200px] bg-black border-b md:border-b-0 md:border-r border-bbs-border">
+                    <img 
+                      src={evt.image} 
+                      alt={evt.title} 
+                      className="w-full h-full object-cover block" 
+                      loading="lazy"
+                    />
                   </div>
+                )}
 
-                  <div>
-                    <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', margin: 0 }}>
-                      {evt.description}
-                    </p>
+                <div className={`${evt.image ? 'md:col-span-8' : ''} p-6 sm:p-8`}>
+                  <div className="font-mono text-xs text-bbs-accent-light mb-2">
+                    {evt.formattedDate} // {evt.category.toUpperCase()}
                   </div>
-
-                  <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '1rem' }}>
-                    <span className="tag">COMPLETED</span>
+                  <h4 className="font-display text-xl font-bold text-bbs-text mb-2">
+                    {evt.title}
+                  </h4>
+                  <p className="text-sm sm:text-base text-bbs-muted leading-relaxed mb-4">
+                    {evt.description}
+                  </p>
+                  <div className="flex gap-2 flex-wrap">
+                    {evt.tracks && evt.tracks.map((t, idx) => (
+                      <span key={idx} className="font-mono text-xs px-2 py-0.5 bg-bbs-surface border border-bbs-border rounded text-bbs-dim">
+                        {t}
+                      </span>
+                    ))}
                   </div>
                 </div>
-              ))}
-            </div>
-          )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

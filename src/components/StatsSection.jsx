@@ -3,87 +3,58 @@ import { STATS } from '../data/stats.js';
 
 export default function StatsSection() {
   return (
-    <section id="stats" className="section">
-      <div className="container">
+    <section id="stats" className="py-20 sm:py-28 border-t border-bbs-border relative">
+      <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
         {/* Section Meta */}
-        <div className="section-meta">
-          <span>05 / COMMUNITY & VERIFIED IMPACT</span>
+        <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
+          <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
+          <span>05 / COMMUNITY COMMITMENTS & STATUS</span>
         </div>
 
-        <div style={{ marginBottom: '4rem' }}>
-          <h2 className="section-heading-editorial" style={{ margin: 0 }}>
-            SCALE MEASURED IN CODE AND PEOPLE.
+        <div className="mb-14">
+          <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-bbs-text leading-tight m-0">
+            AUTHENTIC BENCHMARKS.
           </h2>
-          <p style={{ marginTop: '0.75rem', fontSize: 'var(--text-body-l)', color: 'var(--text-muted)' }}>
-            Real verifiable metrics tracking our active campus reach and deployed initiatives.
+          <p className="text-base sm:text-lg text-bbs-muted mt-3 max-w-2xl">
+            No inflated numbers or vanity statistics. Honest milestones and community standards as of our 2025–2026 foundation.
           </p>
         </div>
 
         {/* High-Contrast Numerals Grid */}
-        <div 
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '1.5rem'
-          }}
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {STATS.map((item) => (
             <div
               key={item.id}
-              style={{
-                backgroundColor: item.isConceptual ? 'var(--surface-raised)' : 'var(--surface)',
-                border: item.isConceptual ? '1px solid var(--accent)' : '1px solid var(--border)',
-                borderRadius: 'var(--radius-sm)',
-                padding: 'clamp(2rem, 3.5vw, 3rem)',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                transition: 'border-color var(--duration-fast) var(--ease-standard)'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--border-focus)'}
-              onMouseLeave={(e) => e.currentTarget.style.borderColor = item.isConceptual ? 'var(--accent)' : 'var(--border)'}
+              className={`rounded p-6 sm:p-8 flex flex-col justify-between border transition-all hover:border-bbs-border-focus ${
+                item.isConceptual 
+                  ? 'bg-bbs-raised border-bbs-accent' 
+                  : 'bg-bbs-surface border-bbs-border'
+              }`}
             >
               <div>
-                {item.isConceptual && (
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--accent-light)', marginBottom: '0.5rem' }}>
-                    // CONCEPTUAL HORIZON
+                {item.isConceptual ? (
+                  <div className="font-mono text-xs text-bbs-accent-light mb-2">
+                    // COMMUNITY PLEDGE
+                  </div>
+                ) : (
+                  <div className="font-mono text-xs text-bbs-dim mb-2">
+                    // VERIFIED STATUS
                   </div>
                 )}
                 <div 
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: 'clamp(3rem, 6.5vw, 5.5rem)',
-                    fontWeight: 800,
-                    lineHeight: 1,
-                    letterSpacing: '-0.04em',
-                    color: item.isConceptual ? 'var(--accent-light)' : 'var(--text)',
-                    marginBottom: '1rem'
-                  }}
+                  className={`font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tighter leading-none mb-4 ${
+                    item.isConceptual ? 'text-bbs-accent-light' : 'text-bbs-text'
+                  }`}
                 >
                   {item.number}
                 </div>
               </div>
 
               <div>
-                <div 
-                  style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.8125rem',
-                    fontWeight: 600,
-                    letterSpacing: '0.08em',
-                    color: 'var(--text)',
-                    marginBottom: '0.5rem'
-                  }}
-                >
+                <div className="font-mono text-xs sm:text-sm font-semibold tracking-wider text-bbs-text mb-2 uppercase">
                   {item.label}
                 </div>
-                <div 
-                  style={{
-                    fontSize: '0.875rem',
-                    color: 'var(--text-muted)',
-                    lineHeight: 1.5
-                  }}
-                >
+                <div className="text-xs sm:text-sm text-bbs-muted leading-relaxed">
                   {item.subtext}
                 </div>
               </div>

@@ -2,55 +2,46 @@ export const ACTIVITY_ZONES = [
   {
     id: "hackathons",
     title: "HACKATHONS",
-    role: "COMPETE & INNOVATE",
-    frequency: "Semester / Annual",
-    description: "High-intensity 36 to 48-hour build marathons where multidisciplinary student teams transform ideas into working MVPs under real deadline pressure.",
-    stats: "10+ Competitions Participated",
-    tags: ["SIH Selections", "Weekend Jams", "Rapid Prototyping"]
+    role: "BUILD TOGETHER UNDER PRESSURE",
+    howItWorks: "Overnight campus build sprints",
+    description: "Intense weekend sprints where you team up with friends, order food, stay up late coding, and demo a working prototype before Sunday evening. Perfect for learning how to ship quickly.",
+    image: "/assets/hackathon.jpg",
+    tags: ["SIH Internal Hackathon", "36-Hour Sprints", "Live Demos", "Cross-Branch Teams"]
   },
   {
     id: "projects",
     title: "PROJECTS",
-    role: "BUILD & SHIP",
-    frequency: "Continuous Lifecycle",
-    description: "Dedicated project squads working on campus software, backend architectures, developer tools, and client-facing digital products.",
-    stats: "15+ Deployed Repos",
-    tags: ["Campus Tech", "Distributed Backends", "Modern Frontend"]
+    role: "BUILD THINGS THAT DON'T DIE AS HOMEWORK",
+    howItWorks: "Collaborative student squads",
+    description: "Instead of building another todo-app that sits alone on your desktop, we form small teams to build tools the campus actually uses and open-source packages you can proudly put on your resume.",
+    image: "/assets/project-mockup.jpg",
+    tags: ["Campus Web Platform", "Developer CLI Tools", "Collaborative GitHub", "Code Reviews"]
   },
   {
     id: "workshops",
     title: "WORKSHOPS",
-    role: "DEEP LEARNING",
-    frequency: "Bi-Weekly",
-    description: "Hands-on, zero-fluff interactive code-alongs covering systems programming, web technologies, DevOps, and machine learning architectures.",
-    stats: "25+ Sessions Delivered",
-    tags: ["Rust Primers", "Fullstack Labs", "Docker/K8s"]
-  },
-  {
-    id: "open-source",
-    title: "OPEN SOURCE",
-    role: "GLOBAL IMPACT",
-    frequency: "Active Cycles",
-    description: "Contributing to global open-source ecosystems, creating reusable libraries, publishing CLIs, and encouraging good Git contribution hygiene.",
-    stats: "120+ Pull Requests Merged",
-    tags: ["GitHub Jams", "Tooling", "Documentation"]
+    role: "LEARN BY BREAKING THINGS ON PURPOSE",
+    howItWorks: "Interactive projector sessions",
+    description: "No boring PowerPoint theory. We connect our laptops to the lab network, open our editors, and build together—covering everything from Linux commands to building web applications and deploying them live.",
+    image: "/assets/workshop.jpg",
+    tags: ["Hands-on Labs", "Git & GitHub", "Web Primers", "Terminal Skills"]
   },
   {
     id: "competitions",
     title: "COMPETITIONS",
-    role: "ALGORITHMIC RIGOR",
-    frequency: "Monthly Series",
-    description: "Competitive programming contests, algorithm duels on custom sandboxes, and problem-solving sprints designed to sharpen technical problem-solving.",
-    stats: "64+ Bracket Duels",
-    tags: ["Codeforces", "LeetCode Sprints", "Algo Arena"]
+    role: "SHARPEN PROBLEM SOLVING",
+    howItWorks: "Friendly campus contests",
+    description: "Speed coding tournaments, logic puzzles, and competitive programming practice. We help first-years get comfortable with algorithms without the intimidation factor.",
+    image: "/assets/project-mockup.jpg",
+    tags: ["Speed Coding", "Algorithm Ladders", "Logic Battles", "Interview Prep"]
   },
   {
     id: "community",
     title: "COMMUNITY",
-    role: "HUMAN CONNECTION",
-    frequency: "Always Active",
-    description: "Collaborative Discord channels, late-night debugging voice rooms, project feedback loops, and career mentorship from senior club alumni.",
-    stats: "500+ Student Network",
-    tags: ["Late Night Voice Jams", "Career AMAs", "Pair Programming"]
+    role: "PEOPLE WHO ACTUALLY CARE ABOUT CODE",
+    howItWorks: "Discord, lab meetups & study jams",
+    description: "The most valuable part of BBS Coding Club: having people to ask when your code won't compile at 2:00 AM, finding teammates for your next idea, and making genuine friends who share your curiosity.",
+    image: "/assets/hackathon.jpg",
+    tags: ["Late-Night Debugging", "Discord Channels", "Peer Support", "Alumni Advice"]
   }
 ];

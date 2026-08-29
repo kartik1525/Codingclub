@@ -14,27 +14,25 @@ import JoinSection from './components/JoinSection.jsx';
 import SiteFooter from './components/SiteFooter.jsx';
 import NotFoundView from './components/NotFoundView.jsx';
 import { PrivacyModal, TermsModal } from './components/SystemModals.jsx';
+import SmoothScroll, { useSmoothScroll } from './components/SmoothScroll.jsx';
 
-export default function App() {
+function AppContent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentView, setCurrentView] = useState('home'); // 'home' | '404'
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const { scrollTo } = useSmoothScroll();
 
   const scrollToSection = (id) => {
     setIsMenuOpen(false);
     if (currentView !== 'home') {
       setCurrentView('home');
       setTimeout(() => {
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        scrollTo(`#${id}`);
       }, 100);
       return;
     }
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    scrollTo(`#${id}`);
   };
 
   const handleJoinClick = () => {
@@ -42,9 +40,12 @@ export default function App() {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-bbs-bg text-bbs-text font-display selection:bg-bbs-accent selection:text-white">
       {/* Accessible Skip to Content Link */}
-      <a href="#main-content" className="skip-to-content">
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-bbs-accent focus:text-white focus:font-mono focus:text-sm focus:rounded"
+      >
         Skip to main content
       </a>
 
@@ -95,6 +96,14 @@ export default function App() {
       {/* System Modals */}
       <PrivacyModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
       <TermsModal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
-    </>
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <SmoothScroll>
+      <AppContent />
+    </SmoothScroll>
   );
 }

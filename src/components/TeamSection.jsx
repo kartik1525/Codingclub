@@ -1,147 +1,87 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TEAM_MEMBERS } from '../data/team.js';
 
 export default function TeamSection() {
-  const [activeMemberId, setActiveMemberId] = useState(null);
-
   return (
-    <section id="team" className="section subtle-grid">
-      <div className="container">
+    <section id="team" className="subtle-grid py-20 sm:py-28 border-t border-bbs-border relative">
+      <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
         {/* Section Meta */}
-        <div className="section-meta">
-          <span>06 / THE COLLECTIVE</span>
+        <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
+          <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
+          <span>06 / CORE LEADERSHIP & ROSTER</span>
         </div>
 
-        <div style={{ marginBottom: '4rem' }}>
-          <h2 className="section-heading-editorial" style={{ margin: 0 }}>
-            THE PEOPLE BEHIND THE CODE.
+        <div className="mb-14">
+          <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-bbs-text leading-tight m-0">
+            RUN BY STUDENTS. OPEN TO BUILDERS.
           </h2>
-          <p style={{ marginTop: '0.75rem', fontSize: 'var(--text-body-l)', color: 'var(--text-muted)' }}>
-            Engineers, builders, and community leads steering BBS Coding Club. Tap or hover to view focus areas.
+          <p className="text-base sm:text-lg text-bbs-muted mt-3 max-w-2xl">
+            Every track at BBS Coding Club is led by undergraduate students who volunteer their time to organize hackathons, run code reviews, and mentor first-years.
           </p>
         </div>
 
-        {/* Editorial Team Composition */}
-        <div 
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '1.5rem'
-          }}
-        >
-          {TEAM_MEMBERS.map((member) => {
-            const isExpanded = activeMemberId === member.id;
-            return (
-              <div
-                key={member.id}
-                onClick={() => setActiveMemberId(isExpanded ? null : member.id)}
-                style={{
-                  backgroundColor: 'var(--surface)',
-                  border: isExpanded ? '1px solid var(--accent)' : '1px solid var(--border)',
-                  borderRadius: 'var(--radius-sm)',
-                  padding: '2rem',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  cursor: 'pointer',
-                  transition: 'all var(--duration-fast) var(--ease-standard)'
-                }}
-                onMouseEnter={() => setActiveMemberId(member.id)}
-              >
-                <div>
-                  {/* Top row: Avatar monogram + Lead badge */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.75rem' }}>
-                    <div 
-                      style={{
-                        width: '48px',
-                        height: '48px',
-                        borderRadius: 'var(--radius-sm)',
-                        backgroundColor: 'var(--surface-raised)',
-                        border: '1px solid var(--border-light)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontFamily: 'var(--font-mono)',
-                        fontWeight: 700,
-                        color: 'var(--accent-light)'
-                      }}
-                    >
-                      {member.avatarInitials}
-                    </div>
+        {/* Notice of Active Nominations */}
+        <div className="bg-bbs-surface border border-bbs-accent rounded p-6 sm:p-8 mb-12 flex justify-between items-center flex-wrap gap-6 shadow-xl">
+          <div>
+            <div className="font-mono text-xs text-bbs-accent-light mb-1">
+              // COHORT 2026 STATUS
+            </div>
+            <div className="font-display text-xl sm:text-2xl font-bold text-bbs-text">
+              CORE ROSTER & TRACK LEAD NOMINATIONS IN PROGRESS
+            </div>
+            <div className="text-sm text-bbs-muted mt-1 max-w-xl">
+              We do not publish fabricated personnel rosters. Official student elections and track confirmations are finalized every August.
+            </div>
+          </div>
 
-                    <span className="tag">
-                      {member.domain}
-                    </span>
-                  </div>
+          <a 
+            href="#join" 
+            className="inline-flex items-center justify-center font-mono text-xs sm:text-sm font-semibold tracking-wide px-5 py-2.5 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-colors"
+          >
+            SUBMIT NOMINATION / APPLICATION ↗
+          </a>
+        </div>
 
-                  <h3 
-                    style={{ 
-                      fontFamily: 'var(--font-display)', 
-                      fontSize: '1.45rem', 
-                      fontWeight: 700, 
-                      color: 'var(--text)',
-                      marginBottom: '0.35rem' 
-                    }}
-                  >
-                    {member.name}
-                  </h3>
-
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--accent-light)', marginBottom: '1.25rem' }}>
-                    {member.role}
-                  </div>
-
-                  <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                    {member.bio}
-                  </p>
+        {/* Functional Roles Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {TEAM_MEMBERS.map((member) => (
+            <div
+              key={member.id}
+              className="bg-bbs-surface border border-bbs-border rounded p-6 sm:p-7 flex flex-col justify-between hover:border-bbs-border-focus transition-colors"
+            >
+              <div>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="inline-flex items-center font-mono text-[11px] font-medium tracking-wider uppercase px-2 py-0.5 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/30">
+                    {member.domain}
+                  </span>
+                  <span className="font-mono text-[10px] text-bbs-dim">
+                    {member.status}
+                  </span>
                 </div>
 
-                <div>
-                  {/* Technical Interests */}
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.5rem' }}>
-                    {member.interests.map((interest, i) => (
-                      <span key={i} className="tag tag-accent" style={{ fontSize: '0.6875rem' }}>
-                        {interest}
-                      </span>
-                    ))}
-                  </div>
+                <div className="font-mono text-xs text-bbs-dim mb-1">
+                  [{member.placeholderLabel}]
+                </div>
 
-                  {/* Social links */}
-                  <div 
-                    style={{
-                      borderTop: '1px solid var(--border)',
-                      paddingTop: '1rem',
-                      display: 'flex',
-                      gap: '1.25rem'
-                    }}
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    {member.github && (
-                      <a
-                        href={member.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-ghost"
-                        style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', padding: 0 }}
-                      >
-                        GITHUB ↗
-                      </a>
-                    )}
-                    {member.linkedin && (
-                      <a
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-ghost"
-                        style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', padding: 0 }}
-                      >
-                        LINKEDIN ↗
-                      </a>
-                    )}
-                  </div>
+                <h3 className="font-display text-lg sm:text-xl font-bold text-bbs-text mb-3 leading-snug">
+                  {member.role}
+                </h3>
+
+                <p className="text-sm text-bbs-muted leading-relaxed mb-6">
+                  {member.description}
+                </p>
+              </div>
+
+              <div className="border-t border-bbs-border pt-4">
+                <div className="font-mono text-[10px] text-bbs-dim mb-1 uppercase">
+                  CORE RESPONSIBILITIES
+                </div>
+                <div className="font-mono text-xs text-bbs-text">
+                  {member.focus}
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>

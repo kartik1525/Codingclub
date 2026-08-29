@@ -1,68 +1,46 @@
 export const TEAM_MEMBERS = [
   {
     id: "lead-01",
-    name: "Arjun Verma",
-    role: "Club Lead & Systems Architect",
-    domain: "Distributed Systems & Cloud",
-    interests: ["Go", "Kubernetes", "High Availability", "Microservices"],
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    avatarInitials: "AV",
-    bio: "Passionate about zero-downtime deployments and helping junior students master system design fundamentals."
+    role: "Club President & Community Lead",
+    domain: "Community & Operations",
+    focus: "Student Mentorship, SIH Coordination, Campus Hackathons",
+    status: "ACTIVE MANDATE // 2026 COHORT",
+    avatarInitials: "CP",
+    isPlaceholder: true,
+    placeholderLabel: "ELECTED STUDENT LEAD",
+    description: "Coordinates campus hackathons, bridges student teams with faculty advisors, and leads weekly club syncs."
   },
   {
     id: "tech-02",
-    name: "Meera Patel",
-    role: "Technical Lead (Frontend & Design)",
-    domain: "Creative Technology & UI Engineering",
-    interests: ["React", "WebGL", "Accessibility", "Design Systems"],
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    avatarInitials: "MP",
-    bio: "Obsessed with editorial interfaces, micro-interactions, and accessible typography that feels alive."
+    role: "Technical Lead (Web & Systems)",
+    domain: "Software Engineering",
+    focus: "React, Node.js, Developer Tooling, CI/CD",
+    status: "APPLICATIONS OPEN",
+    avatarInitials: "TL",
+    isPlaceholder: true,
+    placeholderLabel: "STUDENT APPLICANT POOL",
+    description: "Guides open-source repos, reviews student PRs, and conducts architecture deep dives."
   },
   {
     id: "algo-03",
-    name: "Kabir Khan",
     role: "Competitive Programming Lead",
-    domain: "Algorithms & Low-Level Sandboxing",
-    interests: ["C++20", "Graph Algorithms", "Competitive Math", "Linux Sandboxes"],
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    avatarInitials: "KK",
-    bio: "Candidate Master on Codeforces, organizer of the BBS Algorithm Clash and SIH contest problem setter."
+    domain: "Algorithms & Contests",
+    focus: "Data Structures, Codeforces, ICPC Prep, Problem Setting",
+    status: "ACTIVE MANDATE // 2026 COHORT",
+    avatarInitials: "CP",
+    isPlaceholder: true,
+    placeholderLabel: "CONTEST COORDINATOR",
+    description: "Sets problem statements for campus speed coding, organizes practice ladders, and coaches hackathon finalists."
   },
   {
     id: "os-04",
-    name: "Ananya Tiwari",
-    role: "Open Source & Community Lead",
-    domain: "Community & Developer Tooling",
-    interests: ["Python", "Rust", "API Design", "Hackathon Mentorship"],
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    avatarInitials: "AT",
-    bio: "Advocating for campus open-source culture, git workflows, and bridging first-year builders with senior mentors."
-  },
-  {
-    id: "devops-05",
-    name: "Rohan Sharma",
-    role: "DevOps & Infrastructure Lead",
-    domain: "CI/CD & Observability",
-    interests: ["Linux", "Docker", "Prometheus", "Edge Computing"],
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    avatarInitials: "RS",
-    bio: "Maintains self-hosted lab infrastructure, cluster runners, and internal club toolchains."
-  },
-  {
-    id: "research-06",
-    name: "Sneha Reddy",
-    role: "AI & Innovation Lead",
-    domain: "Applied Machine Learning & NLP",
-    interests: ["PyTorch", "LLM Fine-Tuning", "Vector Search", "Edge AI"],
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    avatarInitials: "SR",
-    bio: "Directing applied research prototypes, smart campus computer vision demos, and hackathon AI tracks."
+    role: "Open Source Coordinator",
+    domain: "Community & Tooling",
+    focus: "Git Workflows, Upstream Contributions, Hackathon Boilerplates",
+    status: "APPLICATIONS OPEN",
+    avatarInitials: "OS",
+    isPlaceholder: true,
+    placeholderLabel: "OPEN SOURCE SQUAD",
+    description: "Helps freshmen make their first pull requests and maintains club starter kits on GitHub."
   }
 ];

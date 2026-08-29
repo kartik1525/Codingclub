@@ -5,7 +5,7 @@ export const CLUB_INFO = {
   location: "BBS Campus, India",
   coordinates: "28.6139° N, 77.2090° E",
   tagline: "Build. Learn. Compete. Connect.",
-  missionStatement: "A student-led engineering collective where developers, designers, and systems architects turn technical curiosity into working software.",
+  missionStatement: "A student coding community where developers, designers, and curious builders learn together, collaborate on real projects, and compete in hackathons.",
   status: "ACTIVE",
   socials: {
     github: "https://github.com/bbs-coding-club",
@@ -14,6 +14,6 @@ export const CLUB_INFO = {
     email: "contact@bbscodingclub.org",
     discord: "https://discord.gg/bbscodingclub"
   },
-  institution: "BBS Engineering & Technology",
-  license: "MIT Open Source & Club Community Guidelines"
+  institution: "BBS College of Engineering and Technology",
+  license: "Student Community Guidelines"
 };
