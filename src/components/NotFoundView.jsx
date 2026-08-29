@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Section from './Section.jsx';
 
-export default function NotFoundView({ onReturnHome }) {
+export default function NotFoundView() {
   return (
-    <div className="min-h-[75vh] flex items-center justify-center p-6 sm:p-12">
+    <Section variant="grid" className="min-h-[75vh] flex items-center justify-center p-6 sm:p-12">
       <div className="max-w-xl w-full bg-bbs-surface border border-bbs-border rounded p-8 sm:p-14 text-center shadow-2xl">
         <div className="font-mono text-xs text-bbs-accent-light mb-4 tracking-wider">
           // HTTP 404 — ROUTE COMPILATION FAILURE
@@ -17,21 +19,20 @@ export default function NotFoundView({ onReturnHome }) {
         </p>
 
         <div className="flex gap-4 justify-center flex-wrap">
-          <button
-            onClick={onReturnHome}
+          <Link
+            to="/"
             className="inline-flex items-center justify-center font-mono text-xs sm:text-sm font-semibold tracking-wide px-5 py-2.5 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-colors"
           >
             ← RETURN TO MAIN ROUTE
-          </button>
-          <a
-            href="#projects"
-            onClick={onReturnHome}
+          </Link>
+          <Link
+            to="/projects"
             className="inline-flex items-center justify-center font-mono text-xs sm:text-sm font-semibold tracking-wide px-5 py-2.5 rounded border border-bbs-border-light text-bbs-text bg-transparent hover:bg-bbs-raised hover:border-bbs-muted transition-colors"
           >
             EXPLORE SELECTED BUILDS
-          </a>
+          </Link>
         </div>
       </div>
-    </div>
+    </Section>
   );
 }

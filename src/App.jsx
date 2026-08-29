@@ -1,45 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SiteHeader from './components/SiteHeader.jsx';
-import Hero from './components/Hero.jsx';
-import Marquee from './components/Marquee.jsx';
-import AboutSection from './components/AboutSection.jsx';
-import ActivityUniverse from './components/ActivityUniverse.jsx';
-import ProjectShowcase from './components/ProjectShowcase.jsx';
-import EventsSection from './components/EventsSection.jsx';
-import StatsSection from './components/StatsSection.jsx';
-import TeamSection from './components/TeamSection.jsx';
-import TerminalBlock from './components/TerminalBlock.jsx';
-import JoinSection from './components/JoinSection.jsx';
 import SiteFooter from './components/SiteFooter.jsx';
+import FloatingNav from './components/FloatingNav.jsx';
 import NotFoundView from './components/NotFoundView.jsx';
 import { PrivacyModal, TermsModal } from './components/SystemModals.jsx';
 import SmoothScroll, { useSmoothScroll } from './components/SmoothScroll.jsx';
 import { ThemeProvider } from './context/ThemeContext.jsx';
-import FloatingNav from './components/FloatingNav.jsx';
+
+import HomePage from './pages/HomePage.jsx';
+import AboutPage from './pages/AboutPage.jsx';
+import DepartmentsPage from './pages/DepartmentsPage.jsx';
+import ProjectsPage from './pages/ProjectsPage.jsx';
+import EventsPage from './pages/EventsPage.jsx';
+import TeamPage from './pages/TeamPage.jsx';
+import JoinPage from './pages/JoinPage.jsx';
+
+/**
+ * ScrollToTop - Resets scroll position to top and refreshes ScrollTrigger on route change
+ */
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  const { lenis } = useSmoothScroll();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    }
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 120);
+    return () => clearTimeout(timer);
+  }, [pathname, lenis]);
+
+  return null;
+}
 
 function AppContent() {
-  const [currentView, setCurrentView] = useState('home'); // 'home' | '404'
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
-  const { scrollTo } = useSmoothScroll();
-
-  const scrollToSection = (id) => {
-    if (currentView !== 'home') {
-      setCurrentView('home');
-      setTimeout(() => {
-        scrollTo(`#${id}`);
-      }, 100);
-      return;
-    }
-    scrollTo(`#${id}`);
-  };
-
-  const handleJoinClick = () => {
-    scrollToSection('join');
-  };
 
   return (
-    <div className="min-h-screen bg-bbs-bg text-bbs-text font-display selection:bg-bbs-accent selection:text-white transition-colors duration-300">
+    <div className="min-h-screen bg-bbs-bg text-bbs-text font-display selection:bg-bbs-accent selection:text-white transition-colors duration-300 flex flex-col justify-between">
+      <ScrollToTop />
+
       {/* Accessible Skip to Content Link */}
       <a 
         href="#main-content" 
@@ -48,41 +54,31 @@ function AppContent() {
         Skip to main content
       </a>
 
-      {/* State 1: Top Navbar (Part of normal document flow, scrolls away with hero) */}
-      <SiteHeader onJoinClick={handleJoinClick} />
+      {/* State 1: Top Navbar */}
+      <SiteHeader />
 
-      {/* Primary Page Content */}
-      <main id="main-content">
-        {currentView === '404' ? (
-          <NotFoundView onReturnHome={() => setCurrentView('home')} />
-        ) : (
-          <>
-            <Hero onJoinClick={handleJoinClick} />
-            <Marquee />
-            <AboutSection />
-            <ActivityUniverse />
-            <ProjectShowcase />
-            <EventsSection onRegisterClick={handleJoinClick} />
-            <StatsSection />
-            <TeamSection />
-            <TerminalBlock onJoinClick={handleJoinClick} />
-            <JoinSection />
-          </>
-        )}
+      {/* Primary Routing Body */}
+      <main id="main-content" className="flex-1">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/departments" element={<DepartmentsPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/team" element={<TeamPage />} />
+          <Route path="/join" element={<JoinPage />} />
+          <Route path="*" element={<NotFoundView />} />
+        </Routes>
       </main>
+
+      {/* State 2: Floating Bottom Navigation Dock */}
+      <FloatingNav />
 
       {/* Footer */}
       <SiteFooter 
         onOpenPrivacy={() => setIsPrivacyOpen(true)}
         onOpenTerms={() => setIsTermsOpen(true)}
-        onOpen404Demo={() => {
-          setCurrentView(currentView === 'home' ? '404' : 'home');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
       />
-
-      {/* State 2: Floating Bottom Navigation Dock (Appears when scrolled past ~50% of Hero) */}
-      <FloatingNav onJoinClick={handleJoinClick} />
 
       {/* System Modals */}
       <PrivacyModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
@@ -94,9 +90,11 @@ function AppContent() {
 export default function App() {
   return (
     <ThemeProvider>
-      <SmoothScroll>
-        <AppContent />
-      </SmoothScroll>
+      <BrowserRouter>
+        <SmoothScroll>
+          <AppContent />
+        </SmoothScroll>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

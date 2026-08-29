@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { CLUB_INFO } from '../data/clubInfo.js';
 import HeroHeadline from './HeroHeadline.jsx';
+import Section from './Section.jsx';
 
 export default function Hero({ onJoinClick }) {
   const heroRef = useRef(null);
@@ -60,10 +62,11 @@ export default function Hero({ onJoinClick }) {
   }, []);
 
   return (
-    <section 
+    <Section 
+      variant="grid"
       ref={heroRef}
       id="hero" 
-      className="subtle-grid min-h-screen flex flex-col justify-center pt-14 sm:pt-16 pb-14 border-b border-bbs-border relative"
+      className="min-h-screen flex flex-col justify-center pt-14 sm:pt-16 pb-14 border-b border-bbs-border relative"
     >
       <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
         {/* Top Club Identity Bar */}
@@ -94,13 +97,13 @@ export default function Hero({ onJoinClick }) {
 
             {/* CTAs */}
             <div className="hero-ctas flex gap-4 flex-wrap mb-8">
-              <button
-                onClick={onJoinClick}
+              <Link
+                to="/join"
                 className="inline-flex items-center justify-center font-mono text-xs sm:text-sm font-semibold tracking-wide px-6 py-3 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:-translate-y-0.5 shadow-lg shadow-bbs-accent/25"
                 id="hero-join-btn"
               >
                 JOIN THE CLUB ↗
-              </button>
+              </Link>
               
               <a
                 href="#projects"
@@ -182,6 +185,6 @@ export default function Hero({ onJoinClick }) {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

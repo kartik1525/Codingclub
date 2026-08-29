@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { 
   Home, 
   Compass, 
@@ -12,94 +13,86 @@ import { useSmoothScroll } from './SmoothScroll.jsx';
 import ThemeToggle from './ThemeToggle.jsx';
 
 const NAV_ITEMS = [
-  { id: 'hero', label: 'Home', icon: Home },
-  { id: 'about', label: 'About', icon: Compass },
-  { id: 'universe', label: 'Activities', icon: Layers },
-  { id: 'projects', label: 'Projects', icon: Code2 },
-  { id: 'events', label: 'Events', icon: Calendar },
-  { id: 'team', label: 'Team', icon: Users },
+  { path: '/', label: 'Home', icon: Home },
+  { path: '/about', label: 'About', icon: Compass },
+  { path: '/departments', label: 'Depts', icon: Layers },
+  { path: '/projects', label: 'Projects', icon: Code2 },
+  { path: '/events', label: 'Events', icon: Calendar },
+  { path: '/team', label: 'Team', icon: Users },
 ];
 
 /**
  * FloatingNav - State 2 Floating Bottom Navigation Dock
  * 
- * - Appears only when the user scrolls past ~50% of the Hero section.
- * - Smoothly slides up from below the viewport: translateY(120%) -> translateY(0).
+ * - Home page: Appears after scrolling past ~50% of the Hero section.
+ * - Subpages: Appears after scrolling past the top page banner (~150px).
+ * - Smoothly slides up from below the viewport: translateY(130%) -> translateY(0).
  * - Smoothly reverses when the user scrolls back above the threshold.
- * - Zero layout shift (fixed and removed from normal document flow).
  * - 100% SOLID opaque background in both Dark and Light themes.
- * - Seamless integration with Lenis smooth scrolling.
+ * - Navigates across routes and synchronizes with Lenis smooth scrolling.
  */
-export default function FloatingNav({ onJoinClick }) {
+export default function FloatingNav() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const { scrollTo } = useSmoothScroll();
   const [isVisible, setIsVisible] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
 
-  const prefersReducedMotion = useMemo(() => {
-    if (typeof window === 'undefined') return false;
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  }, []);
+  const isHomePage = location.pathname === '/';
 
-  // 1. Hero Visibility Observer: Triggers Floating Nav after scrolling past ~50% of Hero
+  // 1. Scroll threshold visibility detector
   useEffect(() => {
-    const heroEl = document.getElementById('hero');
-    if (!heroEl) return;
+    if (typeof window === 'undefined') return;
 
-    const handleHeroIntersection = (entries) => {
-      const entry = entries[0];
-      // When hero top has scrolled above viewport and less than 50% remains visible
-      const isPastHalfHero = entry.boundingClientRect.top < 0 && entry.intersectionRatio <= 0.5;
-      setIsVisible(isPastHalfHero);
-    };
+    if (isHomePage) {
+      const heroEl = document.getElementById('hero');
+      if (!heroEl) return;
 
-    // Fine-grained thresholds for accurate 50% detection
-    const thresholds = Array.from({ length: 21 }, (_, i) => i * 0.05);
+      const handleHeroIntersection = (entries) => {
+        const entry = entries[0];
+        // When hero top has scrolled above viewport and less than 50% remains visible
+        const isPastHalfHero = entry.boundingClientRect.top < 0 && entry.intersectionRatio <= 0.5;
+        setIsVisible(isPastHalfHero);
+      };
 
-    const observer = new IntersectionObserver(handleHeroIntersection, {
-      threshold: thresholds,
-    });
+      const thresholds = Array.from({ length: 21 }, (_, i) => i * 0.05);
+      const observer = new IntersectionObserver(handleHeroIntersection, {
+        threshold: thresholds,
+      });
 
-    observer.observe(heroEl);
+      observer.observe(heroEl);
 
-    // Initial check (in case page reloads while scrolled)
-    const initialRect = heroEl.getBoundingClientRect();
-    if (initialRect.top < 0 && initialRect.bottom < window.innerHeight * 0.7) {
-      setIsVisible(true);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  // 2. Active Section Observer: Highlights the section currently in view
-  useEffect(() => {
-    const sectionIds = ['hero', 'about', 'universe', 'projects', 'events', 'stats', 'team', 'terminal', 'join'];
-    const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries.filter(e => e.isIntersecting);
-        if (visibleEntries.length > 0) {
-          visibleEntries.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-          const topVisible = visibleEntries[0].target.id;
-          if (NAV_ITEMS.some(item => item.id === topVisible)) {
-            setActiveSection(topVisible);
-          }
-        }
-      },
-      {
-        rootMargin: '-20% 0px -40% 0px',
-        threshold: [0.1, 0.3, 0.6],
+      // Initial check
+      const initialRect = heroEl.getBoundingClientRect();
+      if (initialRect.top < 0 && initialRect.bottom < window.innerHeight * 0.6) {
+        setIsVisible(true);
       }
-    );
 
-    sections.forEach(s => observer.observe(s));
+      return () => observer.disconnect();
+    } else {
+      // Subpages: Show floating nav after scrolling past top header (~160px)
+      const handleSubpageScroll = () => {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+        setIsVisible(scrollY > 160);
+      };
 
-    return () => observer.disconnect();
-  }, []);
+      window.addEventListener('scroll', handleSubpageScroll, { passive: true });
+      handleSubpageScroll();
 
-  const handleNavClick = (id) => {
-    setActiveSection(id);
-    scrollTo(`#${id}`, { offset: id === 'hero' ? 0 : -30 });
+      return () => window.removeEventListener('scroll', handleSubpageScroll);
+    }
+  }, [isHomePage, location.pathname]);
+
+  const handleNavClick = (path) => {
+    if (location.pathname === path) {
+      if (path === '/') {
+        scrollTo('#hero', { offset: 0 });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    } else {
+      navigate(path);
+      window.scrollTo(0, 0);
+    }
   };
 
   return (
@@ -112,13 +105,13 @@ export default function FloatingNav({ onJoinClick }) {
       }`}
     >
       {/* 100% Solid Opaque Dock Container */}
-      <div className="flex items-center gap-1 sm:gap-1.5 p-1.5 sm:p-2 rounded-full bg-bbs-surface border border-bbs-border-light shadow-2xl shadow-black/40 hover:border-bbs-border-focus transition-colors">
+      <div className="flex items-center gap-1 sm:gap-1.5 p-1.5 sm:p-2 rounded-full bg-bbs-surface border border-bbs-border-light shadow-2xl shadow-black/50 hover:border-bbs-border-focus transition-colors">
         {/* BBS Logo Button */}
         <button
-          onClick={() => handleNavClick('hero')}
+          onClick={() => handleNavClick('/')}
           className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border border-bbs-border hover:border-bbs-accent transition-colors shrink-0 ml-0.5 cursor-pointer shadow-sm"
-          title="BBS Coding Club — Top"
-          aria-label="Scroll to top"
+          title="BBS Coding Club — Home"
+          aria-label="Navigate to Home"
         >
           <img src="/bbs-logo.jpg" alt="BBS Coding Club Logo" className="w-full h-full object-cover" />
         </button>
@@ -128,12 +121,12 @@ export default function FloatingNav({ onJoinClick }) {
 
         {/* Navigation Items */}
         <div className="flex items-center gap-0.5 sm:gap-1">
-          {NAV_ITEMS.map(({ id, label, icon: Icon }) => {
-            const isActive = activeSection === id;
+          {NAV_ITEMS.map(({ path, label, icon: Icon }) => {
+            const isActive = location.pathname === path;
             return (
               <button
-                key={id}
-                onClick={() => handleNavClick(id)}
+                key={path}
+                onClick={() => handleNavClick(path)}
                 className={`relative flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-full text-xs font-mono transition-all select-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-bbs-accent shrink-0 ${
                   isActive
                     ? 'text-bbs-accent-light bg-bbs-accent-dim font-semibold border border-bbs-accent/25'
@@ -143,7 +136,7 @@ export default function FloatingNav({ onJoinClick }) {
                 aria-current={isActive ? 'page' : undefined}
               >
                 <Icon className="w-3.5 h-3.5 shrink-0" />
-                <span className="hidden lg:inline">{label}</span>
+                <span className="hidden sm:inline">{label}</span>
               </button>
             );
           })}
@@ -156,24 +149,18 @@ export default function FloatingNav({ onJoinClick }) {
         <ThemeToggle className="rounded-full !py-1 sm:!py-1.5 !px-2 sm:!px-2.5 shrink-0" />
 
         {/* Divider */}
-        <div className="w-[1px] h-4 bg-bbs-border-light mx-0.5 shrink-0 hidden sm:block" aria-hidden="true" />
+        <div className="w-[1px] h-4 bg-bbs-border-light mx-0.5 shrink-0 hidden xs:block" aria-hidden="true" />
 
         {/* Primary CTA: Join Club */}
-        <button
-          onClick={() => {
-            if (onJoinClick) {
-              onJoinClick();
-            } else {
-              handleNavClick('join');
-            }
-          }}
+        <Link
+          to="/join"
           className="inline-flex items-center gap-1 font-mono text-xs font-semibold px-2.5 sm:px-4 py-1.5 rounded-full bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:scale-105 shadow-md shadow-bbs-accent/25 shrink-0 mr-0.5 cursor-pointer"
           id="floating-join-btn"
           aria-label="Join BBS Coding Club"
         >
           <span className="hidden sm:inline">JOIN</span>
           <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
-        </button>
+        </Link>
       </div>
     </nav>
   );
