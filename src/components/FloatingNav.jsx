@@ -98,18 +98,18 @@ export default function FloatingNav() {
   return (
     <nav
       aria-label="Floating Navigation Dock"
-      className={`fixed z-50 left-1/2 -translate-x-1/2 bottom-3 sm:bottom-6 max-w-[calc(100vw-1rem)] sm:max-w-max pb-[max(0px,env(safe-area-inset-bottom))] transition-all duration-500 ease-out ${
+      className={`fixed z-50 left-1/2 -translate-x-1/2 bottom-2.5 sm:bottom-6 max-w-[calc(100vw-0.75rem)] sm:max-w-max mb-[max(0.25rem,env(safe-area-inset-bottom))] transition-all duration-500 ease-out ${
         isVisible
           ? 'translate-y-0 opacity-100 pointer-events-auto'
           : 'translate-y-[130%] opacity-0 pointer-events-none'
       }`}
     >
       {/* 100% Solid Opaque Dock Container */}
-      <div className="flex items-center gap-1 sm:gap-1.5 p-1.5 sm:p-2 rounded-full bg-bbs-surface border border-bbs-border-light shadow-2xl shadow-black/50 hover:border-bbs-border-focus transition-colors">
+      <div className="flex items-center gap-0.5 sm:gap-1.5 p-1 sm:p-2 rounded-full bg-bbs-surface border border-bbs-border-light shadow-2xl shadow-black/50 hover:border-bbs-border-focus transition-colors">
         {/* BBS Logo Button */}
         <button
           onClick={() => handleNavClick('/')}
-          className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border border-bbs-border hover:border-bbs-accent transition-colors shrink-0 ml-0.5 cursor-pointer shadow-sm"
+          className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full overflow-hidden border border-bbs-border hover:border-bbs-accent active:scale-95 transition-all shrink-0 ml-0.5 cursor-pointer shadow-sm"
           title="BBS Coding Club — Home"
           aria-label="Navigate to Home"
         >
@@ -117,7 +117,7 @@ export default function FloatingNav() {
         </button>
 
         {/* Divider */}
-        <div className="w-[1px] h-4 bg-bbs-border-light mx-0.5 shrink-0" aria-hidden="true" />
+        <div className="w-[1px] h-3.5 sm:h-4 bg-bbs-border-light mx-0.5 shrink-0" aria-hidden="true" />
 
         {/* Navigation Items */}
         <div className="flex items-center gap-0.5 sm:gap-1">
@@ -127,10 +127,10 @@ export default function FloatingNav() {
               <button
                 key={path}
                 onClick={() => handleNavClick(path)}
-                className={`relative flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-full text-xs font-mono transition-all select-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-bbs-accent shrink-0 ${
+                className={`relative flex items-center justify-center sm:justify-start gap-1.5 p-1.5 sm:px-3 sm:py-1.5 rounded-full text-xs font-mono transition-all select-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-bbs-accent active:scale-95 shrink-0 ${
                   isActive
                     ? 'text-bbs-accent-light bg-bbs-accent-dim font-semibold border border-bbs-accent/25'
-                    : 'text-bbs-muted hover:text-bbs-text hover:bg-bbs-hover border border-transparent'
+                    : 'text-bbs-muted sm:hover:text-bbs-text sm:hover:bg-bbs-hover active:bg-bbs-hover border border-transparent'
                 }`}
                 title={label}
                 aria-current={isActive ? 'page' : undefined}
@@ -143,18 +143,18 @@ export default function FloatingNav() {
         </div>
 
         {/* Divider */}
-        <div className="w-[1px] h-4 bg-bbs-border-light mx-0.5 shrink-0" aria-hidden="true" />
+        <div className="w-[1px] h-3.5 sm:h-4 bg-bbs-border-light mx-0.5 shrink-0" aria-hidden="true" />
 
         {/* Integrated Theme Toggle */}
-        <ThemeToggle className="rounded-full !py-1 sm:!py-1.5 !px-2 sm:!px-2.5 shrink-0" />
+        <ThemeToggle className="rounded-full !py-1 sm:!py-1.5 !px-1.5 sm:!px-2.5 shrink-0" />
 
         {/* Divider */}
-        <div className="w-[1px] h-4 bg-bbs-border-light mx-0.5 shrink-0 hidden xs:block" aria-hidden="true" />
+        <div className="w-[1px] h-3.5 sm:h-4 bg-bbs-border-light mx-0.5 shrink-0 hidden xs:block" aria-hidden="true" />
 
         {/* Primary CTA: Join Club */}
         <Link
           to="/join"
-          className="inline-flex items-center gap-1 font-mono text-xs font-semibold px-2.5 sm:px-4 py-1.5 rounded-full bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:scale-105 shadow-md shadow-bbs-accent/25 shrink-0 mr-0.5 cursor-pointer"
+          className="inline-flex items-center gap-1 font-mono text-xs font-semibold px-2 sm:px-4 py-1 sm:py-1.5 rounded-full bg-bbs-accent text-white hover:bg-bbs-accent-hover active:scale-95 transition-all hover:scale-105 shadow-md shadow-bbs-accent/25 shrink-0 mr-0.5 cursor-pointer"
           id="floating-join-btn"
           aria-label="Join BBS Coding Club"
         >

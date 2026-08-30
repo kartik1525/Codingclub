@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, CheckCircle2, ChevronDown } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, ChevronDown } from 'lucide-react';
 import { DEPARTMENTS } from '../data/departments.js';
 
 /**
@@ -8,10 +8,34 @@ import { DEPARTMENTS } from '../data/departments.js';
  * 
  * Left Side: Full-width directory rows with technical identifiers and metadata
  * Right Side: Dynamic editorial detail panel with lead profile and direct CTAs
- * Mobile: Responsive inline-expanding accordion with touch targets
+ * Mobile: Responsive inline-expanding accordion with touch targets & CSS grid height animation
  */
 export default function DepartmentDirectory() {
   const [activeId, setActiveId] = useState(DEPARTMENTS[0].id);
+  const hoverTimeoutRef = useRef(null);
+
+  // Subtle 60ms hover intent to prevent rapid thrashing on skimming
+  const handleMouseEnter = (id) => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    hoverTimeoutRef.current = setTimeout(() => {
+      setActiveId(id);
+    }, 60);
+  };
+
+  const handleMouseLeave = () => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+  };
+
+  const handleDirectSelect = (id) => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    setActiveId(id);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    };
+  }, []);
 
   const activeDept = DEPARTMENTS.find((d) => d.id === activeId) || DEPARTMENTS[0];
   const activeIndex = DEPARTMENTS.findIndex((d) => d.id === activeId);
@@ -32,9 +56,10 @@ export default function DepartmentDirectory() {
               <button
                 key={dept.id}
                 type="button"
-                onMouseEnter={() => setActiveId(dept.id)}
-                onFocus={() => setActiveId(dept.id)}
-                onClick={() => setActiveId(dept.id)}
+                onMouseEnter={() => handleMouseEnter(dept.id)}
+                onMouseLeave={handleMouseLeave}
+                onFocus={() => handleDirectSelect(dept.id)}
+                onClick={() => handleDirectSelect(dept.id)}
                 className={`group w-full text-left py-6 xl:py-7 px-5 sm:px-6 border-t border-bbs-border transition-all duration-300 cursor-pointer relative ${
                   isActive
                     ? 'bg-bbs-surface/80 border-l-4 border-l-bbs-accent pl-6 sm:pl-7'
@@ -100,13 +125,13 @@ export default function DepartmentDirectory() {
         </div>
 
         {/* RIGHT COLUMN: Large Dynamic Detail Panel (~42% width) */}
+        {/* Stable container: no key re-teardown to prevent image re-flash */}
         <div className="lg:col-span-5 sticky top-28">
           <div
-            key={activeDept.id}
-            className="bg-bbs-surface border border-bbs-border rounded p-7 sm:p-9 shadow-2xl flex flex-col justify-between min-h-[540px] relative overflow-hidden directory-panel-fade motion-reduce:animate-none"
+            className="bg-bbs-surface border border-bbs-border rounded p-7 sm:p-9 shadow-2xl flex flex-col justify-between min-h-[560px] relative overflow-hidden transition-colors duration-300"
           >
             {/* Subtle background technical grid accent */}
-            <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none select-none font-mono text-6xl font-black text-bbs-text" aria-hidden="true">
+            <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none select-none font-mono text-6xl font-black text-bbs-text transition-all duration-300" aria-hidden="true">
               {String(activeIndex + 1).padStart(2, '0')}
             </div>
 
@@ -114,7 +139,7 @@ export default function DepartmentDirectory() {
             <div className="relative z-10">
               {/* Meta Header */}
               <div className="flex justify-between items-center flex-wrap gap-2 mb-4">
-                <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/25">
+                <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/25 transition-colors">
                   {String(activeIndex + 1).padStart(2, '0')} // {activeDept.code}
                 </span>
                 <span className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider">
@@ -123,12 +148,12 @@ export default function DepartmentDirectory() {
               </div>
 
               {/* Department Name */}
-              <h3 className="font-display text-2xl xl:text-3xl font-extrabold text-bbs-text tracking-tight uppercase leading-tight mb-3">
+              <h3 className="font-display text-2xl xl:text-3xl font-extrabold text-bbs-text tracking-tight uppercase leading-tight mb-3 transition-colors">
                 {activeDept.name}
               </h3>
 
               {/* Tagline Narrative */}
-              <p className="text-sm sm:text-base text-bbs-muted leading-relaxed mb-6 font-sans">
+              <p className="text-sm sm:text-base text-bbs-muted leading-relaxed mb-6 font-sans min-h-[48px]">
                 {activeDept.tagline}
               </p>
 
@@ -137,11 +162,11 @@ export default function DepartmentDirectory() {
                 <div className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider mb-2.5">
                   // TECHNOLOGIES & TOOLSETS
                 </div>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-1.5 min-h-[32px]">
                   {activeDept.skills.map((skill, idx) => (
                     <span
                       key={idx}
-                      className="font-mono text-xs px-2.5 py-1 bg-bbs-raised border border-bbs-border rounded text-bbs-text/90"
+                      className="font-mono text-xs px-2.5 py-1 bg-bbs-raised border border-bbs-border rounded text-bbs-text/90 transition-colors"
                     >
                       {skill}
                     </span>
@@ -150,7 +175,7 @@ export default function DepartmentDirectory() {
               </div>
 
               {/* Purpose Excerpt */}
-              <div className="p-3.5 bg-bbs-raised/60 border border-bbs-border rounded mb-6 text-xs text-bbs-muted leading-relaxed font-sans">
+              <div className="p-3.5 bg-bbs-raised/60 border border-bbs-border rounded mb-6 text-xs text-bbs-muted leading-relaxed font-sans min-h-[64px]">
                 <span className="font-mono text-[10px] text-bbs-accent-light uppercase block mb-1">
                   MISSION MANDATE:
                 </span>
@@ -165,7 +190,7 @@ export default function DepartmentDirectory() {
                 <img
                   src={activeDept.leadImage}
                   alt={activeDept.leadName}
-                  className="w-11 h-11 rounded-full object-cover object-[center_25%] border border-bbs-border-focus bg-bbs-raised shrink-0"
+                  className="w-11 h-11 rounded-full object-cover object-[center_25%] border border-bbs-border-focus bg-bbs-raised shrink-0 transition-opacity duration-300"
                 />
                 <div>
                   <div className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider">
@@ -180,10 +205,10 @@ export default function DepartmentDirectory() {
                 </div>
               </div>
 
-              {/* Action Links */}
+              {/* Action Links with Context-Preserving Deep-Link */}
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
-                  to="/departments"
+                  to={`/departments?track=${activeDept.id}`}
                   className="flex-1 inline-flex items-center justify-center gap-2 font-mono text-xs font-semibold px-4 py-3 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:scale-[1.02] shadow-md shadow-bbs-accent/20"
                 >
                   <span>EXPLORE DEPARTMENT</span>
@@ -255,66 +280,70 @@ export default function DepartmentDirectory() {
                 </div>
               </button>
 
-              {/* Collapsible Mobile Detail Drawer */}
+              {/* Collapsible Mobile Detail Drawer with CSS Grid dynamic height */}
               <div
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  isActive ? 'max-h-[680px] opacity-100 pb-6 px-4 sm:px-5' : 'max-h-0 opacity-0'
+                className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
+                  isActive ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
                 }`}
               >
-                <div className="p-5 bg-bbs-surface border border-bbs-border rounded shadow-md mt-1">
-                  <div className="font-mono text-xs text-bbs-accent-light mb-2">
-                    {dept.code} // DETAILS
-                  </div>
+                <div className="overflow-hidden">
+                  <div className="pb-6 px-4 sm:px-5">
+                    <div className="p-5 bg-bbs-surface border border-bbs-border rounded shadow-md mt-1">
+                      <div className="font-mono text-xs text-bbs-accent-light mb-2">
+                        {dept.code} // DETAILS
+                      </div>
 
-                  <p className="text-xs sm:text-sm text-bbs-muted leading-relaxed mb-4">
-                    {dept.description}
-                  </p>
+                      <p className="text-xs sm:text-sm text-bbs-muted leading-relaxed mb-4">
+                        {dept.description}
+                      </p>
 
-                  <div className="mb-4">
-                    <div className="font-mono text-[10px] text-bbs-dim uppercase mb-1.5">
-                      TECHNOLOGIES
-                    </div>
-                    <div className="flex flex-wrap gap-1">
-                      {dept.skills.map((skill, sIdx) => (
-                        <span
-                          key={sIdx}
-                          className="font-mono text-[10px] px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-text"
+                      <div className="mb-4">
+                        <div className="font-mono text-[10px] text-bbs-dim uppercase mb-1.5">
+                          TECHNOLOGIES
+                        </div>
+                        <div className="flex flex-wrap gap-1">
+                          {dept.skills.map((skill, sIdx) => (
+                            <span
+                              key={sIdx}
+                              className="font-mono text-[10px] px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-text"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-3 pt-3 border-t border-bbs-border mb-4">
+                        <img
+                          src={dept.leadImage}
+                          alt={dept.leadName}
+                          className="w-9 h-9 rounded-full object-cover object-[center_25%] border border-bbs-border"
+                        />
+                        <div>
+                          <div className="font-mono text-[10px] text-bbs-dim">LEAD</div>
+                          <div className="font-display text-xs font-bold text-bbs-text">
+                            {dept.leadName}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-2">
+                        <Link
+                          to={`/departments?track=${dept.id}`}
+                          className="flex-1 inline-flex items-center justify-center gap-1.5 font-mono text-xs font-semibold px-3 py-2.5 rounded bg-bbs-accent text-white"
                         >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 pt-3 border-t border-bbs-border mb-4">
-                    <img
-                      src={dept.leadImage}
-                      alt={dept.leadName}
-                      className="w-9 h-9 rounded-full object-cover object-[center_25%] border border-bbs-border"
-                    />
-                    <div>
-                      <div className="font-mono text-[10px] text-bbs-dim">LEAD</div>
-                      <div className="font-display text-xs font-bold text-bbs-text">
-                        {dept.leadName}
+                          <span>EXPLORE</span>
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </Link>
+                        <Link
+                          to={`/join?track=${dept.id}`}
+                          className="inline-flex items-center justify-center gap-1 font-mono text-xs font-semibold px-3 py-2.5 rounded bg-bbs-raised border border-bbs-border text-bbs-text"
+                        >
+                          <span>JOIN</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
                       </div>
                     </div>
-                  </div>
-
-                  <div className="flex gap-2">
-                    <Link
-                      to="/departments"
-                      className="flex-1 inline-flex items-center justify-center gap-1.5 font-mono text-xs font-semibold px-3 py-2.5 rounded bg-bbs-accent text-white"
-                    >
-                      <span>EXPLORE</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </Link>
-                    <Link
-                      to={`/join?track=${dept.id}`}
-                      className="inline-flex items-center justify-center gap-1 font-mono text-xs font-semibold px-3 py-2.5 rounded bg-bbs-raised border border-bbs-border text-bbs-text"
-                    >
-                      <span>JOIN</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
                   </div>
                 </div>
               </div>

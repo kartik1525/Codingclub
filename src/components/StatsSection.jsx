@@ -8,11 +8,11 @@ export default function StatsSection() {
         {/* Section Meta */}
         <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
           <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
-          <span>05 / COMMUNITY COMMITMENTS & STATUS</span>
+          <span>05 / COMMUNITY METRICS & STATUS</span>
         </div>
 
-        <div className="mb-14">
-          <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-bbs-text leading-tight m-0">
+        <div className="mb-10 sm:mb-12">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight m-0">
             AUTHENTIC BENCHMARKS.
           </h2>
           <p className="text-base sm:text-lg text-bbs-muted mt-3 max-w-2xl">
