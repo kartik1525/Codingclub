@@ -123,56 +123,114 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {featuredProjects.map((project) => (
-              <article
-                key={project.id}
-                className="bg-bbs-surface border border-bbs-border rounded overflow-hidden flex flex-col justify-between hover:border-bbs-border-focus transition-colors shadow-md group"
-              >
-                <div className="w-full aspect-[16/9] bg-black overflow-hidden relative border-b border-bbs-border">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-3 left-3 bg-bbs-bg/85 backdrop-blur-sm border border-bbs-border px-2.5 py-1 rounded font-mono text-[11px] text-bbs-accent-light">
-                    {project.number} // {project.category.toUpperCase()}
-                  </div>
-                </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 sm:gap-8">
+            {featuredProjects.map((project, index) => {
+              const isFeatured = index === 0;
+              const formattedIndex = String(index + 1).padStart(2, '0');
 
-                <div className="p-6 sm:p-7 flex flex-col justify-between flex-1">
-                  <div>
-                    <h3 className="font-display text-xl sm:text-2xl font-bold text-bbs-text mb-2">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-bbs-muted leading-relaxed mb-5">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-1.5 mb-6">
-                      {project.techTags.map((tag, idx) => (
-                        <span key={idx} className="font-mono text-xs px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-dim">
-                          {tag}
+              return (
+                <article
+                  key={project.id}
+                  className={`bg-bbs-surface border rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 group relative shadow-sm ${
+                    isFeatured
+                      ? 'border-bbs-border-focus/70 hover:border-bbs-accent'
+                      : 'border-bbs-border hover:border-bbs-border-focus'
+                  }`}
+                >
+                  {/* Image Container with Subtle Technical Hover Zoom & "OPEN PROJECT ↗" Overlay */}
+                  <div className="w-full aspect-[16/9] bg-bbs-raised overflow-hidden relative border-b border-bbs-border">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      loading="lazy"
+                    />
+
+                    {/* Top Index & Tag Badges */}
+                    <div className="absolute top-3 left-3 flex items-center gap-2 z-20">
+                      <span className="bg-bbs-bg/90 backdrop-blur-sm border border-bbs-border px-2.5 py-1 rounded font-mono text-[11px] text-bbs-accent font-semibold flex items-center gap-1.5 shadow-sm">
+                        {isFeatured && <span className="w-1.5 h-1.5 rounded-full bg-bbs-accent inline-block animate-pulse" />}
+                        <span>PROJECT // {formattedIndex}</span>
+                      </span>
+                      <span className="bg-bbs-surface/85 backdrop-blur-sm border border-bbs-border px-2 py-1 rounded font-mono text-[10px] text-bbs-dim hidden sm:inline-block">
+                        {project.category.toUpperCase()}
+                      </span>
+                    </div>
+
+                    <div className="absolute top-3 right-3 z-20">
+                      <span className="bg-bbs-bg/90 backdrop-blur-sm border border-bbs-border px-2 py-0.5 rounded font-mono text-[10px] text-bbs-dim uppercase tracking-wider">
+                        {isFeatured ? 'FLAGSHIP RELEASE' : 'STUDENT PROTOTYPE'}
+                      </span>
+                    </div>
+
+                    {/* Subtle Technical Hover Overlay: "OPEN PROJECT ↗" */}
+                    <Link
+                      to="/projects"
+                      className="absolute inset-0 bg-bbs-bg/65 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 cursor-pointer"
+                      aria-label={`Open details for ${project.title}`}
+                    >
+                      <span className="font-mono text-xs font-semibold px-4 py-2 rounded bg-bbs-accent text-white border border-blue-400/30 shadow-lg shadow-bbs-accent/25 flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                        <span>OPEN PROJECT</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </span>
+                    </Link>
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="p-6 sm:p-7 flex flex-col justify-between flex-1">
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <span className="font-mono text-[11px] text-bbs-accent uppercase tracking-wider font-semibold">
+                          {isFeatured ? '// FLAGSHIP BUILD' : '// CAMPUS HACK'}
                         </span>
-                      ))}
+                        <span className="font-mono text-xs text-bbs-dim">
+                          {project.year}
+                        </span>
+                      </div>
+
+                      <h3 className="font-display text-xl sm:text-2xl font-bold text-bbs-text mb-2 tracking-tight group-hover:text-bbs-accent-light transition-colors">
+                        {project.title}
+                      </h3>
+
+                      <p className="text-sm text-bbs-muted leading-relaxed mb-5">
+                        {project.description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-1.5 mb-6">
+                        {project.techTags.map((tag, idx) => (
+                          <span
+                            key={idx}
+                            className="font-mono text-xs px-2.5 py-1 bg-bbs-raised border border-bbs-border rounded text-bbs-text/85 transition-colors"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Bottom Meta & Code Action */}
+                    <div className="border-t border-bbs-border pt-4 flex justify-between items-center font-mono text-xs">
+                      <span className="text-bbs-dim flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
+                        <span>{project.status}</span>
+                      </span>
+
+                      <div className="flex items-center gap-3">
+                        <a
+                          href={project.repoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-bbs-accent hover:text-bbs-text transition-colors inline-flex items-center gap-1 font-semibold"
+                        >
+                          <span>SOURCE CODE</span>
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </a>
+                      </div>
                     </div>
                   </div>
-
-                  <div className="border-t border-bbs-border pt-4 flex justify-between items-center font-mono text-xs">
-                    <span className="text-bbs-dim">{project.status}</span>
-                    <a
-                      href={project.repoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-bbs-accent-light hover:text-bbs-text transition-colors inline-flex items-center gap-1"
-                    >
-                      <span>VIEW CODE</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
         </div>
       </Section>
