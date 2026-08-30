@@ -5,6 +5,12 @@ export default function StatsSection() {
   return (
     <section id="stats" className="py-20 sm:py-28 border-t border-bbs-border relative">
       <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
+        {/* Section Meta */}
+        <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
+          <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
+          <span>05 / COMMUNITY METRICS & STATUS</span>
+        </div>
+
         <div className="mb-10 sm:mb-12">
           <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight m-0">
             AUTHENTIC BENCHMARKS.
@@ -19,13 +25,22 @@ export default function StatsSection() {
           {STATS.map((item) => (
             <div
               key={item.id}
-              className={`rounded-xl p-6 sm:p-8 flex flex-col justify-between border transition-all hover:border-bbs-border-focus ${
+              className={`rounded p-6 sm:p-8 flex flex-col justify-between border transition-all hover:border-bbs-border-focus ${
                 item.isConceptual 
                   ? 'bg-bbs-raised border-bbs-accent' 
                   : 'bg-bbs-surface border-bbs-border'
               }`}
             >
               <div>
+                {item.isConceptual ? (
+                  <div className="font-mono text-xs text-bbs-accent-light mb-2">
+                    // COMMUNITY PLEDGE
+                  </div>
+                ) : (
+                  <div className="font-mono text-xs text-bbs-dim mb-2">
+                    // VERIFIED STATUS
+                  </div>
+                )}
                 <div 
                   className={`font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tighter leading-none mb-4 ${
                     item.isConceptual ? 'text-bbs-accent-light' : 'text-bbs-text'

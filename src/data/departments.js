@@ -1,7 +1,7 @@
 export const DEPARTMENTS = [
   {
     id: "systems-web",
-    code: "SYS",
+    code: "SYS // 01",
     name: "Web & Systems Engineering",
     shortName: "Systems & Web",
     leadName: "Priya Patel",
@@ -28,7 +28,7 @@ export const DEPARTMENTS = [
   },
   {
     id: "competitive-programming",
-    code: "ALGO",
+    code: "ALGO // 02",
     name: "Algorithms & Competitive Programming",
     shortName: "Competitive Programming",
     leadName: "Rohan Verma",
@@ -55,7 +55,7 @@ export const DEPARTMENTS = [
   },
   {
     id: "hackathons-product",
-    code: "PROD",
+    code: "PROD // 03",
     name: "Hackathons & Product Innovation",
     shortName: "Hackathons & Product",
     leadName: "Vikram Joshi",
@@ -72,7 +72,7 @@ export const DEPARTMENTS = [
       "Coach teams on product presentation, technical teardowns, and live demos"
     ],
     skills: ["Rapid Prototyping", "Full-Stack MVPs", "Hardware/IoT", "Product Strategy", "API Integration"],
-    tools: ["Next.js", "FastAPI", "ESP32 & Arduino", "Supabase", "Figma", "Tailwind"],
+    tools: ["Next.js", "FastAPI", "ESP32 / Arduino", "Supabase", "Figma", "Tailwind"],
     currentOpenings: "Open for Hackathon Sprint Mentors & Product Designers",
     featuredProject: {
       title: "SIH Campus Evaluation Hub",
@@ -82,7 +82,7 @@ export const DEPARTMENTS = [
   },
   {
     id: "open-source",
-    code: "OSS",
+    code: "OSS // 04",
     name: "Open Source & Tooling",
     shortName: "Open Source",
     leadName: "Ananya Singh",
@@ -99,7 +99,7 @@ export const DEPARTMENTS = [
       "Curate student developer setup guides for Linux, VS Code, and terminal workflows"
     ],
     skills: ["Git Workflows", "Open Source PRs", "Linux Tooling", "Python", "Technical Documentation"],
-    tools: ["Git", "GitHub", "Linux & Bash", "Markdown", "Zsh", "Python"],
+    tools: ["Git", "GitHub", "Linux / Bash", "Markdown", "Zsh", "Python"],
     currentOpenings: "Open for Documentation Leads & Open-Source Sprint Guides",
     featuredProject: {
       title: "Student Hackathon Starter Kits",
@@ -109,7 +109,7 @@ export const DEPARTMENTS = [
   },
   {
     id: "core-operations",
-    code: "CORE",
+    code: "CORE // 05",
     name: "Core Leadership & Community Operations",
     shortName: "Core & Operations",
     leadName: "Aarav Sharma",

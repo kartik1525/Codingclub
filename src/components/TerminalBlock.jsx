@@ -4,11 +4,11 @@ export default function TerminalBlock({ onJoinClick }) {
   const [commandInput, setCommandInput] = useState('');
   const [history, setHistory] = useState([
     { type: 'input', text: 'whoami' },
-    { type: 'output', text: 'bbs_coding_club: student developer community' },
+    { type: 'output', text: 'bbs_coding_club // student developer community' },
     { type: 'input', text: 'cat mission.txt' },
     { type: 'output', text: 'build things that work. learn with friends. ship code before graduation.' },
     { type: 'input', text: './status' },
-    { type: 'output', text: '> SIH 2026 Track: Active | Discord: Online | CS Lab 02' }
+    { type: 'output', text: '> SIH \'26 TRACK: ACTIVE | DISCORD: ONLINE | LAB MEETS: CS LAB 02' }
   ]);
 
   const handleCommand = (cmdText) => {
@@ -23,11 +23,11 @@ export default function TerminalBlock({ onJoinClick }) {
         text: 'AVAILABLE COMMANDS:\n  whoami          — print community identity\n  cat mission.txt — view club charter\n  status          — show upcoming tracks\n  projects        — list active student builds\n  join            — open membership signup\n  clear           — reset terminal screen'
       });
     } else if (trimmed === 'whoami') {
-      newHistory.push({ type: 'output', text: 'bbs_coding_club: student developer community at BBS' });
+      newHistory.push({ type: 'output', text: 'bbs_coding_club // student developer community at BBS' });
     } else if (trimmed === 'cat mission.txt' || trimmed === 'mission') {
       newHistory.push({ type: 'output', text: 'build things that work. learn with friends. ship code before graduation.' });
     } else if (trimmed === 'status') {
-      newHistory.push({ type: 'output', text: '> All squads active. Fall 2026 signups open.' });
+      newHistory.push({ type: 'output', text: '> ALL SQUADS ACTIVE // FALL 2026 SIGNUPS OPEN' });
     } else if (trimmed === 'projects') {
       newHistory.push({ type: 'output', text: 'ACTIVE REPOSITORIES:\n  01 bbs-official-web (React + Custom CSS Design System)\n  02 sih-eval-hub (Hackathon Judging Dashboard Prototype)\n  03 student-submissions (Open Call for Member Projects)' });
     } else if (trimmed === 'join' || trimmed === './join-community') {
@@ -56,7 +56,7 @@ export default function TerminalBlock({ onJoinClick }) {
         <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
           <div className="flex items-center gap-2 font-mono text-xs text-bbs-accent-light tracking-wider uppercase">
             <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
-            <span>STUDENT CONSOLE</span>
+            <span>// EASTER EGG // STUDENT CONSOLE</span>
           </div>
 
           {/* Quick command buttons */}

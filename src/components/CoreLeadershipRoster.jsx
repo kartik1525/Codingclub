@@ -19,6 +19,7 @@ const ROSTER_DATA = [
       name: "Aarav Sharma",
       branch: "B.TECH CSE '26",
       role: "CLUB PRESIDENT & COMMUNITY LEAD",
+      mandate: "SYS // PRESIDENTIAL MANDATE",
       image: "/assets/team/aarav.jpg",
       github: "https://github.com/aarav-sharma-bbs",
       linkedin: "https://linkedin.com/in/aarav-sharma-bbs",
@@ -29,6 +30,7 @@ const ROSTER_DATA = [
       name: "Priya Patel",
       branch: "B.TECH IT '26",
       role: "VICE PRESIDENT & OPERATIONS LEAD",
+      mandate: "OPS // EXECUTION MANDATE",
       image: "/assets/team/priya.jpg",
       github: "https://github.com/priya-patel-bbs",
       linkedin: "https://linkedin.com/in/priya-patel-bbs",
@@ -39,6 +41,7 @@ const ROSTER_DATA = [
       name: "Rohan Verma",
       branch: "B.TECH AI '26",
       role: "TECH LEAD & ARCHITECTURE LEAD",
+      mandate: "TECH // ARCHITECTURAL MANDATE",
       image: "/assets/team/rohan.jpg",
       github: "https://github.com/rohan-verma-bbs",
       linkedin: "https://linkedin.com/in/rohan-verma-bbs",
@@ -49,6 +52,7 @@ const ROSTER_DATA = [
       name: "Ananya Singh",
       branch: "B.TECH EC '26",
       role: "OUTREACH LEAD & DESIGN LEAD",
+      mandate: "COMM // OUTREACH MANDATE",
       image: "/assets/team/ananya.jpg",
       github: "https://github.com/ananya-singh-bbs",
       linkedin: "https://linkedin.com/in/ananya-singh-bbs",
@@ -62,6 +66,7 @@ const ROSTER_DATA = [
       name: "Vikram Joshi",
       branch: "B.TECH ECE '26",
       role: "PRODUCT LEAD & INNOVATION LEAD",
+      mandate: "PROD // INNOVATION MANDATE",
       image: "/assets/team/vikram.jpg",
       github: "https://github.com/vikram-joshi-bbs",
       linkedin: "https://linkedin.com/in/vikram-joshi-bbs",
@@ -72,6 +77,7 @@ const ROSTER_DATA = [
       name: "Systems Co-Lead",
       branch: "B.TECH CSE '27",
       role: "JUNIOR PLATFORM ARCHITECT",
+      mandate: "SYS // REVIEW MANDATE",
       image: "/assets/team/priya.jpg",
       github: "https://github.com/bbs-coding-club",
       linkedin: "https://linkedin.com/company/bbs-coding-club",
@@ -82,6 +88,7 @@ const ROSTER_DATA = [
       name: "Contest Setter",
       branch: "B.TECH IT '27",
       role: "SPEED-CODING PROBLEM SETTER",
+      mandate: "ALGO // CONTEST MANDATE",
       image: "/assets/team/rohan.jpg",
       github: "https://github.com/bbs-coding-club",
       linkedin: "https://linkedin.com/company/bbs-coding-club",
@@ -92,6 +99,7 @@ const ROSTER_DATA = [
       name: "Open Roster Seat",
       branch: "ALL BRANCHES",
       role: "APPLY FOR TRACK LEADERSHIP",
+      mandate: "LEAD // NOMINATIONS OPEN",
       image: "/assets/team/aarav.jpg",
       github: "https://github.com/bbs-coding-club",
       linkedin: "https://linkedin.com/company/bbs-coding-club",
@@ -110,6 +118,10 @@ export default function CoreLeadershipRoster() {
       {/* Header Row */}
       <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-10 sm:mb-12">
         <div>
+          <div className="flex items-center gap-2 font-mono text-xs font-semibold text-bbs-accent tracking-wider uppercase mb-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-bbs-accent inline-block" />
+            <span>06 / CORE LEADERSHIP</span>
+          </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight m-0">
             STUDENT-LED & OPERATED.
           </h2>
@@ -144,7 +156,7 @@ export default function CoreLeadershipRoster() {
               <span className="text-bbs-accent font-bold">
                 {String(pageIndex + 1).padStart(2, '0')}
               </span>{' '}
-              <span className="text-bbs-dim">of {String(totalPages).padStart(2, '0')}</span>
+              <span className="text-bbs-dim">/ {String(totalPages).padStart(2, '0')}</span>
             </div>
 
             <button
@@ -167,22 +179,31 @@ export default function CoreLeadershipRoster() {
             key={member.number}
             className="bg-bbs-surface border border-bbs-border rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:border-bbs-accent/80 hover:shadow-md transition-all duration-300 group"
           >
-            {/* Top Row: Branch Badge */}
+            {/* Top Row: Index + Branch Badge */}
             <div>
               <div className="flex items-center justify-between gap-2 mb-4">
+                <span className="flex items-center gap-1.5 font-mono text-xs font-bold text-bbs-accent">
+                  <span className="w-1.5 h-1.5 rounded-full bg-bbs-accent inline-block" />
+                  {member.number}
+                </span>
                 <span className="font-mono text-[10px] font-semibold px-2.5 py-0.5 rounded bg-blue-500/10 text-bbs-accent border border-blue-500/20 uppercase tracking-wider">
                   {member.branch}
                 </span>
               </div>
 
               {/* Member Name */}
-              <h3 className="font-display text-xl font-bold text-bbs-text tracking-tight mb-1 group-hover:text-bbs-accent-light transition-colors">
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-bbs-text tracking-tight mb-1 group-hover:text-bbs-accent-light transition-colors">
                 {member.name}
               </h3>
 
               {/* Role */}
-              <div className="font-mono text-xs font-semibold text-bbs-muted tracking-wide mb-4">
+              <div className="font-mono text-xs font-semibold text-bbs-accent tracking-wider uppercase mb-1">
                 {member.role}
+              </div>
+
+              {/* Mandate Metadata */}
+              <div className="font-mono text-[11px] text-bbs-dim tracking-wider uppercase mb-4">
+                {member.mandate}
               </div>
 
               {/* Member Photo */}

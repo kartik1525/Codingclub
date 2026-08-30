@@ -198,8 +198,19 @@ export default function AboutBentoGrid() {
             aria-hidden="true"
           />
 
-          {/* Card Top: Micro-Visual */}
-          <div className="relative z-10 flex items-start justify-end gap-4 mb-4">
+          {/* Card Top: Identifier & Micro-Visual */}
+          <div className="relative z-10 flex items-start justify-between gap-4 mb-6">
+            <div className="flex items-center gap-2">
+              <span
+                className="w-1.5 h-1.5 rounded-sm bg-bbs-accent group-hover:bg-white transition-colors duration-300 inline-block"
+                aria-hidden="true"
+              />
+              <span className="font-mono text-xs font-semibold tracking-wider text-bbs-accent-light group-hover:text-white transition-colors duration-300">
+                {card.number} // {card.title}
+              </span>
+            </div>
+
+            {/* Subtle technical visual */}
             <div className="opacity-75 group-hover:opacity-100 transition-opacity duration-300 shrink-0">
               {card.visual}
             </div>
@@ -220,11 +231,15 @@ export default function AboutBentoGrid() {
             </p>
           </div>
 
-          {/* Card Bottom: Action Line */}
+          {/* Card Bottom: Technical Action Line with Directional Arrow */}
           <div className="relative z-10 pt-5 border-t border-bbs-border group-hover:border-white/20 transition-colors duration-300 flex items-center justify-between">
             <span className="font-mono text-xs font-semibold tracking-wider text-bbs-accent-light group-hover:text-white transition-colors duration-300 flex items-center gap-1.5">
               <span>{card.actionText}</span>
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 text-bbs-accent group-hover:text-white" />
+            </span>
+
+            <span className="font-mono text-[10px] text-bbs-dim group-hover:text-white/70 transition-colors duration-300 uppercase">
+              BBS // 2025–26
             </span>
           </div>
         </Link>

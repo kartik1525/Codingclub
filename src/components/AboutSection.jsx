@@ -9,6 +9,12 @@ export default function AboutSection() {
   return (
     <section id="about" className="py-20 sm:py-28 border-t border-bbs-border relative">
       <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
+        {/* Section Label */}
+        <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
+          <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
+          <span>01 / ABOUT US</span>
+        </div>
+
         {/* Editorial Asymmetric Header with Viewport-Driven Heading Visibility */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-baseline mb-16">
           <div className="lg:col-span-6">
@@ -51,6 +57,9 @@ export default function AboutSection() {
                       : 'bg-transparent border-transparent text-bbs-muted hover:text-bbs-text hover:bg-bbs-surface/50'
                   }`}
                 >
+                  <div className={`font-mono text-xs mb-1 ${isActive ? 'text-bbs-accent-light' : 'text-bbs-dim'}`}>
+                    {pillar.number} // PILLAR
+                  </div>
                   <div className="font-display font-bold text-base sm:text-lg tracking-tight">
                     {pillar.title}
                   </div>
@@ -68,6 +77,10 @@ export default function AboutSection() {
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               <div className="lg:col-span-7">
+                <span className="inline-flex items-center font-mono text-[11px] font-medium tracking-wider uppercase px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/30 mb-5">
+                  PILLAR FOCUS: {activePillar.title}
+                </span>
+
                 <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-bbs-text leading-tight mb-4">
                   {activePillar.tagline}
                 </h3>
@@ -79,6 +92,10 @@ export default function AboutSection() {
 
               {/* What We Do List */}
               <div className="lg:col-span-5 bg-bbs-raised border border-bbs-border rounded p-6 sm:p-8">
+                <div className="font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-5">
+                  // WHAT WE DO TOGETHER
+                </div>
+
                 <ul className="list-none flex flex-col gap-4 p-0 m-0">
                   {activePillar.deliverables.map((item, i) => (
                     <li 

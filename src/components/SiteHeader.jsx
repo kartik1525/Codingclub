@@ -54,16 +54,14 @@ export default function SiteHeader() {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-8 font-mono text-sm">
+        <nav className="hidden lg:flex items-center gap-6 font-mono text-xs text-bbs-muted">
           {navLinks.map((item) => (
             <NavLink
               key={item.path}
               to={item.path}
               className={({ isActive }) =>
-                `transition-colors py-1 font-semibold tracking-wider ${
-                  isActive 
-                    ? 'text-bbs-accent-light font-bold border-b-2 border-bbs-accent' 
-                    : 'text-bbs-text hover:text-bbs-accent-light'
+                `hover:text-bbs-text transition-colors py-1 ${
+                  isActive ? 'text-bbs-accent-light font-semibold border-b border-bbs-accent' : ''
                 }`
               }
             >
@@ -80,7 +78,7 @@ export default function SiteHeader() {
           {/* Primary CTA */}
           <Link
             to="/join"
-            className="inline-flex items-center gap-1.5 font-mono text-xs sm:text-sm font-bold px-4 py-2 border border-bbs-border-light bg-bbs-surface text-bbs-text rounded hover:border-bbs-accent hover:text-bbs-accent transition-all shrink-0"
+            className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold px-3.5 py-2 border border-bbs-border-light bg-bbs-surface text-bbs-text rounded hover:border-bbs-accent hover:text-bbs-accent transition-all shrink-0"
             id="desktop-join-btn"
           >
             JOIN ↗

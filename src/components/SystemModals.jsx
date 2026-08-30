@@ -22,7 +22,7 @@ export function PrivacyModal({ isOpen, onClose }) {
       <div className="max-w-xl w-full max-h-[85vh] overflow-y-auto bg-bbs-surface border border-bbs-border-light rounded p-6 sm:p-10 shadow-2xl">
         <div className="flex justify-between items-center mb-6">
           <span className="font-mono text-xs text-bbs-accent-light tracking-wider">
-            LEGAL & DATA CHARTER
+            // LEGAL & DATA CHARTER
           </span>
           <button 
             onClick={onClose} 
@@ -85,7 +85,7 @@ export function TermsModal({ isOpen, onClose }) {
       <div className="max-w-xl w-full max-h-[85vh] overflow-y-auto bg-bbs-surface border border-bbs-border-light rounded p-6 sm:p-10 shadow-2xl">
         <div className="flex justify-between items-center mb-6">
           <span className="font-mono text-xs text-bbs-accent-light tracking-wider">
-            COMMUNITY PROTOCOL
+            // COMMUNITY PROTOCOL
           </span>
           <button 
             onClick={onClose} 

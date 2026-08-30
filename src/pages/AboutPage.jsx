@@ -12,7 +12,11 @@ export default function AboutPage() {
       {/* 1. Page Header Introduction — Normal Solid Background */}
       <Section variant="solid" className="pt-14 sm:pt-20 pb-12 sm:pb-16">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-bbs-text leading-tight mb-6">
+          <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-4">
+            <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
+            <span>01 / ABOUT BBS CODING CLUB</span>
+          </div>
+          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-bbs-text leading-tight mb-6">
             BUILT BY STUDENTS.<br />BACKED BY CODE.
           </h1>
           <p className="text-lg sm:text-xl text-bbs-muted max-w-3xl leading-relaxed">
@@ -26,6 +30,9 @@ export default function AboutPage() {
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-14 items-start">
             <div className="lg:col-span-6">
+              <div className="font-mono text-xs text-bbs-accent-light mb-2 uppercase">
+                // ORIGIN & ETHOS
+              </div>
               <h2 className="font-display text-2xl sm:text-4xl font-bold text-bbs-text mb-6">
                 WHY BBS CODING CLUB EXISTS
               </h2>
@@ -88,6 +95,9 @@ export default function AboutPage() {
       {/* 3. Operational Pillars — Normal Solid Background */}
       <Section variant="solid" className="py-20 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
+          <div className="font-mono text-xs text-bbs-accent-light mb-2 uppercase">
+            // OPERATIONAL PILLARS
+          </div>
           <h2 className="font-display text-3xl sm:text-5xl font-bold text-bbs-text mb-12">
             HOW WE OPERATE EVERY SEMESTER
           </h2>
@@ -96,18 +106,30 @@ export default function AboutPage() {
             {PILLARS.map((pillar) => (
               <div
                 key={pillar.id}
-                className="bg-bbs-surface border border-bbs-border rounded-xl p-6 sm:p-8 flex flex-col justify-between hover:border-bbs-border-focus transition-colors shadow-sm"
+                className="bg-bbs-surface border border-bbs-border rounded p-6 sm:p-8 flex flex-col justify-between hover:border-bbs-border-focus transition-colors shadow-sm"
               >
                 <div>
-                  <h3 className="font-display text-2xl font-bold text-bbs-text mb-2">
+                  <div className="flex justify-between items-center mb-4">
+                    <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/25">
+                      PILLAR // {pillar.number}
+                    </span>
+                    <span className="font-mono text-xs text-bbs-dim uppercase">CORE PRINCIPLE</span>
+                  </div>
+                  <h3 className="font-display text-2xl font-bold text-bbs-text mb-3">
                     {pillar.title}
                   </h3>
+                  <div className="font-mono text-xs text-bbs-accent-light mb-4">
+                    {pillar.tagline}
+                  </div>
                   <p className="text-sm sm:text-base text-bbs-muted leading-relaxed mb-6">
                     {pillar.description}
                   </p>
                 </div>
 
                 <div className="border-t border-bbs-border pt-4">
+                  <div className="font-mono text-[10px] text-bbs-dim mb-2 uppercase tracking-wider">
+                    DELIVERABLES & SESSIONS
+                  </div>
                   <div className="flex flex-wrap gap-2">
                     {pillar.deliverables.map((item, idx) => (
                       <span
@@ -130,6 +152,9 @@ export default function AboutPage() {
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             <div className="lg:col-span-6">
+              <div className="font-mono text-xs text-bbs-accent-light mb-2 uppercase">
+                // STUDENT OUTCOMES
+              </div>
               <h2 className="font-display text-2xl sm:text-4xl font-bold text-bbs-text mb-6">
                 WHAT YOU GAIN AS A MEMBER
               </h2>
@@ -150,7 +175,10 @@ export default function AboutPage() {
               </ul>
             </div>
 
-            <div className="lg:col-span-6 bg-bbs-surface border border-bbs-border rounded-xl p-6 sm:p-8">
+            <div className="lg:col-span-6 bg-bbs-surface border border-bbs-border rounded p-6 sm:p-8">
+              <div className="font-mono text-xs text-bbs-accent-light mb-2 uppercase">
+                // CLUB CULTURE & CONDUCT
+              </div>
               <h3 className="font-display text-xl sm:text-2xl font-bold text-bbs-text mb-4">
                 OUR COMMUNITY GUIDELINES
               </h3>
@@ -176,12 +204,15 @@ export default function AboutPage() {
       {/* 5. Verified Benchmarks & Metrics — Normal Solid Background */}
       <Section variant="solid" className="py-20 sm:py-24 border-t border-bbs-border relative text-center">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
+          <div className="font-mono text-xs text-bbs-accent-light mb-2 uppercase">
+            // COMMUNITY BENCHMARKS
+          </div>
           <h2 className="font-display text-2xl sm:text-4xl font-bold text-bbs-text mb-12">
             TRACK RECORD & METRICS
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {STATS.map((stat) => (
-              <div key={stat.id} className="bg-bbs-surface border border-bbs-border rounded-xl p-6">
+              <div key={stat.id} className="bg-bbs-surface border border-bbs-border rounded p-6">
                 <div className="font-display text-3xl sm:text-5xl font-bold text-bbs-accent mb-2">
                   {stat.value}
                 </div>
