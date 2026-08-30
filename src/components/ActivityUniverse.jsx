@@ -12,7 +12,7 @@ export default function ActivityUniverse() {
         {/* Section Header */}
         <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
           <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
-          <span>02 / WHAT WE ACTUALLY DO</span>
+          <span>WHAT WE ACTUALLY DO</span>
         </div>
 
         <div className="flex justify-between items-end flex-wrap gap-4 mb-12">
@@ -49,10 +49,8 @@ export default function ActivityUniverse() {
                   }`}
                   aria-pressed={isSelected}
                 >
-                  <div className="flex items-baseline gap-4">
-                    <span className={`font-mono text-xs ${isSelected ? 'text-bbs-accent-light' : 'text-bbs-dim'}`}>
-                      //
-                    </span>
+                  <div className="flex items-center gap-3">
+                    <span className={`w-1.5 h-1.5 rounded-sm ${isSelected ? 'bg-bbs-accent' : 'bg-bbs-border'}`} />
                     <span className={`font-display text-lg sm:text-xl font-bold tracking-tight ${isSelected ? 'text-white' : 'inherit'}`}>
                       {zone.title}
                     </span>

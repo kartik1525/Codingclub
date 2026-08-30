@@ -1,7 +1,7 @@
 export const DEPARTMENTS = [
   {
     id: "systems-web",
-    code: "SYS // 01",
+    code: "SYSTEMS",
     name: "Web & Systems Engineering",
     shortName: "Systems & Web",
     leadName: "Priya Patel",
@@ -28,7 +28,7 @@ export const DEPARTMENTS = [
   },
   {
     id: "competitive-programming",
-    code: "ALGO // 02",
+    code: "ALGORITHMS",
     name: "Algorithms & Competitive Programming",
     shortName: "Competitive Programming",
     leadName: "Rohan Verma",
@@ -55,7 +55,7 @@ export const DEPARTMENTS = [
   },
   {
     id: "hackathons-product",
-    code: "PROD // 03",
+    code: "PRODUCT",
     name: "Hackathons & Product Innovation",
     shortName: "Hackathons & Product",
     leadName: "Vikram Joshi",
@@ -82,7 +82,7 @@ export const DEPARTMENTS = [
   },
   {
     id: "open-source",
-    code: "OSS // 04",
+    code: "OPEN SOURCE",
     name: "Open Source & Tooling",
     shortName: "Open Source",
     leadName: "Ananya Singh",
@@ -109,7 +109,7 @@ export const DEPARTMENTS = [
   },
   {
     id: "core-operations",
-    code: "CORE // 05",
+    code: "OPERATIONS",
     name: "Core Leadership & Community Operations",
     shortName: "Core & Operations",
     leadName: "Aarav Sharma",
@@ -135,3 +135,15 @@ export const DEPARTMENTS = [
     }
   }
 ];
+
+export const DEPARTMENTS_PAGE_HEADER = {
+  badge: "SPECIALIZED TRACKS & SQUADS",
+  title: "FIVE FOCUSED TRACKS.\nONE ENGINEERING COLLECTIVE.",
+  description: "BBS Coding Club operates through 5 specialized engineering departments. Every track is led by senior student builders, runs dedicated weekly sprints, and contributes to club projects and hackathon victories."
+};
+
+export const DEPARTMENTS_CATALOGUE_HEADER = {
+  badge: "COMPLETE TRACK CATALOGUE",
+  title: "ALL 5 DEPARTMENTS AT A GLANCE",
+  description: "Explore prerequisites, leadership, core skills, and dedicated channels for every engineering branch."
+};

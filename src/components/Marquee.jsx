@@ -1,17 +1,8 @@
 import React from 'react';
+import { MARQUEE_ITEMS } from '../data/home.js';
 
 export default function Marquee() {
-  const items = [
-    "BUILD",
-    "LEARN",
-    "COMPETE",
-    "CREATE",
-    "COLLABORATE",
-    "SHIP",
-    "DEBUG",
-    "DEPLOY"
-  ];
-
+  const items = MARQUEE_ITEMS;
   const repeated = [...items, ...items, ...items];
 
   return (

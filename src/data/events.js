@@ -1,7 +1,6 @@
 export const EVENTS = [
   {
     id: "sih-internal-2026",
-    number: "01",
     title: "SIH Internal Campus Hackathon 2026",
     tagline: "36 hours of real student engineering, late-night debugging, and prototype demos.",
     date: "2026-08-26",
@@ -19,7 +18,6 @@ export const EVENTS = [
   },
   {
     id: "git-open-source-lab",
-    number: "02",
     title: "Hands-on Workshop: Git, Pull Requests & First OSS Contributions",
     tagline: "Breaking down version control fear and making real PRs.",
     date: "2026-07-20",
@@ -35,7 +33,6 @@ export const EVENTS = [
   },
   {
     id: "hackathon-demo-day",
-    number: "03",
     title: "Weekend Project Showcase & Lightning Talks",
     tagline: "5-minute student demos of weekend prototypes and terminal tools.",
     date: "2026-05-12",
@@ -48,4 +45,23 @@ export const EVENTS = [
     tracks: ["Live Demos", "Architecture Teardowns", "Peer Feedback"],
     description: "Informal, high-energy session where members showed off scripts, bots, web experiments, and got direct feedback from fellow builders over pizza."
   }
+];
+
+export const EVENTS_PAGE_HEADER = {
+  badge: "EVENTS, WORKSHOPS & CONTESTS",
+  title: "CAMPUS HACKATHONS,\nLAB SESSIONS & CONTESTS.",
+  description: "The full archive and upcoming calendar of BBS Coding Club engineering events. We run overnight build sprints, interactive code-alongs, and technical lightning talk showcases."
+};
+
+export const EVENT_CATEGORIES = [
+  { id: 'all', label: 'ALL EVENTS' },
+  { id: 'hackathon', label: 'HACKATHONS' },
+  { id: 'workshop', label: 'WORKSHOPS' },
+  { id: 'community', label: 'COMMUNITY & DEMOS' },
+];
+
+export const EVENT_STATUSES = [
+  { id: 'all', label: 'ALL STATUSES' },
+  { id: 'upcoming', label: 'UPCOMING' },
+  { id: 'completed', label: 'COMPLETED' },
 ];

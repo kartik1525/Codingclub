@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight, ArrowUp, Mail } from 'lucide-react';
 import StrokeText from './StrokeText.jsx';
 import { CLUB_INFO } from '../data/clubInfo.js';
+import { FOOTER_NAV } from '../data/navigation.js';
 
 /* Technical Social Vector Icons */
 function GithubIcon({ className = "w-4 h-4" }) {
@@ -34,6 +35,13 @@ function InstagramIcon({ className = "w-4 h-4" }) {
   );
 }
 
+const SOCIAL_ICON_MAP = {
+  github: GithubIcon,
+  linkedin: LinkedinIcon,
+  instagram: InstagramIcon,
+  email: Mail
+};
+
 /**
  * SiteFooter - Custom Premium Editorial Footer for BBS Coding Club
  * 
@@ -46,26 +54,12 @@ export default function SiteFooter({ onOpenPrivacy, onOpenTerms }) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const navExplore = [
-    { label: 'Home', path: '/' },
-    { label: 'About', path: '/about' },
-    { label: 'Projects', path: '/projects' },
-    { label: 'Events', path: '/events' },
-  ];
-
-  const navCommunity = [
-    { label: 'Team', path: '/team' },
-    { label: 'Join Us', path: '/join' },
-    { label: 'Departments', path: '/departments' },
-    { label: 'Workshops', path: '/events' },
-  ];
-
-  const navConnect = [
-    { label: 'GitHub', href: CLUB_INFO.socials.github, icon: GithubIcon },
-    { label: 'LinkedIn', href: CLUB_INFO.socials.linkedin, icon: LinkedinIcon },
-    { label: 'Instagram', href: CLUB_INFO.socials.instagram, icon: InstagramIcon },
-    { label: 'Email', href: `mailto:${CLUB_INFO.socials.email}`, icon: Mail },
-  ];
+  const navExplore = FOOTER_NAV.explore;
+  const navCommunity = FOOTER_NAV.community;
+  const navConnect = FOOTER_NAV.connect.map((item) => ({
+    ...item,
+    icon: SOCIAL_ICON_MAP[item.iconType] || Mail
+  }));
 
   return (
     <footer className="bg-bbs-bg border-t border-bbs-border transition-colors duration-300 relative select-none">
@@ -103,12 +97,12 @@ export default function SiteFooter({ onOpenPrivacy, onOpenTerms }) {
 
             {/* Primary Tagline */}
             <div className="font-mono text-xs sm:text-sm text-bbs-accent tracking-[0.25em] uppercase font-bold mb-3">
-              BUILD. LEARN. SHIP.
+              {FOOTER_NAV.tagline}
             </div>
 
             {/* Supporting Text */}
             <p className="text-sm sm:text-base text-bbs-muted leading-relaxed max-w-xl mx-auto mb-6">
-              A student developer community at BBS, where we build projects, learn together, and experiment with technology.
+              {FOOTER_NAV.description}
             </p>
 
             {/* Affiliation Pill */}

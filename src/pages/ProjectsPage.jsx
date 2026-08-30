@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, Code2, ExternalLink } from 'lucide-react';
 import Section from '../components/Section.jsx';
-import { PROJECTS } from '../data/projects.js';
+import { CLUB_INFO } from '../data/clubInfo.js';
+import { 
+  PROJECTS, 
+  PROJECTS_PAGE_HEADER, 
+  PROJECT_CATEGORIES, 
+  PROJECTS_SUBMISSION_CALLOUT 
+} from '../data/projects.js';
 
 function GithubIcon({ className = "w-3.5 h-3.5" }) {
   return (
@@ -14,13 +20,7 @@ function GithubIcon({ className = "w-3.5 h-3.5" }) {
 
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
-
-  const categories = [
-    { id: 'all', label: 'ALL BUILDS' },
-    { id: 'web', label: 'WEB SYSTEMS' },
-    { id: 'hackathon', label: 'HACKATHON MVPS' },
-    { id: 'community', label: 'MEMBER REPOS' },
-  ];
+  const categories = PROJECT_CATEGORIES;
 
   const filteredProjects = selectedCategory === 'all'
     ? PROJECTS
@@ -38,13 +38,13 @@ export default function ProjectsPage() {
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-4">
             <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-            <span>03 / SELECTED BUILDS & REPOSITORIES</span>
+            <span>{PROJECTS_PAGE_HEADER.badge}</span>
           </div>
-          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-bbs-text leading-tight mb-6">
-            SOFTWARE ENGINEERED<br />FOR ACTUAL CAMPUS USE.
+          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-bbs-text leading-tight mb-6 whitespace-pre-line">
+            {PROJECTS_PAGE_HEADER.title}
           </h1>
           <p className="text-lg sm:text-xl text-bbs-muted max-w-3xl leading-relaxed mb-10">
-            Real software built by student members at BBS Coding Club. From production web applications and evaluation systems to open-source starter packages.
+            {PROJECTS_PAGE_HEADER.description}
           </p>
 
           {/* Category Filter Tabs */}
@@ -85,7 +85,7 @@ export default function ProjectsPage() {
                       loading="lazy"
                     />
                     <div className="absolute top-4 left-4 bg-bbs-bg/90 border border-bbs-border px-3 py-1 rounded font-mono text-xs text-bbs-accent-light">
-                      {project.number} // {project.category.toUpperCase()}
+                      {project.category.toUpperCase()}
                     </div>
                     <div className="absolute bottom-4 left-4 bg-bbs-bg/90 border border-bbs-border px-2.5 py-1 rounded font-mono text-[11px] text-bbs-dim">
                       YEAR {project.year}
@@ -116,7 +116,7 @@ export default function ProjectsPage() {
                       {project.context && (
                         <div className="p-4 bg-bbs-raised border border-bbs-border rounded mb-6 text-xs sm:text-sm text-bbs-text leading-relaxed font-sans">
                           <span className="font-mono text-[10px] text-bbs-dim block mb-1 uppercase tracking-wider">
-                            // ARCHITECTURAL CONTEXT
+                            ARCHITECTURAL CONTEXT
                           </span>
                           {project.context}
                         </div>
@@ -172,22 +172,22 @@ export default function ProjectsPage() {
           <div className="bg-bbs-surface border border-bbs-border rounded p-8 sm:p-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-md">
             <div>
               <div className="font-mono text-xs text-bbs-accent-light mb-1 uppercase">
-                // MEMBER SHOWCASE PORTAL
+                {PROJECTS_SUBMISSION_CALLOUT.badge}
               </div>
               <h3 className="font-display text-xl sm:text-2xl font-bold text-bbs-text">
-                SHIPPED A REPOSITORY OR HACKATHON MVP?
+                {PROJECTS_SUBMISSION_CALLOUT.title}
               </h3>
               <p className="text-sm text-bbs-muted mt-1 max-w-2xl leading-relaxed">
-                Every BBS Coding Club member has the opportunity to showcase their side projects and repositories to the community and alumni network.
+                {PROJECTS_SUBMISSION_CALLOUT.description}
               </p>
             </div>
             <a
-              href="https://github.com/bbs-coding-club"
+              href={CLUB_INFO.socials.github}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 font-mono text-xs sm:text-sm font-semibold px-5 py-2.5 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-colors shrink-0"
             >
-              <span>SUBMIT PR ON GITHUB</span>
+              <span>{PROJECTS_SUBMISSION_CALLOUT.cta.label}</span>
               <ArrowUpRight className="w-4 h-4" />
             </a>
           </div>

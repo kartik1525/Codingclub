@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { CLUB_INFO } from '../data/clubInfo.js';
+import { HEADER_NAV_LINKS, HEADER_CTA } from '../data/navigation.js';
 import ThemeToggle from './ThemeToggle.jsx';
 
 /**
@@ -12,14 +13,6 @@ import ThemeToggle from './ThemeToggle.jsx';
  * - Hierarchy: [College Logo] [Coding Club Logo] BBS CODING CLUB
  */
 export default function SiteHeader() {
-  const navLinks = [
-    { label: 'ABOUT', path: '/about' },
-    { label: 'DEPARTMENTS', path: '/departments' },
-    { label: 'PROJECTS', path: '/projects' },
-    { label: 'EVENTS', path: '/events' },
-    { label: 'TEAM', path: '/team' },
-  ];
-
   return (
     <header className="relative w-full z-30 py-4 sm:py-5 border-b border-bbs-border/40 transition-colors duration-300">
       <div className="max-w-container mx-auto px-5 sm:px-8 flex items-center justify-between">
@@ -55,7 +48,7 @@ export default function SiteHeader() {
 
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center gap-6 font-mono text-xs text-bbs-muted">
-          {navLinks.map((item) => (
+          {HEADER_NAV_LINKS.map((item) => (
             <NavLink
               key={item.path}
               to={item.path}
@@ -77,11 +70,11 @@ export default function SiteHeader() {
 
           {/* Primary CTA */}
           <Link
-            to="/join"
+            to={HEADER_CTA.path}
             className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold px-3.5 py-2 border border-bbs-border-light bg-bbs-surface text-bbs-text rounded hover:border-bbs-accent hover:text-bbs-accent transition-all shrink-0"
             id="desktop-join-btn"
           >
-            JOIN ↗
+            {HEADER_CTA.label}
           </Link>
         </div>
       </div>

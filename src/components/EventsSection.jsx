@@ -19,7 +19,7 @@ export default function EventsSection({ onRegisterClick }) {
         {/* Section Meta */}
         <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
           <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
-          <span>04 / CAMPUS EVENTS & HACKATHONS</span>
+          <span>CAMPUS EVENTS & HACKATHONS</span>
         </div>
 
         <div className="mb-14">
@@ -49,7 +49,7 @@ export default function EventsSection({ onRegisterClick }) {
                 loading="lazy"
               />
               <div className="absolute top-4 left-4 bg-bbs-bg/85 backdrop-blur-sm px-3.5 py-1.5 rounded font-mono text-xs text-white border border-bbs-border">
-                UPCOMING IN-PERSON HACKATHON // FALL 2026
+                UPCOMING IN-PERSON HACKATHON · FALL 2026
               </div>
             </div>
 
@@ -88,38 +88,33 @@ export default function EventsSection({ onRegisterClick }) {
 
                 <button
                   onClick={onRegisterClick}
-                  className="inline-flex items-center justify-center font-mono text-xs sm:text-sm font-semibold tracking-wide px-6 py-3 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center font-mono text-xs sm:text-sm font-semibold tracking-wide px-6 py-3 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-colors"
                 >
-                  REGISTER YOUR SQUAD FOR SIH '26 →
+                  APPLY FOR THIS HACKATHON ↗
                 </button>
               </div>
 
-              {/* Schedule Box */}
-              <div className="lg:col-span-5 bg-bbs-raised border border-bbs-border rounded p-6 sm:p-8 flex flex-col gap-6">
-                <div>
-                  <div className="font-mono text-xs text-bbs-dim mb-1 uppercase">
-                    DATE & SCHEDULE
+              {/* Event Metadata Card */}
+              <div className="lg:col-span-5 bg-bbs-raised border border-bbs-border rounded p-6 sm:p-8">
+                <div className="space-y-4 font-mono text-xs sm:text-sm mb-6">
+                  <div>
+                    <div className="text-bbs-dim text-[11px] mb-0.5">DATE & TIMING</div>
+                    <div className="text-bbs-text font-semibold">{event.formattedDate}</div>
+                    <div className="text-bbs-muted text-xs">{event.time}</div>
                   </div>
-                  <div className="font-display text-2xl sm:text-3xl font-bold text-bbs-text">
-                    {event.formattedDate}
+                  <div>
+                    <div className="text-bbs-dim text-[11px] mb-0.5">LOCATION</div>
+                    <div className="text-bbs-text font-semibold">{event.location}</div>
                   </div>
-                  <div className="font-mono text-sm text-bbs-muted">
-                    {event.time}
-                  </div>
-                </div>
-
-                <div className="border-t border-bbs-border pt-5">
-                  <div className="font-mono text-xs text-bbs-dim mb-1 uppercase">
-                    CAMPUS VENUE
-                  </div>
-                  <div className="font-display text-lg sm:text-xl font-semibold text-bbs-text">
-                    {event.location}
+                  <div>
+                    <div className="text-bbs-dim text-[11px] mb-0.5">ELIGIBILITY</div>
+                    <div className="text-bbs-text font-semibold">ALL BBS STUDENTS (1ST TO 4TH YEAR)</div>
                   </div>
                 </div>
 
                 <div className="border-t border-bbs-border pt-5 font-mono text-xs text-bbs-muted">
                   <div>TEAM SIZE: 3 TO 6 STUDENTS (CROSS-BRANCH ENCOURAGED)</div>
-                  <div className="mt-1 text-bbs-accent-light">NO ENTRY FEE // CAMPUS PASS REQUIRED</div>
+                  <div className="mt-1 text-bbs-accent-light">NO ENTRY FEE · CAMPUS PASS REQUIRED</div>
                 </div>
               </div>
             </div>
@@ -175,7 +170,7 @@ export default function EventsSection({ onRegisterClick }) {
 
                 <div className={`${evt.image ? 'md:col-span-8' : ''} p-6 sm:p-8`}>
                   <div className="font-mono text-xs text-bbs-accent-light mb-2">
-                    {evt.formattedDate} // {evt.category.toUpperCase()}
+                    {evt.formattedDate} · {evt.category.toUpperCase()}
                   </div>
                   <h4 className="font-display text-xl font-bold text-bbs-text mb-2">
                     {evt.title}

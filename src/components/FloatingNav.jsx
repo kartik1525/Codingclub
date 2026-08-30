@@ -11,15 +11,21 @@ import {
 } from 'lucide-react';
 import { useSmoothScroll } from './SmoothScroll.jsx';
 import ThemeToggle from './ThemeToggle.jsx';
+import { FLOATING_NAV_ITEMS } from '../data/navigation.js';
 
-const NAV_ITEMS = [
-  { path: '/', label: 'Home', icon: Home },
-  { path: '/about', label: 'About', icon: Compass },
-  { path: '/departments', label: 'Depts', icon: Layers },
-  { path: '/projects', label: 'Projects', icon: Code2 },
-  { path: '/events', label: 'Events', icon: Calendar },
-  { path: '/team', label: 'Team', icon: Users },
-];
+const ICON_MAP = {
+  home: Home,
+  compass: Compass,
+  layers: Layers,
+  code: Code2,
+  calendar: Calendar,
+  users: Users
+};
+
+const NAV_ITEMS = FLOATING_NAV_ITEMS.map(item => ({
+  ...item,
+  icon: ICON_MAP[item.iconType] || Home
+}));
 
 /**
  * FloatingNav - State 2 Floating Bottom Navigation Dock

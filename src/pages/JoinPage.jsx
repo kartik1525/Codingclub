@@ -4,6 +4,19 @@ import { CheckCircle2, ArrowRight, Terminal, Users, Sparkles } from 'lucide-reac
 import Section from '../components/Section.jsx';
 import { CLUB_INFO } from '../data/clubInfo.js';
 import { DEPARTMENTS } from '../data/departments.js';
+import { 
+  JOIN_PAGE_HEADER, 
+  WHY_JOIN_HIGHLIGHTS, 
+  JOIN_STEPS, 
+  BRANCH_YEAR_OPTIONS, 
+  ALTERNATE_CHANNELS_CALLOUT 
+} from '../data/join.js';
+
+const HIGHLIGHT_ICONS = {
+  terminal: Terminal,
+  users: Users,
+  sparkles: Sparkles
+};
 
 export default function JoinPage() {
   const [searchParams] = useSearchParams();
@@ -15,7 +28,7 @@ export default function JoinPage() {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
-    departmentYear: 'B.Tech CSE - 1st Year',
+    departmentYear: BRANCH_YEAR_OPTIONS[0]?.value || 'B.Tech CSE - 1st Year',
     interests: selectedDept.name,
     portfolioUrl: '',
     experienceNote: '',
@@ -75,53 +88,34 @@ export default function JoinPage() {
           <div className="mb-14">
             <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-4">
               <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-              <span>06 / MEMBERSHIP & ONBOARDING</span>
+              <span>{JOIN_PAGE_HEADER.badge}</span>
             </div>
-            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-bbs-text leading-tight mb-6">
-              BUILD WITH US.<br />JOIN BBS CODING CLUB.
+            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-bbs-text leading-tight mb-6 whitespace-pre-line">
+              {JOIN_PAGE_HEADER.title}
             </h1>
             <p className="text-lg sm:text-xl text-bbs-muted max-w-3xl leading-relaxed">
-              Whether you wrote your first lines of code last week or have already deployed side projects, BBS Coding Club welcomes any undergraduate student who wants to learn, build software, and compete in hackathons.
+              {JOIN_PAGE_HEADER.description}
             </p>
           </div>
 
           {/* Why Join Highlights */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-bbs-surface border border-bbs-border rounded p-6">
-              <div className="w-9 h-9 rounded bg-bbs-accent-dim text-bbs-accent-light flex items-center justify-center mb-4">
-                <Terminal className="w-5 h-5" />
-              </div>
-              <h3 className="font-display text-lg font-bold text-bbs-text mb-2">
-                Learn by Shipping
-              </h3>
-              <p className="text-xs sm:text-sm text-bbs-muted leading-relaxed">
-                No boring PowerPoint slides. Build software for campus use, submit real pull requests, and deploy live prototypes with your peers.
-              </p>
-            </div>
-
-            <div className="bg-bbs-surface border border-bbs-border rounded p-6">
-              <div className="w-9 h-9 rounded bg-bbs-accent-dim text-bbs-accent-light flex items-center justify-center mb-4">
-                <Users className="w-5 h-5" />
-              </div>
-              <h3 className="font-display text-lg font-bold text-bbs-text mb-2">
-                Hackathon Squads
-              </h3>
-              <p className="text-xs sm:text-sm text-bbs-muted leading-relaxed">
-                Find teammates for Smart India Hackathon (SIH) and collegiate hackathons, brainstorm architectures, and prepare live prototype demos.
-              </p>
-            </div>
-
-            <div className="bg-bbs-surface border border-bbs-border rounded p-6">
-              <div className="w-9 h-9 rounded bg-bbs-accent-dim text-bbs-accent-light flex items-center justify-center mb-4">
-                <Sparkles className="w-5 h-5" />
-              </div>
-              <h3 className="font-display text-lg font-bold text-bbs-text mb-2">
-                Senior Peer Mentorship
-              </h3>
-              <p className="text-xs sm:text-sm text-bbs-muted leading-relaxed">
-                Get unstuck during late-night debugging, receive honest resume reviews, and learn algorithms with structured peer guidance.
-              </p>
-            </div>
+            {WHY_JOIN_HIGHLIGHTS.map((item) => {
+              const IconComponent = HIGHLIGHT_ICONS[item.iconType] || Terminal;
+              return (
+                <div key={item.id} className="bg-bbs-surface border border-bbs-border rounded p-6">
+                  <div className="w-9 h-9 rounded bg-bbs-accent-dim text-bbs-accent-light flex items-center justify-center mb-4">
+                    <IconComponent className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-display text-lg font-bold text-bbs-text mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-bbs-muted leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </Section>
@@ -132,14 +126,14 @@ export default function JoinPage() {
           <div className="flex justify-between items-end flex-wrap gap-4 mb-8">
             <div>
               <div className="font-mono text-xs text-bbs-accent-light mb-1 uppercase">
-                // STEP 1 OF 2
+                {JOIN_STEPS.step1.badge}
               </div>
               <h2 className="font-display text-2xl sm:text-4xl font-bold text-bbs-text">
-                SELECT YOUR PREFERRED TRACK
+                {JOIN_STEPS.step1.title}
               </h2>
             </div>
             <span className="font-mono text-xs text-bbs-dim">
-              CLICK A CARD TO SELECT
+              {JOIN_STEPS.step1.hint}
             </span>
           </div>
 
@@ -149,40 +143,29 @@ export default function JoinPage() {
               return (
                 <button
                   key={dept.id}
-                  type="button"
-                  onClick={() => setSelectedDeptId(dept.id)}
-                  className={`p-6 rounded border text-left transition-all cursor-pointer flex flex-col justify-between ${
+                  onClick={() => handleDepartmentSelect(dept.id)}
+                  className={`p-6 rounded text-left border transition-all cursor-pointer relative ${
                     isSelected
-                      ? 'bg-bbs-surface border-bbs-accent shadow-lg shadow-bbs-accent/15 ring-2 ring-bbs-accent'
-                      : 'bg-bbs-surface border-bbs-border hover:border-bbs-border-focus hover:bg-bbs-raised/50'
+                      ? 'bg-bbs-surface border-bbs-accent shadow-lg shadow-bbs-accent/15 ring-2 ring-bbs-accent/40'
+                      : 'bg-bbs-surface/80 border-bbs-border hover:border-bbs-border-focus hover:bg-bbs-surface'
                   }`}
                 >
-                  <div>
-                    <div className="flex justify-between items-center mb-3">
-                      <span className={`font-mono text-xs font-semibold ${isSelected ? 'text-bbs-accent-light' : 'text-bbs-dim'}`}>
-                        {dept.code}
+                  <div className="flex justify-between items-start mb-3">
+                    <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-bbs-raised border border-bbs-border text-bbs-accent-light">
+                      {dept.code}
+                    </span>
+                    {isSelected && (
+                      <span className="w-5 h-5 rounded-full bg-bbs-accent text-white flex items-center justify-center text-xs">
+                        ✓
                       </span>
-                      {isSelected && (
-                        <span className="font-mono text-[10px] bg-bbs-accent text-white px-2 py-0.5 rounded">
-                          SELECTED ✓
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="font-display text-lg font-bold text-bbs-text mb-2">
-                      {dept.name}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-bbs-muted leading-relaxed mb-4">
-                      {dept.tagline}
-                    </p>
+                    )}
                   </div>
-
-                  <div className="border-t border-bbs-border pt-3 flex flex-wrap gap-1">
-                    {dept.skills.slice(0, 3).map((s, idx) => (
-                      <span key={idx} className="font-mono text-[10px] text-bbs-dim px-1.5 py-0.5 bg-bbs-raised rounded">
-                        {s}
-                      </span>
-                    ))}
-                  </div>
+                  <h3 className="font-display text-lg font-bold text-bbs-text mb-2">
+                    {dept.name}
+                  </h3>
+                  <p className="text-xs text-bbs-muted leading-relaxed line-clamp-3">
+                    {dept.description}
+                  </p>
                 </button>
               );
             })}
@@ -197,7 +180,7 @@ export default function JoinPage() {
             {/* Left: Selected Department Overview */}
             <div className="lg:col-span-5 bg-bbs-surface border border-bbs-border rounded p-6 sm:p-8 shadow-sm">
               <div className="font-mono text-xs text-bbs-accent-light mb-2 uppercase">
-                // SELECTED TRACK DETAILS
+                SELECTED TRACK DETAILS
               </div>
               <h3 className="font-display text-2xl font-bold text-bbs-text mb-2">
                 {selectedDept.name}
@@ -247,13 +230,13 @@ export default function JoinPage() {
             {/* Right: Application Form */}
             <div className="lg:col-span-7 bg-bbs-surface border border-bbs-border rounded p-6 sm:p-10 shadow-xl">
               <div className="font-mono text-xs text-bbs-accent-light mb-1 uppercase">
-                // STEP 2 OF 2
+                {JOIN_STEPS.step2.badge}
               </div>
               <h2 className="font-display text-2xl sm:text-3xl font-bold text-bbs-text mb-2">
-                SUBMIT APPLICATION
+                {JOIN_STEPS.step2.title}
               </h2>
               <p className="text-sm text-bbs-muted mb-8">
-                Applying for: <strong className="text-bbs-text">{selectedDept.name}</strong> ({selectedDept.code})
+                Applying for: <strong className="text-bbs-text">{selectedDept.name}</strong>
               </p>
 
               {formState === 'success' ? (
@@ -283,7 +266,7 @@ export default function JoinPage() {
                         setFormData({
                           fullName: '',
                           email: '',
-                          departmentYear: 'B.Tech CSE - 1st Year',
+                          departmentYear: BRANCH_YEAR_OPTIONS[0]?.value || 'B.Tech CSE - 1st Year',
                           interests: selectedDept.name,
                           portfolioUrl: '',
                           experienceNote: '',
@@ -361,13 +344,9 @@ export default function JoinPage() {
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded bg-bbs-raised border border-bbs-border text-bbs-text font-sans text-sm focus:outline-none focus:border-bbs-accent transition-colors cursor-pointer"
                     >
-                      <option value="B.Tech CSE - 1st Year">B.Tech CSE — 1st Year</option>
-                      <option value="B.Tech CSE - 2nd Year">B.Tech CSE — 2nd Year</option>
-                      <option value="B.Tech CSE - 3rd Year">B.Tech CSE — 3rd Year</option>
-                      <option value="B.Tech IT - 1st Year">B.Tech IT — 1st Year</option>
-                      <option value="B.Tech IT - 2nd Year">B.Tech IT — 2nd Year</option>
-                      <option value="B.Tech ECE - 1st Year">B.Tech ECE — 1st Year</option>
-                      <option value="B.Tech Other Branches">B.Tech Other Branches / Enthusiast</option>
+                      {BRANCH_YEAR_OPTIONS.map((opt) => (
+                        <option key={opt.value} value={opt.value}>{opt.label}</option>
+                      ))}
                     </select>
                   </div>
 
@@ -424,32 +403,27 @@ export default function JoinPage() {
           <div className="bg-bbs-surface border border-bbs-border rounded p-6 sm:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-md">
             <div>
               <div className="font-mono text-xs text-bbs-accent-light mb-1 uppercase">
-                // ALTERNATE CHANNELS
+                {ALTERNATE_CHANNELS_CALLOUT.badge}
               </div>
               <h4 className="font-display text-lg font-bold text-bbs-text">
-                PREFER JOINING OUR DISCORD SERVER DIRECTLY?
+                {ALTERNATE_CHANNELS_CALLOUT.title}
               </h4>
               <p className="text-xs sm:text-sm text-bbs-muted mt-1 max-w-xl">
-                Hop into our open Discord channels to hang out, participate in weekly code teardowns, and ask technical questions.
+                {ALTERNATE_CHANNELS_CALLOUT.description}
               </p>
             </div>
             <div className="flex gap-3 flex-wrap">
-              <a
-                href={CLUB_INFO.socials.discord}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-xs font-semibold px-4 py-2 border border-bbs-border text-bbs-text rounded hover:bg-bbs-raised hover:border-bbs-accent transition-colors"
-              >
-                DISCORD SERVER ↗
-              </a>
-              <a
-                href={CLUB_INFO.socials.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-xs font-semibold px-4 py-2 border border-bbs-border text-bbs-text rounded hover:bg-bbs-raised hover:border-bbs-accent transition-colors"
-              >
-                GITHUB ORG ↗
-              </a>
+              {ALTERNATE_CHANNELS_CALLOUT.channels.map((ch) => (
+                <a
+                  key={ch.label}
+                  href={ch.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-xs font-semibold px-4 py-2 border border-bbs-border text-bbs-text rounded hover:bg-bbs-raised hover:border-bbs-accent transition-colors"
+                >
+                  {ch.label}
+                </a>
+              ))}
             </div>
           </div>
         </div>

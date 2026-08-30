@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
+import { TERMINAL_CONFIG } from '../data/home.js';
 
 export default function TerminalBlock({ onJoinClick }) {
   const [commandInput, setCommandInput] = useState('');
-  const [history, setHistory] = useState([
-    { type: 'input', text: 'whoami' },
-    { type: 'output', text: 'bbs_coding_club // student developer community' },
-    { type: 'input', text: 'cat mission.txt' },
-    { type: 'output', text: 'build things that work. learn with friends. ship code before graduation.' },
-    { type: 'input', text: './status' },
-    { type: 'output', text: '> SIH \'26 TRACK: ACTIVE | DISCORD: ONLINE | LAB MEETS: CS LAB 02' }
-  ]);
+  const [history, setHistory] = useState(TERMINAL_CONFIG.initialHistory);
 
   const handleCommand = (cmdText) => {
     const trimmed = (cmdText || commandInput).trim().toLowerCase();
@@ -17,26 +11,27 @@ export default function TerminalBlock({ onJoinClick }) {
 
     const newHistory = [...history, { type: 'input', text: trimmed }];
 
-    if (trimmed === 'help') {
-      newHistory.push({
-        type: 'output',
-        text: 'AVAILABLE COMMANDS:\n  whoami          — print community identity\n  cat mission.txt — view club charter\n  status          — show upcoming tracks\n  projects        — list active student builds\n  join            — open membership signup\n  clear           — reset terminal screen'
-      });
-    } else if (trimmed === 'whoami') {
-      newHistory.push({ type: 'output', text: 'bbs_coding_club // student developer community at BBS' });
-    } else if (trimmed === 'cat mission.txt' || trimmed === 'mission') {
-      newHistory.push({ type: 'output', text: 'build things that work. learn with friends. ship code before graduation.' });
-    } else if (trimmed === 'status') {
-      newHistory.push({ type: 'output', text: '> ALL SQUADS ACTIVE // FALL 2026 SIGNUPS OPEN' });
-    } else if (trimmed === 'projects') {
-      newHistory.push({ type: 'output', text: 'ACTIVE REPOSITORIES:\n  01 bbs-official-web (React + Custom CSS Design System)\n  02 sih-eval-hub (Hackathon Judging Dashboard Prototype)\n  03 student-submissions (Open Call for Member Projects)' });
-    } else if (trimmed === 'join' || trimmed === './join-community') {
-      newHistory.push({ type: 'output', text: '> OPENING APPLICATION FORM...' });
-      onJoinClick();
-    } else if (trimmed === 'clear') {
+    if (trimmed === 'clear') {
       setHistory([]);
       setCommandInput('');
       return;
+    }
+
+    if (trimmed === 'join' || trimmed === './join-community') {
+      newHistory.push({ type: 'output', text: TERMINAL_CONFIG.commandResponses.join || '> OPENING APPLICATION FORM...' });
+      if (typeof onJoinClick === 'function') {
+        onJoinClick();
+      }
+    } else if (TERMINAL_CONFIG.commandResponses[trimmed]) {
+      newHistory.push({
+        type: 'output',
+        text: TERMINAL_CONFIG.commandResponses[trimmed]
+      });
+    } else if (trimmed === 'cat mission.txt') {
+      newHistory.push({
+        type: 'output',
+        text: TERMINAL_CONFIG.commandResponses.mission
+      });
     } else {
       newHistory.push({ type: 'output', text: `command not found: "${trimmed}". type "help" for valid options.` });
     }
@@ -56,16 +51,16 @@ export default function TerminalBlock({ onJoinClick }) {
         <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
           <div className="flex items-center gap-2 font-mono text-xs text-bbs-accent-light tracking-wider uppercase">
             <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
-            <span>// EASTER EGG // STUDENT CONSOLE</span>
+            <span>{TERMINAL_CONFIG.badge}</span>
           </div>
 
           {/* Quick command buttons */}
           <div className="flex gap-2 flex-wrap">
-            {['whoami', 'mission', 'status', 'help'].map((cmd) => (
+            {TERMINAL_CONFIG.quickCommands.map((cmd) => (
               <button
                 key={cmd}
                 onClick={() => handleCommand(cmd === 'mission' ? 'cat mission.txt' : cmd)}
-                className="font-mono text-[11px] px-2 py-1 rounded bg-bbs-surface border border-bbs-border text-bbs-muted hover:text-bbs-text hover:border-bbs-border-focus transition-colors"
+                className="font-mono text-[11px] px-2 py-1 rounded bg-bbs-surface border border-bbs-border text-bbs-muted hover:text-bbs-text hover:border-bbs-border-focus transition-colors cursor-pointer"
               >
                 ${cmd}
               </button>
@@ -82,12 +77,12 @@ export default function TerminalBlock({ onJoinClick }) {
               <span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block" />
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block" />
               <span className="font-mono text-xs text-bbs-dim ml-3">
-                bbs-sh — v1.0.4
+                {TERMINAL_CONFIG.version}
               </span>
             </div>
 
             <span className="font-mono text-[11px] text-bbs-accent-light">
-              LAB TTY: /dev/pts/0
+              {TERMINAL_CONFIG.tty}
             </span>
           </div>
 

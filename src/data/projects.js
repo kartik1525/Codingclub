@@ -1,12 +1,11 @@
 export const PROJECTS = [
   {
     id: "bbs-official-web",
-    number: "01",
     title: "BBS Coding Club Digital Platform",
     tagline: "The official web platform and community gateway built by student developers.",
     category: "Web Engineering / Design Systems",
     year: "2026",
-    status: "ACTIVE PRODUCTION // OPEN SOURCE",
+    status: "ACTIVE PRODUCTION · OPEN SOURCE",
     description: "Designed and implemented in-house to give BBS Coding Club an editorial, technically credible digital identity. Built with React and a strict custom CSS design token system without bloated UI templates.",
     techTags: ["React", "JavaScript", "Vite", "Custom CSS", "Design Systems"],
     contributors: ["Student Core Developers"],
@@ -18,12 +17,11 @@ export const PROJECTS = [
   },
   {
     id: "sih-eval-hub",
-    number: "02",
     title: "SIH Campus Evaluation Hub",
     tagline: "Internal hackathon judging rubrics and team leaderboard tool.",
-    category: "Student Prototype // In Development",
+    category: "Student Prototype · In Development",
     year: "2026",
-    status: "PROTOTYPING // FALL 2026",
+    status: "PROTOTYPING · FALL 2026",
     description: "An internal evaluation dashboard designed to streamline live scoring and rubric normalization for college hackathons and Smart India Hackathon internal selections.",
     techTags: ["React", "Node.js", "SQLite"],
     contributors: ["Hackathon Working Group"],
@@ -35,7 +33,6 @@ export const PROJECTS = [
   },
   {
     id: "student-project-slot-open",
-    number: "03",
     title: "[YOUR PROJECT HERE]",
     tagline: "Built something cool in your dorm or lab? Showcase it here.",
     category: "Community Showcase Submission",
@@ -50,3 +47,26 @@ export const PROJECTS = [
     context: "We run monthly project showcases and peer code reviews where student builders pitch their repositories to senior peers and alumni mentors."
   }
 ];
+
+export const PROJECTS_PAGE_HEADER = {
+  badge: "SELECTED BUILDS & REPOSITORIES",
+  title: "SOFTWARE ENGINEERED\nFOR ACTUAL CAMPUS USE.",
+  description: "Real software built by student members at BBS Coding Club. From production web applications and evaluation systems to open-source starter packages."
+};
+
+export const PROJECT_CATEGORIES = [
+  { id: 'all', label: 'ALL BUILDS' },
+  { id: 'web', label: 'WEB SYSTEMS' },
+  { id: 'hackathon', label: 'HACKATHON MVPS' },
+  { id: 'community', label: 'MEMBER REPOS' },
+];
+
+export const PROJECTS_SUBMISSION_CALLOUT = {
+  badge: "MEMBER SHOWCASE PORTAL",
+  title: "SHIPPED A REPOSITORY OR HACKATHON MVP?",
+  description: "Every BBS Coding Club member has the opportunity to showcase their side projects and repositories to the community and alumni network.",
+  cta: {
+    label: "SUBMIT PR ON GITHUB",
+    url: "https://github.com/bbs-coding-club"
+  }
+};

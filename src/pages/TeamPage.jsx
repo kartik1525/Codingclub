@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, ArrowUpRight, ArrowRight } from 'lucide-react';
 import Section from '../components/Section.jsx';
-import { TEAM_LEADERSHIP } from '../data/team.js';
+import { 
+  TEAM_LEADERSHIP, 
+  TEAM_PAGE_HEADER, 
+  LEADERSHIP_NOMINATIONS_CALLOUT 
+} from '../data/team.js';
 import { DEPARTMENTS } from '../data/departments.js';
 
 function GithubIcon({ className = "w-3.5 h-3.5" }) {
@@ -46,13 +50,13 @@ export default function TeamPage() {
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-4">
             <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-            <span>05 / CORE LEADERSHIP & ROSTER</span>
+            <span>{TEAM_PAGE_HEADER.badge}</span>
           </div>
-          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-bbs-text leading-tight mb-6">
-            RUN BY STUDENTS.<br />BUILT FOR BUILDERS.
+          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-bbs-text leading-tight mb-6 whitespace-pre-line">
+            {TEAM_PAGE_HEADER.title}
           </h1>
           <p className="text-lg sm:text-xl text-bbs-muted max-w-3xl leading-relaxed mb-10">
-            Every track at BBS Coding Club is led by undergraduate engineering students who volunteer their time to organize hackathons, run code reviews, and mentor first-years.
+            {TEAM_PAGE_HEADER.description}
           </p>
 
           {/* Department Filter Navigation */}
@@ -79,7 +83,7 @@ export default function TeamPage() {
         <Section variant="grid" className="py-16 sm:py-24 border-t border-bbs-border relative">
           <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
             <div className="font-mono text-xs text-bbs-accent-light mb-3 uppercase tracking-wider">
-              // CORE EXECUTIVE LEADERSHIP
+              CORE EXECUTIVE LEADERSHIP
             </div>
             <article className="bg-bbs-surface border border-bbs-border rounded overflow-hidden shadow-xl hover:border-bbs-border-focus transition-colors group">
               <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
@@ -92,7 +96,7 @@ export default function TeamPage() {
                     loading="lazy"
                   />
                   <div className="absolute top-4 left-4 font-mono text-[11px] px-2.5 py-1 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-accent-light tracking-wider">
-                    {president.trackCode} // PRESIDENTIAL MANDATE
+                    PRESIDENTIAL MANDATE
                   </div>
                   <div className="absolute bottom-4 left-4 font-mono text-[10px] px-2.5 py-1 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-text flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
@@ -129,7 +133,7 @@ export default function TeamPage() {
 
                     <div className="mb-8">
                       <div className="font-mono text-[11px] text-bbs-dim uppercase tracking-wider mb-2.5">
-                        // KEY INITIATIVES & SPECIALTIES
+                        KEY INITIATIVES & SPECIALTIES
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {president.specialties.map((tag, idx) => (
@@ -189,7 +193,7 @@ export default function TeamPage() {
       <Section variant="solid" className="py-16 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="font-mono text-xs text-bbs-accent-light mb-3 uppercase tracking-wider">
-            // SPECIALIZED TRACK HEADS & COORDINATORS
+            SPECIALIZED TRACK HEADS & COORDINATORS
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -294,20 +298,20 @@ export default function TeamPage() {
           <div className="bg-bbs-surface border border-bbs-border rounded p-6 sm:p-8 flex justify-between items-center flex-wrap gap-6 hover:border-bbs-border-focus transition-colors shadow-md">
             <div>
               <div className="font-mono text-xs text-bbs-accent-light mb-1 uppercase">
-                // COHORT 2026 TRACK NOMINATIONS
+                {LEADERSHIP_NOMINATIONS_CALLOUT.badge}
               </div>
               <h3 className="font-display text-lg sm:text-xl font-bold text-bbs-text">
-                WANT TO LEAD A TRACK IN THE NEXT COHORT?
+                {LEADERSHIP_NOMINATIONS_CALLOUT.title}
               </h3>
               <p className="text-sm text-bbs-muted mt-1 max-w-2xl leading-relaxed">
-                Applications for track co-leads, contest coordinators, and sophomore mentors are evaluated every semester. Built for undergraduate students who love shipping real code.
+                {LEADERSHIP_NOMINATIONS_CALLOUT.description}
               </p>
             </div>
             <Link
-              to="/join"
+              to={LEADERSHIP_NOMINATIONS_CALLOUT.cta.path}
               className="inline-flex items-center gap-1.5 font-mono text-xs sm:text-sm font-semibold tracking-wide px-5 py-2.5 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all shrink-0 hover:scale-102 shadow-md shadow-bbs-accent/20"
             >
-              <span>APPLY FOR LEADERSHIP</span>
+              <span>{LEADERSHIP_NOMINATIONS_CALLOUT.cta.label}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

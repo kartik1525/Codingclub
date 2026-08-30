@@ -128,69 +128,30 @@ function ConnectVisual() {
    ASYMMETRIC BENTO GRID COMPONENT
    ───────────────────────────────────────────────────────────── */
 
-export default function AboutBentoGrid() {
-  const bentoCards = [
-    {
-      id: 'learn',
-      number: '01',
-      title: 'LEARN',
-      headline: 'Hands-on sessions, code teardowns & peer learning.',
-      description:
-        'Master real-world software architecture outside the lecture hall. Weekly live debugging marathons, system teardowns, and collaborative problem-solving ladders.',
-      actionText: 'WEEKLY CODE TEARDOWNS',
-      actionHref: '/events',
-      gridClass: 'col-span-12 lg:col-span-7',
-      visual: <LearnVisual />,
-      isDominant: true,
-    },
-    {
-      id: 'build',
-      number: '02',
-      title: 'BUILD',
-      headline: 'Real software, real problems.',
-      description:
-        'No throwaway academic exercises. We architect, review, and ship production web systems, internal campus tooling, and open-source packages.',
-      actionText: 'PROJECTS & REPOS',
-      actionHref: '/projects',
-      gridClass: 'col-span-12 sm:col-span-6 lg:col-span-5',
-      visual: <BuildVisual />,
-      isDominant: false,
-    },
-    {
-      id: 'compete',
-      number: '03',
-      title: 'COMPETE',
-      headline: 'Hackathons, SIH, contests & CP.',
-      description:
-        'Form validated squads for Smart India Hackathon (SIH) and collegiate cups. Algorithmic problem-solving ladders and rapid MVP development sprints.',
-      actionText: 'SIH INTERNAL SELECTIONS',
-      actionHref: '/events',
-      gridClass: 'col-span-12 sm:col-span-6 lg:col-span-5',
-      visual: <CompeteVisual />,
-      isDominant: false,
-    },
-    {
-      id: 'connect',
-      number: '04',
-      title: 'CONNECT',
-      headline: 'Find your squad, mentors and collaborators.',
-      description:
-        'Meet your 3:00 AM hackathon teammates, receive direct mentorship from senior student builders, and connect with alumni developers.',
-      actionText: 'DISCORD HELP CHANNELS',
-      actionHref: '/join',
-      gridClass: 'col-span-12 lg:col-span-7',
-      visual: <ConnectVisual />,
-      isDominant: false,
-    },
-  ];
+import { PILLARS } from '../data/pillars.js';
 
+const VISUAL_MAP = {
+  learn: <LearnVisual />,
+  build: <BuildVisual />,
+  compete: <CompeteVisual />,
+  connect: <ConnectVisual />
+};
+
+const GRID_CLASS_MAP = {
+  learn: 'col-span-12 lg:col-span-7',
+  build: 'col-span-12 sm:col-span-6 lg:col-span-5',
+  compete: 'col-span-12 sm:col-span-6 lg:col-span-5',
+  connect: 'col-span-12 lg:col-span-7'
+};
+
+export default function AboutBentoGrid() {
   return (
     <div className="grid grid-cols-12 gap-5 w-full">
-      {bentoCards.map((card) => (
+      {PILLARS.map((card) => (
         <Link
           key={card.id}
           to={card.actionHref}
-          className={`group relative overflow-hidden bg-bbs-surface border border-bbs-border hover:border-bbs-accent/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bbs-accent rounded transition-all duration-300 flex flex-col justify-between p-6 sm:p-8 lg:p-9 shadow-sm ${card.gridClass}`}
+          className={`group relative overflow-hidden bg-bbs-surface border border-bbs-border hover:border-bbs-accent/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bbs-accent rounded transition-all duration-300 flex flex-col justify-between p-6 sm:p-8 lg:p-9 shadow-sm ${GRID_CLASS_MAP[card.id] || 'col-span-12'}`}
         >
           {/* Editorial Blue Accent Wipe Background Transition on Hover / Focus */}
           <div
@@ -206,13 +167,13 @@ export default function AboutBentoGrid() {
                 aria-hidden="true"
               />
               <span className="font-mono text-xs font-semibold tracking-wider text-bbs-accent-light group-hover:text-white transition-colors duration-300">
-                {card.number} // {card.title}
+                {card.title}
               </span>
             </div>
 
             {/* Subtle technical visual */}
             <div className="opacity-75 group-hover:opacity-100 transition-opacity duration-300 shrink-0">
-              {card.visual}
+              {VISUAL_MAP[card.id]}
             </div>
           </div>
 
@@ -227,7 +188,7 @@ export default function AboutBentoGrid() {
             </div>
 
             <p className="text-xs sm:text-sm text-bbs-muted group-hover:text-white/85 transition-colors duration-300 leading-relaxed max-w-xl">
-              {card.description}
+              {card.bentoDescription || card.description}
             </p>
           </div>
 
@@ -239,7 +200,7 @@ export default function AboutBentoGrid() {
             </span>
 
             <span className="font-mono text-[10px] text-bbs-dim group-hover:text-white/70 transition-colors duration-300 uppercase">
-              BBS // 2025–26
+              BBS  2025–26
             </span>
           </div>
         </Link>

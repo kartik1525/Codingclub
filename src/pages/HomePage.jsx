@@ -12,6 +12,13 @@ import DepartmentDirectory from '../components/DepartmentDirectory.jsx';
 import CoreLeadershipRoster from '../components/CoreLeadershipRoster.jsx';
 import { PROJECTS } from '../data/projects.js';
 import { EVENTS } from '../data/events.js';
+import { 
+  ABOUT_PREVIEW, 
+  DEPARTMENTS_PREVIEW, 
+  PROJECTS_PREVIEW, 
+  EVENTS_PREVIEW, 
+  JOIN_BANNER 
+} from '../data/home.js';
 
 /**
  * HomePage - Concise Overview of BBS Coding Club
@@ -43,7 +50,7 @@ export default function HomePage() {
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
             <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-            <span>01 / ABOUT US OVERVIEW</span>
+            <span>{ABOUT_PREVIEW.badge}</span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-10 sm:mb-12">
@@ -52,18 +59,18 @@ export default function HomePage() {
                 as="h2"
                 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight m-0"
               >
-                WE ARE NOT JUST A CODING CLUB.
+                {ABOUT_PREVIEW.title}
               </ViewportText>
             </div>
             <div className="lg:col-span-6">
               <p className="text-base sm:text-lg text-bbs-muted leading-relaxed mb-6">
-                Most college clubs stop at slide presentations and textbook definitions. At BBS Coding Club, we learn by actually writing code, building software with our peers, competing in national hackathons, and preparing each other for modern engineering careers.
+                {ABOUT_PREVIEW.description}
               </p>
               <Link
-                to="/about"
+                to={ABOUT_PREVIEW.cta.path}
                 className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-semibold text-bbs-accent-light hover:text-bbs-text transition-colors group"
               >
-                <span>READ FULL ABOUT & MISSION</span>
+                <span>{ABOUT_PREVIEW.cta.label}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
@@ -81,17 +88,17 @@ export default function HomePage() {
             <div>
               <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-3">
                 <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-                <span>02 / SPECIALIZED TRACKS</span>
+                <span>{DEPARTMENTS_PREVIEW.badge}</span>
               </div>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight m-0">
-                EXPLORE CLUB TRACKS.
+                {DEPARTMENTS_PREVIEW.title}
               </h2>
             </div>
             <Link
-              to="/departments"
+              to={DEPARTMENTS_PREVIEW.cta.path}
               className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-semibold text-bbs-accent-light hover:text-bbs-text transition-colors group shrink-0"
             >
-              <span>VIEW ALL 5 DEPARTMENTS</span>
+              <span>{DEPARTMENTS_PREVIEW.cta.label}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -108,17 +115,17 @@ export default function HomePage() {
             <div>
               <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-3">
                 <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-                <span>03 / SELECTED BUILDS</span>
+                <span>{PROJECTS_PREVIEW.badge}</span>
               </div>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight m-0">
-                THINGS WE'VE SHIPPED.
+                {PROJECTS_PREVIEW.title}
               </h2>
             </div>
             <Link
-              to="/projects"
+              to={PROJECTS_PREVIEW.cta.path}
               className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-semibold text-bbs-accent-light hover:text-bbs-text transition-colors group shrink-0"
             >
-              <span>VIEW ALL PROJECTS & REPOS</span>
+              <span>{PROJECTS_PREVIEW.cta.label}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -126,7 +133,6 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 sm:gap-8">
             {featuredProjects.map((project, index) => {
               const isFeatured = index === 0;
-              const formattedIndex = String(index + 1).padStart(2, '0');
 
               return (
                 <article
@@ -146,20 +152,14 @@ export default function HomePage() {
                       loading="lazy"
                     />
 
-                    {/* Top Index & Tag Badges */}
+                    {/* Top Tag Badges */}
                     <div className="absolute top-3 left-3 flex items-center gap-2 z-20">
                       <span className="bg-bbs-bg/90 backdrop-blur-sm border border-bbs-border px-2.5 py-1 rounded font-mono text-[11px] text-bbs-accent font-semibold flex items-center gap-1.5 shadow-sm">
                         {isFeatured && <span className="w-1.5 h-1.5 rounded-full bg-bbs-accent inline-block animate-pulse" />}
-                        <span>PROJECT // {formattedIndex}</span>
+                        <span>{isFeatured ? 'FLAGSHIP RELEASE' : 'STUDENT PROTOTYPE'}</span>
                       </span>
                       <span className="bg-bbs-surface/85 backdrop-blur-sm border border-bbs-border px-2 py-1 rounded font-mono text-[10px] text-bbs-dim hidden sm:inline-block">
                         {project.category.toUpperCase()}
-                      </span>
-                    </div>
-
-                    <div className="absolute top-3 right-3 z-20">
-                      <span className="bg-bbs-bg/90 backdrop-blur-sm border border-bbs-border px-2 py-0.5 rounded font-mono text-[10px] text-bbs-dim uppercase tracking-wider">
-                        {isFeatured ? 'FLAGSHIP RELEASE' : 'STUDENT PROTOTYPE'}
                       </span>
                     </div>
 
@@ -181,7 +181,7 @@ export default function HomePage() {
                     <div>
                       <div className="flex items-center justify-between gap-2 mb-2">
                         <span className="font-mono text-[11px] text-bbs-accent uppercase tracking-wider font-semibold">
-                          {isFeatured ? '// FLAGSHIP BUILD' : '// CAMPUS HACK'}
+                          {isFeatured ? 'FLAGSHIP BUILD' : 'CAMPUS HACK'}
                         </span>
                         <span className="font-mono text-xs text-bbs-dim">
                           {project.year}
@@ -242,17 +242,17 @@ export default function HomePage() {
             <div>
               <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-3">
                 <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-                <span>04 / SCHEDULE & ACTIVITIES</span>
+                <span>{EVENTS_PREVIEW.badge}</span>
               </div>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight m-0">
-                UPCOMING & RECENT EVENTS.
+                {EVENTS_PREVIEW.title}
               </h2>
             </div>
             <Link
-              to="/events"
+              to={EVENTS_PREVIEW.cta.path}
               className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-semibold text-bbs-accent-light hover:text-bbs-text transition-colors group shrink-0"
             >
-              <span>VIEW FULL EVENT ARCHIVE</span>
+              <span>{EVENTS_PREVIEW.cta.label}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -281,7 +281,7 @@ export default function HomePage() {
                   </p>
 
                   <div className="font-mono text-xs text-bbs-dim mb-6">
-                    LOCATION: {event.location} // {event.time}
+                    LOCATION: {event.location} · {event.time}
                   </div>
                 </div>
 
@@ -322,19 +322,19 @@ export default function HomePage() {
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full text-center">
           <div className="flex items-center justify-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-3">
             <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-            <span>07 / MEMBERSHIP & ONBOARDING</span>
+            <span>{JOIN_BANNER.badge}</span>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight mb-4 max-w-2xl mx-auto">
-            READY TO BUILD REAL SOFTWARE WITH YOUR PEERS?
+            {JOIN_BANNER.title}
           </h2>
           <p className="text-base text-bbs-muted leading-relaxed max-w-xl mx-auto mb-8">
-            Choose your track, meet fellow student developers, collaborate on campus hackathon squads, and level up your engineering skills outside the classroom.
+            {JOIN_BANNER.description}
           </p>
           <Link
-            to="/join"
+            to={JOIN_BANNER.cta.path}
             className="inline-flex items-center gap-2 font-mono text-sm font-semibold px-6 py-3 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:scale-105 shadow-xl shadow-bbs-accent/25"
           >
-            <span>START APPLICATION / ONBOARDING</span>
+            <span>{JOIN_BANNER.cta.label}</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

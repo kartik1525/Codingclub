@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { CLUB_INFO } from '../data/clubInfo.js';
+import { HERO_CONTENT } from '../data/home.js';
 import HeroHeadline from './HeroHeadline.jsx';
 import Section from './Section.jsx';
 
@@ -69,19 +70,6 @@ export default function Hero({ onJoinClick }) {
       className="min-h-screen flex flex-col justify-center pt-14 sm:pt-16 pb-14 border-b border-bbs-border relative"
     >
       <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-        {/* Top Club Identity Bar */}
-        <div className="hero-status-bar flex justify-between items-center flex-wrap gap-4 mb-8">
-          <div className="inline-flex items-center px-3 py-1.5 bg-bbs-surface border border-bbs-border rounded">
-            <span className="font-mono text-xs font-semibold tracking-wider text-bbs-text">
-              {CLUB_INFO.name.toUpperCase()} // STUDENT DEVELOPER COLLECTIVE
-            </span>
-          </div>
-
-          <div className="font-mono text-xs text-bbs-dim">
-            GEO: {CLUB_INFO.coordinates} — {CLUB_INFO.estYear}
-          </div>
-        </div>
-
         {/* Asymmetrical Editorial Hero Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-12">
           {/* Left Column: Dominant Headline & Narrative (7 cols on desktop) */}
@@ -92,76 +80,51 @@ export default function Hero({ onJoinClick }) {
 
             {/* Supporting paragraph */}
             <p className="hero-description text-base sm:text-lg text-bbs-muted leading-relaxed max-w-xl mt-6 mb-8">
-              We are a community of college students who love writing code, building software that people actually use, and staying up late debugging during hackathons. No corporate jargon—just genuine builders rooted at BBS.
+              {HERO_CONTENT.description}
             </p>
 
             {/* CTAs */}
             <div className="hero-ctas flex gap-4 flex-wrap mb-8">
               <Link
-                to="/join"
+                to={HERO_CONTENT.primaryCta.path}
                 className="inline-flex items-center justify-center font-mono text-xs sm:text-sm font-semibold tracking-wide px-6 py-3 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:-translate-y-0.5 shadow-lg shadow-bbs-accent/25"
                 id="hero-join-btn"
               >
-                JOIN THE CLUB ↗
+                {HERO_CONTENT.primaryCta.label}
               </Link>
               
               <a
-                href="#projects"
+                href={HERO_CONTENT.secondaryCta.href}
                 className="inline-flex items-center justify-center font-mono text-xs sm:text-sm font-semibold tracking-wide px-6 py-3 rounded border border-bbs-border-light text-bbs-text bg-transparent hover:bg-bbs-surface hover:border-bbs-muted transition-all hover:-translate-y-0.5"
               >
-                SEE OUR PROJECTS ↓
+                {HERO_CONTENT.secondaryCta.label}
               </a>
-            </div>
-
-            {/* Micro status */}
-            <div className="flex items-center gap-3">
-              <span className="inline-flex items-center font-mono text-[11px] font-medium tracking-wider uppercase px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/30">
-                FALL 2026
-              </span>
-              <span className="font-mono text-xs text-bbs-dim">
-                CORE NOMINATIONS & MEMBER SIGNUPS OPEN
-              </span>
             </div>
           </div>
 
           {/* Right Column: Framed College Photograph */}
           <div className="lg:col-span-5 relative group hero-college-frame">
-            {/* Editorial Metadata Above Photo */}
-            <div className="flex justify-between items-baseline mb-2 font-mono text-xs">
-              <span className="text-bbs-accent-light tracking-wider">
-                01 / THE PLACE WE BUILD FROM
-              </span>
-              <span className="text-bbs-dim text-[11px]">
-                EST. 2025 // BBS CAMPUS
-              </span>
-            </div>
-
             {/* Asymmetrical Framed Image Container */}
             <div className="relative bg-bbs-surface border border-bbs-border rounded overflow-hidden shadow-xl group-hover:border-bbs-border-focus group-hover:shadow-2xl transition-all duration-300">
               <div className="w-full aspect-[4/3] overflow-hidden relative bg-black">
                 <img 
-                  src="/assets/bbs-college.jpg" 
-                  alt="BBS College of Engineering and Technology campus building"
+                  src={HERO_CONTENT.campusPhoto.src} 
+                  alt={HERO_CONTENT.campusPhoto.alt}
                   className="w-full h-full object-cover object-[center_35%] block filter grayscale-[25%] contrast-105 brightness-95 group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 group-hover:scale-105 transition-all duration-500 ease-out"
                   loading="eager"
                 />
 
                 <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-bbs-bg/90 to-transparent pointer-events-none" />
-
-                <div className="absolute top-3 right-3 bg-bbs-bg/85 backdrop-blur-sm border border-bbs-border rounded px-2.5 py-1 font-mono text-[11px] text-bbs-text">
-                  CAMPUS HQ
-                </div>
               </div>
 
               {/* Caption & Location Metadata Underneath Photo */}
               <div className="p-4 sm:p-5 bg-bbs-surface border-t border-bbs-border flex flex-col gap-1">
                 <div className="font-display text-base font-bold tracking-tight text-bbs-text">
-                  BBS COLLEGE OF ENGINEERING AND TECHNOLOGY
+                  {HERO_CONTENT.campusPhoto.title}
                 </div>
 
                 <div className="font-mono text-xs text-bbs-muted flex justify-between flex-wrap gap-2">
-                  <span>CAMPUS LABS & HACKATHON ARENA</span>
-                  <span className="text-bbs-accent-light">ACTIVE BASE // PRAYAGRAJ</span>
+                  <span>{HERO_CONTENT.campusPhoto.subtitle}</span>
                 </div>
               </div>
             </div>
@@ -171,17 +134,17 @@ export default function Hero({ onJoinClick }) {
         {/* Bottom Technical Coordinates Bar */}
         <div className="hero-bottom-meta flex flex-wrap justify-between items-center gap-4 pt-6 border-t border-bbs-border font-mono text-xs text-bbs-dim">
           <div>
-            <span>EST. {CLUB_INFO.estYear}</span>
+            <span>{HERO_CONTENT.bottomMeta.estText}</span>
             <span className="mx-2">—</span>
-            <span>BBS COLLEGE OF ENGINEERING AND TECHNOLOGY</span>
+            <span>{HERO_CONTENT.bottomMeta.institutionText}</span>
           </div>
 
           <div>
-            <span>CAMPUS LOCATION: PRAYAGRAJ, UTTAR PRADESH</span>
+            <span>{HERO_CONTENT.bottomMeta.locationText}</span>
           </div>
 
           <div>
-            <span>COMMUNITY PROTOCOL: IN-PERSON LABS + ASYNC BUILDS</span>
+            <span>{HERO_CONTENT.bottomMeta.protocolText}</span>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Mail, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ROSTER_PAGES, ROSTER_SECTION_HEADER } from '../data/team.js';
 
 function GithubIcon({ className = "w-4 h-4" }) {
   return (
@@ -11,107 +12,10 @@ function GithubIcon({ className = "w-4 h-4" }) {
   );
 }
 
-const ROSTER_DATA = [
-  // Page 1
-  [
-    {
-      number: "01",
-      name: "Aarav Sharma",
-      branch: "B.TECH CSE '26",
-      role: "CLUB PRESIDENT & COMMUNITY LEAD",
-      mandate: "SYS // PRESIDENTIAL MANDATE",
-      image: "/assets/team/aarav.jpg",
-      github: "https://github.com/aarav-sharma-bbs",
-      linkedin: "https://linkedin.com/in/aarav-sharma-bbs",
-      email: "aarav@bbscodingclub.org",
-    },
-    {
-      number: "02",
-      name: "Priya Patel",
-      branch: "B.TECH IT '26",
-      role: "VICE PRESIDENT & OPERATIONS LEAD",
-      mandate: "OPS // EXECUTION MANDATE",
-      image: "/assets/team/priya.jpg",
-      github: "https://github.com/priya-patel-bbs",
-      linkedin: "https://linkedin.com/in/priya-patel-bbs",
-      email: "priya@bbscodingclub.org",
-    },
-    {
-      number: "03",
-      name: "Rohan Verma",
-      branch: "B.TECH AI '26",
-      role: "TECH LEAD & ARCHITECTURE LEAD",
-      mandate: "TECH // ARCHITECTURAL MANDATE",
-      image: "/assets/team/rohan.jpg",
-      github: "https://github.com/rohan-verma-bbs",
-      linkedin: "https://linkedin.com/in/rohan-verma-bbs",
-      email: "rohan@bbscodingclub.org",
-    },
-    {
-      number: "04",
-      name: "Ananya Singh",
-      branch: "B.TECH EC '26",
-      role: "OUTREACH LEAD & DESIGN LEAD",
-      mandate: "COMM // OUTREACH MANDATE",
-      image: "/assets/team/ananya.jpg",
-      github: "https://github.com/ananya-singh-bbs",
-      linkedin: "https://linkedin.com/in/ananya-singh-bbs",
-      email: "ananya@bbscodingclub.org",
-    },
-  ],
-  // Page 2
-  [
-    {
-      number: "05",
-      name: "Vikram Joshi",
-      branch: "B.TECH ECE '26",
-      role: "PRODUCT LEAD & INNOVATION LEAD",
-      mandate: "PROD // INNOVATION MANDATE",
-      image: "/assets/team/vikram.jpg",
-      github: "https://github.com/vikram-joshi-bbs",
-      linkedin: "https://linkedin.com/in/vikram-joshi-bbs",
-      email: "vikram@bbscodingclub.org",
-    },
-    {
-      number: "06",
-      name: "Systems Co-Lead",
-      branch: "B.TECH CSE '27",
-      role: "JUNIOR PLATFORM ARCHITECT",
-      mandate: "SYS // REVIEW MANDATE",
-      image: "/assets/team/priya.jpg",
-      github: "https://github.com/bbs-coding-club",
-      linkedin: "https://linkedin.com/company/bbs-coding-club",
-      email: "systems@bbscodingclub.org",
-    },
-    {
-      number: "07",
-      name: "Contest Setter",
-      branch: "B.TECH IT '27",
-      role: "SPEED-CODING PROBLEM SETTER",
-      mandate: "ALGO // CONTEST MANDATE",
-      image: "/assets/team/rohan.jpg",
-      github: "https://github.com/bbs-coding-club",
-      linkedin: "https://linkedin.com/company/bbs-coding-club",
-      email: "algo@bbscodingclub.org",
-    },
-    {
-      number: "08",
-      name: "Open Roster Seat",
-      branch: "ALL BRANCHES",
-      role: "APPLY FOR TRACK LEADERSHIP",
-      mandate: "LEAD // NOMINATIONS OPEN",
-      image: "/assets/team/aarav.jpg",
-      github: "https://github.com/bbs-coding-club",
-      linkedin: "https://linkedin.com/company/bbs-coding-club",
-      email: "contact@bbscodingclub.org",
-    },
-  ],
-];
-
 export default function CoreLeadershipRoster() {
   const [pageIndex, setPageIndex] = useState(0);
-  const totalPages = ROSTER_DATA.length;
-  const currentMembers = ROSTER_DATA[pageIndex];
+  const totalPages = ROSTER_PAGES.length;
+  const currentMembers = ROSTER_PAGES[pageIndex];
 
   return (
     <div className="w-full">
@@ -120,7 +24,7 @@ export default function CoreLeadershipRoster() {
         <div>
           <div className="flex items-center gap-2 font-mono text-xs font-semibold text-bbs-accent tracking-wider uppercase mb-2">
             <span className="w-1.5 h-1.5 rounded-full bg-bbs-accent inline-block" />
-            <span>06 / CORE LEADERSHIP</span>
+            <span>{ROSTER_SECTION_HEADER.badge}</span>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight m-0">
             STUDENT-LED & OPERATED.
@@ -133,10 +37,10 @@ export default function CoreLeadershipRoster() {
         {/* Right Actions: Full Roster Link + Pagination Controls */}
         <div className="flex flex-col sm:flex-row lg:flex-col items-start sm:items-center lg:items-end justify-between gap-4 shrink-0">
           <Link
-            to="/team"
+            to={ROSTER_SECTION_HEADER.cta.path}
             className="inline-flex items-center gap-1.5 font-mono text-xs sm:text-sm font-semibold text-bbs-accent hover:text-bbs-text transition-colors group"
           >
-            <span>MEET THE FULL ROSTER</span>
+            <span>{ROSTER_SECTION_HEADER.cta.label}</span>
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </Link>
 
@@ -154,9 +58,9 @@ export default function CoreLeadershipRoster() {
 
             <div className="font-mono text-xs tracking-wider select-none">
               <span className="text-bbs-accent font-bold">
-                {String(pageIndex + 1).padStart(2, '0')}
+                {pageIndex + 1}
               </span>{' '}
-              <span className="text-bbs-dim">/ {String(totalPages).padStart(2, '0')}</span>
+              <span className="text-bbs-dim">OF {totalPages}</span>
             </div>
 
             <button
@@ -176,16 +80,12 @@ export default function CoreLeadershipRoster() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
         {currentMembers.map((member) => (
           <div
-            key={member.number}
+            key={member.id}
             className="bg-bbs-surface border border-bbs-border rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:border-bbs-accent/80 hover:shadow-md transition-all duration-300 group"
           >
-            {/* Top Row: Index + Branch Badge */}
+            {/* Top Row: Branch Badge */}
             <div>
               <div className="flex items-center justify-between gap-2 mb-4">
-                <span className="flex items-center gap-1.5 font-mono text-xs font-bold text-bbs-accent">
-                  <span className="w-1.5 h-1.5 rounded-full bg-bbs-accent inline-block" />
-                  {member.number}
-                </span>
                 <span className="font-mono text-[10px] font-semibold px-2.5 py-0.5 rounded bg-blue-500/10 text-bbs-accent border border-blue-500/20 uppercase tracking-wider">
                   {member.branch}
                 </span>

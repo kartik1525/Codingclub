@@ -12,7 +12,7 @@ export default function AboutSection() {
         {/* Section Label */}
         <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
           <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
-          <span>01 / ABOUT US</span>
+          <span>ABOUT US</span>
         </div>
 
         {/* Editorial Asymmetric Header with Viewport-Driven Heading Visibility */}
@@ -58,7 +58,7 @@ export default function AboutSection() {
                   }`}
                 >
                   <div className={`font-mono text-xs mb-1 ${isActive ? 'text-bbs-accent-light' : 'text-bbs-dim'}`}>
-                    {pillar.number} // PILLAR
+                    CORE PILLAR
                   </div>
                   <div className="font-display font-bold text-base sm:text-lg tracking-tight">
                     {pillar.title}
@@ -93,7 +93,7 @@ export default function AboutSection() {
               {/* What We Do List */}
               <div className="lg:col-span-5 bg-bbs-raised border border-bbs-border rounded p-6 sm:p-8">
                 <div className="font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-5">
-                  // WHAT WE DO TOGETHER
+                  WHAT WE DO TOGETHER
                 </div>
 
                 <ul className="list-none flex flex-col gap-4 p-0 m-0">
@@ -102,7 +102,7 @@ export default function AboutSection() {
                       key={i} 
                       className="flex items-center gap-3 font-mono text-sm text-bbs-text"
                     >
-                      <span className="text-bbs-accent-light font-semibold">[0{i+1}]</span>
+                      <span className="w-1.5 h-1.5 rounded-sm bg-bbs-accent inline-block" />
                       <span>{item}</span>
                     </li>
                   ))}

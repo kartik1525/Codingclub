@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { CLUB_INFO } from '../data/clubInfo.js';
+import { JOIN_SECTION_CONTENT, BRANCH_YEAR_OPTIONS, INTEREST_OPTIONS } from '../data/join.js';
 import ViewportText from './ViewportText.jsx';
 
 export default function JoinSection() {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
-    departmentYear: 'CS - 1st Year',
-    interests: 'Web Development & Apps',
+    departmentYear: BRANCH_YEAR_OPTIONS[0]?.value || 'CS - 1st Year',
+    interests: INTEREST_OPTIONS[0]?.value || 'Systems & Web Engineering',
     portfolioUrl: '',
     honeypot: '' // Anti-bot honeypot field
   });
@@ -55,7 +56,7 @@ export default function JoinSection() {
         {/* Section Meta */}
         <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
           <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
-          <span>07 / JOIN THE COMMUNITY</span>
+          <span>{JOIN_SECTION_CONTENT.badge}</span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
@@ -65,29 +66,29 @@ export default function JoinSection() {
               as="h2"
               className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-bbs-text leading-tight m-0 mb-6"
             >
-              READY TO BUILD?
+              {JOIN_SECTION_CONTENT.title}
             </ViewportText>
 
             <p className="text-base sm:text-lg text-bbs-muted leading-relaxed mb-8 max-w-xl">
-              Whether you wrote your first lines of Python last semester or have already deployed side projects, BBS Coding Club welcomes any student who wants to learn, build, and ship real code.
+              {JOIN_SECTION_CONTENT.description}
             </p>
 
             <div className="flex flex-col gap-4 mb-10">
               <div className="flex items-center gap-3">
                 <span className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/30">
-                  WHAT WE VALUE
+                  {JOIN_SECTION_CONTENT.valuePill.label}
                 </span>
                 <span className="font-mono text-xs sm:text-sm text-bbs-text">
-                  Curiosity, consistency, and a willingness to learn in public.
+                  {JOIN_SECTION_CONTENT.valuePill.text}
                 </span>
               </div>
 
               <div className="flex items-center gap-3">
                 <span className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/30">
-                  WHAT YOU GET
+                  {JOIN_SECTION_CONTENT.getPill.label}
                 </span>
                 <span className="font-mono text-xs sm:text-sm text-bbs-text">
-                  Teammates for hackathons, project reviews, and a real community.
+                  {JOIN_SECTION_CONTENT.getPill.text}
                 </span>
               </div>
             </div>
@@ -95,7 +96,7 @@ export default function JoinSection() {
             {/* Direct Channel Links */}
             <div className="border-t border-bbs-border pt-6">
               <div className="font-mono text-xs text-bbs-dim mb-3 uppercase">
-                DIRECT COMMUNITY CHANNELS
+                {JOIN_SECTION_CONTENT.channelsTitle}
               </div>
               <div className="flex gap-4 flex-wrap">
                 <a
@@ -152,10 +153,10 @@ export default function JoinSection() {
               <form onSubmit={handleSubmit} noValidate>
                 <div className="flex justify-between items-center mb-6">
                   <span className="font-mono text-xs text-bbs-accent-light font-semibold">
-                    // SIGNUP FOR 2026 COHORT
+                    {JOIN_SECTION_CONTENT.formHeader}
                   </span>
                   <span className="font-mono text-[11px] text-bbs-muted px-2 py-0.5 border border-bbs-border rounded">
-                    FREE MEMBERSHIP
+                    {JOIN_SECTION_CONTENT.formBadge}
                   </span>
                 </div>
 
@@ -226,12 +227,9 @@ export default function JoinSection() {
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-bbs-raised border border-bbs-border rounded text-bbs-text text-sm focus:outline-none focus:border-bbs-accent transition-colors"
                   >
-                    <option value="CS - 1st Year">CSE — 1st Year (Freshman)</option>
-                    <option value="CS - 2nd Year">CSE — 2nd Year</option>
-                    <option value="CS - 3rd Year">CSE — 3rd Year</option>
-                    <option value="CS - 4th Year">CSE — Final Year</option>
-                    <option value="IT / ECE">IT / ECE / Circuit Branches</option>
-                    <option value="Other Engineering">Other Engineering Branch</option>
+                    {BRANCH_YEAR_OPTIONS.map((opt) => (
+                      <option key={opt.value} value={opt.value}>{opt.label}</option>
+                    ))}
                   </select>
                 </div>
 
@@ -250,12 +248,9 @@ export default function JoinSection() {
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-bbs-raised border border-bbs-border rounded text-bbs-text text-sm focus:outline-none focus:border-bbs-accent transition-colors"
                   >
-                    <option value="Web Development & Apps">Web Development & Full-Stack Apps</option>
-                    <option value="Competitive Programming">Competitive Programming & Data Structures</option>
-                    <option value="Open Source & Developer Tools">Open Source & Developer Tools</option>
-                    <option value="Hackathon Squads">Hackathon Squads & Rapid Prototyping</option>
-                    <option value="Machine Learning & AI">Machine Learning & Applied AI</option>
-                    <option value="Systems & Linux">Systems, Backend & Linux</option>
+                    {INTEREST_OPTIONS.map((opt) => (
+                      <option key={opt.value} value={opt.value}>{opt.label}</option>
+                    ))}
                   </select>
                 </div>
 
@@ -298,7 +293,7 @@ export default function JoinSection() {
                 </button>
 
                 <div className="font-mono text-[11px] text-bbs-dim text-center mt-3">
-                  NO FEES // ALL STUDENTS WELCOME REGARDLESS OF EXPERIENCE
+                  {JOIN_SECTION_CONTENT.footerNote}
                 </div>
               </form>
             )}

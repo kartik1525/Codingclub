@@ -9,7 +9,7 @@ export default function ProjectShowcase() {
         {/* Section Meta */}
         <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
           <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
-          <span>03 / SELECTED BUILDS & CASE STUDIES</span>
+          <span>SELECTED BUILDS & CASE STUDIES</span>
         </div>
 
         {/* Section Header with Viewport-Driven Heading Visibility */}
@@ -40,7 +40,7 @@ export default function ProjectShowcase() {
                   loading="lazy"
                 />
                 <div className="absolute bottom-4 left-4 bg-bbs-bg/85 backdrop-blur-sm border border-bbs-border px-3.5 py-1.5 rounded font-mono text-xs text-bbs-text">
-                  LIVE PRODUCTION BUILD // v1.0.4
+                  LIVE PRODUCTION BUILD · v1.0.4
                 </div>
               </div>
 
@@ -48,7 +48,7 @@ export default function ProjectShowcase() {
               <div className="p-6 sm:p-10 md:p-14">
                 <div className="flex justify-between items-center flex-wrap gap-4 mb-4">
                   <span className="font-mono text-xs sm:text-sm text-bbs-accent-light font-semibold">
-                    {PROJECTS[0].number} // {PROJECTS[0].category.toUpperCase()}
+                    {PROJECTS[0].category.toUpperCase()}
                   </span>
                   <span className="font-mono text-xs text-bbs-muted px-2.5 py-1 bg-bbs-surface border border-bbs-border rounded">
                     YEAR {PROJECTS[0].year}
@@ -66,7 +66,7 @@ export default function ProjectShowcase() {
                 {/* Real student context */}
                 <div className="bg-bbs-raised border border-bbs-border rounded p-4 sm:p-5 mb-8 font-mono text-xs sm:text-sm text-bbs-muted leading-relaxed">
                   <span className="text-bbs-accent-light font-semibold block mb-1.5">
-                    // WHY WE BUILT IT:
+                    WHY WE BUILT IT:
                   </span>
                   {PROJECTS[0].context}
                 </div>
@@ -113,7 +113,7 @@ export default function ProjectShowcase() {
                   loading="lazy"
                 />
                 <div className="absolute top-4 left-4 bg-bbs-bg/85 backdrop-blur-sm px-3 py-1 rounded font-mono text-xs text-bbs-accent-light border border-bbs-border">
-                  IN-PERSON SPRINT // FALL '26
+                  IN-PERSON SPRINT · FALL '26
                 </div>
               </div>
 
@@ -122,7 +122,7 @@ export default function ProjectShowcase() {
                 <div>
                   <div className="flex justify-between items-center mb-3">
                     <span className="font-mono text-xs sm:text-sm text-bbs-accent-light font-semibold">
-                      {PROJECTS[1].number} // {PROJECTS[1].category.toUpperCase()}
+                      {PROJECTS[1].category.toUpperCase()}
                     </span>
                     <span className="font-mono text-[11px] text-bbs-muted px-2 py-0.5 border border-bbs-border rounded">
                       STATUS: PROTOTYPE
@@ -139,7 +139,7 @@ export default function ProjectShowcase() {
 
                   <div className="bg-bbs-raised border border-bbs-border p-4 rounded font-mono text-xs text-bbs-muted mb-5 leading-relaxed">
                     <span className="text-bbs-accent-light block mb-1">
-                      // STUDENT ORGANIZER NEED:
+                      STUDENT ORGANIZER NEED:
                     </span>
                     {PROJECTS[1].context}
                   </div>
@@ -171,7 +171,7 @@ export default function ProjectShowcase() {
               <div>
                 <div className="flex justify-between items-center mb-4">
                   <span className="font-mono text-xs text-bbs-accent-light font-semibold">
-                    {PROJECTS[2].number} // COMMUNITY INITIATIVE
+                    COMMUNITY INITIATIVE
                   </span>
                   <span className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/30">
                     SUBMISSIONS OPEN

@@ -1,5 +1,5 @@
 import React from 'react';
-import { STATS } from '../data/stats.js';
+import { STATS, STATS_SECTION_HEADER } from '../data/stats.js';
 
 export default function StatsSection() {
   return (
@@ -8,15 +8,15 @@ export default function StatsSection() {
         {/* Section Meta */}
         <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
           <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
-          <span>05 / COMMUNITY METRICS & STATUS</span>
+          <span>{STATS_SECTION_HEADER.badge}</span>
         </div>
 
         <div className="mb-10 sm:mb-12">
           <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight m-0">
-            AUTHENTIC BENCHMARKS.
+            {STATS_SECTION_HEADER.title}
           </h2>
           <p className="text-base sm:text-lg text-bbs-muted mt-3 max-w-2xl">
-            No inflated numbers or vanity statistics. Honest milestones and community standards as of our 2025–2026 foundation.
+            {STATS_SECTION_HEADER.description}
           </p>
         </div>
 
@@ -34,11 +34,11 @@ export default function StatsSection() {
               <div>
                 {item.isConceptual ? (
                   <div className="font-mono text-xs text-bbs-accent-light mb-2">
-                    // COMMUNITY PLEDGE
+                    COMMUNITY PLEDGE
                   </div>
                 ) : (
                   <div className="font-mono text-xs text-bbs-dim mb-2">
-                    // VERIFIED STATUS
+                    VERIFIED STATUS
                   </div>
                 )}
                 <div 

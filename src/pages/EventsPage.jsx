@@ -2,24 +2,19 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, MapPin, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import Section from '../components/Section.jsx';
-import { EVENTS } from '../data/events.js';
+import { 
+  EVENTS, 
+  EVENTS_PAGE_HEADER, 
+  EVENT_CATEGORIES, 
+  EVENT_STATUSES 
+} from '../data/events.js';
 
 export default function EventsPage() {
   const [filterCategory, setFilterCategory] = useState('all');
   const [filterStatus, setFilterStatus] = useState('all');
 
-  const categories = [
-    { id: 'all', label: 'ALL EVENTS' },
-    { id: 'hackathon', label: 'HACKATHONS' },
-    { id: 'workshop', label: 'WORKSHOPS' },
-    { id: 'community', label: 'COMMUNITY & DEMOS' },
-  ];
-
-  const statuses = [
-    { id: 'all', label: 'ALL STATUSES' },
-    { id: 'upcoming', label: 'UPCOMING' },
-    { id: 'completed', label: 'COMPLETED' },
-  ];
+  const categories = EVENT_CATEGORIES;
+  const statuses = EVENT_STATUSES;
 
   const filteredEvents = EVENTS.filter((event) => {
     const matchCategory = filterCategory === 'all' || event.category === filterCategory;
@@ -34,13 +29,13 @@ export default function EventsPage() {
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-4">
             <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-            <span>04 / EVENTS, WORKSHOPS & CONTESTS</span>
+            <span>{EVENTS_PAGE_HEADER.badge}</span>
           </div>
-          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-bbs-text leading-tight mb-6">
-            CAMPUS HACKATHONS,<br />LAB SESSIONS & CONTESTS.
+          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-bbs-text leading-tight mb-6 whitespace-pre-line">
+            {EVENTS_PAGE_HEADER.title}
           </h1>
           <p className="text-lg sm:text-xl text-bbs-muted max-w-3xl leading-relaxed mb-10">
-            The full archive and upcoming calendar of BBS Coding Club engineering events. We run overnight build sprints, interactive code-alongs, and technical lightning talk showcases.
+            {EVENTS_PAGE_HEADER.description}
           </p>
 
           {/* Filters Row */}
@@ -101,7 +96,7 @@ export default function EventsPage() {
                       loading="lazy"
                     />
                     <div className="absolute top-3 left-3 bg-bbs-bg/90 border border-bbs-border px-2.5 py-1 rounded font-mono text-xs text-bbs-accent-light">
-                      {event.number} // {event.category.toUpperCase()}
+                      {event.category.toUpperCase()}
                     </div>
                     <div className="absolute bottom-3 left-3 bg-bbs-bg/90 border border-bbs-border px-2.5 py-1 rounded font-mono text-[11px] text-bbs-text uppercase flex items-center gap-1.5">
                       <span className={`w-1.5 h-1.5 rounded-full ${event.status === 'upcoming' ? 'bg-emerald-500 animate-ping' : 'bg-bbs-dim'}`} />

@@ -81,7 +81,7 @@ export default function TeamSection() {
         {/* Section Meta Header */}
         <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
           <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-          <span>06 / CORE LEADERSHIP & ROSTER</span>
+          <span>CORE LEADERSHIP & ROSTER</span>
         </div>
 
         {/* Editorial Section Headline */}
@@ -112,7 +112,7 @@ export default function TeamSection() {
 
               {/* Technical Monospace Overlays */}
               <div className="absolute top-4 left-4 font-mono text-[11px] px-2.5 py-1 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-accent-light tracking-wider">
-                {president.trackCode} // PRESIDENTIAL MANDATE
+                PRESIDENTIAL MANDATE
               </div>
 
               <div className="absolute bottom-4 left-4 font-mono text-[10px] px-2.5 py-1 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-text flex items-center gap-2">
@@ -155,7 +155,7 @@ export default function TeamSection() {
                 {/* Specialties Tag Cloud */}
                 <div className="mb-8">
                   <div className="font-mono text-[11px] text-bbs-dim uppercase tracking-wider mb-2.5">
-                    // KEY INITIATIVES & DOMAINS
+                    KEY INITIATIVES & DOMAINS
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {president.specialties.map((tag, idx) => (
@@ -328,7 +328,7 @@ export default function TeamSection() {
         <div className="team-roster-item bg-bbs-surface border border-bbs-border rounded p-6 sm:p-8 flex justify-between items-center flex-wrap gap-6 hover:border-bbs-border-focus transition-colors">
           <div>
             <div className="font-mono text-xs text-bbs-accent-light mb-1">
-              // COHORT 2026 TRACK NOMINATIONS
+              COHORT 2026 TRACK NOMINATIONS
             </div>
             <div className="font-display text-lg sm:text-xl font-bold text-bbs-text">
               WANT TO LEAD A TRACK IN THE NEXT COHORT?

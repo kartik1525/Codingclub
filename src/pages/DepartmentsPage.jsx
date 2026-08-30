@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, CheckCircle2, Terminal, Code2, Users, Layers, Trophy } from 'lucide-react';
 import Section from '../components/Section.jsx';
-import { DEPARTMENTS } from '../data/departments.js';
+import { 
+  DEPARTMENTS, 
+  DEPARTMENTS_PAGE_HEADER, 
+  DEPARTMENTS_CATALOGUE_HEADER 
+} from '../data/departments.js';
 
 export default function DepartmentsPage() {
   const [selectedDeptId, setSelectedDeptId] = useState(DEPARTMENTS[0].id);
@@ -15,13 +19,13 @@ export default function DepartmentsPage() {
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-4">
             <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-            <span>02 / SPECIALIZED TRACKS & SQUADS</span>
+            <span>{DEPARTMENTS_PAGE_HEADER.badge}</span>
           </div>
-          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-bbs-text leading-tight mb-6">
-            FIVE FOCUSED TRACKS.<br />ONE ENGINEERING COLLECTIVE.
+          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-bbs-text leading-tight mb-6 whitespace-pre-line">
+            {DEPARTMENTS_PAGE_HEADER.title}
           </h1>
           <p className="text-lg sm:text-xl text-bbs-muted max-w-3xl leading-relaxed mb-10">
-            BBS Coding Club operates through 5 specialized engineering departments. Every track is led by senior student builders, runs dedicated weekly sprints, and contributes to club projects and hackathon victories.
+            {DEPARTMENTS_PAGE_HEADER.description}
           </p>
 
           {/* Interactive Track Selector Pills */}
@@ -38,7 +42,7 @@ export default function DepartmentsPage() {
                       : 'bg-bbs-surface text-bbs-muted hover:text-bbs-text hover:bg-bbs-raised border-bbs-border'
                   }`}
                 >
-                  {dept.code} — {dept.shortName}
+                  {dept.shortName}
                 </button>
               );
             })}
@@ -55,7 +59,7 @@ export default function DepartmentsPage() {
               <div className="lg:col-span-8">
                 <div className="flex justify-between items-center flex-wrap gap-4 mb-4">
                   <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/25">
-                    {activeDept.code} // ACTIVE TRACK
+                    ACTIVE TRACK
                   </span>
                   <span className="font-mono text-xs text-bbs-dim">
                     STATUS: {activeDept.currentOpenings}
@@ -77,7 +81,7 @@ export default function DepartmentsPage() {
                 {/* Purpose & Core Mandate */}
                 <div className="mb-8 p-5 bg-bbs-raised border border-bbs-border rounded">
                   <div className="font-mono text-xs text-bbs-accent-light mb-1 uppercase">
-                    // CORE PURPOSE
+                    CORE PURPOSE
                   </div>
                   <div className="text-sm sm:text-base text-bbs-text leading-relaxed">
                     {activeDept.purpose}
@@ -135,7 +139,7 @@ export default function DepartmentsPage() {
               {/* Right: Track Lead Bio Card */}
               <div className="lg:col-span-4 bg-bbs-raised border border-bbs-border rounded p-6 sm:p-7">
                 <div className="font-mono text-xs text-bbs-dim uppercase tracking-wider mb-4">
-                  // TRACK LEADERSHIP
+                  TRACK LEADERSHIP
                 </div>
                 <div className="w-full aspect-[4/3] rounded overflow-hidden mb-4 bg-black border border-bbs-border">
                   <img
@@ -172,10 +176,10 @@ export default function DepartmentsPage() {
       <Section variant="solid" className="py-16 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="font-mono text-xs text-bbs-accent-light mb-2 uppercase">
-            // COMPLETE TRACK CATALOGUE
+            {DEPARTMENTS_CATALOGUE_HEADER.badge}
           </div>
           <h2 className="font-display text-2xl sm:text-4xl font-bold text-bbs-text mb-8">
-            ALL 5 DEPARTMENTS AT A GLANCE
+            {DEPARTMENTS_CATALOGUE_HEADER.title}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

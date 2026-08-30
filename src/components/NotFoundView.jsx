@@ -7,7 +7,7 @@ export default function NotFoundView() {
     <Section variant="grid" className="min-h-[75vh] flex items-center justify-center p-6 sm:p-12">
       <div className="max-w-xl w-full bg-bbs-surface border border-bbs-border rounded p-8 sm:p-14 text-center shadow-2xl">
         <div className="font-mono text-xs text-bbs-accent-light mb-4 tracking-wider">
-          // HTTP 404 — ROUTE COMPILATION FAILURE
+          HTTP 404 — ROUTE COMPILATION FAILURE
         </div>
 
         <h1 className="font-display text-3xl sm:text-5xl font-extrabold text-bbs-text leading-tight mb-4">

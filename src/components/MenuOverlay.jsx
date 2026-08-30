@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { CLUB_INFO } from '../data/clubInfo.js';
+import { MENU_OVERLAY_ITEMS } from '../data/navigation.js';
 import ThemeToggle from './ThemeToggle.jsx';
 
 export default function MenuOverlay({ isOpen, onClose, onNavigate }) {
@@ -34,19 +35,10 @@ export default function MenuOverlay({ isOpen, onClose, onNavigate }) {
 
   if (!isOpen) return null;
 
-  const navItems = [
-    { num: "01", label: "ABOUT US", id: "about" },
-    { num: "02", label: "WHAT WE ACTUALLY DO", id: "universe" },
-    { num: "03", label: "SELECTED BUILDS", id: "projects" },
-    { num: "04", label: "EVENTS & HACKATHONS", id: "events" },
-    { num: "05", label: "COMMUNITY COMMITMENTS", id: "stats" },
-    { num: "06", label: "CORE ROSTER", id: "team" },
-    { num: "07", label: "JOIN THE CLUB", id: "join" },
-  ];
+  const navItems = MENU_OVERLAY_ITEMS;
 
   return (
     <div
-      id="main-menu"
       role="dialog"
       aria-modal="true"
       aria-label="Site Navigation"
@@ -56,14 +48,14 @@ export default function MenuOverlay({ isOpen, onClose, onNavigate }) {
         {/* Navigation Header Meta */}
         <div className="flex justify-between items-center border-b border-bbs-border pb-4 mb-8">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs text-bbs-accent-light tracking-wider">
-              // SITE NAVIGATION INDEX
+            <span className="font-mono text-xs text-bbs-accent-light tracking-wider uppercase">
+              SITE NAVIGATION INDEX
             </span>
             <ThemeToggle />
           </div>
           <button
             onClick={onClose}
-            className="font-mono text-xs text-bbs-muted hover:text-bbs-text flex items-center gap-2 transition-colors"
+            className="font-mono text-xs text-bbs-muted hover:text-bbs-text flex items-center gap-2 transition-colors cursor-pointer"
             aria-label="Close navigation"
           >
             <span>[ESC] CLOSE</span>
@@ -85,9 +77,6 @@ export default function MenuOverlay({ isOpen, onClose, onNavigate }) {
                   }}
                   className="group flex items-baseline gap-4 text-bbs-text hover:text-bbs-accent-light font-display text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-none no-underline transition-all hover:translate-x-3"
                 >
-                  <span className="font-mono text-sm sm:text-lg text-bbs-accent-light font-medium">
-                    {item.num}
-                  </span>
                   <span>{item.label}</span>
                 </a>
               </li>
@@ -135,7 +124,7 @@ export default function MenuOverlay({ isOpen, onClose, onNavigate }) {
           </div>
 
           <span className="font-mono text-xs text-bbs-dim">
-            {CLUB_INFO.coordinates} // {CLUB_INFO.location}
+            {CLUB_INFO.coordinates} · {CLUB_INFO.location}
           </span>
         </div>
       </div>

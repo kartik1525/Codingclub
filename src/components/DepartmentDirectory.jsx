@@ -48,9 +48,8 @@ export default function DepartmentDirectory() {
       <div className="hidden lg:grid lg:grid-cols-12 gap-8 xl:gap-12 items-start">
         {/* LEFT COLUMN: Department Directory List (~58% width) */}
         <div className="lg:col-span-7 flex flex-col border-b border-bbs-border">
-          {DEPARTMENTS.map((dept, index) => {
+          {DEPARTMENTS.map((dept) => {
             const isActive = dept.id === activeId;
-            const formattedIndex = String(index + 1).padStart(2, '0');
 
             return (
               <button
@@ -69,40 +68,29 @@ export default function DepartmentDirectory() {
                 role="tab"
               >
                 <div className="flex items-start justify-between gap-4">
-                  {/* Department Number & Names */}
-                  <div className="flex items-baseline gap-4 sm:gap-6 flex-1">
-                    {/* Index Number */}
-                    <span
-                      className={`font-mono text-sm sm:text-base font-bold shrink-0 transition-colors duration-200 ${
-                        isActive ? 'text-bbs-accent' : 'text-bbs-dim group-hover:text-bbs-accent-light'
+                  {/* Department Names & Skills */}
+                  <div className="flex-1">
+                    {/* Department Title */}
+                    <h3
+                      className={`font-display text-xl sm:text-2xl xl:text-[1.65rem] font-bold tracking-tight leading-snug transition-all duration-200 ${
+                        isActive
+                          ? 'text-bbs-text group-hover:text-bbs-accent-light translate-x-1'
+                          : 'text-bbs-text/80 group-hover:text-bbs-text group-hover:translate-x-1'
                       }`}
                     >
-                      {formattedIndex}
-                    </span>
+                      {dept.name}
+                    </h3>
 
-                    <div className="flex-1">
-                      {/* Department Title */}
-                      <h3
-                        className={`font-display text-xl sm:text-2xl xl:text-[1.65rem] font-bold tracking-tight leading-snug transition-all duration-200 ${
-                          isActive
-                            ? 'text-bbs-text group-hover:text-bbs-accent-light translate-x-1'
-                            : 'text-bbs-text/80 group-hover:text-bbs-text group-hover:translate-x-1'
-                        }`}
-                      >
-                        {dept.name}
-                      </h3>
-
-                      {/* Monospace Skills / Focus Metadata */}
-                      <div className="font-mono text-xs text-bbs-muted group-hover:text-bbs-text/90 mt-2 transition-colors duration-200 flex flex-wrap items-center gap-x-2 gap-y-1">
-                        {dept.skills.slice(0, 4).map((skill, sIdx) => (
-                          <React.Fragment key={sIdx}>
-                            <span>{skill}</span>
-                            {sIdx < Math.min(dept.skills.length - 1, 3) && (
-                              <span className="text-bbs-border-focus select-none">·</span>
-                            )}
-                          </React.Fragment>
-                        ))}
-                      </div>
+                    {/* Monospace Skills / Focus Metadata */}
+                    <div className="font-mono text-xs text-bbs-muted group-hover:text-bbs-text/90 mt-2 transition-colors duration-200 flex flex-wrap items-center gap-x-2 gap-y-1">
+                      {dept.skills.slice(0, 4).map((skill, sIdx) => (
+                        <React.Fragment key={sIdx}>
+                          <span>{skill}</span>
+                          {sIdx < Math.min(dept.skills.length - 1, 3) && (
+                            <span className="text-bbs-border-focus select-none">·</span>
+                          )}
+                        </React.Fragment>
+                      ))}
                     </div>
                   </div>
 
@@ -130,17 +118,12 @@ export default function DepartmentDirectory() {
           <div
             className="bg-bbs-surface border border-bbs-border rounded p-7 sm:p-9 shadow-2xl flex flex-col justify-between min-h-[560px] relative overflow-hidden transition-colors duration-300"
           >
-            {/* Subtle background technical grid accent */}
-            <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none select-none font-mono text-6xl font-black text-bbs-text transition-all duration-300" aria-hidden="true">
-              {String(activeIndex + 1).padStart(2, '0')}
-            </div>
-
             {/* Upper Content */}
             <div className="relative z-10">
               {/* Meta Header */}
               <div className="flex justify-between items-center flex-wrap gap-2 mb-4">
                 <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/25 transition-colors">
-                  {String(activeIndex + 1).padStart(2, '0')} // {activeDept.code}
+                  {activeDept.name.toUpperCase()}
                 </span>
                 <span className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider">
                   ACTIVE TRACK
@@ -160,7 +143,7 @@ export default function DepartmentDirectory() {
               {/* Core Technologies & Tool Badges */}
               <div className="mb-6">
                 <div className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider mb-2.5">
-                  // TECHNOLOGIES & TOOLSETS
+                  TECHNOLOGIES & TOOLSETS
                 </div>
                 <div className="flex flex-wrap gap-1.5 min-h-[32px]">
                   {activeDept.skills.map((skill, idx) => (
@@ -231,9 +214,8 @@ export default function DepartmentDirectory() {
           MOBILE TOUCH-EXPANDING DIRECTORY (< lg:block)
           ───────────────────────────────────────────────────────────── */}
       <div className="lg:hidden flex flex-col border-b border-bbs-border">
-        {DEPARTMENTS.map((dept, index) => {
+        {DEPARTMENTS.map((dept) => {
           const isActive = dept.id === activeId;
-          const formattedIndex = String(index + 1).padStart(2, '0');
 
           return (
             <div key={dept.id} className="border-t border-bbs-border transition-colors">
@@ -246,26 +228,17 @@ export default function DepartmentDirectory() {
                 }`}
                 aria-expanded={isActive}
               >
-                <div className="flex items-baseline gap-3.5 flex-1 min-w-0">
-                  <span
-                    className={`font-mono text-sm font-bold shrink-0 ${
-                      isActive ? 'text-bbs-accent' : 'text-bbs-dim'
+                <div className="min-w-0 flex-1">
+                  <h3
+                    className={`font-display text-lg sm:text-xl font-bold tracking-tight truncate ${
+                      isActive ? 'text-bbs-accent-light' : 'text-bbs-text'
                     }`}
                   >
-                    {formattedIndex}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <h3
-                      className={`font-display text-lg sm:text-xl font-bold tracking-tight truncate ${
-                        isActive ? 'text-bbs-accent-light' : 'text-bbs-text'
-                      }`}
-                    >
-                      {dept.name}
-                    </h3>
-                    <p className="font-mono text-xs text-bbs-muted truncate mt-0.5">
-                      {dept.skills.slice(0, 3).join(' · ')}
-                    </p>
-                  </div>
+                    {dept.name}
+                  </h3>
+                  <p className="font-mono text-xs text-bbs-muted truncate mt-0.5">
+                    {dept.skills.slice(0, 3).join(' · ')}
+                  </p>
                 </div>
 
                 {/* Toggle Chevron */}
@@ -290,7 +263,7 @@ export default function DepartmentDirectory() {
                   <div className="pb-6 px-4 sm:px-5">
                     <div className="p-5 bg-bbs-surface border border-bbs-border rounded shadow-md mt-1">
                       <div className="font-mono text-xs text-bbs-accent-light mb-2">
-                        {dept.code} // DETAILS
+                        TRACK DETAILS
                       </div>
 
                       <p className="text-xs sm:text-sm text-bbs-muted leading-relaxed mb-4">
