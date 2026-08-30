@@ -73,11 +73,7 @@ export default function JoinPage() {
       <Section variant="solid" className="pt-14 sm:pt-20 pb-12 sm:pb-16">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="mb-14">
-            <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-4">
-              <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-              <span>06 / MEMBERSHIP & ONBOARDING</span>
-            </div>
-            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-bbs-text leading-tight mb-6">
+            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-bbs-text leading-tight mb-6">
               BUILD WITH US.<br />JOIN BBS CODING CLUB.
             </h1>
             <p className="text-lg sm:text-xl text-bbs-muted max-w-3xl leading-relaxed">
@@ -87,7 +83,7 @@ export default function JoinPage() {
 
           {/* Why Join Highlights */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-bbs-surface border border-bbs-border rounded p-6">
+            <div className="bg-bbs-surface border border-bbs-border rounded-xl p-6">
               <div className="w-9 h-9 rounded bg-bbs-accent-dim text-bbs-accent-light flex items-center justify-center mb-4">
                 <Terminal className="w-5 h-5" />
               </div>
@@ -99,7 +95,7 @@ export default function JoinPage() {
               </p>
             </div>
 
-            <div className="bg-bbs-surface border border-bbs-border rounded p-6">
+            <div className="bg-bbs-surface border border-bbs-border rounded-xl p-6">
               <div className="w-9 h-9 rounded bg-bbs-accent-dim text-bbs-accent-light flex items-center justify-center mb-4">
                 <Users className="w-5 h-5" />
               </div>
@@ -111,7 +107,7 @@ export default function JoinPage() {
               </p>
             </div>
 
-            <div className="bg-bbs-surface border border-bbs-border rounded p-6">
+            <div className="bg-bbs-surface border border-bbs-border rounded-xl p-6">
               <div className="w-9 h-9 rounded bg-bbs-accent-dim text-bbs-accent-light flex items-center justify-center mb-4">
                 <Sparkles className="w-5 h-5" />
               </div>
@@ -129,18 +125,10 @@ export default function JoinPage() {
       {/* 2. Step 1: Department Selection — Checkered / Grid Background */}
       <Section variant="grid" className="py-16 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="flex justify-between items-end flex-wrap gap-4 mb-8">
-            <div>
-              <div className="font-mono text-xs text-bbs-accent-light mb-1 uppercase">
-                // STEP 1 OF 2
-              </div>
-              <h2 className="font-display text-2xl sm:text-4xl font-bold text-bbs-text">
-                SELECT YOUR PREFERRED TRACK
-              </h2>
-            </div>
-            <span className="font-mono text-xs text-bbs-dim">
-              CLICK A CARD TO SELECT
-            </span>
+          <div className="mb-8">
+            <h2 className="font-display text-2xl sm:text-4xl font-bold text-bbs-text">
+              SELECT YOUR PREFERRED TRACK
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -151,7 +139,7 @@ export default function JoinPage() {
                   key={dept.id}
                   type="button"
                   onClick={() => setSelectedDeptId(dept.id)}
-                  className={`p-6 rounded border text-left transition-all cursor-pointer flex flex-col justify-between ${
+                  className={`p-6 rounded-xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
                     isSelected
                       ? 'bg-bbs-surface border-bbs-accent shadow-lg shadow-bbs-accent/15 ring-2 ring-bbs-accent'
                       : 'bg-bbs-surface border-bbs-border hover:border-bbs-border-focus hover:bg-bbs-raised/50'
@@ -159,18 +147,15 @@ export default function JoinPage() {
                 >
                   <div>
                     <div className="flex justify-between items-center mb-3">
-                      <span className={`font-mono text-xs font-semibold ${isSelected ? 'text-bbs-accent-light' : 'text-bbs-dim'}`}>
-                        {dept.code}
-                      </span>
+                      <h3 className="font-display text-lg font-bold text-bbs-text">
+                        {dept.name}
+                      </h3>
                       {isSelected && (
                         <span className="font-mono text-[10px] bg-bbs-accent text-white px-2 py-0.5 rounded">
                           SELECTED ✓
                         </span>
                       )}
                     </div>
-                    <h3 className="font-display text-lg font-bold text-bbs-text mb-2">
-                      {dept.name}
-                    </h3>
                     <p className="text-xs sm:text-sm text-bbs-muted leading-relaxed mb-4">
                       {dept.tagline}
                     </p>
@@ -195,31 +180,19 @@ export default function JoinPage() {
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             {/* Left: Selected Department Overview */}
-            <div className="lg:col-span-5 bg-bbs-surface border border-bbs-border rounded p-6 sm:p-8 shadow-sm">
-              <div className="font-mono text-xs text-bbs-accent-light mb-2 uppercase">
-                // SELECTED TRACK DETAILS
-              </div>
+            <div className="lg:col-span-5 bg-bbs-surface border border-bbs-border rounded-xl p-6 sm:p-8 shadow-sm">
               <h3 className="font-display text-2xl font-bold text-bbs-text mb-2">
                 {selectedDept.name}
               </h3>
-              <div className="font-mono text-xs text-bbs-dim mb-4">
-                TRACK LEAD: {selectedDept.leadName.toUpperCase()} ({selectedDept.leadYear})
-              </div>
               <p className="text-sm text-bbs-muted leading-relaxed mb-6">
                 {selectedDept.description}
               </p>
 
               <div className="p-4 bg-bbs-raised border border-bbs-border rounded mb-6 text-xs text-bbs-text leading-relaxed">
-                <span className="font-mono text-[10px] text-bbs-dim block mb-1 uppercase">
-                  CORE TRACK OBJECTIVE:
-                </span>
                 {selectedDept.purpose}
               </div>
 
               <div className="mb-6">
-                <div className="font-mono text-xs text-bbs-dim mb-2 uppercase">
-                  WHAT YOU'LL WORK ON:
-                </div>
                 <ul className="list-none p-0 m-0 space-y-2">
                   {selectedDept.responsibilities.slice(0, 3).map((r, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-xs text-bbs-muted">
@@ -231,9 +204,6 @@ export default function JoinPage() {
               </div>
 
               <div className="border-t border-bbs-border pt-4">
-                <div className="font-mono text-[11px] text-bbs-dim mb-2 uppercase">
-                  CORE TOOLS:
-                </div>
                 <div className="flex flex-wrap gap-1.5">
                   {selectedDept.tools.map((t, idx) => (
                     <span key={idx} className="font-mono text-[11px] px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-text">
@@ -245,15 +215,12 @@ export default function JoinPage() {
             </div>
 
             {/* Right: Application Form */}
-            <div className="lg:col-span-7 bg-bbs-surface border border-bbs-border rounded p-6 sm:p-10 shadow-xl">
-              <div className="font-mono text-xs text-bbs-accent-light mb-1 uppercase">
-                // STEP 2 OF 2
-              </div>
+            <div className="lg:col-span-7 bg-bbs-surface border border-bbs-border rounded-xl p-6 sm:p-10 shadow-xl">
               <h2 className="font-display text-2xl sm:text-3xl font-bold text-bbs-text mb-2">
                 SUBMIT APPLICATION
               </h2>
               <p className="text-sm text-bbs-muted mb-8">
-                Applying for: <strong className="text-bbs-text">{selectedDept.name}</strong> ({selectedDept.code})
+                Applying for: <strong className="text-bbs-text">{selectedDept.name}</strong>
               </p>
 
               {formState === 'success' ? (
@@ -367,7 +334,7 @@ export default function JoinPage() {
                       <option value="B.Tech IT - 1st Year">B.Tech IT — 1st Year</option>
                       <option value="B.Tech IT - 2nd Year">B.Tech IT — 2nd Year</option>
                       <option value="B.Tech ECE - 1st Year">B.Tech ECE — 1st Year</option>
-                      <option value="B.Tech Other Branches">B.Tech Other Branches / Enthusiast</option>
+                      <option value="B.Tech Other Branches">B.Tech Other Branches</option>
                     </select>
                   </div>
 
@@ -421,11 +388,8 @@ export default function JoinPage() {
       {/* 4. Alternate Channels — Checkered / Grid Background */}
       <Section variant="grid" className="py-16 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="bg-bbs-surface border border-bbs-border rounded p-6 sm:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-md">
+          <div className="bg-bbs-surface border border-bbs-border rounded-xl p-6 sm:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-md">
             <div>
-              <div className="font-mono text-xs text-bbs-accent-light mb-1 uppercase">
-                // ALTERNATE CHANNELS
-              </div>
               <h4 className="font-display text-lg font-bold text-bbs-text">
                 PREFER JOINING OUR DISCORD SERVER DIRECTLY?
               </h4>

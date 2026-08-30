@@ -36,11 +36,7 @@ export default function ProjectsPage() {
       {/* 1. Page Header & Filter Tabs — Normal Solid Background */}
       <Section variant="solid" className="pt-14 sm:pt-20 pb-8 sm:pb-12">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-4">
-            <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-            <span>03 / SELECTED BUILDS & REPOSITORIES</span>
-          </div>
-          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-bbs-text leading-tight mb-6">
+          <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-bbs-text leading-tight mb-6">
             SOFTWARE ENGINEERED<br />FOR ACTUAL CAMPUS USE.
           </h1>
           <p className="text-lg sm:text-xl text-bbs-muted max-w-3xl leading-relaxed mb-10">
@@ -73,7 +69,7 @@ export default function ProjectsPage() {
             {filteredProjects.map((project) => (
               <article
                 key={project.id}
-                className="bg-bbs-surface border border-bbs-border rounded overflow-hidden shadow-lg hover:border-bbs-border-focus transition-colors"
+                className="bg-bbs-surface border border-bbs-border rounded-xl overflow-hidden shadow-lg hover:border-bbs-border-focus transition-colors"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
                   {/* Left: Image Showcase */}
@@ -84,28 +80,21 @@ export default function ProjectsPage() {
                       className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out"
                       loading="lazy"
                     />
-                    <div className="absolute top-4 left-4 bg-bbs-bg/90 border border-bbs-border px-3 py-1 rounded font-mono text-xs text-bbs-accent-light">
-                      {project.number} // {project.category.toUpperCase()}
-                    </div>
-                    <div className="absolute bottom-4 left-4 bg-bbs-bg/90 border border-bbs-border px-2.5 py-1 rounded font-mono text-[11px] text-bbs-dim">
-                      YEAR {project.year}
-                    </div>
                   </div>
 
                   {/* Right: Technical Details & Specifications */}
                   <div className="lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
                     <div>
-                      <div className="flex justify-between items-center mb-3">
-                        <span className="font-mono text-xs text-bbs-accent-light tracking-wider uppercase font-semibold">
-                          STATUS: {project.status}
+                      <div className="flex justify-between items-baseline mb-2">
+                        <h2 className="font-display text-2xl sm:text-3xl font-bold text-bbs-text">
+                          {project.title}
+                        </h2>
+                        <span className="font-mono text-xs text-bbs-dim shrink-0">
+                          {project.year}
                         </span>
                       </div>
 
-                      <h2 className="font-display text-2xl sm:text-3xl font-bold text-bbs-text mb-3">
-                        {project.title}
-                      </h2>
-
-                      <div className="font-mono text-xs text-bbs-dim mb-4">
+                      <div className="font-mono text-xs text-bbs-accent-light mb-4">
                         {project.tagline}
                       </div>
 
@@ -115,34 +104,26 @@ export default function ProjectsPage() {
 
                       {project.context && (
                         <div className="p-4 bg-bbs-raised border border-bbs-border rounded mb-6 text-xs sm:text-sm text-bbs-text leading-relaxed font-sans">
-                          <span className="font-mono text-[10px] text-bbs-dim block mb-1 uppercase tracking-wider">
-                            // ARCHITECTURAL CONTEXT
-                          </span>
                           {project.context}
                         </div>
                       )}
 
-                      <div className="mb-6">
-                        <div className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider mb-2">
-                          STACK & ARCHITECTURE
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                          {project.techTags.map((tag, idx) => (
-                            <span
-                              key={idx}
-                              className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-raised border border-bbs-border text-bbs-muted"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {project.techTags.map((tag, idx) => (
+                          <span
+                            key={idx}
+                            className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-raised border border-bbs-border text-bbs-text"
+                          >
+                            {tag}
+                          </span>
+                        ))}
                       </div>
                     </div>
 
                     {/* Actions & Repos */}
                     <div className="pt-6 border-t border-bbs-border flex items-center justify-between flex-wrap gap-4 font-mono text-xs">
                       <span className="text-bbs-dim">
-                        CONTRIBUTORS: {project.contributors.join(', ')}
+                        {project.contributors.join(', ')}
                       </span>
 
                       <div className="flex items-center gap-3">
@@ -169,11 +150,8 @@ export default function ProjectsPage() {
       {/* 3. Member Submission Callout — Normal Solid Background */}
       <Section variant="solid" className="py-16 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="bg-bbs-surface border border-bbs-border rounded p-8 sm:p-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-md">
+          <div className="bg-bbs-surface border border-bbs-border rounded-xl p-8 sm:p-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-md">
             <div>
-              <div className="font-mono text-xs text-bbs-accent-light mb-1 uppercase">
-                // MEMBER SHOWCASE PORTAL
-              </div>
               <h3 className="font-display text-xl sm:text-2xl font-bold text-bbs-text">
                 SHIPPED A REPOSITORY OR HACKATHON MVP?
               </h3>

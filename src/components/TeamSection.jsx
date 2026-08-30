@@ -78,12 +78,6 @@ export default function TeamSection() {
       className="subtle-grid py-20 sm:py-28 border-t border-bbs-border relative"
     >
       <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-        {/* Section Meta Header */}
-        <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
-          <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-          <span>06 / CORE LEADERSHIP & ROSTER</span>
-        </div>
-
         {/* Editorial Section Headline */}
         <div className="mb-14 sm:mb-16">
           <ViewportText
@@ -98,7 +92,7 @@ export default function TeamSection() {
         </div>
 
         {/* 1. Visually Dominant Core / President Member Card */}
-        <article className="team-roster-item bg-bbs-surface border border-bbs-border rounded overflow-hidden mb-8 lg:mb-10 group hover:border-bbs-border-focus transition-colors duration-300 shadow-xl">
+        <article className="team-roster-item bg-bbs-surface border border-bbs-border rounded-xl overflow-hidden mb-8 lg:mb-10 group hover:border-bbs-border-focus transition-colors duration-300 shadow-xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
             {/* Left: Large Editorial Photographic Treatment */}
             <div className="lg:col-span-5 relative bg-bbs-raised overflow-hidden min-h-[320px] sm:min-h-[400px] lg:min-h-[460px]">
@@ -109,28 +103,14 @@ export default function TeamSection() {
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-bbs-bg/80 via-transparent to-transparent lg:hidden pointer-events-none" />
-
-              {/* Technical Monospace Overlays */}
-              <div className="absolute top-4 left-4 font-mono text-[11px] px-2.5 py-1 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-accent-light tracking-wider">
-                {president.trackCode} // PRESIDENTIAL MANDATE
-              </div>
-
-              <div className="absolute bottom-4 left-4 font-mono text-[10px] px-2.5 py-1 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-text flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
-                <span>{president.status}</span>
-              </div>
             </div>
 
             {/* Right: Technical Profile & Editorial Mandate */}
             <div className="lg:col-span-7 p-6 sm:p-8 lg:p-10 flex flex-col justify-between bg-bbs-surface border-t lg:border-t-0 lg:border-l border-bbs-border">
               <div>
-                {/* Header Meta */}
                 <div className="flex justify-between items-center flex-wrap gap-3 mb-4">
                   <span className="inline-flex items-center font-mono text-xs font-semibold tracking-wider uppercase px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/25">
                     {president.department}
-                  </span>
-                  <span className="font-mono text-xs text-bbs-dim tracking-wider">
-                    {president.status}
                   </span>
                 </div>
 
@@ -153,29 +133,20 @@ export default function TeamSection() {
                 </p>
 
                 {/* Specialties Tag Cloud */}
-                <div className="mb-8">
-                  <div className="font-mono text-[11px] text-bbs-dim uppercase tracking-wider mb-2.5">
-                    // KEY INITIATIVES & DOMAINS
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {president.specialties.map((tag, idx) => (
-                      <span
-                        key={idx}
-                        className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-raised border border-bbs-border text-bbs-muted"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {president.specialties.map((tag, idx) => (
+                    <span
+                      key={idx}
+                      className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-raised border border-bbs-border text-bbs-muted"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
 
               {/* Bottom Social Links & Action Row */}
-              <div className="pt-6 border-t border-bbs-border flex items-center justify-between flex-wrap gap-4">
-                <div className="font-mono text-xs text-bbs-dim">
-                  DIRECT CHANNELS:
-                </div>
-
+              <div className="pt-6 border-t border-bbs-border flex items-center justify-end flex-wrap gap-4">
                 <div className="flex items-center gap-3">
                   <a
                     href={president.socials.github}
@@ -220,7 +191,7 @@ export default function TeamSection() {
           {trackLeads.map((member) => (
             <article
               key={member.id}
-              className="team-roster-item bg-bbs-surface border border-bbs-border rounded overflow-hidden flex flex-col justify-between group hover:border-bbs-border-focus transition-colors duration-300 shadow-lg"
+              className="team-roster-item bg-bbs-surface border border-bbs-border rounded-xl overflow-hidden flex flex-col justify-between group hover:border-bbs-border-focus transition-colors duration-300 shadow-lg"
             >
               <div>
                 {/* Photo Framing */}
@@ -231,27 +202,12 @@ export default function TeamSection() {
                     className="w-full h-full object-cover object-[center_30%] block filter grayscale-[25%] contrast-105 group-hover:grayscale-0 group-hover:scale-102 transition-all duration-700 ease-out"
                     loading="lazy"
                   />
-
-                  {/* Top-Right Technical Track Code */}
-                  <div className="absolute top-3 right-3 font-mono text-[10px] px-2 py-0.5 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-accent-light tracking-wider">
-                    {member.trackCode}
-                  </div>
-
-                  {/* Bottom-Left Department Tag */}
-                  <div className="absolute bottom-3 left-3 font-mono text-[10px] px-2 py-0.5 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-text">
-                    {member.department}
-                  </div>
                 </div>
 
                 {/* Content Block */}
                 <div className="p-6 sm:p-7">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="font-mono text-xs font-semibold text-bbs-accent-light tracking-wider uppercase">
-                      {member.role}
-                    </span>
-                    <span className="font-mono text-[10px] text-bbs-dim">
-                      {member.status}
-                    </span>
+                  <div className="font-mono text-xs font-semibold text-bbs-accent-light tracking-wider uppercase mb-1">
+                    {member.role}
                   </div>
 
                   <h3 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-bbs-text mb-3">
@@ -263,30 +219,21 @@ export default function TeamSection() {
                   </p>
 
                   {/* Responsibilities & Specialties */}
-                  <div className="mb-4">
-                    <div className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider mb-2">
-                      CORE FOCUS & TOOLS
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {member.specialties.map((spec, sIdx) => (
-                        <span
-                          key={sIdx}
-                          className="font-mono text-[11px] px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-dim"
-                        >
-                          {spec}
-                        </span>
-                      ))}
-                    </div>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {member.specialties.map((spec, sIdx) => (
+                      <span
+                        key={sIdx}
+                        className="font-mono text-[11px] px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-dim"
+                      >
+                        {spec}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>
 
               {/* Card Footer with Social Links */}
-              <div className="px-6 py-4 sm:px-7 bg-bbs-raised/40 border-t border-bbs-border flex items-center justify-between">
-                <span className="font-mono text-[11px] text-bbs-dim">
-                  CONNECT:
-                </span>
-
+              <div className="px-6 py-4 sm:px-7 bg-bbs-raised/40 border-t border-bbs-border flex items-center justify-end">
                 <div className="flex items-center gap-2">
                   <a
                     href={member.socials.github}
@@ -325,11 +272,8 @@ export default function TeamSection() {
         </div>
 
         {/* 3. Notice of Active Cohort Elections & Track Nominations */}
-        <div className="team-roster-item bg-bbs-surface border border-bbs-border rounded p-6 sm:p-8 flex justify-between items-center flex-wrap gap-6 hover:border-bbs-border-focus transition-colors">
+        <div className="team-roster-item bg-bbs-surface border border-bbs-border rounded-xl p-6 sm:p-8 flex justify-between items-center flex-wrap gap-6 hover:border-bbs-border-focus transition-colors">
           <div>
-            <div className="font-mono text-xs text-bbs-accent-light mb-1">
-              // COHORT 2026 TRACK NOMINATIONS
-            </div>
             <div className="font-display text-lg sm:text-xl font-bold text-bbs-text">
               WANT TO LEAD A TRACK IN THE NEXT COHORT?
             </div>

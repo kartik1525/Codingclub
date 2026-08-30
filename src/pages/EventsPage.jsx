@@ -32,11 +32,7 @@ export default function EventsPage() {
       {/* 1. Page Header & Filter Controls — Normal Solid Background */}
       <Section variant="solid" className="pt-14 sm:pt-20 pb-8 sm:pb-12">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-4">
-            <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-            <span>04 / EVENTS, WORKSHOPS & CONTESTS</span>
-          </div>
-          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-bbs-text leading-tight mb-6">
+          <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-bbs-text leading-tight mb-6">
             CAMPUS HACKATHONS,<br />LAB SESSIONS & CONTESTS.
           </h1>
           <p className="text-lg sm:text-xl text-bbs-muted max-w-3xl leading-relaxed mb-10">
@@ -89,7 +85,7 @@ export default function EventsPage() {
             {filteredEvents.map((event) => (
               <article
                 key={event.id}
-                className="bg-bbs-surface border border-bbs-border rounded overflow-hidden shadow-md hover:border-bbs-border-focus transition-colors"
+                className="bg-bbs-surface border border-bbs-border rounded-xl overflow-hidden shadow-md hover:border-bbs-border-focus transition-colors"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
                   {/* Left: Image / Photo */}
@@ -100,13 +96,6 @@ export default function EventsPage() {
                       className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out"
                       loading="lazy"
                     />
-                    <div className="absolute top-3 left-3 bg-bbs-bg/90 border border-bbs-border px-2.5 py-1 rounded font-mono text-xs text-bbs-accent-light">
-                      {event.number} // {event.category.toUpperCase()}
-                    </div>
-                    <div className="absolute bottom-3 left-3 bg-bbs-bg/90 border border-bbs-border px-2.5 py-1 rounded font-mono text-[11px] text-bbs-text uppercase flex items-center gap-1.5">
-                      <span className={`w-1.5 h-1.5 rounded-full ${event.status === 'upcoming' ? 'bg-emerald-500 animate-ping' : 'bg-bbs-dim'}`} />
-                      <span>{event.status}</span>
-                    </div>
                   </div>
 
                   {/* Right: Event Details */}
@@ -132,44 +121,30 @@ export default function EventsPage() {
                         {event.title}
                       </h2>
 
-                      <div className="font-mono text-xs text-bbs-muted mb-4">
-                        {event.tagline}
-                      </div>
-
                       <p className="text-sm sm:text-base text-bbs-muted leading-relaxed mb-6">
                         {event.description}
                       </p>
 
                       {event.note && (
                         <div className="p-3 bg-bbs-raised border border-bbs-border rounded mb-6 text-xs text-bbs-text font-mono">
-                          <span className="text-bbs-accent-light font-semibold">PARTICIPATION NOTE: </span>
                           {event.note}
                         </div>
                       )}
 
-                      <div className="mb-6">
-                        <div className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider mb-2">
-                          TRACKS & FOCUS AREAS
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                          {event.tracks.map((track, idx) => (
-                            <span
-                              key={idx}
-                              className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-raised border border-bbs-border text-bbs-muted"
-                            >
-                              {track}
-                            </span>
-                          ))}
-                        </div>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {event.tracks.map((track, idx) => (
+                          <span
+                            key={idx}
+                            className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-raised border border-bbs-border text-bbs-text"
+                          >
+                            {track}
+                          </span>
+                        ))}
                       </div>
                     </div>
 
                     {/* Footer & Registration CTA */}
-                    <div className="pt-6 border-t border-bbs-border flex items-center justify-between flex-wrap gap-4 font-mono text-xs">
-                      <span className="text-bbs-dim">
-                        AUDIENCE: ALL UNDERGRADUATE STUDENTS
-                      </span>
-
+                    <div className="pt-6 border-t border-bbs-border flex items-center justify-end font-mono text-xs">
                       {event.registrationOpen ? (
                         <Link
                           to="/join"
@@ -180,7 +155,7 @@ export default function EventsPage() {
                         </Link>
                       ) : (
                         <span className="px-3 py-1.5 rounded bg-bbs-raised border border-bbs-border text-bbs-dim">
-                          EVENT CONCLUDED / ARCHIVED
+                          Event Concluded
                         </span>
                       )}
                     </div>

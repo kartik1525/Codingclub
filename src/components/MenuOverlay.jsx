@@ -57,7 +57,7 @@ export default function MenuOverlay({ isOpen, onClose, onNavigate }) {
         <div className="flex justify-between items-center border-b border-bbs-border pb-4 mb-8">
           <div className="flex items-center gap-3">
             <span className="font-mono text-xs text-bbs-accent-light tracking-wider">
-              // SITE NAVIGATION INDEX
+              SITE NAVIGATION INDEX
             </span>
             <ThemeToggle />
           </div>
@@ -135,7 +135,7 @@ export default function MenuOverlay({ isOpen, onClose, onNavigate }) {
           </div>
 
           <span className="font-mono text-xs text-bbs-dim">
-            {CLUB_INFO.coordinates} // {CLUB_INFO.location}
+            {CLUB_INFO.location}
           </span>
         </div>
       </div>

@@ -63,7 +63,7 @@ export default function HeroHeadline({ className = '' }) {
 
   if (prefersReducedMotion) {
     return (
-      <h1 className={`font-display text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter text-bbs-text uppercase leading-none m-0 ${className}`}>
+      <h1 className={`font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-bbs-text uppercase leading-none m-0 ${className}`}>
         <span className="block text-bbs-text">WE</span>
         <span className="block text-bbs-accent-light mt-1 sm:mt-2">LEARN.</span>
       </h1>
@@ -71,7 +71,7 @@ export default function HeroHeadline({ className = '' }) {
   }
 
   return (
-    <h1 className={`font-display text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter uppercase leading-none m-0 flex flex-col items-start select-none ${className}`}>
+    <h1 className={`font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter uppercase leading-none m-0 flex flex-col items-start select-none ${className}`}>
       {/* Line 1: Permanent Static Anchor */}
       <span className="text-bbs-text block leading-none">
         WE

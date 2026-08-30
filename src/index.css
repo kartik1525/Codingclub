@@ -14,9 +14,9 @@ body,
   --bbs-border: #262626;
   --bbs-border-light: #333333;
   --bbs-border-focus: #3F3F46;
-  --bbs-text: #F5F5F0;
-  --bbs-muted: #A0A0A0;
-  --bbs-dim: #707070;
+  --bbs-text: #FFFFFF;
+  --bbs-muted: #FFFFFF;
+  --bbs-dim: #FFFFFF;
   --bbs-accent: #2563EB;
   --bbs-accent-hover: #1D4ED8;
   --bbs-accent-light: #60A5FA;
@@ -37,9 +37,9 @@ body.light,
   --bbs-border: #DCDCD6 !important;
   --bbs-border-light: #E4E4DE !important;
   --bbs-border-focus: #A1A1AA !important;
-  --bbs-text: #141414 !important;
-  --bbs-muted: #52525B !important;
-  --bbs-dim: #71717A !important;
+  --bbs-text: #000000 !important;
+  --bbs-muted: #000000 !important;
+  --bbs-dim: #000000 !important;
   --bbs-accent: #2563EB !important;
   --bbs-accent-hover: #1D4ED8 !important;
   --bbs-accent-light: #2563EB !important;

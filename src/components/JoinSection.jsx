@@ -52,12 +52,6 @@ export default function JoinSection() {
   return (
     <section id="join" className="py-20 sm:py-28 border-t border-bbs-border relative">
       <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-        {/* Section Meta */}
-        <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
-          <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
-          <span>07 / JOIN THE COMMUNITY</span>
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           {/* Left Narrative */}
           <div className="lg:col-span-6">
@@ -94,9 +88,6 @@ export default function JoinSection() {
 
             {/* Direct Channel Links */}
             <div className="border-t border-bbs-border pt-6">
-              <div className="font-mono text-xs text-bbs-dim mb-3 uppercase">
-                DIRECT COMMUNITY CHANNELS
-              </div>
               <div className="flex gap-4 flex-wrap">
                 <a
                   href={CLUB_INFO.socials.discord}
@@ -119,7 +110,7 @@ export default function JoinSection() {
           </div>
 
           {/* Right Application Form */}
-          <div className="lg:col-span-6 bg-bbs-surface border border-bbs-border rounded p-6 sm:p-10">
+          <div className="lg:col-span-6 bg-bbs-surface border border-bbs-border rounded-xl p-6 sm:p-10">
             {formState === 'success' ? (
               <div className="text-center py-8">
                 <div className="w-14 h-14 bg-emerald-500/10 border border-emerald-500 rounded-full flex items-center justify-center mx-auto mb-5 text-emerald-400 text-2xl">
@@ -150,13 +141,10 @@ export default function JoinSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate>
-                <div className="flex justify-between items-center mb-6">
-                  <span className="font-mono text-xs text-bbs-accent-light font-semibold">
-                    // SIGNUP FOR 2026 COHORT
-                  </span>
-                  <span className="font-mono text-[11px] text-bbs-muted px-2 py-0.5 border border-bbs-border rounded">
-                    FREE MEMBERSHIP
-                  </span>
+                <div className="mb-6">
+                  <h3 className="font-display text-xl font-bold text-bbs-text">
+                    Join BBS Coding Club
+                  </h3>
                 </div>
 
                 {/* Honeypot field */}
@@ -197,7 +185,7 @@ export default function JoinSection() {
                     htmlFor="email"
                     className="block font-mono text-xs text-bbs-muted mb-2 uppercase"
                   >
-                    STUDENT / PERSONAL EMAIL *
+                    STUDENT OR PERSONAL EMAIL *
                   </label>
                   <input
                     id="email"
@@ -230,7 +218,7 @@ export default function JoinSection() {
                     <option value="CS - 2nd Year">CSE — 2nd Year</option>
                     <option value="CS - 3rd Year">CSE — 3rd Year</option>
                     <option value="CS - 4th Year">CSE — Final Year</option>
-                    <option value="IT / ECE">IT / ECE / Circuit Branches</option>
+                    <option value="IT / ECE">IT, ECE & Circuit Branches</option>
                     <option value="Other Engineering">Other Engineering Branch</option>
                   </select>
                 </div>
@@ -241,7 +229,7 @@ export default function JoinSection() {
                     htmlFor="interests"
                     className="block font-mono text-xs text-bbs-muted mb-2 uppercase"
                   >
-                    WHAT ARE YOU EXCITED TO LEARN / BUILD?
+                    WHAT ARE YOU EXCITED TO LEARN OR BUILD?
                   </label>
                   <select
                     id="interests"
@@ -265,7 +253,7 @@ export default function JoinSection() {
                     htmlFor="portfolioUrl"
                     className="block font-mono text-xs text-bbs-muted mb-2 uppercase"
                   >
-                    GITHUB / PORTFOLIO (IF ANY — TOTALLY OPTIONAL)
+                    GITHUB OR PORTFOLIO (OPTIONAL)
                   </label>
                   <input
                     id="portfolioUrl"
@@ -296,10 +284,6 @@ export default function JoinSection() {
                 >
                   {formState === 'submitting' ? 'SENDING RESPONSE...' : 'JOIN BBS CODING CLUB ↗'}
                 </button>
-
-                <div className="font-mono text-[11px] text-bbs-dim text-center mt-3">
-                  NO FEES // ALL STUDENTS WELCOME REGARDLESS OF EXPERIENCE
-                </div>
               </form>
             )}
           </div>

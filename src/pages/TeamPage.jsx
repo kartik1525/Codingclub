@@ -44,11 +44,7 @@ export default function TeamPage() {
       {/* 1. Page Header & Filter Tabs — Normal Solid Background */}
       <Section variant="solid" className="pt-14 sm:pt-20 pb-8 sm:pb-12">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-4">
-            <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-            <span>05 / CORE LEADERSHIP & ROSTER</span>
-          </div>
-          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-bbs-text leading-tight mb-6">
+          <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-bbs-text leading-tight mb-6">
             RUN BY STUDENTS.<br />BUILT FOR BUILDERS.
           </h1>
           <p className="text-lg sm:text-xl text-bbs-muted max-w-3xl leading-relaxed mb-10">
@@ -78,10 +74,7 @@ export default function TeamPage() {
       {showPresident && (
         <Section variant="grid" className="py-16 sm:py-24 border-t border-bbs-border relative">
           <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-            <div className="font-mono text-xs text-bbs-accent-light mb-3 uppercase tracking-wider">
-              // CORE EXECUTIVE LEADERSHIP
-            </div>
-            <article className="bg-bbs-surface border border-bbs-border rounded overflow-hidden shadow-xl hover:border-bbs-border-focus transition-colors group">
+            <article className="bg-bbs-surface border border-bbs-border rounded-xl overflow-hidden shadow-xl hover:border-bbs-border-focus transition-colors group">
               <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
                 {/* Left: President Photo */}
                 <div className="lg:col-span-5 relative bg-bbs-raised overflow-hidden min-h-[340px] sm:min-h-[420px]">
@@ -91,13 +84,6 @@ export default function TeamPage() {
                     className="w-full h-full object-cover object-[center_25%] filter grayscale-[20%] contrast-105 group-hover:grayscale-0 group-hover:scale-102 transition-all duration-700 ease-out"
                     loading="lazy"
                   />
-                  <div className="absolute top-4 left-4 font-mono text-[11px] px-2.5 py-1 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-accent-light tracking-wider">
-                    {president.trackCode} // PRESIDENTIAL MANDATE
-                  </div>
-                  <div className="absolute bottom-4 left-4 font-mono text-[10px] px-2.5 py-1 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-text flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
-                    <span>{president.status}</span>
-                  </div>
                 </div>
 
                 {/* Right: Editorial Mandate */}
@@ -106,9 +92,6 @@ export default function TeamPage() {
                     <div className="flex justify-between items-center flex-wrap gap-3 mb-4">
                       <span className="inline-flex items-center font-mono text-xs font-semibold tracking-wider uppercase px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/25">
                         {president.department}
-                      </span>
-                      <span className="font-mono text-xs text-bbs-dim">
-                        COHORT 2026
                       </span>
                     </div>
 
@@ -127,27 +110,19 @@ export default function TeamPage() {
                       {president.description}
                     </p>
 
-                    <div className="mb-8">
-                      <div className="font-mono text-[11px] text-bbs-dim uppercase tracking-wider mb-2.5">
-                        // KEY INITIATIVES & SPECIALTIES
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {president.specialties.map((tag, idx) => (
-                          <span
-                            key={idx}
-                            className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-raised border border-bbs-border text-bbs-muted"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
+                    <div className="flex flex-wrap gap-2 mb-8">
+                      {president.specialties.map((tag, idx) => (
+                        <span
+                          key={idx}
+                          className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-raised border border-bbs-border text-bbs-muted"
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
                   </div>
 
-                  <div className="pt-6 border-t border-bbs-border flex items-center justify-between flex-wrap gap-4 font-mono text-xs">
-                    <span className="text-bbs-dim">
-                      CONNECT DIRECTLY:
-                    </span>
+                  <div className="pt-6 border-t border-bbs-border flex items-center justify-end flex-wrap gap-4 font-mono text-xs">
                     <div className="flex items-center gap-3">
                       <a
                         href={president.socials.github}
@@ -188,15 +163,11 @@ export default function TeamPage() {
       {/* 3. Specialized Track Leads Grid — Normal Solid Background */}
       <Section variant="solid" className="py-16 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="font-mono text-xs text-bbs-accent-light mb-3 uppercase tracking-wider">
-            // SPECIALIZED TRACK HEADS & COORDINATORS
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {filteredTrackLeads.map((member) => (
               <article
                 key={member.id}
-                className="bg-bbs-surface border border-bbs-border rounded overflow-hidden shadow-lg hover:border-bbs-border-focus transition-colors flex flex-col justify-between group"
+                className="bg-bbs-surface border border-bbs-border rounded-xl overflow-hidden shadow-lg hover:border-bbs-border-focus transition-colors flex flex-col justify-between group"
               >
                 <div>
                   <div className="w-full relative aspect-[16/10] bg-bbs-raised overflow-hidden border-b border-bbs-border">
@@ -206,22 +177,11 @@ export default function TeamPage() {
                       className="w-full h-full object-cover object-[center_30%] filter grayscale-[25%] contrast-105 group-hover:grayscale-0 group-hover:scale-102 transition-all duration-700 ease-out"
                       loading="lazy"
                     />
-                    <div className="absolute top-3 right-3 font-mono text-[10px] px-2 py-0.5 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-accent-light tracking-wider">
-                      {member.trackCode}
-                    </div>
-                    <div className="absolute bottom-3 left-3 font-mono text-[10px] px-2 py-0.5 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-text">
-                      {member.department}
-                    </div>
                   </div>
 
                   <div className="p-6 sm:p-7">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-mono text-xs font-semibold text-bbs-accent-light tracking-wider uppercase">
-                        {member.role}
-                      </span>
-                      <span className="font-mono text-[10px] text-bbs-dim">
-                        {member.status}
-                      </span>
+                    <div className="font-mono text-xs font-semibold text-bbs-accent-light tracking-wider uppercase mb-1">
+                      {member.role}
                     </div>
 
                     <h3 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-bbs-text mb-3">
@@ -232,28 +192,20 @@ export default function TeamPage() {
                       {member.description}
                     </p>
 
-                    <div className="mb-4">
-                      <div className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider mb-2">
-                        CORE FOCUS & SPECIALTIES
-                      </div>
-                      <div className="flex flex-wrap gap-1.5">
-                        {member.specialties.map((spec, sIdx) => (
-                          <span
-                            key={sIdx}
-                            className="font-mono text-[11px] px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-dim"
-                          >
-                            {spec}
-                          </span>
-                        ))}
-                      </div>
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {member.specialties.map((spec, sIdx) => (
+                        <span
+                          key={sIdx}
+                          className="font-mono text-[11px] px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-dim"
+                        >
+                          {spec}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
 
-                <div className="px-6 py-4 bg-bbs-raised/40 border-t border-bbs-border flex items-center justify-between">
-                  <span className="font-mono text-[11px] text-bbs-dim">
-                    CHANNELS:
-                  </span>
+                <div className="px-6 py-4 bg-bbs-raised/40 border-t border-bbs-border flex items-center justify-end">
                   <div className="flex items-center gap-2">
                     <a
                       href={member.socials.github}
@@ -291,11 +243,8 @@ export default function TeamPage() {
       {/* 4. Leadership Nominations Banner — Checkered / Grid Background */}
       <Section variant="grid" className="py-16 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="bg-bbs-surface border border-bbs-border rounded p-6 sm:p-8 flex justify-between items-center flex-wrap gap-6 hover:border-bbs-border-focus transition-colors shadow-md">
+          <div className="bg-bbs-surface border border-bbs-border rounded-xl p-6 sm:p-8 flex justify-between items-center flex-wrap gap-6 hover:border-bbs-border-focus transition-colors shadow-md">
             <div>
-              <div className="font-mono text-xs text-bbs-accent-light mb-1 uppercase">
-                // COHORT 2026 TRACK NOMINATIONS
-              </div>
               <h3 className="font-display text-lg sm:text-xl font-bold text-bbs-text">
                 WANT TO LEAD A TRACK IN THE NEXT COHORT?
               </h3>

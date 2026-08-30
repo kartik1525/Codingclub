@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, ArrowRight, Code2, Users, Layers, Calendar, Terminal, Mail } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, Calendar, MapPin } from 'lucide-react';
 import Hero from '../components/Hero.jsx';
 import Marquee from '../components/Marquee.jsx';
 import StatsSection from '../components/StatsSection.jsx';
@@ -13,44 +13,26 @@ import CoreLeadershipRoster from '../components/CoreLeadershipRoster.jsx';
 import { PROJECTS } from '../data/projects.js';
 import { EVENTS } from '../data/events.js';
 
-/**
- * HomePage - Concise Overview of BBS Coding Club
- * 
- * - Hero section preserved with zero-layout-shift typewriter.
- * - Marquee technical strip.
- * - Concise About preview with CTA to /about.
- * - Departments preview with CTA to /departments.
- * - Featured Projects preview with CTA to /projects.
- * - Events preview with CTA to /events.
- * - Stats and Terminal block.
- * - Team leadership preview with CTA to /team.
- * - Join invitation with CTA to /join.
- */
 export default function HomePage() {
   const featuredProjects = PROJECTS.slice(0, 2);
   const featuredEvents = EVENTS.slice(0, 2);
 
   return (
     <div className="flex flex-col">
-      {/* 1. Preserved Hero Section */}
+      {/* 1. Hero Section */}
       <Hero />
 
       {/* 2. Marquee Divider */}
       <Marquee />
 
-      {/* 3. About Preview — Normal Solid Background */}
+      {/* 3. About Preview */}
       <Section variant="solid" id="about" className="py-20 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
-            <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-            <span>01 / ABOUT US OVERVIEW</span>
-          </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-10 sm:mb-12">
             <div className="lg:col-span-6">
               <ViewportText
                 as="h2"
-                className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight m-0"
+                className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-bbs-text leading-tight m-0"
               >
                 WE ARE NOT JUST A CODING CLUB.
               </ViewportText>
@@ -69,21 +51,17 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Asymmetric Bento Grid (LEARN, BUILD, COMPETE, CONNECT) */}
+          {/* Bento Grid */}
           <AboutBentoGrid />
         </div>
       </Section>
 
-      {/* 4. Departments Preview (Specialized Tracks) — Checkered / Grid Background */}
+      {/* 4. Departments Preview */}
       <Section variant="grid" id="departments" className="py-20 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
             <div>
-              <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-3">
-                <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-                <span>02 / SPECIALIZED TRACKS</span>
-              </div>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight m-0">
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-bbs-text leading-tight m-0">
                 EXPLORE CLUB TRACKS.
               </h2>
             </div>
@@ -96,21 +74,16 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Interactive Department Directory with Dynamic Right-Side Detail Panel */}
           <DepartmentDirectory />
         </div>
       </Section>
 
-      {/* 5. Featured Projects Preview — Normal Solid Background */}
+      {/* 5. Featured Projects Preview */}
       <Section variant="solid" id="projects" className="py-20 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
             <div>
-              <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-3">
-                <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-                <span>03 / SELECTED BUILDS</span>
-              </div>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight m-0">
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-bbs-text leading-tight m-0">
                 THINGS WE'VE SHIPPED.
               </h2>
             </div>
@@ -126,7 +99,6 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 sm:gap-8">
             {featuredProjects.map((project, index) => {
               const isFeatured = index === 0;
-              const formattedIndex = String(index + 1).padStart(2, '0');
 
               return (
                 <article
@@ -137,7 +109,6 @@ export default function HomePage() {
                       : 'border-bbs-border hover:border-bbs-border-focus'
                   }`}
                 >
-                  {/* Image Container with Subtle Technical Hover Zoom & "OPEN PROJECT ↗" Overlay */}
                   <div className="w-full aspect-[16/9] bg-bbs-raised overflow-hidden relative border-b border-bbs-border">
                     <img
                       src={project.image}
@@ -146,24 +117,6 @@ export default function HomePage() {
                       loading="lazy"
                     />
 
-                    {/* Top Index & Tag Badges */}
-                    <div className="absolute top-3 left-3 flex items-center gap-2 z-20">
-                      <span className="bg-bbs-bg/90 backdrop-blur-sm border border-bbs-border px-2.5 py-1 rounded font-mono text-[11px] text-bbs-accent font-semibold flex items-center gap-1.5 shadow-sm">
-                        {isFeatured && <span className="w-1.5 h-1.5 rounded-full bg-bbs-accent inline-block animate-pulse" />}
-                        <span>PROJECT // {formattedIndex}</span>
-                      </span>
-                      <span className="bg-bbs-surface/85 backdrop-blur-sm border border-bbs-border px-2 py-1 rounded font-mono text-[10px] text-bbs-dim hidden sm:inline-block">
-                        {project.category.toUpperCase()}
-                      </span>
-                    </div>
-
-                    <div className="absolute top-3 right-3 z-20">
-                      <span className="bg-bbs-bg/90 backdrop-blur-sm border border-bbs-border px-2 py-0.5 rounded font-mono text-[10px] text-bbs-dim uppercase tracking-wider">
-                        {isFeatured ? 'FLAGSHIP RELEASE' : 'STUDENT PROTOTYPE'}
-                      </span>
-                    </div>
-
-                    {/* Subtle Technical Hover Overlay: "OPEN PROJECT ↗" */}
                     <Link
                       to="/projects"
                       className="absolute inset-0 bg-bbs-bg/65 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 cursor-pointer"
@@ -180,17 +133,13 @@ export default function HomePage() {
                   <div className="p-6 sm:p-7 flex flex-col justify-between flex-1">
                     <div>
                       <div className="flex items-center justify-between gap-2 mb-2">
-                        <span className="font-mono text-[11px] text-bbs-accent uppercase tracking-wider font-semibold">
-                          {isFeatured ? '// FLAGSHIP BUILD' : '// CAMPUS HACK'}
-                        </span>
-                        <span className="font-mono text-xs text-bbs-dim">
+                        <h3 className="font-display text-xl sm:text-2xl font-bold text-bbs-text tracking-tight group-hover:text-bbs-accent-light transition-colors">
+                          {project.title}
+                        </h3>
+                        <span className="font-mono text-xs text-bbs-dim shrink-0">
                           {project.year}
                         </span>
                       </div>
-
-                      <h3 className="font-display text-xl sm:text-2xl font-bold text-bbs-text mb-2 tracking-tight group-hover:text-bbs-accent-light transition-colors">
-                        {project.title}
-                      </h3>
 
                       <p className="text-sm text-bbs-muted leading-relaxed mb-5">
                         {project.description}
@@ -200,7 +149,7 @@ export default function HomePage() {
                         {project.techTags.map((tag, idx) => (
                           <span
                             key={idx}
-                            className="font-mono text-xs px-2.5 py-1 bg-bbs-raised border border-bbs-border rounded text-bbs-text/85 transition-colors"
+                            className="font-mono text-xs px-2.5 py-1 bg-bbs-raised border border-bbs-border rounded text-bbs-text transition-colors"
                           >
                             {tag}
                           </span>
@@ -208,24 +157,21 @@ export default function HomePage() {
                       </div>
                     </div>
 
-                    {/* Bottom Meta & Code Action */}
+                    {/* Bottom Action */}
                     <div className="border-t border-bbs-border pt-4 flex justify-between items-center font-mono text-xs">
-                      <span className="text-bbs-dim flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
-                        <span>{project.status}</span>
+                      <span className="text-bbs-dim">
+                        {project.contributors[0]}
                       </span>
 
-                      <div className="flex items-center gap-3">
-                        <a
-                          href={project.repoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-bbs-accent hover:text-bbs-text transition-colors inline-flex items-center gap-1 font-semibold"
-                        >
-                          <span>SOURCE CODE</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </a>
-                      </div>
+                      <a
+                        href={project.repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-bbs-accent hover:text-bbs-text transition-colors inline-flex items-center gap-1 font-semibold"
+                      >
+                        <span>SOURCE CODE</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
                     </div>
                   </div>
                 </article>
@@ -235,16 +181,12 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* 6. Events Preview (Schedule & Activities) — Checkered / Grid Background */}
+      {/* 6. Events Preview */}
       <Section variant="grid" id="events" className="py-20 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
             <div>
-              <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-3">
-                <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-                <span>04 / SCHEDULE & ACTIVITIES</span>
-              </div>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight m-0">
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-bbs-text leading-tight m-0">
                 UPCOMING & RECENT EVENTS.
               </h2>
             </div>
@@ -266,10 +208,10 @@ export default function HomePage() {
                 <div>
                   <div className="flex justify-between items-center mb-3">
                     <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/25">
-                      {event.formattedDate} — {event.category.toUpperCase()}
+                      {event.formattedDate}
                     </span>
-                    <span className="font-mono text-[10px] text-bbs-dim uppercase">
-                      {event.status}
+                    <span className="font-mono text-xs text-bbs-dim capitalize">
+                      {event.category}
                     </span>
                   </div>
 
@@ -280,8 +222,12 @@ export default function HomePage() {
                     {event.description}
                   </p>
 
-                  <div className="font-mono text-xs text-bbs-dim mb-6">
-                    LOCATION: {event.location} // {event.time}
+                  <div className="flex items-center gap-4 text-xs font-mono text-bbs-dim mb-6">
+                    <span className="flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5" />
+                      <span>{event.location}</span>
+                    </span>
+                    <span>{event.time}</span>
                   </div>
                 </div>
 
@@ -306,25 +252,21 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* 7. Stats & Terminal Block — Normal Solid Background */}
+      {/* 7. Stats & Terminal Block */}
       <StatsSection />
       <TerminalBlock />
 
-      {/* 8. Team Preview (Core Leadership) — Checkered / Grid Background */}
+      {/* 8. Team Preview */}
       <Section variant="grid" id="team" className="py-20 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <CoreLeadershipRoster />
         </div>
       </Section>
 
-      {/* 9. Join CTA Banner Preview — Normal Solid Background */}
+      {/* 9. Join CTA Banner */}
       <Section variant="solid" id="join" className="py-20 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full text-center">
-          <div className="flex items-center justify-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-3">
-            <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-            <span>07 / MEMBERSHIP & ONBOARDING</span>
-          </div>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight mb-4 max-w-2xl mx-auto">
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-bbs-text leading-tight mb-4 max-w-2xl mx-auto">
             READY TO BUILD REAL SOFTWARE WITH YOUR PEERS?
           </h2>
           <p className="text-base text-bbs-muted leading-relaxed max-w-xl mx-auto mb-8">
@@ -334,7 +276,7 @@ export default function HomePage() {
             to="/join"
             className="inline-flex items-center gap-2 font-mono text-sm font-semibold px-6 py-3 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:scale-105 shadow-xl shadow-bbs-accent/25"
           >
-            <span>START APPLICATION / ONBOARDING</span>
+            <span>START APPLICATION</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
