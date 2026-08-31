@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { Mail, ArrowUpRight, ArrowRight } from 'lucide-react';
 import Section from '../components/Section.jsx';
 import { 
-  TEAM_LEADERSHIP, 
+  CORE_MEMBERS, 
+  TEAM_CATEGORIES, 
   TEAM_PAGE_HEADER, 
   LEADERSHIP_NOMINATIONS_CALLOUT 
 } from '../data/team.js';
-import { DEPARTMENTS } from '../data/departments.js';
 
 function GithubIcon({ className = "w-3.5 h-3.5" }) {
   return (
@@ -29,19 +29,11 @@ function LinkedinIcon({ className = "w-3.5 h-3.5" }) {
 }
 
 export default function TeamPage() {
-  const [selectedDeptFilter, setSelectedDeptFilter] = useState('all');
-  const { president, trackLeads } = TEAM_LEADERSHIP;
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const departmentFilters = [
-    { id: 'all', label: 'ALL LEADERSHIP' },
-    ...DEPARTMENTS.map(d => ({ id: d.id, label: d.shortName.toUpperCase() }))
-  ];
-
-  const filteredTrackLeads = selectedDeptFilter === 'all'
-    ? trackLeads
-    : trackLeads.filter(lead => lead.departmentId === selectedDeptFilter);
-
-  const showPresident = selectedDeptFilter === 'all' || selectedDeptFilter === president.departmentId;
+  const filteredMembers = selectedCategory === 'all'
+    ? CORE_MEMBERS
+    : CORE_MEMBERS.filter(member => member.category === selectedCategory);
 
   return (
     <div className="flex flex-col">
@@ -59,186 +51,85 @@ export default function TeamPage() {
             {TEAM_PAGE_HEADER.description}
           </p>
 
-          {/* Department Filter Navigation */}
+          {/* Functional Filter Tabs */}
           <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto pb-4 border-b border-bbs-border scrollbar-none">
-            {departmentFilters.map((filter) => (
+            {TEAM_CATEGORIES.map((cat) => (
               <button
-                key={filter.id}
-                onClick={() => setSelectedDeptFilter(filter.id)}
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
                 className={`px-3.5 py-1.5 rounded font-mono text-xs whitespace-nowrap transition-all cursor-pointer border ${
-                  selectedDeptFilter === filter.id
+                  selectedCategory === cat.id
                     ? 'bg-bbs-accent text-white border-bbs-accent shadow-sm font-semibold'
                     : 'bg-bbs-surface text-bbs-muted hover:text-bbs-text hover:bg-bbs-raised border-bbs-border'
                 }`}
               >
-                {filter.label}
+                {cat.label}
               </button>
             ))}
           </div>
         </div>
       </Section>
 
-      {/* 2. Dominant Core Leadership / President Feature — Checkered / Grid Background */}
-      {showPresident && (
-        <Section variant="grid" className="py-16 sm:py-24 border-t border-bbs-border relative">
-          <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-            <div className="font-mono text-xs text-bbs-accent-light mb-3 uppercase tracking-wider">
-              CORE EXECUTIVE LEADERSHIP
-            </div>
-            <article className="bg-bbs-surface border border-bbs-border rounded overflow-hidden shadow-xl hover:border-bbs-border-focus transition-colors group">
-              <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
-                {/* Left: President Photo */}
-                <div className="lg:col-span-5 relative bg-bbs-raised overflow-hidden min-h-[340px] sm:min-h-[420px]">
-                  <img
-                    src={president.image}
-                    alt={`${president.name} — ${president.role}`}
-                    className="w-full h-full object-cover object-[center_25%] filter grayscale-[20%] contrast-105 group-hover:grayscale-0 group-hover:scale-102 transition-all duration-700 ease-out"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-4 left-4 font-mono text-[11px] px-2.5 py-1 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-accent-light tracking-wider">
-                    PRESIDENTIAL MANDATE
-                  </div>
-                  <div className="absolute bottom-4 left-4 font-mono text-[10px] px-2.5 py-1 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-text flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
-                    <span>{president.status}</span>
-                  </div>
-                </div>
-
-                {/* Right: Editorial Mandate */}
-                <div className="lg:col-span-7 p-6 sm:p-8 lg:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-bbs-border">
-                  <div>
-                    <div className="flex justify-between items-center flex-wrap gap-3 mb-4">
-                      <span className="inline-flex items-center font-mono text-xs font-semibold tracking-wider uppercase px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/25">
-                        {president.department}
-                      </span>
-                      <span className="font-mono text-xs text-bbs-dim">
-                        COHORT 2026
-                      </span>
-                    </div>
-
-                    <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-bbs-text mb-2">
-                      {president.name}
-                    </h2>
-                    <div className="font-mono text-xs sm:text-sm text-bbs-accent-light uppercase tracking-wider mb-6">
-                      {president.role}
-                    </div>
-
-                    <blockquote className="border-l-2 border-bbs-accent pl-4 mb-6 italic text-sm sm:text-base text-bbs-text leading-relaxed font-sans">
-                      "{president.quote}"
-                    </blockquote>
-
-                    <p className="text-sm sm:text-base text-bbs-muted leading-relaxed mb-6">
-                      {president.description}
-                    </p>
-
-                    <div className="mb-8">
-                      <div className="font-mono text-[11px] text-bbs-dim uppercase tracking-wider mb-2.5">
-                        KEY INITIATIVES & SPECIALTIES
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {president.specialties.map((tag, idx) => (
-                          <span
-                            key={idx}
-                            className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-raised border border-bbs-border text-bbs-muted"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-6 border-t border-bbs-border flex items-center justify-between flex-wrap gap-4 font-mono text-xs">
-                    <span className="text-bbs-dim">
-                      CONNECT DIRECTLY:
-                    </span>
-                    <div className="flex items-center gap-3">
-                      <a
-                        href={president.socials.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded font-mono text-xs text-bbs-muted hover:text-bbs-text bg-bbs-raised border border-bbs-border hover:border-bbs-border-focus transition-all group/btn"
-                      >
-                        <GithubIcon className="w-3.5 h-3.5" />
-                        <span>GITHUB</span>
-                        <ArrowUpRight className="w-3 h-3" />
-                      </a>
-                      <a
-                        href={president.socials.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded font-mono text-xs text-bbs-muted hover:text-bbs-text bg-bbs-raised border border-bbs-border hover:border-bbs-border-focus transition-all group/btn"
-                      >
-                        <LinkedinIcon className="w-3.5 h-3.5" />
-                        <span>LINKEDIN</span>
-                        <ArrowUpRight className="w-3 h-3" />
-                      </a>
-                      <a
-                        href={`mailto:${president.socials.email}`}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded font-mono text-xs text-bbs-muted hover:text-bbs-text bg-bbs-raised border border-bbs-border hover:border-bbs-border-focus transition-all group/btn"
-                      >
-                        <Mail className="w-3.5 h-3.5" />
-                        <span>EMAIL</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </Section>
-      )}
-
-      {/* 3. Specialized Track Leads Grid — Normal Solid Background */}
-      <Section variant="solid" className="py-16 sm:py-24 border-t border-bbs-border relative">
+      {/* 2. Core Team Members Grid — Checkered / Grid Background */}
+      <Section variant="grid" className="py-16 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="font-mono text-xs text-bbs-accent-light mb-3 uppercase tracking-wider">
-            SPECIALIZED TRACK HEADS & COORDINATORS
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {filteredTrackLeads.map((member) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8">
+            {filteredMembers.map((member) => (
               <article
                 key={member.id}
-                className="bg-bbs-surface border border-bbs-border rounded overflow-hidden shadow-lg hover:border-bbs-border-focus transition-colors flex flex-col justify-between group"
+                className="bg-bbs-surface border border-bbs-border rounded-xl overflow-hidden shadow-lg hover:border-bbs-border-focus transition-colors flex flex-col justify-between group"
               >
                 <div>
-                  <div className="w-full relative aspect-[16/10] bg-bbs-raised overflow-hidden border-b border-bbs-border">
-                    <img
-                      src={member.image}
-                      alt={`${member.name} — ${member.role}`}
-                      className="w-full h-full object-cover object-[center_30%] filter grayscale-[25%] contrast-105 group-hover:grayscale-0 group-hover:scale-102 transition-all duration-700 ease-out"
-                      loading="lazy"
-                    />
+                  {/* Photo / Avatar Canvas */}
+                  <div className="w-full relative aspect-[16/10] bg-bbs-raised overflow-hidden border-b border-bbs-border flex items-center justify-center">
+                    {member.image ? (
+                      <img
+                        src={member.image}
+                        alt={`${member.name} — ${member.role}`}
+                        className="w-full h-full object-cover object-[center_30%] filter grayscale-[20%] contrast-105 group-hover:grayscale-0 group-hover:scale-102 transition-all duration-700 ease-out"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-gradient-to-b from-bbs-surface via-bbs-raised to-bbs-surface">
+                        <span className="font-mono text-4xl font-bold text-bbs-accent/70 mb-2">
+                          {member.name.split(' ').map(n => n[0]).join('')}
+                        </span>
+                        <span className="font-mono text-xs text-bbs-dim uppercase tracking-wider">
+                          {member.branch}
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Top Right: Status Badge */}
                     <div className="absolute top-3 right-3 font-mono text-[10px] px-2 py-0.5 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-accent-light tracking-wider">
-                      {member.trackCode}
+                      {member.status}
                     </div>
+
+                    {/* Bottom Left: Branch */}
                     <div className="absolute bottom-3 left-3 font-mono text-[10px] px-2 py-0.5 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-text">
-                      {member.department}
+                      {member.branch}
                     </div>
                   </div>
 
+                  {/* Card Info */}
                   <div className="p-6 sm:p-7">
                     <div className="flex justify-between items-center mb-2">
                       <span className="font-mono text-xs font-semibold text-bbs-accent-light tracking-wider uppercase">
                         {member.role}
                       </span>
-                      <span className="font-mono text-[10px] text-bbs-dim">
-                        {member.status}
-                      </span>
                     </div>
 
-                    <h3 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-bbs-text mb-3">
+                    <h3 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-bbs-text mb-3 group-hover:text-bbs-accent-light transition-colors">
                       {member.name}
                     </h3>
 
                     <p className="text-sm text-bbs-muted leading-relaxed mb-5">
-                      {member.description}
+                      {member.bio}
                     </p>
 
                     <div className="mb-4">
                       <div className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider mb-2">
-                        CORE FOCUS & SPECIALTIES
+                        SPECIALTIES & FOCUS
                       </div>
                       <div className="flex flex-wrap gap-1.5">
                         {member.specialties.map((spec, sIdx) => (
@@ -254,6 +145,7 @@ export default function TeamPage() {
                   </div>
                 </div>
 
+                {/* Bottom Channels Row */}
                 <div className="px-6 py-4 bg-bbs-raised/40 border-t border-bbs-border flex items-center justify-between">
                   <span className="font-mono text-[11px] text-bbs-dim">
                     CHANNELS:
@@ -292,8 +184,8 @@ export default function TeamPage() {
         </div>
       </Section>
 
-      {/* 4. Leadership Nominations Banner — Checkered / Grid Background */}
-      <Section variant="grid" className="py-16 sm:py-24 border-t border-bbs-border relative">
+      {/* 3. Community Involvement Callout — Normal Solid Background */}
+      <Section variant="solid" className="py-16 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="bg-bbs-surface border border-bbs-border rounded p-6 sm:p-8 flex justify-between items-center flex-wrap gap-6 hover:border-bbs-border-focus transition-colors shadow-md">
             <div>

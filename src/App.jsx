@@ -11,7 +11,7 @@ import { ThemeProvider } from './context/ThemeContext.jsx';
 
 import HomePage from './pages/HomePage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
-import DepartmentsPage from './pages/DepartmentsPage.jsx';
+import ExplorePage from './pages/ExplorePage.jsx';
 import ProjectsPage from './pages/ProjectsPage.jsx';
 import EventsPage from './pages/EventsPage.jsx';
 import TeamPage from './pages/TeamPage.jsx';
@@ -62,7 +62,8 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/departments" element={<DepartmentsPage />} />
+          <Route path="/explore" element={<ExplorePage />} />
+          <Route path="/departments" element={<ExplorePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/team" element={<TeamPage />} />

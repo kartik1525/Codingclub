@@ -30,7 +30,7 @@ export const WHY_JOIN_HIGHLIGHTS = [
 export const JOIN_STEPS = {
   step1: {
     badge: "STEP 1 OF 2",
-    title: "SELECT YOUR PREFERRED TRACK",
+    title: "CHOOSE AREAS OF INTEREST",
     hint: "CLICK A CARD TO SELECT"
   },
   step2: {
@@ -50,10 +50,11 @@ export const BRANCH_YEAR_OPTIONS = [
 ];
 
 export const INTEREST_OPTIONS = [
-  { value: "Systems & Web Engineering", label: "Systems & Web Engineering" },
-  { value: "Algorithms & Speed-Coding", label: "Algorithms & Speed-Coding" },
-  { value: "Hackathons & SIH Squads", label: "Hackathons & SIH Squads" },
-  { value: "Open Source & Git Tooling", label: "Open Source & Git Tooling" },
+  { value: "Web & Software Development", label: "Web & Software Development" },
+  { value: "AI & Machine Learning", label: "AI & Machine Learning" },
+  { value: "Competitive Programming", label: "Competitive Programming" },
+  { value: "Open Source & Developer Tools", label: "Open Source & Developer Tools" },
+  { value: "Hackathons & Innovation", label: "Hackathons & Innovation" },
   { value: "Undecided / Want to Explore All", label: "Undecided / Want to Explore All" }
 ];
 

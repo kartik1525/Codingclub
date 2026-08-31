@@ -128,7 +128,7 @@ export default function FloatingNav() {
         {/* Navigation Items */}
         <div className="flex items-center gap-0.5 sm:gap-1">
           {NAV_ITEMS.map(({ path, label, icon: Icon }) => {
-            const isActive = location.pathname === path;
+            const isActive = location.pathname === path || (path === '/explore' && location.pathname === '/departments');
             return (
               <button
                 key={path}

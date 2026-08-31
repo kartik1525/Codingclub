@@ -1,224 +1,229 @@
-export const TEAM_LEADERSHIP = {
-  president: {
-    id: "lead-01",
+/**
+ * team.js - Core Team of BBS Coding Club
+ * 
+ * Represents the ~10 actual undergraduate students organizing, mentoring,
+ * and building the BBS Coding Club community.
+ */
+
+export const FEATURED_LEADS = [
+  {
+    id: "kartikeya",
     name: "Kartikeya Singh",
-    role: "Club President & Community Lead",
-    trackCode: "CORE LEADERSHIP",
-    departmentId: "core-operations",
-    department: "B.Tech CSE '26",
-    status: "ACTIVE MANDATE · 2026 COHORT",
+    role: "President & Community Lead",
+    branch: "B.Tech CSE '27",
+    category: "Core Organizers",
+    status: "PRESIDENTIAL MANDATE",
     image: "",
-    quote: "Building an engineering collective where college students turn late-night debugging into production software and national hackathon victories.",
-    description: "Leads club vision, bridges student teams with faculty & industry mentors, and drives campus-wide hackathon initiatives.",
-    focus: "Student Mentorship, SIH Coordination, Campus Hackathons",
-    specialties: ["Distributed Systems", "Go", "SIH Coordination", "Community"],
+    bio: "Leads club initiatives, coordinates campus hackathon participation, and mentors junior students in software engineering and community building.",
+    focus: "Student Mentorship, SIH Coordination, Community Growth",
+    specialties: ["Full-Stack Systems", "Community Building", "Hackathons"],
     socials: {
-      github: "https://github.com/aarav-sharma-bbs",
-      linkedin: "https://linkedin.com/in/aarav-sharma-bbs",
-      email: "aarav@bbscodingclub.org"
+      github: "https://github.com/bbs-coding-club",
+      linkedin: "https://linkedin.com/company/bbs-coding-club",
+      email: "contact@bbscodingclub.org"
     }
   },
-  trackLeads: [
-    {
-      id: "tech-02",
-      name: "Priya Patel",
-      role: "Technical Lead (Systems & Web)",
-      trackCode: "SYSTEMS & WEB",
-      departmentId: "systems-web",
-      department: "B.Tech IT '26",
-      status: "CORE TRACK LEAD",
-      image: "/assets/team/priya.jpg",
-      description: "Architects club web platforms, reviews student PRs, and hosts deep-dive workshops on full-stack systems and cloud deployments.",
-      focus: "React, Node.js, Developer Tooling, CI/CD",
-      specialties: ["React / Vite", "Node.js", "Docker", "PostgreSQL"],
-      socials: {
-        github: "https://github.com/priya-patel-bbs",
-        linkedin: "https://linkedin.com/in/priya-patel-bbs",
-        email: "priya@bbscodingclub.org"
-      }
-    },
-    {
-      id: "algo-03",
-      name: "Rohan Verma",
-      role: "Competitive Programming Lead",
-      trackCode: "ALGORITHMS",
-      departmentId: "competitive-programming",
-      department: "B.Tech CSE '27",
-      status: "CORE TRACK LEAD",
-      image: "/assets/team/rohan.jpg",
-      description: "Candidate Master on Codeforces. Sets speed-coding contests, mentors ICPC regionalist teams, and runs advanced problem-solving sprints.",
-      focus: "Data Structures, Codeforces, ICPC Prep, Problem Setting",
-      specialties: ["C++ STL", "Graph Theory", "Dynamic Programming", "ICPC"],
-      socials: {
-        github: "https://github.com/rohan-verma-bbs",
-        linkedin: "https://linkedin.com/in/rohan-verma-bbs",
-        email: "rohan@bbscodingclub.org"
-      }
-    },
-    {
-      id: "os-04",
-      name: "Ananya Singh",
-      role: "Open Source & Community Lead",
-      trackCode: "OPEN SOURCE",
-      departmentId: "open-source",
-      department: "B.Tech CSE '27",
-      status: "CORE TRACK LEAD",
-      image: "/assets/team/ananya.jpg",
-      description: "Helps freshmen submit their first pull requests, curates hackathon starter kits, and spearheads open-source student contributions.",
-      focus: "Git Workflows, Upstream Contributions, Starter Kits",
-      specialties: ["Git & GitHub", "Python", "Linux Kernel Tools", "Documentation"],
-      socials: {
-        github: "https://github.com/ananya-singh-bbs",
-        linkedin: "https://linkedin.com/in/ananya-singh-bbs",
-        email: "ananya@bbscodingclub.org"
-      }
-    },
-    {
-      id: "hack-05",
-      name: "Vikram Joshi",
-      role: "Hackathons & Product Lead",
-      trackCode: "PRODUCT & SPRINT",
-      departmentId: "hackathons-product",
-      department: "B.Tech ECE '26",
-      status: "CORE TRACK LEAD",
-      image: "/assets/team/vikram.jpg",
-      description: "National hackathon winner. Guides multidisciplinary teams through 36-hour build cycles, rapid API scaffolding, and pitch decks.",
-      focus: "Rapid Prototyping, SIH Finals, System Diagrams, Pitch Prep",
-      specialties: ["System Architecture", "Next.js", "Hardware IoT", "Product Strategy"],
-      socials: {
-        github: "https://github.com/vikram-joshi-bbs",
-        linkedin: "https://linkedin.com/in/vikram-joshi-bbs",
-        email: "vikram@bbscodingclub.org"
-      }
+  {
+    id: "shariq",
+    name: "Mohd. Shariq Irshad",
+    role: "Vice President & Operations Lead",
+    branch: "MCA '27",
+    category: "Core Organizers",
+    status: "OPERATIONS MANDATE",
+    image: "",
+    bio: "Oversees club operations, coordinates event logistics, and ensures smooth collaboration between student working groups and campus administration.",
+    focus: "Club Operations, Event Logistics, Squad Planning",
+    specialties: ["Operations", "Event Logistics", "Team Management"],
+    socials: {
+      github: "https://github.com/bbs-coding-club",
+      linkedin: "https://linkedin.com/company/bbs-coding-club",
+      email: "contact@bbscodingclub.org"
     }
-  ]
-};
-
-// Backwards compatibility export
-export const TEAM_MEMBERS = [
-  TEAM_LEADERSHIP.president,
-  ...TEAM_LEADERSHIP.trackLeads
+  },
+  {
+    id: "adarsh",
+    name: "Adarsh Pandey",
+    role: "Tech Lead & Platform Architect",
+    branch: "MCA '27",
+    category: "Technical & Projects",
+    status: "TECHNICAL MANDATE",
+    image: "",
+    bio: "Spearheads internal technical projects, reviews student pull requests, and maintains the club's digital platforms and infrastructure.",
+    focus: "Platform Architecture, Web Systems, Code Reviews",
+    specialties: ["React / Vite", "Node.js", "System Architecture"],
+    socials: {
+      github: "https://github.com/bbs-coding-club",
+      linkedin: "https://linkedin.com/company/bbs-coding-club",
+      email: "contact@bbscodingclub.org"
+    }
+  },
+  {
+    id: "sakshi",
+    name: "Sakshi Pandey",
+    role: "Outreach Lead & Design Coordinator",
+    branch: "B.Tech CS '27",
+    category: "Community & Outreach",
+    status: "OUTREACH MANDATE",
+    image: "",
+    bio: "Drives student outreach, community communications, visual design, and welcoming first-year students to the club's WhatsApp network and discord channels.",
+    focus: "Community Outreach, UI/UX Design, Student Onboarding",
+    specialties: ["UI/UX Design", "Social Strategy", "Community Onboarding"],
+    socials: {
+      github: "https://github.com/bbs-coding-club",
+      linkedin: "https://linkedin.com/company/bbs-coding-club",
+      email: "contact@bbscodingclub.org"
+    }
+  }
 ];
 
+export const CORE_MEMBERS = [
+  ...FEATURED_LEADS,
+  {
+    id: "cp-coord",
+    name: "Problem Solving Coordinator",
+    role: "Competitive Programming Lead",
+    branch: "B.Tech CSE '27",
+    category: "Technical & Projects",
+    status: "ALGORITHMIC MANDATE",
+    image: "",
+    bio: "Curates weekly problem sets on Codeforces and LeetCode, runs contest retrospectives, and helps members improve algorithmic speed and intuition.",
+    focus: "Data Structures, Algorithms, Contest Practice",
+    specialties: ["C++ STL", "Graph Theory", "Dynamic Programming"],
+    socials: {
+      github: "https://github.com/bbs-coding-club",
+      linkedin: "https://linkedin.com/company/bbs-coding-club",
+      email: "contact@bbscodingclub.org"
+    }
+  },
+  {
+    id: "oss-mentor",
+    name: "Open Source Coordinator",
+    role: "Git & Open Source Mentor",
+    branch: "B.Tech IT '27",
+    category: "Technical & Projects",
+    status: "OPEN SOURCE MANDATE",
+    image: "",
+    bio: "Guides freshmen through their first Git commits, explains PR workflows, and curates open-source starter packages for club members.",
+    focus: "Git Workflows, GitHub Actions, Linux Fundamentals",
+    specialties: ["Git & GitHub", "Linux CLI", "Documentation"],
+    socials: {
+      github: "https://github.com/bbs-coding-club",
+      linkedin: "https://linkedin.com/company/bbs-coding-club",
+      email: "contact@bbscodingclub.org"
+    }
+  },
+  {
+    id: "hack-coord",
+    name: "Hackathons Coordinator",
+    role: "Hackathon & Prototyping Lead",
+    branch: "B.Tech ECE '26",
+    category: "Technical & Projects",
+    status: "PROTOTYPING MANDATE",
+    image: "",
+    bio: "Helps students assemble balanced hackathon teams, brainstorms MVP architectures, and conducts dry-run demo presentations before submission deadlines.",
+    focus: "Rapid Prototyping, SIH Preparation, Demo Pitching",
+    specialties: ["Rapid MVPs", "Hardware/IoT", "Pitch Decks"],
+    socials: {
+      github: "https://github.com/bbs-coding-club",
+      linkedin: "https://linkedin.com/company/bbs-coding-club",
+      email: "contact@bbscodingclub.org"
+    }
+  },
+  {
+    id: "events-coord",
+    name: "Events Coordinator",
+    role: "Workshops & Lab Sprints Lead",
+    branch: "B.Tech CSE '27",
+    category: "Core Organizers",
+    status: "LOGISTICS MANDATE",
+    image: "",
+    bio: "Organizes hands-on code-alongs in campus CS labs, reserves seminar venues, and manages attendance and workshop schedules.",
+    focus: "Lab Bookings, Workshop Scheduling, Event Execution",
+    specialties: ["Event Coordination", "Lab Logistics", "Student Support"],
+    socials: {
+      github: "https://github.com/bbs-coding-club",
+      linkedin: "https://linkedin.com/company/bbs-coding-club",
+      email: "contact@bbscodingclub.org"
+    }
+  },
+  {
+    id: "community-mod",
+    name: "Community Coordinator",
+    role: "Discord & WhatsApp Moderator",
+    branch: "B.Tech CSE '28",
+    category: "Community & Outreach",
+    status: "ENGAGEMENT MANDATE",
+    image: "",
+    bio: "Monitors daily discussions on the student WhatsApp group and Discord server, answers technical queries, and shares curated learning resources.",
+    focus: "Community Chat Moderation, Peer Support, Resource Sharing",
+    specialties: ["Discord Management", "Community Support", "Discussion Facilitation"],
+    socials: {
+      github: "https://github.com/bbs-coding-club",
+      linkedin: "https://linkedin.com/company/bbs-coding-club",
+      email: "contact@bbscodingclub.org"
+    }
+  },
+  {
+    id: "content-editor",
+    name: "Editorial & Content Lead",
+    role: "Technical Content & Documentation",
+    branch: "B.Tech IT '27",
+    category: "Community & Outreach",
+    status: "EDITORIAL MANDATE",
+    image: "",
+    bio: "Writes workshop recaps, documents project guides, and crafts announcements for the campus developer community.",
+    focus: "Technical Writing, Announcement Updates, Project Documentation",
+    specialties: ["Technical Writing", "Documentation", "Content Strategy"],
+    socials: {
+      github: "https://github.com/bbs-coding-club",
+      linkedin: "https://linkedin.com/company/bbs-coding-club",
+      email: "contact@bbscodingclub.org"
+    }
+  }
+];
+
+export const TEAM_CATEGORIES = [
+  { id: "all", label: "ALL CORE TEAM" },
+  { id: "Core Organizers", label: "CORE ORGANIZERS" },
+  { id: "Technical & Projects", label: "TECHNICAL & PROJECTS" },
+  { id: "Community & Outreach", label: "COMMUNITY & OUTREACH" }
+];
+
+export const TEAM_PAGE_HEADER = {
+  badge: "THE PEOPLE BUILDING THE COMMUNITY",
+  title: "RUN BY STUDENTS.\n100% STUDENT ORGANIZED.",
+  description: "BBS Coding Club is organized and maintained by undergraduate students who volunteer their time to build projects, organize events, support their peers, and grow the community."
+};
+
 export const ROSTER_SECTION_HEADER = {
-  badge: "CORE LEADERSHIP",
-  title: "STUDENT DIRECTORS & TRACK LEADS",
-  description: "Meet the undergraduate student builders and department coordinators who organize hackathons, run code reviews, and mentor the community.",
+  badge: "CORE TEAM PREVIEW",
+  title: "THE PEOPLE BUILDING THE COMMUNITY.",
+  description: "Run by students, for students. Meet the core members who organize events, build projects, coordinate activities, and support the community.",
   cta: {
-    label: "VIEW COMPLETE ROSTER & MENTORS",
+    label: "MEET THE FULL TEAM",
     path: "/team"
   }
 };
 
-export const ROSTER_PAGES = [
-  // Page 1
-  [
-    {
-      id: "aarav",
-      name: "Kartikeya Singh",
-      branch: "B.TECH CSE '27",
-      role: "CLUB PRESIDENT & COMMUNITY LEAD",
-      mandate: "PRESIDENTIAL MANDATE",
-      image: "",
-      github: "https://github.com/aarav-sharma-bbs",
-      linkedin: "https://linkedin.com/in/aarav-sharma-bbs",
-      email: "aarav@bbscodingclub.org",
-    },
-    {
-      id: "priya",
-      name: "Mohd. Shariq Irshad",
-      branch: "MCA '27",
-      role: "VICE PRESIDENT & OPERATIONS LEAD",
-      mandate: "EXECUTION MANDATE",
-      image: "",
-      github: "https://github.com/priya-patel-bbs",
-      linkedin: "https://linkedin.com/in/priya-patel-bbs",
-      email: "priya@bbscodingclub.org",
-    },
-    {
-      id: "rohan",
-      name: "Adarsh Pandey",
-      branch: "MCA '27",
-      role: "TECH LEAD & ARCHITECTURE LEAD",
-      mandate: "ARCHITECTURAL MANDATE",
-      image: "",
-      github: "https://github.com/rohan-verma-bbs",
-      linkedin: "https://linkedin.com/in/rohan-verma-bbs",
-      email: "rohan@bbscodingclub.org",
-    },
-    {
-      id: "ananya",
-      name: "Sakshi Pandey",
-      branch: "B.TECH CS '27",
-      role: "OUTREACH LEAD & DESIGN LEAD",
-      mandate: "OUTREACH MANDATE",
-      image: "",
-      github: "https://github.com/ananya-singh-bbs",
-      linkedin: "https://linkedin.com/in/ananya-singh-bbs",
-      email: "ananya@bbscodingclub.org",
-    },
-  ],
-  // Page 2
-  [
-    {
-      id: "vikram",
-      name: "Vikram Joshi",
-      branch: "B.TECH ECE '26",
-      role: "PRODUCT LEAD & INNOVATION LEAD",
-      mandate: "INNOVATION MANDATE",
-      image: "/assets/team/vikram.jpg",
-      github: "https://github.com/vikram-joshi-bbs",
-      linkedin: "https://linkedin.com/in/vikram-joshi-bbs",
-      email: "vikram@bbscodingclub.org",
-    },
-    {
-      id: "systems-lead",
-      name: "Systems Co-Lead",
-      branch: "B.TECH CSE '27",
-      role: "JUNIOR PLATFORM ARCHITECT",
-      mandate: "PLATFORM REVIEW MANDATE",
-      image: "/assets/team/priya.jpg",
-      github: "https://github.com/bbs-coding-club",
-      linkedin: "https://linkedin.com/company/bbs-coding-club",
-      email: "systems@bbscodingclub.org",
-    },
-    {
-      id: "contest-setter",
-      name: "Contest Setter",
-      branch: "B.TECH IT '27",
-      role: "SPEED-CODING PROBLEM SETTER",
-      mandate: "ALGORITHMIC MANDATE",
-      image: "/assets/team/rohan.jpg",
-      github: "https://github.com/bbs-coding-club",
-      linkedin: "https://linkedin.com/company/bbs-coding-club",
-      email: "algorithms@bbscodingclub.org",
-    },
-    {
-      id: "os-coord",
-      name: "Open Source Coordinator",
-      branch: "B.TECH CSE '28",
-      role: "GIT & COMMUNITY EVANGELIST",
-      mandate: "COMMUNITY ONBOARDING MANDATE",
-      image: "/assets/team/ananya.jpg",
-      github: "https://github.com/bbs-coding-club",
-      linkedin: "https://linkedin.com/company/bbs-coding-club",
-      email: "oss@bbscodingclub.org",
-    },
-  ],
-];
-
-export const TEAM_PAGE_HEADER = {
-  badge: "CORE LEADERSHIP & ROSTER",
-  title: "RUN BY STUDENTS.\nBUILT FOR BUILDERS.",
-  description: "Every track at BBS Coding Club is led by undergraduate engineering students who volunteer their time to organize hackathons, run code reviews, and mentor first-years."
-};
-
 export const LEADERSHIP_NOMINATIONS_CALLOUT = {
-  badge: "COHORT 2026 TRACK NOMINATIONS",
-  title: "WANT TO LEAD A TRACK IN THE NEXT COHORT?",
-  description: "Applications for track co-leads, contest coordinators, and sophomore mentors are evaluated every semester. Built for undergraduate students who love shipping real code.",
+  badge: "STUDENT INVOLVEMENT",
+  title: "WANT TO HELP BUILD THE COMMUNITY?",
+  description: "We are always looking for curious, active students to help organize workshops, moderate Discord channels, and coordinate hackathon squads.",
   cta: {
-    label: "SUBMIT LEADERSHIP APPLICATION",
+    label: "JOIN THE CORE SQUAD",
     path: "/join"
   }
 };
+
+// Backwards compatibility mappings for older components
+export const TEAM_LEADERSHIP = {
+  president: FEATURED_LEADS[0],
+  trackLeads: FEATURED_LEADS.slice(1)
+};
+
+export const TEAM_MEMBERS = CORE_MEMBERS;
+
+export const ROSTER_PAGES = [
+  FEATURED_LEADS,
+  CORE_MEMBERS.slice(4, 8)
+];

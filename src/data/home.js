@@ -48,14 +48,17 @@ export const ABOUT_PREVIEW = {
   }
 };
 
-export const DEPARTMENTS_PREVIEW = {
-  badge: "SPECIALIZED TRACKS",
-  title: "EXPLORE CLUB TRACKS.",
+export const AREAS_PREVIEW = {
+  badge: "AREAS WE EXPLORE",
+  title: "WHAT WE BUILD & LEARN.",
+  description: "We're building a community around the technologies, problems, and opportunities that excite us.",
   cta: {
-    label: "VIEW ALL 5 DEPARTMENTS",
-    path: "/departments"
+    label: "EXPLORE ALL AREAS",
+    path: "/explore"
   }
 };
+
+export const DEPARTMENTS_PREVIEW = AREAS_PREVIEW;
 
 export const PROJECTS_PREVIEW = {
   badge: "SELECTED BUILDS",

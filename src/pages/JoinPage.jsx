@@ -3,12 +3,13 @@ import { useSearchParams } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Terminal, Users, Sparkles } from 'lucide-react';
 import Section from '../components/Section.jsx';
 import { CLUB_INFO } from '../data/clubInfo.js';
-import { DEPARTMENTS } from '../data/departments.js';
+import { AREAS } from '../data/areas.js';
 import { 
   JOIN_PAGE_HEADER, 
   WHY_JOIN_HIGHLIGHTS, 
   JOIN_STEPS, 
   BRANCH_YEAR_OPTIONS, 
+  INTEREST_OPTIONS,
   ALTERNATE_CHANNELS_CALLOUT 
 } from '../data/join.js';
 
@@ -20,16 +21,16 @@ const HIGHLIGHT_ICONS = {
 
 export default function JoinPage() {
   const [searchParams] = useSearchParams();
-  const initialTrack = searchParams.get('track') || searchParams.get('dept') || DEPARTMENTS[0].id;
+  const initialArea = searchParams.get('area') || searchParams.get('track') || searchParams.get('dept') || AREAS[0].id;
 
-  const [selectedDeptId, setSelectedDeptId] = useState(initialTrack);
-  const selectedDept = DEPARTMENTS.find(d => d.id === selectedDeptId) || DEPARTMENTS[0];
+  const [selectedAreaId, setSelectedAreaId] = useState(initialArea);
+  const activeArea = AREAS.find(a => a.id === selectedAreaId) || AREAS[0];
 
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
-    departmentYear: BRANCH_YEAR_OPTIONS[0]?.value || 'B.Tech CSE - 1st Year',
-    interests: selectedDept.name,
+    departmentYear: BRANCH_YEAR_OPTIONS[0]?.value || 'CS - 1st Year',
+    interests: activeArea.title,
     portfolioUrl: '',
     experienceNote: '',
     honeypot: ''
@@ -38,17 +39,28 @@ export default function JoinPage() {
   const [formState, setFormState] = useState('idle'); // 'idle' | 'submitting' | 'success' | 'error'
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Update form interests when department changes
+  // Update form interests when area changes
   useEffect(() => {
     setFormData(prev => ({
       ...prev,
-      interests: selectedDept.name
+      interests: activeArea.title
     }));
-  }, [selectedDept]);
+  }, [activeArea]);
+
+  useEffect(() => {
+    const queryArea = searchParams.get('area') || searchParams.get('track') || searchParams.get('dept');
+    if (queryArea && AREAS.some(a => a.id === queryArea)) {
+      setSelectedAreaId(queryArea);
+    }
+  }, [searchParams]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleAreaSelect = (id) => {
+    setSelectedAreaId(id);
   };
 
   const handleSubmit = (e) => {
@@ -120,7 +132,7 @@ export default function JoinPage() {
         </div>
       </Section>
 
-      {/* 2. Step 1: Department Selection — Checkered / Grid Background */}
+      {/* 2. Step 1: Choose Areas of Interest — Checkered / Grid Background */}
       <Section variant="grid" className="py-16 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="flex justify-between items-end flex-wrap gap-4 mb-8">
@@ -138,12 +150,12 @@ export default function JoinPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {DEPARTMENTS.map((dept) => {
-              const isSelected = dept.id === selectedDeptId;
+            {AREAS.map((area) => {
+              const isSelected = area.id === selectedAreaId;
               return (
                 <button
-                  key={dept.id}
-                  onClick={() => handleDepartmentSelect(dept.id)}
+                  key={area.id}
+                  onClick={() => handleAreaSelect(area.id)}
                   className={`p-6 rounded text-left border transition-all cursor-pointer relative ${
                     isSelected
                       ? 'bg-bbs-surface border-bbs-accent shadow-lg shadow-bbs-accent/15 ring-2 ring-bbs-accent/40'
@@ -152,7 +164,7 @@ export default function JoinPage() {
                 >
                   <div className="flex justify-between items-start mb-3">
                     <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-bbs-raised border border-bbs-border text-bbs-accent-light">
-                      {dept.code}
+                      {area.shortTitle.toUpperCase()}
                     </span>
                     {isSelected && (
                       <span className="w-5 h-5 rounded-full bg-bbs-accent text-white flex items-center justify-center text-xs">
@@ -161,10 +173,10 @@ export default function JoinPage() {
                     )}
                   </div>
                   <h3 className="font-display text-lg font-bold text-bbs-text mb-2">
-                    {dept.name}
+                    {area.title}
                   </h3>
                   <p className="text-xs text-bbs-muted leading-relaxed line-clamp-3">
-                    {dept.description}
+                    {area.tagline}
                   </p>
                 </button>
               );
@@ -173,52 +185,52 @@ export default function JoinPage() {
         </div>
       </Section>
 
-      {/* 3. Step 2: Track Details & Application Form — Normal Solid Background */}
+      {/* 3. Step 2: Area Details & Application Form — Normal Solid Background */}
       <Section variant="solid" className="py-16 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-            {/* Left: Selected Department Overview */}
+            {/* Left: Selected Area Overview */}
             <div className="lg:col-span-5 bg-bbs-surface border border-bbs-border rounded p-6 sm:p-8 shadow-sm">
               <div className="font-mono text-xs text-bbs-accent-light mb-2 uppercase">
-                SELECTED TRACK DETAILS
+                SELECTED AREA OVERVIEW
               </div>
               <h3 className="font-display text-2xl font-bold text-bbs-text mb-2">
-                {selectedDept.name}
+                {activeArea.title}
               </h3>
               <div className="font-mono text-xs text-bbs-dim mb-4">
-                TRACK LEAD: {selectedDept.leadName.toUpperCase()} ({selectedDept.leadYear})
+                COMMUNITY INTEREST FOCUS
               </div>
               <p className="text-sm text-bbs-muted leading-relaxed mb-6">
-                {selectedDept.description}
+                {activeArea.overview}
               </p>
-
-              <div className="p-4 bg-bbs-raised border border-bbs-border rounded mb-6 text-xs text-bbs-text leading-relaxed">
-                <span className="font-mono text-[10px] text-bbs-dim block mb-1 uppercase">
-                  CORE TRACK OBJECTIVE:
-                </span>
-                {selectedDept.purpose}
-              </div>
 
               <div className="mb-6">
                 <div className="font-mono text-xs text-bbs-dim mb-2 uppercase">
-                  WHAT YOU'LL WORK ON:
+                  WHAT WE EXPLORE & LEARN:
                 </div>
                 <ul className="list-none p-0 m-0 space-y-2">
-                  {selectedDept.responsibilities.slice(0, 3).map((r, idx) => (
+                  {activeArea.topics.slice(0, 3).map((topic, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-xs text-bbs-muted">
                       <CheckCircle2 className="w-3.5 h-3.5 text-bbs-accent shrink-0 mt-0.5" />
-                      <span>{r}</span>
+                      <span>{topic}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
+              <div className="p-4 bg-bbs-raised border border-bbs-border rounded mb-6 text-xs text-bbs-text leading-relaxed">
+                <span className="font-mono text-[10px] text-bbs-dim block mb-1 uppercase">
+                  TYPICAL ACTIVITIES:
+                </span>
+                {activeArea.activities.join(' · ')}
+              </div>
+
               <div className="border-t border-bbs-border pt-4">
                 <div className="font-mono text-[11px] text-bbs-dim mb-2 uppercase">
-                  CORE TOOLS:
+                  CORE TOOLS & TECHNOLOGIES:
                 </div>
                 <div className="flex flex-wrap gap-1.5">
-                  {selectedDept.tools.map((t, idx) => (
+                  {activeArea.technologies.map((t, idx) => (
                     <span key={idx} className="font-mono text-[11px] px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-text">
                       {t}
                     </span>
@@ -236,7 +248,7 @@ export default function JoinPage() {
                 {JOIN_STEPS.step2.title}
               </h2>
               <p className="text-sm text-bbs-muted mb-8">
-                Applying for: <strong className="text-bbs-text">{selectedDept.name}</strong>
+                Selected Focus Area: <strong className="text-bbs-text">{activeArea.title}</strong>
               </p>
 
               {formState === 'success' ? (
@@ -248,7 +260,7 @@ export default function JoinPage() {
                     APPLICATION RECORDED
                   </h3>
                   <p className="text-bbs-muted text-sm sm:text-base leading-relaxed mb-6 max-w-md mx-auto">
-                    Thank you, <strong>{formData.fullName}</strong>! Your application for <strong>{selectedDept.name}</strong> has been registered. You'll receive onboarding details and invitation to the private club channel before our next sprint.
+                    Thank you, <strong>{formData.fullName}</strong>! Your interest in <strong>{activeArea.title}</strong> has been registered. You'll receive onboarding details and an invitation to join our student community network.
                   </p>
                   <div className="flex justify-center gap-4 flex-wrap">
                     <a
@@ -266,8 +278,8 @@ export default function JoinPage() {
                         setFormData({
                           fullName: '',
                           email: '',
-                          departmentYear: BRANCH_YEAR_OPTIONS[0]?.value || 'B.Tech CSE - 1st Year',
-                          interests: selectedDept.name,
+                          departmentYear: BRANCH_YEAR_OPTIONS[0]?.value || 'CS - 1st Year',
+                          interests: activeArea.title,
                           portfolioUrl: '',
                           experienceNote: '',
                           honeypot: ''
@@ -345,6 +357,24 @@ export default function JoinPage() {
                       className="w-full px-4 py-3 rounded bg-bbs-raised border border-bbs-border text-bbs-text font-sans text-sm focus:outline-none focus:border-bbs-accent transition-colors cursor-pointer"
                     >
                       {BRANCH_YEAR_OPTIONS.map((opt) => (
+                        <option key={opt.value} value={opt.value}>{opt.label}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Primary Area of Interest */}
+                  <div>
+                    <label htmlFor="interests" className="block font-mono text-xs text-bbs-muted mb-2 uppercase tracking-wider">
+                      Primary Area of Interest
+                    </label>
+                    <select
+                      id="interests"
+                      name="interests"
+                      value={formData.interests}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded bg-bbs-raised border border-bbs-border text-bbs-text font-sans text-sm focus:outline-none focus:border-bbs-accent transition-colors cursor-pointer"
+                    >
+                      {INTEREST_OPTIONS.map((opt) => (
                         <option key={opt.value} value={opt.value}>{opt.label}</option>
                       ))}
                     </select>

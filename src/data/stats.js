@@ -1,9 +1,34 @@
+/**
+ * stats.js - Authentic Community Metrics & Milestones
+ * 
+ * Accurately reflects the current scale and stage of BBS Coding Club.
+ * Clearly separates the active core organizing team (~10) from the broader student network (250+).
+ */
+
 export const STATS = [
   {
-    id: "est",
+    id: "community-network",
+    number: "250+",
+    value: "250+",
+    label: "COMMUNITY MEMBERS",
+    subtext: "Students connected through our campus WhatsApp & community channels.",
+    detail: "Students connected through our campus WhatsApp & community channels.",
+    isVerified: true
+  },
+  {
+    id: "core-builders",
+    number: "~10",
+    value: "~10",
+    label: "CORE BUILDERS",
+    subtext: "Undergraduate students actively organizing events, mentoring, and maintaining repos.",
+    detail: "Undergraduate students actively organizing events, mentoring, and maintaining repos.",
+    isVerified: true
+  },
+  {
+    id: "foundation-year",
     number: "2025",
     value: "2025",
-    label: "FOUNDATION YEAR",
+    label: "FOUNDATION",
     subtext: "Established as an independent student-led developer community.",
     detail: "Established as an independent student-led developer community.",
     isVerified: true
@@ -12,35 +37,17 @@ export const STATS = [
     id: "student-run",
     number: "100%",
     value: "100%",
-    label: "STUDENT RUN",
-    subtext: "Organized, mentored, and maintained entirely by undergraduate builders.",
-    detail: "Organized, mentored, and maintained entirely by undergraduate builders.",
+    label: "STUDENT LED",
+    subtext: "Organized, mentored, and governed entirely by undergraduate peers.",
+    detail: "Organized, mentored, and governed entirely by undergraduate peers.",
     isVerified: true
-  },
-  {
-    id: "sih-track",
-    number: "SIH '26",
-    value: "SIH '26",
-    label: "INTERNAL QUALIFIER",
-    subtext: "Official campus internal hackathon evaluation track.",
-    detail: "Official campus internal hackathon evaluation track.",
-    isVerified: true
-  },
-  {
-    id: "ideas",
-    number: "∞",
-    value: "∞",
-    label: "IDEAS TO SHIP",
-    subtext: "Open hack nights, collaborative repos, and curiosity-driven builds.",
-    detail: "Open hack nights, collaborative repos, and curiosity-driven builds.",
-    isConceptual: true
   }
 ];
 
 export const STATS_SECTION_HEADER = {
   badge: "COMMUNITY METRICS & STATUS",
   title: "AUTHENTIC BENCHMARKS.",
-  description: "No inflated numbers or vanity statistics. Honest milestones and community standards as of our 2025–2026 foundation."
+  description: "No inflated numbers or vanity metrics. Genuine scale and milestones as we grow our student engineering community."
 };
 
 export const BENCHMARKS_HEADER = {

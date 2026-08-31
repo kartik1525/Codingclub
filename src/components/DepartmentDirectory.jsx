@@ -1,17 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, ChevronDown } from 'lucide-react';
-import { DEPARTMENTS } from '../data/departments.js';
+import { ArrowRight, ArrowUpRight, ChevronDown, CheckCircle2 } from 'lucide-react';
+import { AREAS } from '../data/areas.js';
 
 /**
- * DepartmentDirectory - Interactive Department Explorer
+ * AreasDirectory - Interactive Areas We Explore
  * 
- * Left Side: Full-width directory rows with technical identifiers and metadata
- * Right Side: Dynamic editorial detail panel with lead profile and direct CTAs
+ * Left Side: Full-width directory rows for the 5 interest areas
+ * Right Side: Dynamic editorial detail panel with overview, topics, typical activities & technologies
  * Mobile: Responsive inline-expanding accordion with touch targets & CSS grid height animation
  */
-export default function DepartmentDirectory() {
-  const [activeId, setActiveId] = useState(DEPARTMENTS[0].id);
+export default function AreasDirectory() {
+  const [activeId, setActiveId] = useState(AREAS[0].id);
   const hoverTimeoutRef = useRef(null);
 
   // Subtle 60ms hover intent to prevent rapid thrashing on skimming
@@ -37,8 +37,7 @@ export default function DepartmentDirectory() {
     };
   }, []);
 
-  const activeDept = DEPARTMENTS.find((d) => d.id === activeId) || DEPARTMENTS[0];
-  const activeIndex = DEPARTMENTS.findIndex((d) => d.id === activeId);
+  const activeArea = AREAS.find((a) => a.id === activeId) || AREAS[0];
 
   return (
     <div className="w-full">
@@ -46,19 +45,19 @@ export default function DepartmentDirectory() {
           DESKTOP & TABLET TWO-COLUMN EXPLORER (lg:grid)
           ───────────────────────────────────────────────────────────── */}
       <div className="hidden lg:grid lg:grid-cols-12 gap-8 xl:gap-12 items-start">
-        {/* LEFT COLUMN: Department Directory List (~58% width) */}
+        {/* LEFT COLUMN: Areas Directory List (~58% width) */}
         <div className="lg:col-span-7 flex flex-col border-b border-bbs-border">
-          {DEPARTMENTS.map((dept) => {
-            const isActive = dept.id === activeId;
+          {AREAS.map((area) => {
+            const isActive = area.id === activeId;
 
             return (
               <button
-                key={dept.id}
+                key={area.id}
                 type="button"
-                onMouseEnter={() => handleMouseEnter(dept.id)}
+                onMouseEnter={() => handleMouseEnter(area.id)}
                 onMouseLeave={handleMouseLeave}
-                onFocus={() => handleDirectSelect(dept.id)}
-                onClick={() => handleDirectSelect(dept.id)}
+                onFocus={() => handleDirectSelect(area.id)}
+                onClick={() => handleDirectSelect(area.id)}
                 className={`group w-full text-left py-6 xl:py-7 px-5 sm:px-6 border-t border-bbs-border transition-all duration-300 cursor-pointer relative ${
                   isActive
                     ? 'bg-bbs-surface/80 border-l-4 border-l-bbs-accent pl-6 sm:pl-7'
@@ -68,9 +67,8 @@ export default function DepartmentDirectory() {
                 role="tab"
               >
                 <div className="flex items-start justify-between gap-4">
-                  {/* Department Names & Skills */}
+                  {/* Area Title & Technologies */}
                   <div className="flex-1">
-                    {/* Department Title */}
                     <h3
                       className={`font-display text-xl sm:text-2xl xl:text-[1.65rem] font-bold tracking-tight leading-snug transition-all duration-200 ${
                         isActive
@@ -78,15 +76,15 @@ export default function DepartmentDirectory() {
                           : 'text-bbs-text/80 group-hover:text-bbs-text group-hover:translate-x-1'
                       }`}
                     >
-                      {dept.name}
+                      {area.title}
                     </h3>
 
-                    {/* Monospace Skills / Focus Metadata */}
+                    {/* Monospace Tech / Focus Metadata */}
                     <div className="font-mono text-xs text-bbs-muted group-hover:text-bbs-text/90 mt-2 transition-colors duration-200 flex flex-wrap items-center gap-x-2 gap-y-1">
-                      {dept.skills.slice(0, 4).map((skill, sIdx) => (
+                      {area.technologies.slice(0, 4).map((tech, sIdx) => (
                         <React.Fragment key={sIdx}>
-                          <span>{skill}</span>
-                          {sIdx < Math.min(dept.skills.length - 1, 3) && (
+                          <span>{tech}</span>
+                          {sIdx < Math.min(area.technologies.length - 1, 3) && (
                             <span className="text-bbs-border-focus select-none">·</span>
                           )}
                         </React.Fragment>
@@ -112,96 +110,89 @@ export default function DepartmentDirectory() {
           })}
         </div>
 
-        {/* RIGHT COLUMN: Large Dynamic Detail Panel (~42% width) */}
-        {/* Stable container: no key re-teardown to prevent image re-flash */}
+        {/* RIGHT COLUMN: Stable Dynamic Detail Panel (~42% width) */}
         <div className="lg:col-span-5 sticky top-28">
-          <div
-            className="bg-bbs-surface border border-bbs-border rounded p-7 sm:p-9 shadow-2xl flex flex-col justify-between min-h-[560px] relative overflow-hidden transition-colors duration-300"
-          >
+          <div className="bg-bbs-surface border border-bbs-border rounded p-7 sm:p-9 shadow-2xl flex flex-col justify-between min-h-[560px] relative overflow-hidden transition-colors duration-300">
             {/* Upper Content */}
             <div className="relative z-10">
               {/* Meta Header */}
               <div className="flex justify-between items-center flex-wrap gap-2 mb-4">
                 <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/25 transition-colors">
-                  {activeDept.name.toUpperCase()}
+                  {activeArea.shortTitle.toUpperCase()}
                 </span>
                 <span className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider">
-                  ACTIVE TRACK
+                  INTEREST AREA
                 </span>
               </div>
 
-              {/* Department Name */}
+              {/* Area Title */}
               <h3 className="font-display text-2xl xl:text-3xl font-extrabold text-bbs-text tracking-tight uppercase leading-tight mb-3 transition-colors">
-                {activeDept.name}
+                {activeArea.title}
               </h3>
 
               {/* Tagline Narrative */}
-              <p className="text-sm sm:text-base text-bbs-muted leading-relaxed mb-6 font-sans min-h-[48px]">
-                {activeDept.tagline}
+              <p className="text-sm sm:text-base text-bbs-muted leading-relaxed mb-6 font-sans min-h-[44px]">
+                {activeArea.tagline}
               </p>
 
-              {/* Core Technologies & Tool Badges */}
+              {/* What We Explore (Topics) */}
               <div className="mb-6">
                 <div className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider mb-2.5">
-                  TECHNOLOGIES & TOOLSETS
+                  WHAT WE EXPLORE
+                </div>
+                <div className="grid grid-cols-1 gap-2">
+                  {activeArea.topics.slice(0, 3).map((topic, idx) => (
+                    <div key={idx} className="flex items-center gap-2 text-xs text-bbs-text/90 font-sans">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-bbs-accent shrink-0" />
+                      <span className="truncate">{topic}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Technologies Badges */}
+              <div className="mb-6">
+                <div className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider mb-2.5">
+                  RELEVANT TECHNOLOGIES
                 </div>
                 <div className="flex flex-wrap gap-1.5 min-h-[32px]">
-                  {activeDept.skills.map((skill, idx) => (
+                  {activeArea.technologies.map((tech, idx) => (
                     <span
                       key={idx}
                       className="font-mono text-xs px-2.5 py-1 bg-bbs-raised border border-bbs-border rounded text-bbs-text/90 transition-colors"
                     >
-                      {skill}
+                      {tech}
                     </span>
                   ))}
                 </div>
               </div>
 
-              {/* Purpose Excerpt */}
-              <div className="p-3.5 bg-bbs-raised/60 border border-bbs-border rounded mb-6 text-xs text-bbs-muted leading-relaxed font-sans min-h-[64px]">
+              {/* Typical Activities */}
+              <div className="p-3.5 bg-bbs-raised/60 border border-bbs-border rounded mb-6 text-xs text-bbs-muted leading-relaxed font-sans">
                 <span className="font-mono text-[10px] text-bbs-accent-light uppercase block mb-1">
-                  MISSION MANDATE:
+                  TYPICAL ACTIVITIES:
                 </span>
-                {activeDept.purpose}
+                <span className="text-bbs-text font-medium">
+                  {activeArea.activities.join(' · ')}
+                </span>
               </div>
             </div>
 
-            {/* Lower Content: Lead Profile & Direct Actions */}
+            {/* Lower Content: Direct Actions */}
             <div className="relative z-10 pt-5 border-t border-bbs-border">
-              {/* Department Lead Mini Profile */}
-              <div className="flex items-center gap-3.5 mb-6">
-                <img
-                  src={activeDept.leadImage}
-                  alt={activeDept.leadName}
-                  className="w-11 h-11 rounded-full object-cover object-[center_25%] border border-bbs-border-focus bg-bbs-raised shrink-0 transition-opacity duration-300"
-                />
-                <div>
-                  <div className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider">
-                    TRACK LEAD
-                  </div>
-                  <div className="font-display text-sm font-bold text-bbs-text">
-                    {activeDept.leadName}
-                  </div>
-                  <div className="font-mono text-[11px] text-bbs-accent-light">
-                    {activeDept.leadYear}
-                  </div>
-                </div>
-              </div>
-
-              {/* Action Links with Context-Preserving Deep-Link */}
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
-                  to={`/departments?track=${activeDept.id}`}
+                  to={`/explore?area=${activeArea.id}`}
                   className="flex-1 inline-flex items-center justify-center gap-2 font-mono text-xs font-semibold px-4 py-3 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:scale-[1.02] shadow-md shadow-bbs-accent/20"
                 >
-                  <span>EXPLORE DEPARTMENT</span>
+                  <span>EXPLORE AREA</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </Link>
                 <Link
-                  to={`/join?track=${activeDept.id}`}
+                  to={`/join?area=${activeArea.id}`}
                   className="inline-flex items-center justify-center gap-1.5 font-mono text-xs font-semibold px-4 py-3 rounded bg-bbs-raised border border-bbs-border text-bbs-text hover:border-bbs-accent transition-colors"
                 >
-                  <span>JOIN TRACK</span>
+                  <span>JOIN COMMUNITY</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
@@ -214,15 +205,15 @@ export default function DepartmentDirectory() {
           MOBILE TOUCH-EXPANDING DIRECTORY (< lg:block)
           ───────────────────────────────────────────────────────────── */}
       <div className="lg:hidden flex flex-col border-b border-bbs-border">
-        {DEPARTMENTS.map((dept) => {
-          const isActive = dept.id === activeId;
+        {AREAS.map((area) => {
+          const isActive = area.id === activeId;
 
           return (
-            <div key={dept.id} className="border-t border-bbs-border transition-colors">
+            <div key={area.id} className="border-t border-bbs-border transition-colors">
               {/* Expandable Header Row */}
               <button
                 type="button"
-                onClick={() => setActiveId(isActive ? '' : dept.id)}
+                onClick={() => setActiveId(isActive ? '' : area.id)}
                 className={`w-full text-left py-5 px-4 sm:px-5 flex items-center justify-between gap-4 transition-colors cursor-pointer ${
                   isActive ? 'bg-bbs-surface/80' : 'hover:bg-bbs-surface/30'
                 }`}
@@ -234,10 +225,10 @@ export default function DepartmentDirectory() {
                       isActive ? 'text-bbs-accent-light' : 'text-bbs-text'
                     }`}
                   >
-                    {dept.name}
+                    {area.title}
                   </h3>
                   <p className="font-mono text-xs text-bbs-muted truncate mt-0.5">
-                    {dept.skills.slice(0, 3).join(' · ')}
+                    {area.technologies.slice(0, 3).join(' · ')}
                   </p>
                 </div>
 
@@ -263,53 +254,60 @@ export default function DepartmentDirectory() {
                   <div className="pb-6 px-4 sm:px-5">
                     <div className="p-5 bg-bbs-surface border border-bbs-border rounded shadow-md mt-1">
                       <div className="font-mono text-xs text-bbs-accent-light mb-2">
-                        TRACK DETAILS
+                        AREA OVERVIEW
                       </div>
 
                       <p className="text-xs sm:text-sm text-bbs-muted leading-relaxed mb-4">
-                        {dept.description}
+                        {area.overview}
                       </p>
+
+                      <div className="mb-4">
+                        <div className="font-mono text-[10px] text-bbs-dim uppercase mb-1.5">
+                          WHAT WE EXPLORE
+                        </div>
+                        <div className="space-y-1 mb-3">
+                          {area.topics.slice(0, 3).map((topic, tIdx) => (
+                            <div key={tIdx} className="flex items-center gap-1.5 text-xs text-bbs-text/90">
+                              <CheckCircle2 className="w-3 h-3 text-bbs-accent shrink-0" />
+                              <span className="truncate">{topic}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
 
                       <div className="mb-4">
                         <div className="font-mono text-[10px] text-bbs-dim uppercase mb-1.5">
                           TECHNOLOGIES
                         </div>
                         <div className="flex flex-wrap gap-1">
-                          {dept.skills.map((skill, sIdx) => (
+                          {area.technologies.map((tech, sIdx) => (
                             <span
                               key={sIdx}
                               className="font-mono text-[10px] px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-text"
                             >
-                              {skill}
+                              {tech}
                             </span>
                           ))}
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-3 pt-3 border-t border-bbs-border mb-4">
-                        <img
-                          src={dept.leadImage}
-                          alt={dept.leadName}
-                          className="w-9 h-9 rounded-full object-cover object-[center_25%] border border-bbs-border"
-                        />
-                        <div>
-                          <div className="font-mono text-[10px] text-bbs-dim">LEAD</div>
-                          <div className="font-display text-xs font-bold text-bbs-text">
-                            {dept.leadName}
-                          </div>
-                        </div>
+                      <div className="p-3 bg-bbs-raised border border-bbs-border rounded text-xs text-bbs-muted mb-4">
+                        <span className="font-mono text-[10px] text-bbs-accent-light uppercase block mb-0.5">
+                          ACTIVITIES:
+                        </span>
+                        {area.activities.join(' · ')}
                       </div>
 
                       <div className="flex gap-2">
                         <Link
-                          to={`/departments?track=${dept.id}`}
+                          to={`/explore?area=${area.id}`}
                           className="flex-1 inline-flex items-center justify-center gap-1.5 font-mono text-xs font-semibold px-3 py-2.5 rounded bg-bbs-accent text-white"
                         >
                           <span>EXPLORE</span>
                           <ArrowUpRight className="w-3.5 h-3.5" />
                         </Link>
                         <Link
-                          to={`/join?track=${dept.id}`}
+                          to={`/join?area=${area.id}`}
                           className="inline-flex items-center justify-center gap-1 font-mono text-xs font-semibold px-3 py-2.5 rounded bg-bbs-raised border border-bbs-border text-bbs-text"
                         >
                           <span>JOIN</span>
@@ -327,3 +325,6 @@ export default function DepartmentDirectory() {
     </div>
   );
 }
+
+// Backwards compatibility export
+export { AreasDirectory as DepartmentDirectory };

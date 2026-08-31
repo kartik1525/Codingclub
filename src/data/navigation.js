@@ -2,7 +2,7 @@ import { CLUB_INFO } from './clubInfo.js';
 
 export const HEADER_NAV_LINKS = [
   { label: 'ABOUT', path: '/about' },
-  { label: 'DEPARTMENTS', path: '/departments' },
+  { label: 'EXPLORE', path: '/explore' },
   { label: 'PROJECTS', path: '/projects' },
   { label: 'EVENTS', path: '/events' },
   { label: 'TEAM', path: '/team' },
@@ -16,33 +16,33 @@ export const HEADER_CTA = {
 export const FLOATING_NAV_ITEMS = [
   { path: '/', label: 'Home', iconType: 'home' },
   { path: '/about', label: 'About', iconType: 'compass' },
-  { path: '/departments', label: 'Depts', iconType: 'layers' },
+  { path: '/explore', label: 'Explore', iconType: 'layers' },
   { path: '/projects', label: 'Projects', iconType: 'code' },
   { path: '/events', label: 'Events', iconType: 'calendar' },
   { path: '/team', label: 'Team', iconType: 'users' },
 ];
 
 export const MENU_OVERLAY_ITEMS = [
-  { label: "ABOUT US", id: "about" },
-  { label: "WHAT WE ACTUALLY DO", id: "universe" },
-  { label: "SELECTED BUILDS", id: "projects" },
-  { label: "EVENTS & HACKATHONS", id: "events" },
-  { label: "COMMUNITY COMMITMENTS", id: "stats" },
-  { label: "CORE ROSTER", id: "team" },
-  { label: "JOIN THE CLUB", id: "join" },
+  { label: "ABOUT US", id: "about", path: "/about" },
+  { label: "AREAS WE EXPLORE", id: "areas", path: "/explore" },
+  { label: "SELECTED BUILDS", id: "projects", path: "/projects" },
+  { label: "EVENTS & SESSIONS", id: "events", path: "/events" },
+  { label: "COMMUNITY METRICS", id: "stats", path: "/#stats" },
+  { label: "CORE TEAM", id: "team", path: "/team" },
+  { label: "JOIN THE COMMUNITY", id: "join", path: "/join" },
 ];
 
 export const FOOTER_NAV = {
   explore: [
     { label: 'Home', path: '/' },
     { label: 'About', path: '/about' },
+    { label: 'Areas We Explore', path: '/explore' },
     { label: 'Projects', path: '/projects' },
     { label: 'Events', path: '/events' },
   ],
   community: [
-    { label: 'Team', path: '/team' },
-    { label: 'Join Us', path: '/join' },
-    { label: 'Departments', path: '/departments' },
+    { label: 'Core Team', path: '/team' },
+    { label: 'Join Community', path: '/join' },
     { label: 'Workshops', path: '/events' },
   ],
   connect: [
@@ -52,5 +52,5 @@ export const FOOTER_NAV = {
     { label: 'Email', href: `mailto:${CLUB_INFO.socials.email}`, iconType: 'email' },
   ],
   tagline: "BUILD. LEARN. SHIP.",
-  description: "A student developer community at BBS, where we build projects, learn together, and experiment with technology."
+  description: "An authentic student developer community at BBS College of Engineering & Technology, where peers learn together, build projects, and experiment with technology."
 };

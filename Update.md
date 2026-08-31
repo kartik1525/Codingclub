@@ -1,1308 +1,1497 @@
-# BBS Coding Club Website --- Update Plan
+# BBS Coding Club Website — Master Update Specification v2
 
-**Project:** BBS Coding Club Website\
-**Document:** `Update.md`\
-**Purpose:** Master implementation checklist for the upcoming website
-refactor.\
-**Reference landing page:** https://bbscodingclubb.netlify.app/
+## 1. Purpose
 
-------------------------------------------------------------------------
+This document is the current source of truth for the next phase of the BBS Coding Club website.
 
-## 1. Core Objective
+The goal is to evolve the website from a visually strong but somewhat over-structured concept into an authentic, scalable representation of the actual BBS Coding Club.
 
-Refactor the current BBS Coding Club website into a **multi-page club
-website** while preserving the visual identity and overall structure of
-the current landing page.
+The website should communicate:
 
-The most important principle is:
+> A small, ambitious, student-led engineering community that is actively learning, building, experimenting, and growing.
 
-> **Do not redesign the landing page from scratch. Evolve the current
-> design into a concise, high-quality Home page and move detailed
-> information into dedicated pages.**
+The website must feel:
 
-The current visual language --- grid background, typography, blue
-accent, technical/editorial aesthetic, hero composition, cards,
-animations, and navigation behavior --- should remain the foundation.
+- Professional
+- Editorial
+- Technical
+- Modern
+- Experimental
+- Student-led
+- Authentic
+- Scalable
 
-------------------------------------------------------------------------
+It must NOT feel:
 
-# 2. Information Architecture
+- Corporate
+- Artificially large
+- Over-engineered
+- Template-like
+- "AI-generated"
+- Like a fake organization with unnecessary hierarchy
 
-Create the following primary routes/pages:
+---
 
-  Route            Page          Purpose
-  ---------------- ------------- ---------------------------------------
-  `/`              Home          Concise introduction and overview
-  `/about`         About         Detailed information about the club
-  `/departments`   Departments   Explain all club departments/tracks
-  `/projects`      Projects      Showcase projects in detail
-  `/events`        Events        Complete events/workshops archive
-  `/team`          Team          All members categorized by department
-  `/join`          Join Us       Membership/application flow
+# 2. Current Club Reality
 
-If the existing project already has equivalent routes/components, reuse
-them instead of duplicating functionality.
+The website must reflect the current stage of BBS Coding Club.
 
-------------------------------------------------------------------------
+Current known structure:
 
-# 3. Home / Landing Page
+- Approximately 10 core organizers/builders
+- 250+ students in the broader WhatsApp/community network
+- A growing student developer community
+- Existing/past events and workshops
+- A small number of actual projects/builds
+- Student-led organization
+- No need for a large formal departmental hierarchy yet
 
-## 3.1 Preserve the Current Structure
+## Critical Rule
 
-The existing landing page structure should remain the visual foundation.
+Do NOT fabricate organizational structure simply to make the website look larger.
 
-Do **not** replace the current Hero with a completely different design.
+Do not invent:
 
-Keep the overall flow and visual rhythm of the current page, including:
+- Department heads
+- Department leads
+- Fake team members
+- Fake projects
+- Fake events
+- Fake achievements
+- Fake partnerships
+- Fake statistics
+- Fake testimonials
+- Fake social profiles
+- Fake activities
 
--   Header/top navigation
--   Hero section
--   Hero typography
--   Campus image/card
--   Introductory content
--   Marquee/technical strip if already present
--   Section-based layout
--   Grid background
--   Blue accent color
--   Existing typography system
--   Existing animation language
--   Existing buttons
--   Footer
+If real information is unavailable, leave the data configurable rather than inventing it.
 
-The Home page should feel like the **same website**, just more focused.
+---
 
-------------------------------------------------------------------------
+# 3. Core Information Architecture
 
-## 3.2 Reduce Information Density
+The website should use the following structure:
 
-The Home page should NOT contain every detail about the club.
+```text
+HOME
+│
+├── About
+│
+├── Areas We Explore
+│
+├── Projects
+│
+├── Events
+│
+├── Team
+│
+└── Join Us
 
-It should work as an overview that makes visitors want to explore the
-dedicated pages.
+Primary routes:
 
-Each major topic should have:
-
-1.  A short introduction
-2.  A few key facts/items
-3.  A clear CTA to the dedicated page
-
-For example:
-
-### About preview
-
-Show:
-
--   Short 2--4 line description
--   A few key facts
--   `READ MORE →` / `ABOUT THE CLUB →`
-
-Do not place the complete About content on Home.
-
-------------------------------------------------------------------------
-
-### Departments preview
-
-Show:
-
--   A short explanation
--   A small selection or summary of departments
--   Department count or another useful statistic
--   CTA: `VIEW DEPARTMENTS →`
-
-Full department descriptions belong on `/departments`.
-
-------------------------------------------------------------------------
-
-### Projects preview
-
-Show:
-
--   2--4 featured projects
--   Project title
--   Short one-line description
--   Technology/category tags where appropriate
--   CTA: `VIEW ALL PROJECTS →`
-
-Do not turn Home into the complete project portfolio.
-
-------------------------------------------------------------------------
-
-### Events preview
-
-Show only a few highlighted/upcoming events.
-
-For example:
-
--   Next/upcoming event
--   2--3 recent or featured events
--   Date
--   Event type
--   Short description
-
-CTA:
-
-`VIEW ALL EVENTS →`
-
-The complete archive belongs on `/events`.
-
-------------------------------------------------------------------------
-
-### Team preview
-
-Show a compact representation of the team.
-
-For example:
-
--   Core leadership highlights
--   Department count
--   A few featured members
-
-CTA:
-
-`MEET THE TEAM →`
-
-Do not display the entire team roster on Home.
-
-------------------------------------------------------------------------
-
-### Join preview
-
-Keep the Join section concise.
-
-Explain why students should join and show a strong CTA:
-
-`JOIN BBS CODING CLUB →`
-
-The actual joining/application experience should happen on `/join`.
-
-------------------------------------------------------------------------
-
-# 4. Join Us Page
-
-## Route
-
-`/join`
-
-## Purpose
-
-Create a dedicated page where students can understand the joining
-process and select the department they want to join.
-
-The page should feel like an **application/onboarding experience**, not
-just a contact page.
-
-------------------------------------------------------------------------
-
-## 4.1 Suggested Flow
-
-### Step 1 --- Introduction
-
-Headline such as:
-
-> BUILD WITH US.
-
-or another phrase consistent with the existing design.
-
-Briefly explain:
-
--   Who can join
--   What students can learn
--   What they can contribute
--   What being part of the club means
-
-------------------------------------------------------------------------
-
-### Step 2 --- Department Selection
-
-Present the club departments as interactive cards.
-
-Each card should contain:
-
--   Department name
--   Short description
--   What the department works on
--   Relevant skills
--   Small visual/icon treatment
--   `SELECT →`
-
-Example categories can be populated from the actual club structure
-rather than hardcoded assumptions.
-
-------------------------------------------------------------------------
-
-### Step 3 --- Department Details
-
-After selecting a department, show:
-
--   Department description
--   Responsibilities
--   Skills useful for the department
--   What a student can expect
--   Current openings/status if applicable
-
-------------------------------------------------------------------------
-
-### Step 4 --- Application CTA
-
-Provide a clear application button.
-
-The application destination should be configurable, for example:
-
--   Google Form
--   Existing application system
--   Internal form
-
-Do not invent a backend/application system if one does not already
-exist.
-
-------------------------------------------------------------------------
-
-# 5. Team Page
-
-## Route
-
-`/team`
-
-## Purpose
-
-Create a dedicated page containing the **complete BBS Coding Club
-team**, categorized by department.
-
-The Team page should NOT simply be a long grid of identical profile
-cards.
-
-It should feel like a designed organizational directory.
-
-------------------------------------------------------------------------
-
-## 5.1 Team Page Structure
-
-### Header
-
-Use a strong editorial heading.
-
-Example:
-
-> RUN BY STUDENTS.\
-> BUILT FOR BUILDERS.
-
-Follow it with a short explanation of how the club is organized.
-
-------------------------------------------------------------------------
-
-### Department Navigation
-
-Provide a way to navigate between departments.
-
-Possible UI:
-
--   Horizontal department tabs
--   Filter buttons
--   Sticky category navigation
--   Department selector
-
-Keep the interaction visually consistent with the current website.
-
-------------------------------------------------------------------------
-
-### Department Sections
-
-For every department, show:
-
--   Department name
--   Short department description
--   Department lead/head if applicable
--   Members
--   Roles
--   Optional social/profile links
-
-------------------------------------------------------------------------
-
-## 5.2 Member Card Design
-
-Create a visually distinctive member card system.
-
-Cards may include:
-
--   Member photograph/avatar
--   Name
--   Role
--   Department
--   Short descriptor
--   LinkedIn/GitHub where available
--   Hover interaction
-
-Avoid making every card excessively large.
-
-The goal is to make the roster **easy to scan** while still feeling
-premium.
-
-------------------------------------------------------------------------
-
-## 5.3 Featured Leadership
-
-The top/core leadership can receive stronger visual treatment than
-ordinary members.
-
-Possible structure:
-
-**CORE**
-
-Large featured leadership cards
-
-↓
-
-**DEPARTMENTS**
-
-Department-specific member groups
-
-This creates hierarchy instead of treating every member identically.
-
-------------------------------------------------------------------------
-
-# 6. Events Page
-
-## Route
-
-`/events`
-
-## Purpose
-
-Move the complete event/workshop information away from the landing page.
-
-The Events page becomes the central archive.
-
-------------------------------------------------------------------------
-
-## 6.1 Event Categories
-
-Support categories such as:
-
--   Hackathons
--   Workshops
--   Coding competitions
--   Seminars
--   Technical sessions
--   Community events
--   Other club activities
-
-Use the actual event categories present in the project.
-
-------------------------------------------------------------------------
-
-## 6.2 Event Layout
-
-Each event should have:
-
--   Event name
--   Date
--   Category
--   Short description
--   Event image if available
--   Status
--   CTA/details
-
-Possible statuses:
-
--   UPCOMING
--   REGISTRATION OPEN
--   COMPLETED
--   ARCHIVED
-
-Do not fabricate event data.
-
-------------------------------------------------------------------------
-
-## 6.3 Event Filtering
-
-If the number of events is large, provide filtering/sorting by:
-
--   Category
--   Year
--   Upcoming/Completed
-
-Keep the filtering simple and fast.
-
-------------------------------------------------------------------------
-
-# 7. About Page
-
-## Route
-
-`/about`
-
-The About page should contain the detailed version of the club
-information that currently does not need to occupy the Home page.
-
-Possible sections:
-
-1.  Who we are
-2.  Why the club exists
-3.  Mission
-4.  Vision
-5.  What we do
-6.  What students gain
-7.  Club culture
-8.  Faculty/institutional connection if applicable
-9.  Key statistics
-10. CTA to Join
-
-Use real information from the project/content source.
-
-Do not create exaggerated claims.
-
-------------------------------------------------------------------------
-
-# 8. Departments Page
-
-## Route
-
-`/departments`
-
-This page should provide the detailed view of every department.
-
-Each department can contain:
-
--   Name
--   Purpose
--   Responsibilities
--   Typical projects/work
--   Skills
--   Tools/technologies
--   Current lead
--   Link to relevant projects
--   Link to join that department
-
-This page should connect naturally to both `/team` and `/join`.
-
-------------------------------------------------------------------------
-
-# 9. Projects Page
-
-## Route
-
-`/projects`
-
-Create the complete project showcase here.
-
-The Home page should only show selected/featured projects.
-
-Project cards can include:
-
--   Project title
--   Description
--   Category
--   Technologies
--   Team
--   Status
--   GitHub/demo link
--   Project image
-
-Possible filtering:
-
--   Web
--   AI/ML
--   App
--   Hardware
--   Open source
--   Other actual project categories
-
-Do not invent projects or statistics.
-
-------------------------------------------------------------------------
-
-# 10. Navigation System
-
-The website should have **two navigation states**.
-
-## 10.1 Top Navbar
-
-Keep the current top navbar.
-
-It should:
-
--   Appear normally while the visitor is at/near the top of the Home
-    page
--   NOT remain permanently fixed across the entire website
--   Be part of the normal page flow or hero experience
-
-The top navbar should contain the primary navigation and theme control.
-
-------------------------------------------------------------------------
-
-## 10.2 Floating Bottom Navbar
-
-Keep the floating bottom navigation concept inspired by the reference
-website.
-
-The floating navbar should:
-
--   Have a permanent/opaque background
--   NOT be transparent
--   Be clearly separated from page content
--   Have rounded/pill styling
--   Stay above the page content
--   Appear with a smooth slide-up animation
--   Be used as the compact navigation after the hero transitions out
-
-### Visibility behavior
-
-At the beginning of the Home page:
-
-**Top navbar = visible**\
-**Floating navbar = hidden**
-
-When the Hero section passes approximately **50% of the viewport
-height**:
-
-**Top navbar = hidden**\
-**Floating navbar = visible**
-
-The floating navbar should animate upward smoothly.
-
-When the user scrolls back to the Hero/top:
-
-**Top navbar = visible**\
-**Floating navbar = hidden**
-
-Avoid abrupt display toggles.
-
-Use the existing animation stack if already present.
-
-------------------------------------------------------------------------
-
-# 11. Theme System
-
-Maintain both:
-
--   Dark theme
--   Light theme
-
-The theme switch must work consistently across every page.
-
-Do not create separate visual systems for different pages.
-
-------------------------------------------------------------------------
-
-## 11.1 Light Theme
-
-Light mode should maintain the existing editorial/technical aesthetic.
-
-Use:
-
--   Light page background
--   Dark typography
--   Existing blue accent
--   Subtle borders
--   Subtle grid background
--   White/light cards
--   Strong contrast
-
-Avoid making Light Mode look like a completely different website.
-
-------------------------------------------------------------------------
-
-## 11.2 Dark Theme
-
-Dark mode should retain the current:
-
--   Black/dark background
--   White typography
--   Blue accent
--   Dark cards
--   Subtle grid
--   Technical aesthetic
-
-------------------------------------------------------------------------
-
-## 11.3 Theme Persistence
-
-The selected theme should persist across navigation.
-
-For example:
-
-1.  User selects Dark
-2.  User opens Team
-3.  Team remains Dark
-4.  User opens Events
-5.  Events remains Dark
-
-Use the existing theme implementation if one already exists.
-
-------------------------------------------------------------------------
-
-# 12. Visual Identity
-
-Preserve the current BBS Coding Club identity.
-
-### Keep
-
--   Current hero concept
--   Current typography hierarchy
--   Blue accent
--   Technical/editorial style
--   Grid background
--   Sharp borders
--   Monospace labels
--   Large headings
--   Structured cards
--   Subtle animations
--   Minimal but expressive UI
-
-### Avoid
-
--   Generic SaaS dashboard aesthetics
--   Excessive gradients
--   Excessive glassmorphism
--   Random neon colors
--   Overuse of rounded cards
--   Stock-template appearance
--   Unnecessary animations
--   AI-generated-looking decorative elements
-
-The site should feel like a **real student developer organization**, not
-an AI website template.
-
-------------------------------------------------------------------------
-
-# 13. Green Dot / AI-Looking Indicator
-
-Remove the unnecessary green status dot that appears beside:
-
-> BBS CODING CLUB
-
-The dot currently makes the interface look AI-generated/template-like.
-
-Do not replace it with another decorative status indicator.
-
-If an actual status indicator is required elsewhere, it should have a
-clear semantic purpose.
-
-------------------------------------------------------------------------
-
-# 14. Logo/Header
-
-The header currently contains:
-
--   BBS Coding Club logo
--   College logo
--   Club name
--   Established year/community label
-
-The two logos should be visually balanced and large enough to read
-clearly.
-
-Recommended hierarchy:
-
-**College logo + Coding Club logo**\
-→ Club name\
-→ `EST. 2025 — STUDENT COMMUNITY`
-
-Do not make the logos so small that they become decorative pixels.
-
-Maintain adequate spacing between the two logos.
-
-The header should remain compact and professional rather than oversized.
-
-------------------------------------------------------------------------
-
-# 15. Shared Components
-
-Avoid duplicating UI between pages.
-
-Create/reuse shared components such as:
-
--   `Navbar`
--   `FloatingNavbar`
--   `ThemeToggle`
--   `Footer`
--   `SectionHeader`
--   `Button`
--   `PageHeader`
--   `DepartmentCard`
--   `MemberCard`
--   `EventCard`
--   `ProjectCard`
--   `StatCard`
-
-Use a shared data source for:
-
--   Departments
--   Team members
--   Events
--   Projects
--   Navigation items
-
-This will make future updates much easier.
-
-------------------------------------------------------------------------
-
-# 16. Routing
-
-Use proper client-side routing.
-
-Recommended routes:
-
-``` text
 /
  /about
- /departments
+ /explore
  /projects
  /events
  /team
  /join
-```
 
-Navigation should work without full-page reloads.
+Legacy compatibility:
 
-Make sure direct navigation to routes also works after deployment on
-Netlify.
+/departments
 
-Configure SPA fallback/redirect behavior if required by the current
-deployment setup.
+should redirect to:
 
-------------------------------------------------------------------------
+/explore
 
-# 17. Responsive Design
+or render the Explore page without exposing "Departments" as the primary user-facing terminology.
 
-The new pages must work on:
+4. Remove the Formal Department Concept
 
--   Desktop
--   Laptop
--   Tablet
--   Mobile
+The website should no longer present BBS Coding Club as having formal departments.
 
-Pay particular attention to:
+Remove/replace user-facing terminology such as:
 
-### Mobile navbar
-
-The floating navbar should not become too wide.
-
-Possible behavior:
-
--   Compact navigation
--   Horizontal scroll
--   Menu trigger
--   Reduced labels
-
-### Team
-
-Do not simply shrink desktop cards.
-
-Create a sensible mobile layout.
-
-### Events
-
-Cards should stack cleanly.
-
-### Join
-
-Department selection should become a vertically stacked, touch-friendly
-interface.
-
-------------------------------------------------------------------------
-
-# 18. Animation Guidelines
-
-Animations should enhance the website, not distract from it.
-
-Keep the current animation language where possible.
+Departments
+Department Leads
+Department Heads
+Track Leads
+Specialized Departments
+Specialized Tracks
+Department Directory
 
 Use:
 
--   Smooth section reveals
--   Hover states
--   Slide transitions
--   Floating navbar slide-up
--   Page transitions if already supported
--   Existing GSAP/Lenis setup if present
+AREAS
 
-Avoid:
+The preferred section terminology is:
 
--   Constant motion
--   Excessive parallax
--   Long loading animations
--   Bouncy UI everywhere
+AREAS WE EXPLORE
 
-------------------------------------------------------------------------
+The Areas represent things the community learns, builds, experiments with, and participates in.
 
-# 19. Landing Page Content Philosophy
+They are NOT formal organizational divisions.
 
-The Home page should answer these questions quickly:
+5. Areas We Explore
 
-### Who are we?
+Create five scalable interest areas.
 
-Short answer.
+5.1 Web & Software Development
 
-### What do we do?
+Focus:
 
-Short answer.
+Frontend development
+Backend development
+Full-stack systems
+APIs
+Databases
+Software architecture
+Developer tooling
 
-### What can I explore?
+Description should communicate that members learn by building real software rather than simply attending lectures.
 
-Departments / Projects / Events / Team.
+5.2 AI & Machine Learning
 
-### Why should I care?
+Focus:
 
-Short value proposition.
+Machine learning
+Generative AI
+Computer vision
+Applied AI
+Model experimentation
+AI-powered applications
+Research-oriented experimentation
 
-### How do I join?
+Avoid making unsupported claims about research output.
 
-Clear Join CTA.
+5.3 Competitive Programming
 
-Everything else belongs on the dedicated pages.
+Focus:
 
-------------------------------------------------------------------------
+Data structures
+Algorithms
+Problem solving
+Codeforces
+Competitive programming practice
+Interview preparation
+ICPC-style problem solving
 
-# 20. Recommended Home Flow
+Only mention competitions/preparation that the club actually supports.
 
-Keep the current landing-page structure but simplify the content to
-something close to:
+5.4 Open Source & Developer Tools
 
-``` text
-HEADER
-   ↓
-HERO
-   ↓
-MARQUEE / TECH STRIP
-   ↓
-ABOUT PREVIEW
-   ↓
-DEPARTMENTS PREVIEW
-   ↓
-FEATURED PROJECTS
-   ↓
-EVENTS PREVIEW
-   ↓
-STATS
-   ↓
-TEAM PREVIEW
-   ↓
-JOIN CTA
-   ↓
-FOOTER
-```
+Focus:
 
-The exact existing section order can be retained where it already works
-well.
+Git and GitHub workflows
+Open-source contribution
+Developer tooling
+Collaboration
+Documentation
+Upstream contributions
 
-The goal is **not** to force a new structure, but to reduce the amount
-of information shown in each section.
+Do not claim existing open-source contributions unless actual projects/data exist.
 
-------------------------------------------------------------------------
+5.5 Hackathons & Innovation
 
-# 21. Data Architecture
+Focus:
 
-Keep content separate from presentation where practical.
+Hackathons
+Smart India Hackathon preparation where applicable
+Rapid prototyping
+Product ideas
+MVP development
+System architecture
+Team collaboration
 
-For example:
+Do not claim specific hackathon results unless supported by real data.
 
-``` js
-departments
-teamMembers
-events
-projects
-```
+6. Areas Explorer Interaction
 
-should ideally be maintained as structured data.
+The existing interactive expandable-row/detail-panel concept should be retained.
 
-Example:
+The interaction is good and should remain a major visual feature.
 
-``` js
-{
-  name: "Department Name",
-  description: "Short description",
-  lead: "...",
-  members: [...]
-}
-```
+However, its content must change.
 
-This allows the same data to power:
+Desktop
 
--   Home previews
--   Departments page
--   Team page
--   Join page
+Use an expandable/interactive row layout:
 
-without duplicating content.
+WEB & SOFTWARE DEVELOPMENT                         +
+────────────────────────────────────────────────────
 
-------------------------------------------------------------------------
+AI & MACHINE LEARNING                              +
+────────────────────────────────────────────────────
 
-# 22. Do Not Fabricate Data
+COMPETITIVE PROGRAMMING                             +
+────────────────────────────────────────────────────
 
-This is important.
+OPEN SOURCE & DEVELOPER TOOLS                       +
+────────────────────────────────────────────────────
 
-Do NOT invent:
+HACKATHONS & INNOVATION                             +
+────────────────────────────────────────────────────
 
--   Team members
--   Roles
--   Events
--   Project statistics
--   Hackathon wins
--   Member counts
--   Department heads
--   Social links
--   Application information
+When an area is selected, display a right-side detail panel.
 
-If information does not exist in the current project, leave it
-configurable or mark it clearly for later content insertion.
+Detail Panel
 
-------------------------------------------------------------------------
+The panel should contain:
 
-# 23. Accessibility
+Area Title
+
+Large editorial heading.
+
+Overview
+
+Short, meaningful description.
+
+WHAT WE EXPLORE
+
+A list of relevant technologies/topics.
+
+TYPICAL ACTIVITIES
+
+Examples:
+
+Hands-on Workshops
+Code Teardowns
+Build Sessions
+Async Builds
+Hackathon Sprints
+Peer Learning
+
+IMPORTANT:
+
+These are examples of activity types.
+
+Do not present an activity as something the club definitely conducts unless supported by actual club data.
+
+TECHNOLOGIES / TOPICS
+
+Display the relevant technologies/topics for the selected area.
+
+Actions
+
+Possible actions:
+
+EXPLORE AREA →
+JOIN THE COMMUNITY →
+
+Use:
+
+/explore?area=<area-id>
+
+and:
+
+/join?area=<area-id>
+
+where appropriate.
+
+Do not route users to a fake department page.
+
+7. Explore Page
+
+Create or refactor the current Departments page into:
+
+/explore
+
+Page title:
+
+AREAS WE EXPLORE.
+
+Supporting subtitle:
+
+FIVE FOCUS AREAS. ONE STUDENT DEVELOPER COMMUNITY.
+
+Supporting description:
+
+We're building a community around the technologies, problems, and opportunities that excite us. Explore what members learn, build, and experiment with.
+
+The page should include:
+
+Area selector
+Area detail
+Technologies/topics
+Activities
+Relevant real projects where available
+Relevant real events where available
+Community-oriented CTA
+
+Do NOT include:
+
+Department heads
+Department leads
+Fake organizational hierarchy
+8. Homepage
+
+The homepage should remain the primary overview of the club.
+
+Do NOT turn the homepage into a complete database of everything the club has.
+
+The landing page should provide previews and direct users to dedicated pages.
+
+Desired flow
+Hero
+↓
+About / Club Introduction
+↓
+What We Learn / Build / Explore
+↓
+Areas We Explore
+↓
+Selected Projects
+↓
+Selected / Recent Events
+↓
+Community Metrics
+↓
+Core Team Preview
+↓
+Join Us CTA
+↓
+Footer
+
+The homepage should NOT showcase every:
+
+Event
+Project
+Team member
+Area detail
+Workshop
+Activity
+
+Instead, show a curated preview.
+
+9. Hero Section
+
+Preserve the existing hero design and animations.
+
+The hero should continue to use the established visual language:
+
+Large typography
+Typewriter animation
+"WE" remaining permanently visible
+Dynamic text such as:
+Learn
+Build
+Experiment
+Grid/checkered background
+College imagery where appropriate
+Coding Club logo
+College logo
+
+Do not introduce unnecessary additional badges, dots, or decorative indicators.
+
+The green dot beside the BBS Coding Club branding should remain removed.
+
+10. Typewriter / Hero Animation
+
+The existing typewriter concept should remain.
+
+Required behavior:
+
+WE Learn
+WE Build
+WE Experiment
+
+"WE" remains permanently visible.
+
+The dynamic word should change without causing layout shift.
+
+Critical requirement
+
+Changing the typewriter word must NOT:
+
+Change section height
+Shrink the page
+Expand the page unexpectedly
+Cause content below the hero to jump
+Cause noticeable layout shift
+
+Reserve a stable width/height for the dynamic text.
+
+Use CSS/layout techniques rather than JavaScript hacks where possible.
+
+11. Scroll Text Animation
+
+The website uses a React Bits-style scroll text animation.
+
+The intended behavior:
+
+Each word/character can appear progressively
+Content should appear as it enters the viewport
+Content should not be permanently visible before entering the viewport where the design calls for reveal behavior
+Animation should feel smooth and intentional
+Do not allow the animation to cause layout shifts
+
+GSAP + ScrollTrigger may be used where already present.
+
+Do not introduce duplicate animation libraries unnecessarily.
+
+12. Lenis Smooth Scrolling
+
+Continue using Lenis for smooth scrolling.
+
+Requirements:
+
+Smooth desktop scrolling
+Appropriate touch/mobile behavior
+No scroll-lock issues
+No conflict with GSAP ScrollTrigger
+Proper ScrollTrigger synchronization
+No excessive smoothing that makes navigation feel delayed
+13. Background Grid Pattern
+
+The existing checkered/grid background should be used as a recurring visual motif.
+
+It should NOT appear continuously behind the entire page.
+
+The pattern should appear in alternating sections.
+
+Desired rhythm:
+
+Hero
+GRID BACKGROUND
+
+About
+PLAIN
+
+Areas We Explore
+GRID BACKGROUND
+
+Projects
+PLAIN
+
+Schedule & Activities / Events
+GRID BACKGROUND
+
+Community / Stats
+PLAIN
+
+Core Leadership
+GRID BACKGROUND
+
+Join
+PLAIN
+
+Footer
+GRID BACKGROUND
+
+Apply the same visual rhythm across other page routes where appropriate.
+
+The background system should be implemented as a reusable pattern/component rather than duplicated manually.
+
+14. Navigation System
+
+There are two navigation states.
+
+Hero / Top Navigation
+
+The top navigation is visible while the hero is occupying the primary viewport.
+
+It should NOT be permanently sticky across the entire website.
+
+Once the hero crosses approximately the configured visibility threshold, the top navigation should transition away.
+
+Floating Bottom Navigation
+
+The floating bottom navigation should then appear with a smooth upward slide animation.
+
+Conceptually:
+
+Hero in primary viewport
+        ↓
+Top navigation visible
+        ↓
+Hero crosses threshold
+        ↓
+Top navigation hides
+        ↓
+Floating navigation slides upward
+
+The transition should feel intentional and polished.
+
+Do not remove the top navigation entirely.
+
+15. Floating Navigation
+
+Primary links:
+
+Home
+About
+Explore
+Projects
+Events
+Team
+
+Use:
+
+Explore
+
+instead of:
+
+Departments
+Depts
+
+The floating dock should retain the established visual identity.
+
+Mobile
 
 Ensure:
 
--   Buttons are keyboard accessible
--   Navigation links have meaningful labels
--   Images have alt text
--   Theme toggle is accessible
--   Focus states are visible
--   Text contrast is sufficient
--   Interactive cards have appropriate semantics
+No viewport overflow
+Safe-area bottom padding
+Comfortable touch targets
+No cramped labels
+No accidental persistent hover state
+Proper spacing on small devices
+16. Typography
 
-Do not sacrifice accessibility for visual effects.
+Remove the excessive "vibe-coded" technical prefixes.
 
-------------------------------------------------------------------------
+Do NOT use section headings such as:
 
-# 24. Performance
+01 / ABOUT
+02 / DEPARTMENTS
+03 / PROJECTS
+// EVENTS
+// TEAM
 
-Avoid unnecessary performance regressions.
+Remove unnecessary:
 
-Check:
+01
+02
+03
+04
+05
+06
+//
+/
 
--   Image sizes
--   Lazy loading for non-critical images
--   Animation performance
--   Excessive JavaScript
--   Layout shifts
--   Font loading
--   Mobile performance
+from section labels and metadata.
 
-The existing Hero must not jump/shrink when the typewriter text changes.
+Technical styling should come from:
 
-Reserve a stable area for the changing typewriter text so that different
-words do not change the Hero's height.
+Typography
+Grid
+Spacing
+Borders
+Monospace accents
+Interaction
+Motion
 
-------------------------------------------------------------------------
+rather than excessive code-like symbols.
 
-# 25. Typewriter Layout Stability
+The website should look technically sophisticated, not artificially "AI coded."
 
-Existing issue:
+17. Section Headers
 
-When the typewriter begins a new word, the Hero height changes slightly
-and the entire page appears to shrink and then return to normal height.
+Use a consistent editorial hierarchy.
 
-Fix this.
+Recommended structure:
 
-The typewriter container must have a stable height/min-height based on
-the largest expected text.
+AREAS WE EXPLORE
 
-The animation should change the text without changing the Hero's overall
-layout height.
+WHAT WE BUILD & LEARN.
 
-Acceptance condition:
+or equivalent.
 
-> Changing from one typewriter word to another must NOT cause visible
-> page height jumps.
+Avoid inconsistent typography between sections.
 
-------------------------------------------------------------------------
+Maintain:
 
-# 26. Quality Bar
+Strong hierarchy
+Fluid responsive sizing
+Tight tracking
+Controlled line-height
+Consistent spacing
 
-The final website should feel:
+Mobile headers should not create awkward wrapping.
 
--   Premium
--   Technical
--   Student-built
--   Modern
--   Editorial
--   Confident
--   Minimal
--   Authentic
+18. Bento Cards
 
-It should NOT feel:
+The current Bento-card direction should remain.
 
--   Like a generic React template
--   Like an AI-generated landing page
--   Like a corporate SaaS dashboard
--   Over-designed
--   Cluttered
+Bento cards should be used for sections where multiple related pieces of information need to be displayed.
 
-------------------------------------------------------------------------
+They should NOT become generic:
 
-# 27. Implementation Order
+icon
+title
+paragraph
+button
 
-Use this order to minimize breakage:
+cards.
 
-### Phase 1 --- Audit
+Use:
 
--   Inspect current components
--   Inspect current routes
--   Inspect theme system
--   Inspect animation system
--   Inspect existing data
--   Identify reusable components
+Different card sizes
+Asymmetric composition
+Strong hierarchy
+Image/text combinations
+Interactive states
+Large typography
+Data-driven content
 
-### Phase 2 --- Navigation
+Avoid making every card visually identical.
 
--   Implement shared routing
--   Preserve current top navbar
--   Implement floating bottom navbar
--   Implement Hero 50% visibility transition
--   Add slide-up animation
+19. Expandable Rows
 
-### Phase 3 --- Home Cleanup
+The section immediately following the Bento content should NOT simply repeat the same Bento-card visual language.
 
--   Preserve current Hero
--   Reduce section content
--   Convert detailed sections into previews
--   Add links to dedicated pages
--   Fix typewriter layout shift
-
-### Phase 4 --- Dedicated Pages
-
-Implement:
-
-1.  About
-2.  Departments
-3.  Projects
-4.  Events
-5.  Team
-6.  Join Us
-
-### Phase 5 --- Theme
-
--   Verify Light Mode
--   Verify Dark Mode
--   Verify persistence across routes
--   Check every component in both themes
-
-### Phase 6 --- Responsive
-
-Test:
+Keep the previously selected:
 
--   Desktop
--   Tablet
--   Mobile
-
-### Phase 7 --- Polish
-
--   Typography
--   Spacing
--   Borders
--   Hover states
--   Animations
--   Image treatment
--   Loading behavior
-
-### Phase 8 --- Production Test
-
-Verify:
-
--   `npm run build`
--   All routes
--   Direct URL navigation
--   Netlify deployment
--   Theme persistence
--   Navbar transitions
--   Mobile navigation
--   No console errors
+Expandable Rows
 
-------------------------------------------------------------------------
+pattern.
 
-# 28. Final Acceptance Checklist
+This creates visual contrast.
 
-## Home
+Use:
 
--   [x] Current Hero structure preserved
--   [x] Hero remains visually recognizable
--   [x] Landing page contains summaries, not full content
--   [x] About preview exists
--   [x] Departments preview exists
--   [x] Projects preview exists
--   [x] Events preview exists
--   [x] Team preview exists
--   [x] Join CTA exists
--   [x] Footer exists
--   [x] Typewriter causes no layout shift
+Horizontal rows
+Large type
+Thin separators
+Expand/collapse motion
+Right-side detail panel
+Strong hover state
 
-## Navigation
+This pattern is now primarily used for:
 
--   [x] Top navbar exists
--   [x] Top navbar is not permanently sticky across the entire website
--   [x] Top navbar is visible at the top/Hero
--   [x] Floating navbar is initially hidden
--   [x] Floating navbar appears around 50% Hero viewport threshold
--   [x] Floating navbar slides upward
--   [x] Floating navbar has opaque/permanent background
--   [x] Floating navbar works on all relevant pages
--   [x] Navigation routes work
+AREAS WE EXPLORE
 
-## Theme
+20. Team Section
 
--   [x] Light Mode works
--   [x] Dark Mode works
--   [x] Theme persists between pages
--   [x] Both themes have good contrast
--   [x] No broken component styles
+The team is one of the most important authentic elements of the website.
 
-## Branding
+Do not present fake departments.
 
--   [x] Coding Club logo is clearly visible
--   [x] College logo is clearly visible
--   [x] Logos are visually balanced
--   [x] Header spacing looks intentional
--   [x] Unnecessary green dot beside BBS Coding Club removed
+Homepage
 
-## Team
+Show approximately 3–4 featured core members.
 
--   [x] Dedicated Team page exists
--   [x] Members categorized by department
--   [x] Leadership has clear hierarchy
--   [x] Member cards are readable
--   [x] Social/profile links work where available
-
-## Events
+Current confirmed featured members:
 
--   [x] Dedicated Events page exists
--   [x] Full event information moved here
--   [x] Events are categorized
--   [x] Event cards are responsive
--   [x] No fabricated event information
-
-## Join
+President — Kartikeya Singh
+Vice President — Mohd. Shariq Irshad
+Tech Lead — Adarsh Pandey
+Outreach Lead — Sakshi Pandey
 
--   [x] Dedicated Join Us page exists
--   [x] Department selection exists
--   [x] Department information is shown
--   [x] Application CTA exists
--   [x] No fabricated application system
+Only use these exact roles if they are confirmed by the current project data.
 
-## Projects
+The homepage should communicate:
 
--   [x] Dedicated Projects page exists
--   [x] Featured projects can appear on Home
--   [x] Complete project information exists on Projects page
--   [x] Project links work
+THE PEOPLE BUILDING THE COMMUNITY.
 
-## Technical
+Supporting copy:
 
--   [x] No unnecessary duplicated components
--   [x] Shared data is reused
--   [x] No console errors
--   [x] Production build succeeds
--   [x] Netlify direct routes work
--   [x] Responsive layout works
--   [x] Images have appropriate alt text
--   [x] Animations do not cause layout shifts
+Run by students, for students. Meet the core members who organize events, build projects, coordinate activities, and support the community.
 
-------------------------------------------------------------------------
+Use a visually rich editorial composition inspired by the provided team reference.
 
-# 29. Most Important Design Rule
+Do NOT simply display one generic profile card.
 
-When implementing this update, always prioritize:
+21. Team Page
 
-> **Current BBS Coding Club identity \> reference website imitation.**
+Route:
 
-The reference website is inspiration for interaction patterns and
-information hierarchy only.
+/team
 
-Do not copy its exact layout, colors, cards, team design, or visual
-structure.
+Page heading:
 
-The BBS Coding Club website should remain recognizably its own product.
+THE PEOPLE BUILDING THE COMMUNITY.
 
-------------------------------------------------------------------------
+Supporting subtitle:
 
-# 30. Antigravity Implementation Instruction
+100% STUDENT ORGANIZED.
 
-When giving this document to Antigravity, instruct it to:
+Supporting description:
 
-1.  Read and inspect the existing codebase first.
-2.  Compare the current implementation against this document.
-3.  Create an implementation plan before making changes.
-4.  Identify which existing components can be reused.
-5.  Do not rewrite working components unnecessarily.
-6.  Implement changes incrementally.
-7.  Preserve the current landing-page visual identity.
-8.  Avoid fabricating content.
-9.  Test both Light and Dark themes.
-10. Test the top-navbar → floating-navbar transition.
-11. Test all routes.
-12. Test responsive layouts.
-13. Run the production build before considering the implementation
-    complete.
-14. Report which checklist items are completed, partially completed, or
-    still pending.
+BBS Coding Club is organized and maintained by undergraduate students who volunteer their time to build projects, organize events, support their peers, and grow the community.
 
-------------------------------------------------------------------------
+Show the actual core members.
 
-## Change Log
+Avoid fake department categorization.
 
-Use this section after each implementation session.
+If grouping is useful, use functional groupings such as:
 
-### Implementation 1
+Core Organizers
+Technical & Projects
+Community & Outreach
 
-**Date:** 2026-08-29
+Only assign members to these groups where the actual data supports it.
 
-**Implemented:**
-- [x] Multi-page client-side routing via React Router (`/`, `/about`, `/departments`, `/projects`, `/events`, `/team`, `/join`)
-- [x] Dual-state navigation: Top navbar in normal document flow and floating bottom dock past 50% Hero threshold with 100% solid opaque background
-- [x] Zero-layout-shift typewriter fix in HeroHeadline using CSS Grid cell overlap and fluid responsive typography
-- [x] Centralized departments data model (`src/data/departments.js`) shared across Home, Departments, Team, and Join
-- [x] Dedicated `/about` page with history, mission, vision, 4 operational pillars, and community guidelines
-- [x] Dedicated `/departments` page with 5 specialized tracks, deep-dive cards, tools, leads, and direct join links
-- [x] Dedicated `/projects` page with category filtering (All, Web, Hackathons, Member Repos), architecture context, and source code links
-- [x] Dedicated `/events` page with category/status filters (Hackathons, Workshops, Community; Upcoming vs Completed) and registration flow
-- [x] Dedicated `/team` page with department filter tabs, dominant Core President feature, and asymmetric track leads bento
-- [x] Dedicated `/join` page with interactive department selector, track details reveal, and membership application form
-- [x] Netlify SPA route fallback via `public/_redirects`
-- [x] Theme persistence across all routes in both Dark and Light modes
+22. Team Visual Direction
 
-**Pending:**
-- None. All specification items from `Update.md` are implemented and verified.
+Do not use generic circular-avatar layouts as the primary visual language.
 
-**Issues found & resolved:**
-- Fixed Vite Windows file-watcher EBUSY lock on root markdown files by adding watch ignore patterns.
-- Replaced missing `Github` and `Linkedin` named exports in `lucide-react` with optimized inline SVG components.
-- Eliminated typewriter baseline height jump on short words.
+Prefer:
 
-**Notes:**
-- Production build succeeds cleanly in 1.77s with 0 errors.
+Rectangular photographs
+Editorial image ratios
+Thin borders
+Large names
+Role metadata
+Short descriptions
+Social links
+Hover interactions
+Strong composition
 
-------------------------------------------------------------------------
+Use the previously established technical/editorial aesthetic.
 
-### Implementation 2
+23. Projects
 
-**Date:** __________
+The homepage should show a curated selection of real projects.
 
-**Implemented:** - [ ]
-____________________________ - [ ]
-____________________________ - [ ]
-____________________________
+Do NOT attempt to fill the section with fabricated projects.
 
-**Pending:** - [ ]
-____________________________ - [ ]
-____________________________
+If only 1–3 real projects exist:
 
-**Issues found:** -
-____________________________
+Show 1–3 excellent projects.
 
-**Notes:** -
-____________________________
+Do not create fake cards to make a grid appear full.
 
-------------------------------------------------------------------------
+Projects page:
 
-# Status
+/projects
 
-**Overall:** ✅ Production Ready
+should contain the complete collection of verified projects.
 
-Update this status as the project progresses:
+24. Events
 
--   ⬜ Not Started
--   🟨 In Progress
--   🟩 Implemented
--   🟦 Tested
--   ✅ Production Ready
+The homepage should show only selected/recent/past highlights.
 
+Do NOT show every event on the landing page.
+
+Dedicated route:
+
+/events
+
+should contain the complete verified event history.
+
+Each event can contain:
+
+Name
+Date
+Description
+Type
+Images
+Links
+Outcomes
+
+Only show information supported by actual data.
+
+If there are currently no upcoming events, do not fabricate upcoming events.
+
+Use a graceful empty state.
+
+25. Community Statistics
+
+The distinction between community and core team must remain clear.
+
+The website may use:
+
+250+
+COMMUNITY MEMBERS
+
+to represent the broader student community if this figure is currently verified.
+
+Core team:
+
+~10
+CORE BUILDERS
+
+should represent the active organizers/builders if verified.
+
+Other statistics such as:
+
+2025
+FOUNDATION
+
+or:
+
+100%
+STUDENT LED
+
+must only be displayed if they accurately represent the club.
+
+Do not use inflated metrics.
+
+26. About Section
+
+The About section should explain:
+
+What BBS Coding Club is
+Why it exists
+What members do
+How students participate
+The student-led nature of the club
+The community philosophy
+
+Keep the current editorial/Bento visual language.
+
+The About section should remain concise on the homepage.
+
+Full information can live on:
+
+/about
+27. Join Us
+
+Join Us should have its own dedicated route:
+
+/join
+
+The homepage should only provide a strong CTA/preview.
+
+Do not overload the landing page with the entire joining process.
+
+The Join page can contain:
+
+Why join
+How participation works
+Areas of interest
+Community information
+Registration/join form
+Relevant links
+
+Replace any "choose department" wording with:
+
+CHOOSE AREAS OF INTEREST
+
+The 5 Areas should be selectable.
+
+28. Footer
+
+The footer should be visually significant.
+
+The primary BBS Coding Club text should have an oversized editorial treatment.
+
+Use the previously selected React Bits-style:
+
+StrokeText
+
+concept for:
+
+BBS CODING CLUB
+
+The implementation should work without requiring React Bits Pro.
+
+The StrokeText animation should:
+
+Draw the outline
+Reveal/fill the text
+Respect the current theme
+Work responsively
+Avoid layout shifts
+Respect reduced-motion preferences
+
+The footer may include:
+
+Navigation
+Social links
+Contact
+College identity
+Community CTA
+
+Do not make it visually overcrowded.
+
+29. Footer Background
+
+The grid/checkered pattern should appear at the bottom/footer as part of the alternating background rhythm.
+
+The footer should feel like the visual closing statement of the website.
+
+30. Light & Dark Themes
+
+The website must support both:
+
+Dark Theme
+Light Theme
+
+All components must be tested in both modes.
+
+Pay particular attention to:
+
+Grid background
+Borders
+Text contrast
+Buttons
+Images
+StrokeText
+Floating navigation
+Hover states
+Form controls
+Cards
+
+Do not hardcode colors that break one theme.
+
+Use the existing design tokens/Tailwind theme system.
+
+31. Design System
+
+Preserve the current visual language.
+
+Core principles:
+
+Typography
+
+Large editorial headings + restrained monospace metadata.
+
+Color
+
+High-contrast neutral foundation with the existing BBS accent.
+
+Layout
+
+Strong whitespace, grids, asymmetric compositions.
+
+Borders
+
+Thin, intentional borders.
+
+Motion
+
+Smooth but restrained.
+
+Interaction
+
+Motion should communicate state, not exist simply for decoration.
+
+32. React Requirement
+
+The project must continue using:
+
+React with JavaScript
+
+Do NOT migrate to TypeScript.
+
+Do NOT introduce:
+
+.ts
+.tsx
+
+unless there is an unavoidable dependency requirement.
+
+Prefer:
+
+.jsx
+.js
+33. Tailwind CSS Requirement
+
+Use:
+
+Tailwind CSS
+
+for styling.
+
+Do NOT introduce large amounts of traditional standalone CSS for new UI.
+
+Avoid creating unnecessary:
+
+.css
+
+files.
+
+Existing CSS can remain where already required, but new styling should primarily use Tailwind utilities/design tokens.
+
+34. Data Architecture
+
+The website should have a centralized content/data layer.
+
+Expected structure:
+
+src/
+└── data/
+    ├── clubInfo.js
+    ├── areas.js
+    ├── team.js
+    ├── projects.js
+    ├── events.js
+    ├── stats.js
+    ├── navigation.js
+    ├── home.js
+    ├── about.js
+    ├── join.js
+    └── ...
+
+Do NOT create duplicate sources of truth.
+
+Before creating a new file:
+
+Inspect existing data files.
+Determine whether the information already has a data source.
+Reuse/refactor where possible.
+35. Areas Data
+
+Create:
+
+src/data/areas.js
+
+This should contain the five Areas.
+
+Each Area should have a structure capable of supporting:
+
+{
+  id,
+  title,
+  shortTitle,
+  description,
+  overview,
+  topics,
+  technologies,
+  activities,
+  relatedProjects,
+  relatedEvents
+}
+
+Only populate fields with verified/appropriate content.
+
+Do not fabricate related projects/events.
+
+Export useful collections such as:
+
+AREAS
+AREAS_PREVIEW
+AREAS_PAGE_HEADER
+36. Legacy departments.js
+
+If:
+
+src/data/departments.js
+
+already exists and is imported throughout the project:
+
+Do NOT delete it blindly.
+
+Either:
+
+Refactor it to re-export Areas
+Or maintain a compatibility alias
+
+Example conceptual approach:
+
+export { AREAS as DEPARTMENTS } from './areas';
+
+This allows the codebase to migrate safely.
+
+However, user-facing terminology must still be:
+
+Areas
+
+37. Navigation Data
+
+Update centralized navigation data.
+
+Replace:
+
+Departments
+Depts
+
+with:
+
+Explore
+
+Primary route:
+
+/explore
+
+Footer should use:
+
+Areas We Explore
+
+where appropriate.
+
+38. Routing
+
+Add:
+
+/explore
+
+The old:
+
+/departments
+
+must remain compatible.
+
+Preferred behavior:
+
+/departments → /explore
+
+Do not leave broken links.
+
+Audit every internal link.
+
+39. Real Data Policy
+
+This is one of the most important rules in this document.
+
+The website must NEVER fabricate real-world club information.
+
+If data is unavailable:
+
+GOOD
+data field exists but is empty
+
+or:
+
+TODO: add verified event information
+BAD
+
+Inventing:
+
+12 successful workshops
+5 department heads
+32 projects
+1000 members
+20 hackathon wins
+
+just because the UI looks better.
+
+Authenticity is more important than visual fullness.
+
+40. Existing Visual Decisions to Preserve
+
+The following decisions are already intentional and should NOT be casually removed:
+
+React + JavaScript
+Tailwind CSS
+Lenis smooth scrolling
+GSAP animations
+ScrollTrigger
+Scroll reveal text
+Typewriter hero
+Stable typewriter layout
+Light/dark themes
+Alternating grid backgrounds
+Top navigation during hero
+Floating bottom navigation after hero transition
+Bento card section
+Expandable row section
+Editorial team presentation
+StrokeText footer
+College + Coding Club logos
+Strong whitespace
+High-contrast typography
+
+Do not redesign these systems unless there is a concrete bug or UX problem.
+
+41. Logo Placement
+
+The website has two important identities:
+
+BBS Coding Club logo
+College logo
+
+Both should remain visible where appropriate.
+
+Recommended usage:
+
+Header / Navigation
+
+Coding Club identity should remain primary.
+
+College logo can appear as secondary institutional identity.
+
+Hero
+
+Both logos can be used where visually appropriate.
+
+Avoid making either logo too small to recognize.
+
+Do not overcrowd the hero.
+
+42. Avoid "AI Website" Visual Cues
+
+The website should avoid generic visual patterns that make it immediately look AI-generated.
+
+Avoid excessive:
+
+Green status dots
+Random glowing circles
+Excessive gradients
+Unnecessary glassmorphism
+Generic floating blobs
+Repetitive rounded cards
+Overused neon effects
+Excessive code symbols
+Arbitrary technical labels
+
+Technical aesthetics should be intentional.
+
+43. Responsive Design
+
+Every page must be tested at:
+
+Mobile
+
+Approximately:
+
+320px
+375px
+430px
+Tablet
+
+Approximately:
+
+768px
+1024px
+Desktop
+
+Approximately:
+
+1280px
+1440px
+1920px
+
+Pay particular attention to:
+
+Hero
+Typewriter
+Navigation transition
+Floating dock
+Bento grid
+Expandable rows
+Detail panel
+Team section
+Footer
+StrokeText
+44. Accessibility
+
+Maintain:
+
+Semantic HTML
+Keyboard accessibility
+Visible focus states
+Appropriate aria labels
+Accessible buttons
+Accessible navigation
+Reduced motion support
+
+Interactive rows must be keyboard accessible.
+
+Do not make an interaction dependent exclusively on hover.
+
+45. Performance
+
+Do not sacrifice performance for animation.
+
+Avoid:
+
+Unnecessary re-renders
+DOM teardown during rapid hover
+Repeated GSAP initialization
+Unoptimized images
+Layout shifts
+Excessive animation
+Large unnecessary dependencies
+
+The Areas detail panel should preferably use stable DOM and transition content rather than completely destroying/recreating the entire panel on every hover.
+
+46. Department/Area Interaction Performance
+
+If the existing detail panel currently uses:
+
+key={activeDept.id}
+
+to force complete DOM recreation:
+
+Review whether this is necessary.
+
+Prefer:
+
+Stable container
+Content transitions
+Opacity transitions
+Transform transitions
+Controlled state updates
+
+If hover interactions are causing thrashing, consider a small pointer-intent delay.
+
+Do not over-engineer this.
+
+47. Content Management
+
+All content that is likely to change should live in data files.
+
+Examples:
+
+Team members
+Roles
+Events
+Projects
+Areas
+Navigation labels
+Club description
+Statistics
+Social links
+Contact information
+
+Pages/components should primarily be responsible for presentation.
+
+This allows future club administrators to update content without editing component logic.
+
+48. Homepage Content Philosophy
+
+The homepage is a:
+
+CURATED INTRODUCTION
+
+not:
+
+COMPLETE DATABASE
+
+It should answer:
+
+Who are we?
+What do we care about?
+What do we build/learn?
+What have we actually done?
+Who runs the community?
+How can I join?
+
+Then send users to dedicated pages for deeper information.
+
+49. Page Responsibilities
+Home
+
+Overview.
+
+About
+
+Club story, philosophy, identity.
+
+Explore
+
+Areas and technical interests.
+
+Projects
+
+Complete project showcase.
+
+Events
+
+Complete event archive.
+
+Team
+
+Complete core team.
+
+Join
+
+Joining and participation.
+
+50. Verification Checklist
+
+Before considering this update complete:
+
+Architecture
+ /explore exists
+ /departments redirects/aliases correctly
+ No broken internal routes
+ Areas are centralized in data
+ Existing data files are reused appropriately
+ No duplicate sources of truth
+Terminology
+
+Search the entire src/ directory.
+
+There should be no inappropriate user-facing instances of:
+
+Departments
+Depts
+Department Lead
+Department Head
+Track Lead
+Specialized Tracks
+
+unless they are explicitly retained for backwards compatibility in code.
+
+User-facing terminology should use:
+
+Areas
+Explore
+Areas We Explore
+Visual
+ Hero preserved
+ Typewriter stable
+ Lenis working
+ Scroll animations working
+ Bento section preserved
+ Expandable rows preserved
+ Team presentation improved
+ Footer StrokeText working
+ Grid backgrounds alternate correctly
+ Light theme works
+ Dark theme works
+ Floating navigation works
+Content
+ No fake team members
+ No fake department heads
+ No fake events
+ No fake projects
+ No fake achievements
+ No fake statistics
+ Actual team data used
+ Actual event data used
+ Actual project data used
+Responsive
+ 320px
+ 375px
+ 430px
+ 768px
+ 1024px
+ 1280px+
+ Mobile navigation
+ Mobile Areas interaction
+ Mobile footer
+ Mobile team layout
+Code Quality
+
+Run:
+
+npm run build
+
+Requirements:
+
+ Build succeeds
+ No broken imports
+ No console errors
+ No unused critical components
+ No accidental TypeScript migration
+ New styling uses Tailwind
+ No unnecessary dependencies
+51. Final Design Principle
+
+The website should not try to make BBS Coding Club look bigger than it is.
+
+It should make the club look:
+
+REAL.
+
+A focused core team of around 10 students supporting a 250+ student community is already a meaningful foundation.
+
+The website should make that foundation feel intentional.
+
+The story is not:
+
+"We already have everything."
+
+The story is:
+
+"We're building something."
+
+That distinction should guide every content, UX, and design decision going forward.
+
+
+### One thing I'd change from the previous version
+
+I deliberately **didn't hard-code "2025 FOUNDATION", "100% STUDENT RUN", exact activity cadences, or claims like "SIH squads / 36h MVPs" as unquestionable facts**. Those should come from your real data.
+
+That gives you a much cleaner workflow:
+
+**`UPDATE.md` = what the website should be**  
+**`src/data/*.js` = what BBS Coding Club actually is**
+
+That's the separation I'd want Antigravity to follow.

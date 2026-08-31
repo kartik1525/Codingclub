@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Mail, ChevronLeft, ChevronRight } from 'lucide-react';
-import { ROSTER_PAGES, ROSTER_SECTION_HEADER } from '../data/team.js';
+import { ArrowUpRight, Mail } from 'lucide-react';
+import { FEATURED_LEADS, ROSTER_SECTION_HEADER } from '../data/team.js';
 
 function GithubIcon({ className = "w-4 h-4" }) {
   return (
@@ -13,10 +13,6 @@ function GithubIcon({ className = "w-4 h-4" }) {
 }
 
 export default function CoreLeadershipRoster() {
-  const [pageIndex, setPageIndex] = useState(0);
-  const totalPages = ROSTER_PAGES.length;
-  const currentMembers = ROSTER_PAGES[pageIndex];
-
   return (
     <div className="w-full">
       {/* Header Row */}
@@ -27,15 +23,15 @@ export default function CoreLeadershipRoster() {
             <span>{ROSTER_SECTION_HEADER.badge}</span>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight m-0">
-            STUDENT-LED & OPERATED.
+            {ROSTER_SECTION_HEADER.title}
           </h2>
           <p className="text-sm sm:text-base text-bbs-muted leading-relaxed max-w-xl mt-3">
-            Run by students, for students. We believe in ownership, transparency, and building things that matter.
+            {ROSTER_SECTION_HEADER.description}
           </p>
         </div>
 
-        {/* Right Actions: Full Roster Link + Pagination Controls */}
-        <div className="flex flex-col sm:flex-row lg:flex-col items-start sm:items-center lg:items-end justify-between gap-4 shrink-0">
+        {/* Right Action: Full Team Link */}
+        <div className="shrink-0 pt-2">
           <Link
             to={ROSTER_SECTION_HEADER.cta.path}
             className="inline-flex items-center gap-1.5 font-mono text-xs sm:text-sm font-semibold text-bbs-accent hover:text-bbs-text transition-colors group"
@@ -43,51 +39,24 @@ export default function CoreLeadershipRoster() {
             <span>{ROSTER_SECTION_HEADER.cta.label}</span>
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </Link>
-
-          {/* Pagination Carousel Buttons */}
-          <div className="flex items-center gap-3 mt-1 lg:mt-3">
-            <button
-              type="button"
-              onClick={() => setPageIndex((prev) => Math.max(0, prev - 1))}
-              disabled={pageIndex === 0}
-              className="w-8 h-8 rounded-full border border-bbs-border bg-bbs-surface flex items-center justify-center text-bbs-text hover:border-bbs-accent disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer shadow-sm"
-              aria-label="Previous Team Page"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-
-            <div className="font-mono text-xs tracking-wider select-none">
-              <span className="text-bbs-accent font-bold">
-                {pageIndex + 1}
-              </span>{' '}
-              <span className="text-bbs-dim">OF {totalPages}</span>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => setPageIndex((prev) => Math.min(totalPages - 1, prev + 1))}
-              disabled={pageIndex === totalPages - 1}
-              className="w-8 h-8 rounded-full border border-bbs-border bg-bbs-surface flex items-center justify-center text-bbs-text hover:border-bbs-accent disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer shadow-sm"
-              aria-label="Next Team Page"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
         </div>
       </div>
 
-      {/* 4 Cards Grid */}
+      {/* 4 Featured Core Members Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-        {currentMembers.map((member) => (
+        {FEATURED_LEADS.map((member) => (
           <div
             key={member.id}
             className="bg-bbs-surface border border-bbs-border rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:border-bbs-accent/80 hover:shadow-md transition-all duration-300 group"
           >
-            {/* Top Row: Branch Badge */}
+            {/* Top Row: Branch Badge & Status */}
             <div>
-              <div className="flex items-center justify-between gap-2 mb-4">
+              <div className="flex items-center justify-between gap-2 mb-3">
                 <span className="font-mono text-[10px] font-semibold px-2.5 py-0.5 rounded bg-blue-500/10 text-bbs-accent border border-blue-500/20 uppercase tracking-wider">
                   {member.branch}
+                </span>
+                <span className="font-mono text-[10px] text-bbs-dim">
+                  CORE TEAM
                 </span>
               </div>
 
@@ -97,23 +66,34 @@ export default function CoreLeadershipRoster() {
               </h3>
 
               {/* Role */}
-              <div className="font-mono text-xs font-semibold text-bbs-accent tracking-wider uppercase mb-1">
+              <div className="font-mono text-xs font-semibold text-bbs-accent tracking-wider uppercase mb-2">
                 {member.role}
               </div>
 
-              {/* Mandate Metadata */}
-              <div className="font-mono text-[11px] text-bbs-dim tracking-wider uppercase mb-4">
-                {member.mandate}
-              </div>
+              {/* Short responsibility focus */}
+              <p className="text-xs text-bbs-muted leading-relaxed mb-4 min-h-[36px]">
+                {member.focus}
+              </p>
 
-              {/* Member Photo */}
-              <div className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-bbs-raised border border-bbs-border/70 mb-5 relative">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover object-[center_20%] group-hover:scale-103 transition-transform duration-500"
-                  loading="lazy"
-                />
+              {/* Photo / Avatar Placeholder */}
+              <div className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-bbs-raised border border-bbs-border/70 mb-5 relative flex items-center justify-center">
+                {member.image ? (
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover object-[center_20%] group-hover:scale-103 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center text-center p-4 bg-gradient-to-b from-bbs-surface to-bbs-raised">
+                    <span className="font-mono text-2xl font-bold text-bbs-accent/80 mb-1">
+                      {member.name.split(' ').map(n => n[0]).join('')}
+                    </span>
+                    <span className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider">
+                      {member.branch}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -122,7 +102,7 @@ export default function CoreLeadershipRoster() {
               <div className="grid grid-cols-4 divide-x divide-bbs-border text-center">
                 {/* GitHub */}
                 <a
-                  href={member.github}
+                  href={member.socials.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center text-bbs-muted hover:text-bbs-text transition-colors py-1 cursor-pointer"
@@ -133,7 +113,7 @@ export default function CoreLeadershipRoster() {
 
                 {/* LinkedIn */}
                 <a
-                  href={member.linkedin}
+                  href={member.socials.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center text-bbs-muted hover:text-bbs-text transition-colors py-1 cursor-pointer"
@@ -146,18 +126,18 @@ export default function CoreLeadershipRoster() {
 
                 {/* Email */}
                 <a
-                  href={`mailto:${member.email}`}
+                  href={`mailto:${member.socials.email}`}
                   className="flex items-center justify-center text-bbs-muted hover:text-bbs-text transition-colors py-1 cursor-pointer"
                   title="Send Email"
                 >
                   <Mail className="w-4 h-4" />
                 </a>
 
-                {/* Explore Profile / Directory */}
+                {/* View Full Team */}
                 <Link
                   to="/team"
                   className="flex items-center justify-center text-bbs-muted hover:text-bbs-accent transition-colors py-1 cursor-pointer"
-                  title="View in Team Directory"
+                  title="View on Team Page"
                 >
                   <ArrowUpRight className="w-4 h-4" />
                 </Link>

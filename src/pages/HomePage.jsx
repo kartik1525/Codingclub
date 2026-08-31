@@ -14,7 +14,7 @@ import { PROJECTS } from '../data/projects.js';
 import { EVENTS } from '../data/events.js';
 import { 
   ABOUT_PREVIEW, 
-  DEPARTMENTS_PREVIEW, 
+  AREAS_PREVIEW, 
   PROJECTS_PREVIEW, 
   EVENTS_PREVIEW, 
   JOIN_BANNER 
@@ -26,7 +26,7 @@ import {
  * - Hero section preserved with zero-layout-shift typewriter.
  * - Marquee technical strip.
  * - Concise About preview with CTA to /about.
- * - Departments preview with CTA to /departments.
+ * - Areas We Explore preview with CTA to /explore.
  * - Featured Projects preview with CTA to /projects.
  * - Events preview with CTA to /events.
  * - Stats and Terminal block.
@@ -81,29 +81,32 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* 4. Departments Preview (Specialized Tracks) — Checkered / Grid Background */}
-      <Section variant="grid" id="departments" className="py-20 sm:py-24 border-t border-bbs-border relative">
+      {/* 4. Areas We Explore Preview — Checkered / Grid Background */}
+      <Section variant="grid" id="areas" className="py-20 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
             <div>
               <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-3">
                 <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
-                <span>{DEPARTMENTS_PREVIEW.badge}</span>
+                <span>{AREAS_PREVIEW.badge}</span>
               </div>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight m-0">
-                {DEPARTMENTS_PREVIEW.title}
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-bbs-text leading-tight mb-3">
+                {AREAS_PREVIEW.title}
               </h2>
+              <p className="text-sm sm:text-base text-bbs-muted max-w-xl">
+                {AREAS_PREVIEW.description}
+              </p>
             </div>
             <Link
-              to={DEPARTMENTS_PREVIEW.cta.path}
+              to={AREAS_PREVIEW.cta.path}
               className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-semibold text-bbs-accent-light hover:text-bbs-text transition-colors group shrink-0"
             >
-              <span>{DEPARTMENTS_PREVIEW.cta.label}</span>
+              <span>{AREAS_PREVIEW.cta.label}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
-          {/* Interactive Department Directory with Dynamic Right-Side Detail Panel */}
+          {/* Interactive Areas Directory with Dynamic Right-Side Detail Panel */}
           <DepartmentDirectory />
         </div>
       </Section>

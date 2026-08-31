@@ -81,14 +81,14 @@ export const COMMUNITY_GUIDELINES = {
 };
 
 export const ABOUT_CTA = {
-  title: "WANT TO CONTRIBUTE TO BBS CODING CLUB?",
-  description: "Browse our specialized departments, meet the student leadership team, or submit an application to join our next onboarding cohort.",
+  title: "WANT TO BUILD WITH BBS CODING CLUB?",
+  description: "Explore the areas we build in, meet the student core team, or join our community network on campus.",
   primaryBtn: {
-    label: "APPLY FOR MEMBERSHIP",
+    label: "JOIN COMMUNITY",
     path: "/join"
   },
   secondaryBtn: {
-    label: "EXPLORE DEPARTMENTS",
-    path: "/departments"
+    label: "EXPLORE AREAS",
+    path: "/explore"
   }
 };
