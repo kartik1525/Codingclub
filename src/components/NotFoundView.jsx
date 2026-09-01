@@ -26,10 +26,10 @@ export default function NotFoundView() {
             ← RETURN TO MAIN ROUTE
           </Link>
           <Link
-            to="/projects"
+            to="/explore"
             className="inline-flex items-center justify-center text-xs sm:text-sm font-semibold px-5 py-2.5 rounded border border-bbs-border-light text-bbs-text bg-transparent hover:bg-bbs-raised hover:border-bbs-muted transition-colors"
           >
-            EXPLORE SELECTED BUILDS
+            EXPLORE WHAT WE DO
           </Link>
         </div>
       </div>

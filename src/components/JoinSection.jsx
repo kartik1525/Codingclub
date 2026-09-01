@@ -100,12 +100,12 @@ export default function JoinSection() {
               </div>
               <div className="flex gap-4 flex-wrap">
                 <a
-                  href={CLUB_INFO.socials.discord}
+                  href={CLUB_INFO.socials.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-mono text-xs font-semibold px-4 py-2 border border-bbs-border-light text-bbs-text rounded hover:bg-bbs-surface hover:border-bbs-muted transition-colors"
                 >
-                  JOIN CLUB DISCORD ↗
+                  WHATSAPP COMMUNITY ↗
                 </a>
                 <a
                   href={CLUB_INFO.socials.github}
@@ -130,7 +130,7 @@ export default function JoinSection() {
                   WELCOME TO THE SQUAD
                 </h3>
                 <p className="text-bbs-muted text-sm sm:text-base leading-relaxed mb-8 max-w-md mx-auto">
-                  Your submission has been recorded. Check your inbox for our next hackathon meet details and an invite to our Discord channels.
+                  Your submission has been recorded. Check your inbox for our next hackathon meet details and an invite to our WhatsApp Community.
                 </p>
                 <button
                   onClick={() => {

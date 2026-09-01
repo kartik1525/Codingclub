@@ -189,7 +189,7 @@ export default function AreasDirectory() {
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </Link>
                 <Link
-                  to={`/join?area=${activeArea.id}`}
+                  to="/join"
                   className="inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold px-4 py-3 rounded bg-bbs-raised border border-bbs-border text-bbs-text hover:border-bbs-accent transition-colors"
                 >
                   <span>JOIN COMMUNITY</span>
@@ -307,7 +307,7 @@ export default function AreasDirectory() {
                           <ArrowUpRight className="w-3.5 h-3.5" />
                         </Link>
                         <Link
-                          to={`/join?area=${area.id}`}
+                          to="/join"
                           className="inline-flex items-center justify-center gap-1 text-xs font-semibold px-3 py-2.5 rounded bg-bbs-raised border border-bbs-border text-bbs-text"
                         >
                           <span>JOIN</span>

@@ -21,7 +21,7 @@ export default function EventsPage() {
   const statuses = EVENT_STATUSES;
 
   const openGallery = (event, index = 0) => {
-    if (!event?.gallery || event.gallery.length === 0) return;
+    if (!event || event.status === 'upcoming' || !event?.gallery || event.gallery.length === 0) return;
     setSelectedGalleryEvent(event);
     setGalleryInitialIndex(index);
     setIsGalleryOpen(true);
@@ -97,7 +97,8 @@ export default function EventsPage() {
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="flex flex-col gap-8">
             {filteredEvents.map((event) => {
-              const hasGallery = Array.isArray(event.gallery) && event.gallery.length > 0;
+              const isUpcoming = event.status === 'upcoming';
+              const hasGallery = !isUpcoming && Array.isArray(event.gallery) && event.gallery.length > 0;
 
               return (
                 <article
@@ -105,35 +106,70 @@ export default function EventsPage() {
                   className="bg-bbs-surface border border-bbs-border rounded overflow-hidden shadow-md hover:border-bbs-border-focus transition-colors"
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
-                    {/* Left: Image / Photo */}
-                    <div className="lg:col-span-4 bg-black relative overflow-hidden min-h-[220px] sm:min-h-[260px] border-b lg:border-b-0 lg:border-r border-bbs-border group">
-                      <img
-                        src={event.image}
-                        alt={event.title}
-                        className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out"
-                        loading="lazy"
-                      />
-                      <div className="absolute top-3 left-3 bg-bbs-bg/90 border border-bbs-border px-2.5 py-1 rounded text-xs font-semibold text-bbs-accent uppercase tracking-wide">
-                        {event.category.toUpperCase()}
-                      </div>
-                      <div className="absolute bottom-3 left-3 bg-bbs-bg/90 border border-bbs-border px-2.5 py-1 rounded text-xs font-medium text-bbs-text uppercase flex items-center gap-1.5">
-                        <span className={`w-1.5 h-1.5 rounded-full ${event.status === 'upcoming' ? 'bg-emerald-500 animate-ping' : 'bg-bbs-dim'}`} />
-                        <span>{event.status}</span>
-                      </div>
+                    {/* Left: Image / Photo or Typographic Placeholder */}
+                    {isUpcoming ? (
+                      <div className="lg:col-span-4 bg-bbs-raised relative overflow-hidden min-h-[220px] sm:min-h-[260px] border-b lg:border-b-0 lg:border-r border-bbs-border flex flex-col items-center justify-center p-6 text-center select-none group">
+                        {/* Subtle background grid texture */}
+                        <div className="absolute inset-0 section-grid opacity-60 pointer-events-none" />
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(37,99,235,0.08)_0%,_transparent_70%)] pointer-events-none" />
 
-                      {/* Photo Gallery Indicator on Cover */}
-                      {hasGallery && (
-                        <button
-                          type="button"
-                          onClick={() => openGallery(event, 0)}
-                          aria-label={`View photo gallery for ${event.title}`}
-                          className="absolute top-3 right-3 bg-bbs-bg/90 hover:bg-bbs-accent text-bbs-text hover:text-white border border-bbs-border hover:border-bbs-accent px-2.5 py-1 rounded text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm backdrop-blur-sm cursor-pointer group/badge"
-                        >
-                          <Images className="w-3.5 h-3.5 text-bbs-accent group-hover/badge:text-white transition-colors" />
-                          <span>{event.gallery.length} PHOTOS</span>
-                        </button>
-                      )}
-                    </div>
+                        {/* Top-Left Category Badge */}
+                        <div className="absolute top-3.5 left-3.5 bg-bbs-surface/95 border border-bbs-border px-2.5 py-1 rounded text-xs font-bold text-bbs-accent uppercase tracking-wider z-10 shadow-xs">
+                          {event.category.toUpperCase()}
+                        </div>
+
+                        {/* Bottom-Left Status Badge */}
+                        <div className="absolute bottom-3.5 left-3.5 bg-bbs-surface/95 border border-bbs-border px-2.5 py-1 rounded text-xs font-medium text-bbs-text uppercase flex items-center gap-1.5 z-10 shadow-xs">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                          <span>{event.status}</span>
+                        </div>
+
+                        {/* Centered Typographic Headline */}
+                        <div className="relative z-0 flex flex-col items-center justify-center my-auto py-6">
+                          <span className="font-display font-black text-6xl sm:text-7xl lg:text-8xl tracking-tight text-bbs-text leading-none transition-transform duration-500 group-hover:scale-105">
+                            {event.id.toLowerCase().includes('sih') ? 'SIH' : event.title.split(' ')[0]}
+                          </span>
+                          <span className="text-[11px] sm:text-xs font-bold tracking-widest text-bbs-accent uppercase mt-2.5">
+                            CAMPUS HACKATHON · 2026
+                          </span>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="lg:col-span-4 bg-black relative overflow-hidden min-h-[220px] sm:min-h-[260px] border-b lg:border-b-0 lg:border-r border-bbs-border group">
+                        <img
+                          src={event.image}
+                          alt={event.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                          loading="lazy"
+                        />
+                        {/* Subtle dark/neutral gradient overlay for clean contrast */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-black/55 pointer-events-none transition-opacity duration-300" />
+
+                        {/* Top-Left Category Badge */}
+                        <div className="absolute top-3.5 left-3.5 bg-black/70 backdrop-blur-md border border-white/20 px-2.5 py-1 rounded text-xs font-bold text-white uppercase tracking-wider z-10 shadow-sm">
+                          {event.category.toUpperCase()}
+                        </div>
+
+                        {/* Top-Right Photo Gallery Indicator on Cover (Only for completed with gallery) */}
+                        {hasGallery && (
+                          <button
+                            type="button"
+                            onClick={() => openGallery(event, 0)}
+                            aria-label={`View photo gallery for ${event.title}`}
+                            className="absolute top-3.5 right-3.5 bg-black/70 hover:bg-bbs-accent text-white border border-white/20 hover:border-blue-400/50 px-2.5 py-1 rounded text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm backdrop-blur-md cursor-pointer group/badge z-10"
+                          >
+                            <Images className="w-3.5 h-3.5 text-blue-400 group-hover/badge:text-white transition-colors" />
+                            <span>{event.gallery.length} PHOTOS</span>
+                          </button>
+                        )}
+
+                        {/* Bottom-Left Status Badge */}
+                        <div className="absolute bottom-3.5 left-3.5 bg-black/70 backdrop-blur-md border border-white/20 px-2.5 py-1 rounded text-xs font-medium text-white/90 uppercase flex items-center gap-1.5 z-10 shadow-sm">
+                          <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
+                          <span>{event.status}</span>
+                        </div>
+                      </div>
+                    )}
 
                     {/* Right: Event Details */}
                     <div className="lg:col-span-8 p-6 sm:p-8 flex flex-col justify-between">
@@ -214,13 +250,25 @@ export default function EventsPage() {
                           )}
 
                           {event.registrationOpen ? (
-                            <Link
-                              to="/join"
-                              className="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-colors text-xs font-semibold"
-                            >
-                              <span>REGISTER FOR EVENT</span>
-                              <ArrowUpRight className="w-3.5 h-3.5" />
-                            </Link>
+                            event.registrationUrl ? (
+                              <a
+                                href={event.registrationUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-colors text-xs font-semibold shadow-md shadow-bbs-accent/20"
+                              >
+                                <span>REGISTER FOR EVENT</span>
+                                <ArrowUpRight className="w-3.5 h-3.5" />
+                              </a>
+                            ) : (
+                              <Link
+                                to="/join"
+                                className="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-colors text-xs font-semibold shadow-md shadow-bbs-accent/20"
+                              >
+                                <span>REGISTER FOR EVENT</span>
+                                <ArrowUpRight className="w-3.5 h-3.5" />
+                              </Link>
+                            )
                           ) : (
                             <span className="px-3 py-1.5 rounded bg-bbs-raised border border-bbs-border text-bbs-dim text-xs font-medium">
                               EVENT CONCLUDED / ARCHIVED

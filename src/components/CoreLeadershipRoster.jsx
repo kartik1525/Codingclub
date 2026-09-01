@@ -67,12 +67,12 @@ export default function CoreLeadershipRoster() {
 
               {/* Role */}
               <div className="text-xs sm:text-sm font-semibold text-bbs-accent uppercase mb-2">
-                {member.role}
+                {member.designation || member.role}
               </div>
 
               {/* Short responsibility focus */}
               <p className="text-xs sm:text-sm text-bbs-muted leading-relaxed mb-4 min-h-[36px]">
-                {member.focus}
+                {member.shortDescription || member.focus}
               </p>
 
               {/* Photo / Avatar Placeholder */}
@@ -85,11 +85,12 @@ export default function CoreLeadershipRoster() {
                     loading="lazy"
                   />
                 ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center text-center p-4 bg-gradient-to-b from-bbs-surface to-bbs-raised">
-                    <span className="text-2xl font-extrabold text-bbs-accent/80 mb-1">
-                      {member.name.split(' ').map(n => n[0]).join('')}
+                  <div className="w-full h-full flex flex-col items-center justify-center text-center p-4 bg-gradient-to-b from-bbs-surface to-bbs-raised relative">
+                    <div className="absolute inset-0 section-grid opacity-40 pointer-events-none" />
+                    <span className="font-display text-3xl font-black text-bbs-text/85 mb-1 relative z-10">
+                      {member.initials || member.name.split(' ').map(n => n[0]).join('')}
                     </span>
-                    <span className="text-xs font-medium text-bbs-dim uppercase tracking-wide">
+                    <span className="text-xs font-medium text-bbs-dim uppercase tracking-wide relative z-10">
                       {member.branch}
                     </span>
                   </div>

@@ -127,12 +127,6 @@ export default function AboutPage() {
                 className="bg-bbs-surface border border-bbs-border rounded p-6 sm:p-8 flex flex-col justify-between hover:border-bbs-border-focus transition-colors shadow-sm"
               >
                 <div>
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-xs font-semibold px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent border border-blue-500/25 uppercase tracking-wide">
-                      CORE PILLAR
-                    </span>
-                    <span className="text-xs font-medium text-bbs-dim uppercase">PRINCIPLE</span>
-                  </div>
                   <h3 className="font-display text-2xl font-bold text-bbs-text mb-3">
                     {pillar.title}
                   </h3>

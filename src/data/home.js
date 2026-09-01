@@ -10,8 +10,8 @@ export const HERO_CONTENT = {
     path: "/join"
   },
   secondaryCta: {
-    label: "SEE OUR PROJECTS ↓",
-    href: "#projects"
+    label: "EXPLORE WHAT WE DO ↓",
+    href: "#areas"
   },
   campusPhoto: {
     src: "/assets/bbs-college.jpg",
@@ -79,25 +79,119 @@ export const EVENTS_PREVIEW = {
 };
 
 export const TERMINAL_CONFIG = {
-  badge: "STUDENT CONSOLE",
-  version: "bbs-sh — v1.0.4",
-  tty: "LAB TTY: /dev/pts/0",
-  quickCommands: ["whoami", "mission", "status", "help"],
+  badge: "INTERACTIVE CONSOLE",
+  title: "EXPLORE THE CLUB FROM THE TERMINAL",
+  description: "Curious how BBS Coding Club works? Type a command and explore what we build, learn, and compete in.",
+  headerTitle: "bbs-sh — interactive club terminal",
+  statusText: "STATUS: ONLINE",
+  quickCommands: ["help", "whoami", "learn", "compete", "team"],
   initialHistory: [
     { type: "input", text: "whoami" },
-    { type: "output", text: "bbs_coding_club — student developer community" },
-    { type: "input", text: "cat mission.txt" },
-    { type: "output", text: "build things that work. learn with friends. ship code before graduation." },
-    { type: "input", text: "./status" },
-    { type: "output", text: "> SIH '26 TRACK: ACTIVE | DISCORD: ONLINE | LAB MEETS: CS LAB 02" }
+    { 
+      type: "output", 
+      text: "bbs_coding_club\nstudent-led coding community\nBBS College of Engineering & Technology\n\nWe learn by building, compete by challenging ourselves,\nand grow by helping each other." 
+    }
   ],
   commandResponses: {
-    help: "AVAILABLE COMMANDS:\n  whoami          — print community identity\n  cat mission.txt — view club charter\n  status          — show upcoming tracks\n  projects        — list active student builds\n  join            — open membership signup\n  clear           — reset terminal screen",
-    whoami: "bbs_coding_club — student developer community at BBS",
-    mission: "build things that work. learn with friends. ship code before graduation.",
-    status: "> ALL SQUADS ACTIVE · FALL 2026 SIGNUPS OPEN",
-    projects: "ACTIVE REPOSITORIES:\n  • bbs-official-web (React + Custom CSS Design System)\n  • sih-eval-hub (Hackathon Judging Dashboard Prototype)\n  • student-submissions (Open Call for Member Projects)",
-    join: "> OPENING APPLICATION FORM..."
+    help: `AVAILABLE COMMANDS
+
+whoami
+→ Learn what BBS Coding Club is
+
+about
+→ See what the club is about
+
+learn
+→ Explore what members learn
+
+build
+→ See what members build and practice
+
+compete
+→ Explore hackathons and coding competitions
+
+events
+→ See upcoming club activities
+
+team
+→ Meet the student leadership team
+
+clear
+→ Clear the terminal
+
+help
+→ Show available commands`,
+
+    whoami: `bbs_coding_club
+student-led coding community
+BBS College of Engineering & Technology
+
+We learn by building, compete by challenging ourselves,
+and grow by helping each other.`,
+
+    about: `BBS Coding Club is a student-led community for students
+who enjoy coding, building, experimenting, and learning
+together.
+
+From coding sessions and workshops to hackathons and
+technical competitions, the club focuses on practical
+learning and collaboration.`,
+
+    learn: `LEARN
+
+→ Programming & DSA
+→ Web & Software Development
+→ Git & GitHub
+→ Problem Solving
+→ Development Workflows
+→ Emerging Technologies
+
+Learn by doing, reviewing, breaking, fixing, and building.`,
+
+    build: `BUILD
+
+→ Web applications
+→ Student tools
+→ Technical prototypes
+→ Open-source contributions
+→ Hackathon solutions
+
+The goal isn't to build for the sake of building.
+It's to solve something useful.`,
+
+    compete: `COMPETE
+
+→ Smart India Hackathon
+→ Coding competitions
+→ Hackathons
+→ Algorithmic problem solving
+→ Inter-college technical events
+
+Find a team. Pick a problem. Build something that works.`,
+
+    events: `UPCOMING ACTIVITIES
+
+→ SIH Internal Campus Hackathon 2026
+→ Coding & DSA sessions
+→ Technical workshops
+→ Community meetups
+
+Use the Events page to see the latest schedule.`,
+
+    team: `CORE TEAM
+
+President / Club Head — Kartikeya Singh
+Vice President — Adarsh Pandey
+General Secretary — Mohd. Shariq Irshad
+Technical Lead — Aditya Raj Chowdhary
+Event & Hackathon Lead — Raj Upadhyaya
+Community & Outreach Lead — Sakshi Pandey
+Content & Design Lead — Umamani Singh
+Technical Coordinator — Krishna Chandra Updahyaya
+Event & Operations Coordinator — Akarshit Singh
+Media & Documentation Coordinator — Aditya Singh
+
+→ Visit /team to meet the team`
   }
 };
 

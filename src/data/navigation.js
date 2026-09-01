@@ -3,7 +3,6 @@ import { CLUB_INFO } from './clubInfo.js';
 export const HEADER_NAV_LINKS = [
   { label: 'ABOUT', path: '/about' },
   { label: 'EXPLORE', path: '/explore' },
-  { label: 'PROJECTS', path: '/projects' },
   { label: 'EVENTS', path: '/events' },
   { label: 'TEAM', path: '/team' },
 ];
@@ -17,7 +16,6 @@ export const FLOATING_NAV_ITEMS = [
   { path: '/', label: 'Home', iconType: 'home' },
   { path: '/about', label: 'About', iconType: 'compass' },
   { path: '/explore', label: 'Explore', iconType: 'layers' },
-  { path: '/projects', label: 'Projects', iconType: 'code' },
   { path: '/events', label: 'Events', iconType: 'calendar' },
   { path: '/team', label: 'Team', iconType: 'users' },
 ];
@@ -25,7 +23,6 @@ export const FLOATING_NAV_ITEMS = [
 export const MENU_OVERLAY_ITEMS = [
   { label: "ABOUT US", id: "about", path: "/about" },
   { label: "AREAS WE EXPLORE", id: "areas", path: "/explore" },
-  { label: "SELECTED BUILDS", id: "projects", path: "/projects" },
   { label: "EVENTS & SESSIONS", id: "events", path: "/events" },
   { label: "COMMUNITY METRICS", id: "stats", path: "/#stats" },
   { label: "CORE TEAM", id: "team", path: "/team" },
@@ -37,7 +34,6 @@ export const FOOTER_NAV = {
     { label: 'Home', path: '/' },
     { label: 'About', path: '/about' },
     { label: 'Areas We Explore', path: '/explore' },
-    { label: 'Projects', path: '/projects' },
     { label: 'Events', path: '/events' },
   ],
   community: [

@@ -16,6 +16,7 @@ export const CLUB_INFO = {
     linkedin: "https://linkedin.com/company/bbs-coding-club",
     instagram: "https://instagram.com/bbscodingclub",
     email: "contact@bbscodingclub.org",
+    whatsapp: "https://chat.whatsapp.com/Cx6r3BHaVbRBnDxaJxrFMi",
     discord: "https://discord.gg/bbscodingclub"
   },
   institution: "BBS College of Engineering and Technology",

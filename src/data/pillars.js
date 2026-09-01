@@ -18,8 +18,8 @@ export const PILLARS = [
     bentoDescription: "No throwaway academic exercises. We architect, review, and ship production web systems, internal campus tooling, and open-source packages.",
     tagline: "Software that solves real problems instead of collecting dust.",
     description: "The best way to learn is by shipping. We form small squads, set up a GitHub repo, and build campus utilities, student tools, and personal portfolio projects with actual users.",
-    actionText: "PROJECTS & REPOS",
-    actionHref: "/projects",
+    actionText: "WHAT WE BUILD",
+    actionHref: "/explore",
     isDominant: false,
     deliverables: ["Campus Web Projects", "Open Source Libraries", "Hackathon MVPs"]
   },

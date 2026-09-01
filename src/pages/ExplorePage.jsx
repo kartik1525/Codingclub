@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, CheckCircle2, Terminal, Code2, Sparkles, BookOpen, Cpu } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import Section from '../components/Section.jsx';
 import { 
   AREAS, 
@@ -21,6 +21,10 @@ export default function ExplorePage() {
       setSelectedAreaId(queryArea);
     }
   }, [searchParams]);
+
+  const activities = activeArea.detailedActivities || activeArea.activities.map(a => (
+    typeof a === 'string' ? { title: a, description: "Hands-on session with working demos and collaborative discussion." } : a
+  ));
 
   return (
     <div className="flex flex-col">
@@ -67,12 +71,12 @@ export default function ExplorePage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
               {/* Left: Area Details & Exploration */}
               <div className="lg:col-span-8">
-                <div className="flex justify-between items-center flex-wrap gap-4 mb-4">
+                <div className="flex justify-between items-center flex-wrap gap-3 mb-4">
                   <span className="text-xs font-semibold px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent border border-blue-500/25 uppercase tracking-wide">
-                    ACTIVE AREA
+                    {activeArea.areaLabel || "WHAT WE EXPLORE"}
                   </span>
                   <span className="text-xs font-medium text-bbs-dim uppercase tracking-wide">
-                    OPEN FOR COMMUNITY COLLABORATION
+                    {activeArea.contextLabel || "ONE OF THE AREAS WE BUILD IN"}
                   </span>
                 </div>
 
@@ -104,7 +108,7 @@ export default function ExplorePage() {
                 </div>
 
                 {/* Technologies & Toolsets */}
-                <div className="mb-8">
+                <div>
                   <div className="text-xs font-bold text-bbs-dim mb-3 uppercase tracking-wide">
                     RELEVANT TECHNOLOGIES & TOOLS
                   </div>
@@ -116,73 +120,30 @@ export default function ExplorePage() {
                     ))}
                   </div>
                 </div>
-
-                {/* Action Buttons */}
-                <div className="pt-6 border-t border-bbs-border flex items-center gap-4 flex-wrap">
-                  <Link
-                    to={`/join?area=${activeArea.id}`}
-                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-5 py-2.5 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:scale-105 shadow-md shadow-bbs-accent/25"
-                  >
-                    <span>JOIN THIS AREA</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <Link
-                    to="/projects"
-                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-5 py-2.5 rounded bg-bbs-raised border border-bbs-border text-bbs-text hover:border-bbs-accent transition-colors"
-                  >
-                    <span>VIEW RELEVANT BUILDS</span>
-                    <ArrowUpRight className="w-4 h-4" />
-                  </Link>
-                </div>
               </div>
 
-              {/* Right: Activities & Community Cadence Card */}
+              {/* Right: Activities & What Members Actually Do */}
               <div className="lg:col-span-4 bg-bbs-raised border border-bbs-border rounded p-6 sm:p-7 flex flex-col justify-between">
                 <div>
                   <div className="text-xs font-bold text-bbs-dim uppercase tracking-wide mb-4">
                     TYPICAL ACTIVITIES
                   </div>
 
-                  <div className="space-y-3 mb-6">
-                    {activeArea.activities.map((act, idx) => (
-                      <div key={idx} className="p-3 bg-bbs-surface border border-bbs-border rounded flex items-start gap-3">
-                        <span className="w-1.5 h-1.5 rounded-full bg-bbs-accent shrink-0 mt-2" />
+                  <div className="space-y-3">
+                    {activities.map((act, idx) => (
+                      <div key={idx} className="p-3.5 bg-bbs-surface border border-bbs-border rounded flex items-start gap-3 shadow-xs">
+                        <span className="w-1.5 h-1.5 rounded-full bg-bbs-accent shrink-0 mt-1.5" />
                         <div>
-                          <span className="font-display text-sm font-bold text-bbs-text block">{act}</span>
-                          <span className="text-xs text-bbs-muted">Peer-driven session with working demos and code reviews.</span>
+                          <span className="font-display text-sm font-bold text-bbs-text block leading-snug">
+                            {act.title}
+                          </span>
+                          <span className="text-xs text-bbs-muted leading-relaxed mt-1 block">
+                            {act.description}
+                          </span>
                         </div>
                       </div>
                     ))}
                   </div>
-
-                  {activeArea.relatedProjects && activeArea.relatedProjects.length > 0 && (
-                    <div className="mb-6 pt-4 border-t border-bbs-border">
-                      <div className="text-xs font-bold text-bbs-dim uppercase tracking-wide mb-2">
-                        FEATURED BUILD
-                      </div>
-                      <Link 
-                        to={activeArea.relatedProjects[0].url} 
-                        className="block p-3 bg-bbs-surface border border-bbs-border rounded hover:border-bbs-accent transition-colors group"
-                      >
-                        <div className="text-xs font-bold text-bbs-text group-hover:text-bbs-accent transition-colors">
-                          {activeArea.relatedProjects[0].title}
-                        </div>
-                        <div className="text-xs font-medium text-bbs-muted mt-0.5">
-                          {activeArea.relatedProjects[0].category} ↗
-                        </div>
-                      </Link>
-                    </div>
-                  )}
-                </div>
-
-                <div className="border-t border-bbs-border pt-4 mt-4">
-                  <Link
-                    to="/team"
-                    className="text-xs font-semibold text-bbs-text hover:text-bbs-accent inline-flex items-center gap-1 transition-colors"
-                  >
-                    <span>MEET THE CORE TEAM</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
                 </div>
               </div>
             </div>
@@ -212,7 +173,7 @@ export default function ExplorePage() {
                       {area.shortTitle.toUpperCase()}
                     </span>
                     <span className="text-xs font-medium text-bbs-dim uppercase">
-                      INTEREST AREA
+                      {area.areaLabel || "AREA OF INTEREST"}
                     </span>
                   </div>
 
@@ -242,22 +203,45 @@ export default function ExplorePage() {
                   <button
                     onClick={() => {
                       setSelectedAreaId(area.id);
-                      window.scrollTo({ top: 300, behavior: 'smooth' });
+                      window.scrollTo({ top: 320, behavior: 'smooth' });
                     }}
-                    className="text-xs font-semibold text-bbs-muted hover:text-bbs-text transition-colors cursor-pointer"
+                    className="text-xs font-semibold text-bbs-accent hover:text-bbs-text transition-colors cursor-pointer inline-flex items-center gap-1 group"
                   >
-                    INSPECT DETAILS ↑
+                    <span>VIEW DETAILS</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </button>
-                  <Link
-                    to={`/join?area=${area.id}`}
-                    className="text-xs font-semibold text-bbs-accent hover:text-bbs-text transition-colors inline-flex items-center gap-1"
-                  >
-                    <span>JOIN</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
+                  <span className="text-xs font-medium text-bbs-dim">
+                    {area.topics.length} TOPICS
+                  </span>
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* 4. Global Community Callout — Checkered / Grid Background */}
+      <Section variant="grid" className="py-16 sm:py-24 border-t border-bbs-border relative">
+        <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
+          <div className="bg-bbs-surface border border-bbs-border rounded p-6 sm:p-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-md">
+            <div>
+              <div className="text-xs font-bold text-bbs-accent mb-1 uppercase tracking-wide">
+                BBS CODING CLUB
+              </div>
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-bbs-text">
+                CURIOUS ABOUT BUILDING WITH US?
+              </h3>
+              <p className="text-sm sm:text-base text-bbs-muted mt-1.5 max-w-2xl leading-relaxed">
+                You don't need to choose a single area or specialize right away. BBS Coding Club is an open space where you can explore different topics, meet other student developers, and build things at your own pace.
+              </p>
+            </div>
+            <Link
+              to="/join"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold px-5 py-2.5 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all shrink-0 hover:scale-105 shadow-md shadow-bbs-accent/20"
+            >
+              <span>JOIN THE COMMUNITY</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </Section>

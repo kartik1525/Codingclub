@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, ArrowUpRight, ArrowRight } from 'lucide-react';
+import { Mail, ArrowRight, ChevronDown, CheckCircle2 } from 'lucide-react';
 import Section from '../components/Section.jsx';
 import { 
-  CORE_MEMBERS, 
-  TEAM_CATEGORIES, 
+  TEAM_MEMBERS, 
   TEAM_PAGE_HEADER, 
   LEADERSHIP_NOMINATIONS_CALLOUT 
 } from '../data/team.js';
@@ -29,15 +28,28 @@ function LinkedinIcon({ className = "w-3.5 h-3.5" }) {
 }
 
 export default function TeamPage() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [expandedMemberIds, setExpandedMemberIds] = useState(new Set());
 
-  const filteredMembers = selectedCategory === 'all'
-    ? CORE_MEMBERS
-    : CORE_MEMBERS.filter(member => member.category === selectedCategory);
+  const toggleExpand = (id) => {
+    setExpandedMemberIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
+  const president = TEAM_MEMBERS[0]; // Kartikeya Singh (President / Club Head)
+  const executives = TEAM_MEMBERS.slice(1, 3); // Adarsh Pandey (VP), Mohd. Shariq Irshad (Gen Sec)
+  const leads = TEAM_MEMBERS.slice(3, 7); // Tech, Event, Community, Content & Design Leads
+  const coordinators = TEAM_MEMBERS.slice(7, 10); // Technical, Event & Ops, Media & Docs Coordinators
 
   return (
     <div className="flex flex-col">
-      {/* 1. Page Header & Filter Tabs — Normal Solid Background */}
+      {/* 1. Page Header — Normal Solid Background */}
       <Section variant="solid" className="pt-14 sm:pt-20 pb-8 sm:pb-12">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="flex items-center gap-2.5 text-xs font-bold text-bbs-accent tracking-wide uppercase mb-4">
@@ -47,147 +59,136 @@ export default function TeamPage() {
           <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-bbs-text leading-tight mb-6 whitespace-pre-line">
             {TEAM_PAGE_HEADER.title}
           </h1>
-          <p className="text-lg sm:text-xl text-bbs-muted max-w-3xl leading-relaxed mb-10">
+          <p className="text-lg sm:text-xl text-bbs-muted max-w-3xl leading-relaxed">
             {TEAM_PAGE_HEADER.description}
           </p>
-
-          {/* Functional Filter Tabs */}
-          <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto pb-4 border-b border-bbs-border scrollbar-none">
-            {TEAM_CATEGORIES.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3.5 py-1.5 rounded text-xs whitespace-nowrap transition-all cursor-pointer border ${
-                  selectedCategory === cat.id
-                    ? 'bg-bbs-accent text-white border-bbs-accent shadow-sm font-semibold'
-                    : 'bg-bbs-surface text-bbs-muted hover:text-bbs-text hover:bg-bbs-raised border-bbs-border font-medium'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
         </div>
       </Section>
 
-      {/* 2. Core Team Members Grid — Checkered / Grid Background */}
-      <Section variant="grid" className="py-16 sm:py-24 border-t border-bbs-border relative">
-        <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8">
-            {filteredMembers.map((member) => (
-              <article
-                key={member.id}
-                className="bg-bbs-surface border border-bbs-border rounded-xl overflow-hidden shadow-lg hover:border-bbs-border-focus transition-colors flex flex-col justify-between group"
-              >
-                <div>
-                  {/* Photo / Avatar Canvas */}
-                  <div className="w-full relative aspect-[16/10] bg-bbs-raised overflow-hidden border-b border-bbs-border flex items-center justify-center">
-                    {member.image ? (
-                      <img
-                        src={member.image}
-                        alt={`${member.name} — ${member.role}`}
-                        className="w-full h-full object-cover object-[center_30%] filter grayscale-[20%] contrast-105 group-hover:grayscale-0 group-hover:scale-102 transition-all duration-700 ease-out"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-gradient-to-b from-bbs-surface via-bbs-raised to-bbs-surface">
-                        <span className="text-3xl font-extrabold text-bbs-accent/80 mb-1">
-                          {member.name.split(' ').map(n => n[0]).join('')}
-                        </span>
-                        <span className="text-xs font-medium text-bbs-dim uppercase tracking-wide">
-                          {member.branch}
-                        </span>
-                      </div>
-                    )}
+      {/* 2. Team Directory Sections — Checkered / Grid Background */}
+      <Section variant="grid" className="py-14 sm:py-20 border-t border-bbs-border relative">
+        <div className="max-w-container mx-auto px-5 sm:px-8 w-full space-y-16 sm:space-y-20">
+          
+          {/* ─── PRESIDENT / CLUB HEAD (FEATURED CARD) ─── */}
+          <div>
+            <div className="text-xs font-bold text-bbs-accent tracking-wider uppercase mb-4">
+              PRESIDENT / CLUB HEAD
+            </div>
 
-                    {/* Top Right: Status Badge */}
-                    <div className="absolute top-3 right-3 text-xs font-semibold px-2.5 py-0.5 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-accent tracking-wide uppercase">
-                      {member.status}
+            <article className="bg-bbs-surface border border-bbs-border rounded-xl overflow-hidden shadow-sm hover:border-bbs-border-focus transition-colors">
+              <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+                {/* Clean Photo Container: Zero Text Overlay */}
+                <div className="lg:col-span-5 bg-bbs-raised overflow-hidden min-h-[280px] sm:min-h-[340px] lg:min-h-full border-b lg:border-b-0 lg:border-r border-bbs-border relative">
+                  <TeamPhoto member={president} />
+                </div>
+
+                {/* Information Section Below / Beside Image */}
+                <div className="lg:col-span-7 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
+                  <div>
+                    <div className="text-xs font-bold text-bbs-accent uppercase tracking-wider mb-2">
+                      {president.designation}
                     </div>
 
-                    {/* Bottom Left: Branch */}
-                    <div className="absolute bottom-3 left-3 text-xs font-medium px-2 py-0.5 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-text">
-                      {member.branch}
-                    </div>
-                  </div>
+                    <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-bbs-text mb-3">
+                      {president.name}
+                    </h2>
 
-                  {/* Card Info */}
-                  <div className="p-6 sm:p-7">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-xs sm:text-sm font-semibold text-bbs-accent uppercase mb-1">
-                        {member.role}
-                      </span>
-                    </div>
-
-                    <h3 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-bbs-text mb-3 group-hover:text-bbs-accent-light transition-colors">
-                      {member.name}
-                    </h3>
-
-                    <p className="text-sm text-bbs-muted leading-relaxed mb-5">
-                      {member.bio}
+                    <p className="text-base sm:text-lg text-bbs-muted leading-relaxed mb-6">
+                      {president.shortDescription}
                     </p>
+                  </div>
 
-                    <div className="mb-4">
-                      <div className="text-xs font-bold text-bbs-dim uppercase tracking-wide mb-2">
-                        SPECIALTIES & FOCUS
-                      </div>
-                      <div className="flex flex-wrap gap-1.5">
-                        {member.specialties.map((spec, sIdx) => (
-                          <span
-                            key={sIdx}
-                            className="text-xs font-medium px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-dim"
-                          >
-                            {spec}
-                          </span>
-                        ))}
-                      </div>
+                  <div>
+                    {/* Expandable Responsibilities */}
+                    <div className="pt-4 border-t border-bbs-border flex items-center justify-between gap-4 flex-wrap">
+                      <button
+                        type="button"
+                        onClick={() => toggleExpand(president.id)}
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-bbs-accent hover:text-bbs-text transition-colors cursor-pointer py-1 group/btn"
+                        aria-expanded={expandedMemberIds.has(president.id)}
+                      >
+                        <span>
+                          {expandedMemberIds.has(president.id) ? 'HIDE RESPONSIBILITIES' : 'VIEW RESPONSIBILITIES'}
+                        </span>
+                        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${expandedMemberIds.has(president.id) ? 'rotate-180 text-bbs-accent' : 'group-hover/btn:translate-y-0.5'}`} />
+                      </button>
+
+                      {/* Social Icons */}
+                      <SocialLinks socials={president.socials} name={president.name} />
                     </div>
-                  </div>
-                </div>
 
-                {/* Bottom Channels Row */}
-                <div className="px-6 py-4 bg-bbs-raised/40 border-t border-bbs-border flex items-center justify-between">
-                  <span className="text-xs font-semibold text-bbs-dim uppercase">
-                    CHANNELS:
-                  </span>
-                  <div className="flex items-center gap-2">
-                    <a
-                      href={member.socials.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-1.5 rounded hover:bg-bbs-hover text-bbs-muted hover:text-bbs-text transition-colors"
-                      title={`${member.name} GitHub`}
-                    >
-                      <GithubIcon className="w-3.5 h-3.5" />
-                    </a>
-                    <a
-                      href={member.socials.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-1.5 rounded hover:bg-bbs-hover text-bbs-muted hover:text-bbs-text transition-colors"
-                      title={`${member.name} LinkedIn`}
-                    >
-                      <LinkedinIcon className="w-3.5 h-3.5" />
-                    </a>
-                    <a
-                      href={`mailto:${member.socials.email}`}
-                      className="p-1.5 rounded hover:bg-bbs-hover text-bbs-muted hover:text-bbs-text transition-colors"
-                      title={`Email ${member.name}`}
-                    >
-                      <Mail className="w-3.5 h-3.5" />
-                    </a>
+                    {/* Expandable Responsibilities List */}
+                    <ResponsibilitiesDrawer
+                      isExpanded={expandedMemberIds.has(president.id)}
+                      responsibilities={president.responsibilities}
+                    />
                   </div>
                 </div>
-              </article>
-            ))}
+              </div>
+            </article>
           </div>
+
+          {/* ─── EXECUTIVE TEAM ─── */}
+          <div>
+            <div className="text-xs font-bold text-bbs-accent tracking-wider uppercase mb-4">
+              EXECUTIVE TEAM
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {executives.map((member) => (
+                <TeamCard
+                  key={member.id}
+                  member={member}
+                  isExpanded={expandedMemberIds.has(member.id)}
+                  onToggle={() => toggleExpand(member.id)}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* ─── CORE FUNCTIONAL LEADS ─── */}
+          <div>
+            <div className="text-xs font-bold text-bbs-accent tracking-wider uppercase mb-4">
+              CORE FUNCTIONAL LEADS
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {leads.map((member) => (
+                <TeamCard
+                  key={member.id}
+                  member={member}
+                  isExpanded={expandedMemberIds.has(member.id)}
+                  onToggle={() => toggleExpand(member.id)}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* ─── COORDINATORS ─── */}
+          <div>
+            <div className="text-xs font-bold text-bbs-accent tracking-wider uppercase mb-4">
+              COORDINATORS
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {coordinators.map((member) => (
+                <TeamCard
+                  key={member.id}
+                  member={member}
+                  isExpanded={expandedMemberIds.has(member.id)}
+                  onToggle={() => toggleExpand(member.id)}
+                />
+              ))}
+            </div>
+          </div>
+
         </div>
       </Section>
 
       {/* 3. Community Involvement Callout — Normal Solid Background */}
       <Section variant="solid" className="py-16 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="bg-bbs-surface border border-bbs-border rounded p-6 sm:p-8 flex justify-between items-center flex-wrap gap-6 hover:border-bbs-border-focus transition-colors shadow-md">
+          <div className="bg-bbs-surface border border-bbs-border rounded-xl p-6 sm:p-8 flex justify-between items-center flex-wrap gap-6 hover:border-bbs-border-focus transition-colors shadow-sm">
             <div>
               <div className="text-xs font-bold text-bbs-accent mb-1 uppercase tracking-wide">
                 {LEADERSHIP_NOMINATIONS_CALLOUT.badge}
@@ -209,6 +210,161 @@ export default function TeamPage() {
           </div>
         </div>
       </Section>
+    </div>
+  );
+}
+
+/**
+ * TeamCard - Clean Directory Card with NO Text Overlay on Photo
+ */
+function TeamCard({ member, isExpanded, onToggle }) {
+  return (
+    <article className="bg-bbs-surface border border-bbs-border rounded-xl overflow-hidden shadow-sm hover:border-bbs-border-focus transition-colors flex flex-col justify-between">
+      <div>
+        {/* Clean Photo Container: Zero Text Overlay */}
+        <div className="aspect-[4/3] bg-bbs-raised overflow-hidden border-b border-bbs-border relative">
+          <TeamPhoto member={member} />
+        </div>
+
+        {/* Textual Information Below Image */}
+        <div className="p-6">
+          <div className="text-xs font-bold text-bbs-accent uppercase tracking-wider mb-1.5">
+            {member.designation}
+          </div>
+
+          <h3 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-bbs-text mb-2.5">
+            {member.name}
+          </h3>
+
+          <p className="text-sm text-bbs-muted leading-relaxed">
+            {member.shortDescription}
+          </p>
+        </div>
+      </div>
+
+      {/* Card Footer: Expand Responsibilities & Socials */}
+      <div className="px-6 pb-6 pt-0">
+        <div className="pt-4 border-t border-bbs-border flex items-center justify-between gap-4">
+          <button
+            type="button"
+            onClick={onToggle}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-bbs-accent hover:text-bbs-text transition-colors cursor-pointer py-1 group/btn"
+            aria-expanded={isExpanded}
+          >
+            <span>
+              {isExpanded ? 'HIDE RESPONSIBILITIES' : 'VIEW RESPONSIBILITIES'}
+            </span>
+            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${isExpanded ? 'rotate-180 text-bbs-accent' : 'group-hover/btn:translate-y-0.5'}`} />
+          </button>
+
+          {/* Social Channels */}
+          <SocialLinks socials={member.socials} name={member.name} />
+        </div>
+
+        {/* Expandable Responsibilities Drawer */}
+        <ResponsibilitiesDrawer
+          isExpanded={isExpanded}
+          responsibilities={member.responsibilities}
+        />
+      </div>
+    </article>
+  );
+}
+
+/**
+ * TeamPhoto - Pure Clean Image Container without Any Overlays
+ */
+function TeamPhoto({ member }) {
+  const [hasError, setHasError] = useState(false);
+
+  if (!member.image || hasError) {
+    return (
+      <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-gradient-to-b from-bbs-surface via-bbs-raised to-bbs-surface relative select-none">
+        <div className="absolute inset-0 section-grid opacity-40 pointer-events-none" />
+        <span className="font-display text-4xl sm:text-5xl font-black text-bbs-text/80 tracking-tight relative z-10">
+          {member.initials}
+        </span>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={member.image}
+      alt={member.name}
+      style={{ objectPosition: member.imagePosition || 'center center' }}
+      className="w-full h-full object-cover select-none"
+      loading="lazy"
+      onError={() => setHasError(true)}
+    />
+  );
+}
+
+/**
+ * ResponsibilitiesDrawer - Expandable Vertical List
+ */
+function ResponsibilitiesDrawer({ isExpanded, responsibilities }) {
+  return (
+    <div
+      className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
+        isExpanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+      }`}
+    >
+      <div className="overflow-hidden">
+        <div className="pt-4 mt-3 border-t border-bbs-border">
+          <ul className="space-y-2">
+            {responsibilities.map((resp, idx) => (
+              <li key={idx} className="flex items-start gap-2.5 text-xs text-bbs-muted leading-relaxed font-sans">
+                <span className="w-1.5 h-1.5 rounded-full bg-bbs-accent shrink-0 mt-1.5" />
+                <span>{resp}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * SocialLinks - Subtle Social Icons
+ */
+function SocialLinks({ socials, name }) {
+  if (!socials) return null;
+
+  return (
+    <div className="flex items-center gap-2 shrink-0">
+      {socials.github && (
+        <a
+          href={socials.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-1 rounded hover:bg-bbs-hover text-bbs-muted hover:text-bbs-text transition-colors cursor-pointer"
+          title={`${name} GitHub`}
+        >
+          <GithubIcon className="w-3.5 h-3.5" />
+        </a>
+      )}
+      {socials.linkedin && (
+        <a
+          href={socials.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-1 rounded hover:bg-bbs-hover text-bbs-muted hover:text-bbs-text transition-colors cursor-pointer"
+          title={`${name} LinkedIn`}
+        >
+          <LinkedinIcon className="w-3.5 h-3.5" />
+        </a>
+      )}
+      {socials.email && (
+        <a
+          href={`mailto:${socials.email}`}
+          className="p-1 rounded hover:bg-bbs-hover text-bbs-muted hover:text-bbs-text transition-colors cursor-pointer"
+          title={`Email ${name}`}
+        >
+          <Mail className="w-3.5 h-3.5" />
+        </a>
+      )}
     </div>
   );
 }

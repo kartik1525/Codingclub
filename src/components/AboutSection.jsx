@@ -57,9 +57,6 @@ export default function AboutSection() {
                       : 'bg-transparent border-transparent text-bbs-muted hover:text-bbs-text hover:bg-bbs-surface/50'
                   }`}
                 >
-                  <div className={`font-mono text-xs mb-1 ${isActive ? 'text-bbs-accent-light' : 'text-bbs-dim'}`}>
-                    CORE PILLAR
-                  </div>
                   <div className="font-display font-bold text-base sm:text-lg tracking-tight">
                     {pillar.title}
                   </div>
