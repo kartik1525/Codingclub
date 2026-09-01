@@ -1,61 +1,73 @@
 import { CLUB_INFO } from './clubInfo.js';
 
 export const JOIN_PAGE_HEADER = {
+  eyebrow: "GET INVOLVED",
   badge: "GET INVOLVED",
   title: "BUILD WITH US.\nJOIN THE COMMUNITY.",
-  description: "Whether you're here to learn, build, compete, or help run what we build, there's a place for you at BBS Coding Club. Join our community, find your people, and start building."
+  description: "Whether you want to learn, build, compete, or help run what we build, there's a place for you at BBS Coding Club."
 };
+
+export const WAYS_TO_JOIN_HEADER = {
+  eyebrow: "CHOOSE HOW YOU WANT TO PARTICIPATE",
+  title: "FIND YOUR PLACE IN THE CLUB."
+};
+
+export const CHOOSE_PATH_HEADER = WAYS_TO_JOIN_HEADER;
 
 export const JOIN_PATHS = [
   {
     id: "community",
+    number: "01",
     badge: "COMMUNITY MEMBER",
-    secondaryText: "DEFAULT ENTRY",
+    subtitle: "COMMUNITY MEMBER",
     title: "JOIN THE COMMUNITY",
-    description: "Get updates, meet other students, participate in events, and stay connected with the BBS Coding Club.",
-    supportingText: "Join the BBS Coding Club WhatsApp Community and stay connected with coding sessions, events, hackathons, announcements, and other students.",
+    description: "Get updates, meet other students, participate in coding sessions, events, hackathons, announcements, and student discussions.",
     cta: {
       label: "JOIN WHATSAPP COMMUNITY ↗",
       href: "https://chat.whatsapp.com/Cx6r3BHaVbRBnDxaJxrFMi",
       isExternal: true
-    },
-    accent: false
+    }
   },
   {
     id: "organizing",
+    number: "02",
     badge: "ORGANIZING TEAM",
-    secondaryText: "VOLUNTEER ROLE",
-    title: "JOIN THE ORGANIZING TEAM",
-    description: "Want to do more than attend? Apply to become a Coding Club volunteer and help organize workshops, competitions, events, and hackathons.",
-    supportingText: "Help run hackathons, coordinate campus coding activities, guide workshops, and work behind the scenes with the club team.",
+    subtitle: "ORGANIZING TEAM",
+    title: "HELP BUILD THE CLUB",
+    description: "Want to do more than attend? Help organize coding sessions, workshops, competitions, events, hackathons, outreach, media, logistics, and technical activities.",
     cta: {
       label: "APPLY TO ORGANIZING TEAM ↓",
-      href: "#apply",
+      href: "#application",
       isExternal: false
-    },
-    accent: true
+    }
   }
 ];
 
-export const ORGANIZING_HERO = {
-  eyebrow: "VOLUNTEER APPLICATION",
-  badge: "JOIN THE ORGANIZING TEAM",
-  title: "HELP US BUILD WHAT HAPPENS NEXT.",
-  description: "BBS Coding Club is run by students who don't just attend events — they help create them. Apply to join the organizing team and contribute to workshops, coding sessions, competitions, community initiatives, and hackathons."
+export const JOIN_WAYS = JOIN_PATHS;
+
+export const ORGANIZING_SECTION = {
+  eyebrow: "ORGANIZING TEAM · VOLUNTEER",
+  title: "BUILD THE EVENTS YOU WANT TO ATTEND.",
+  description: "From coding sessions to hackathons, our organizing team works behind the scenes to make things happen. Join the team, take responsibility, and help us execute the next generation of Coding Club events.",
+  areas: [
+    "COORDINATION",
+    "PARTICIPANT MANAGEMENT",
+    "TECHNICAL SUPPORT",
+    "LOGISTICS",
+    "MEDIA & OUTREACH",
+    "ON-GROUND EXECUTION"
+  ],
+  disclaimer: "* Opportunity to contribute to hackathon organization; does not guarantee a competitive team position.",
+  cta: {
+    label: "APPLY TO HELP RUN EVENTS →",
+    targetId: "application"
+  }
 };
 
-export const JOIN_STEPS = {
-  step1: {
-    badge: "STEP 1 OF 2",
-    title: "CHOOSE YOUR INTERESTS",
-    description: "Tell us where you'd like to contribute.",
-    hint: "CLICK A CARD TO SELECT"
-  },
-  step2: {
-    badge: "STEP 2 OF 2",
-    title: "SUBMIT APPLICATION",
-    description: "Share a little about yourself and how you'd like to contribute."
-  }
+export const APPLICATION_SECTION = {
+  eyebrow: "VOLUNTEER APPLICATION · JOIN THE ORGANIZING TEAM",
+  title: "WANT TO HELP BUILD WHAT COMES NEXT?",
+  description: "Tell us where you can contribute and how you'd like to help the Coding Club grow."
 };
 
 export const CONTRIBUTION_AREAS = [
@@ -165,54 +177,10 @@ export const BRANCH_YEAR_OPTIONS = [
 ];
 
 export const HACKATHON_OPPORTUNITY = {
-  eyebrow: "UPCOMING FOCUS",
+  eyebrow: ORGANIZING_SECTION.eyebrow,
   badge: "SMART INDIA HACKATHON",
-  title: "BUILD THE EVENTS YOU WANT TO ATTEND.",
-  description: "From coding sessions to hackathons, our organizing team works behind the scenes to make things happen. Join the team, take responsibility, and help us execute the next generation of Coding Club events.",
-  details: "Help with coordination, participant management, technical support, logistics, media, outreach, and on-ground execution.",
-  note: "Opportunity to contribute to hackathon organization; does not guarantee a competitive team position."
-};
-
-export const STAY_CONNECTED_CALLOUT = {
-  badge: "STAY CONNECTED",
-  title: "JOIN THE COMMUNITY DIRECTLY?",
-  description: "Join the official BBS Coding Club WhatsApp Community for announcements, event updates, coding sessions, hackathons, and student discussions.",
-  channels: [
-    { label: "WHATSAPP COMMUNITY ↗", href: CLUB_INFO.socials.whatsapp, isPrimary: true },
-    { label: "GITHUB ORG ↗", href: CLUB_INFO.socials.github, isPrimary: false }
-  ]
-};
-
-// Backwards compatibility mappings for older components
-export const INTEREST_OPTIONS = CONTRIBUTION_AREAS.map(a => ({
-  value: a.title,
-  label: a.title
-}));
-
-export const WHY_JOIN_HIGHLIGHTS = [
-  {
-    id: "community",
-    iconType: "users",
-    title: "Community Member",
-    description: "Join our WhatsApp Community to participate in coding workshops, hackathons, and study groups."
-  },
-  {
-    id: "organizer",
-    iconType: "terminal",
-    title: "Volunteer & Organize",
-    description: "Help run hackathons, manage registrations, prepare problem sets, and build club activities."
-  },
-  {
-    id: "hackathons",
-    iconType: "sparkles",
-    title: "Hackathon Execution",
-    description: "Gain hands-on experience coordinating events like the Smart India Hackathon internal rounds."
-  }
-];
-
-export const ALTERNATE_CHANNELS_CALLOUT = {
-  badge: STAY_CONNECTED_CALLOUT.badge,
-  title: STAY_CONNECTED_CALLOUT.title,
-  description: STAY_CONNECTED_CALLOUT.description,
-  channels: STAY_CONNECTED_CALLOUT.channels
+  title: ORGANIZING_SECTION.title,
+  description: ORGANIZING_SECTION.description,
+  details: ORGANIZING_SECTION.areas.join(" · "),
+  note: ORGANIZING_SECTION.disclaimer
 };

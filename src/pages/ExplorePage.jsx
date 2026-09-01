@@ -10,7 +10,8 @@ import {
 
 export default function ExplorePage() {
   const [searchParams] = useSearchParams();
-  const initialArea = searchParams.get('area') || searchParams.get('track') || searchParams.get('dept') || AREAS[0].id;
+  const defaultAreaId = AREAS.find(a => a.id === 'dsa')?.id || AREAS[0].id;
+  const initialArea = searchParams.get('area') || searchParams.get('track') || searchParams.get('dept') || defaultAreaId;
 
   const [selectedAreaId, setSelectedAreaId] = useState(initialArea);
   const activeArea = AREAS.find(a => a.id === selectedAreaId) || AREAS[0];
@@ -161,7 +162,7 @@ export default function ExplorePage() {
             {AREAS_CATALOGUE_HEADER.title}
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {AREAS.map((area) => (
               <div
                 key={area.id}

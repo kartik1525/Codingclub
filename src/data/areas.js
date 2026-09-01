@@ -1,5 +1,5 @@
 /**
- * areas.js - The 5 Scalable Interest Areas for BBS Coding Club
+ * areas.js - The 4 Scalable Technical Areas for BBS Coding Club
  * 
  * Authentic, student-focused technical areas that represent what members
  * learn, build, experiment with, and explore together.
@@ -23,7 +23,7 @@ export const AREAS = [
       "State Management & Clean Component Patterns",
       "Cloud Deployment & Server Basics"
     ],
-    technologies: ["React", "JavaScript", "Node.js", "Tailwind CSS", "PostgreSQL", "Git & GitHub", "Vite", "Linux"],
+    technologies: ["React", "JavaScript", "Node.js", "Tailwind CSS", "PostgreSQL", "Git & GitHub"],
     activities: [
       "Hands-on Coding Sprints",
       "Git & Code Reviews",
@@ -48,19 +48,8 @@ export const AREAS = [
         description: "Get code running on live servers and learn how domain names, SSL, and cloud hosts work."
       }
     ],
-    relatedProjects: [
-      {
-        title: "BBS Coding Club Digital Platform",
-        category: "Production Web Engineering",
-        url: "/projects"
-      }
-    ],
-    relatedEvents: [
-      {
-        title: "Git, Pull Requests & First OSS Contributions",
-        category: "Workshop"
-      }
-    ]
+    relatedProjects: [],
+    relatedEvents: []
   },
   {
     id: "ai-ml",
@@ -79,7 +68,7 @@ export const AREAS = [
       "Generative AI & LLM API Integrations",
       "Evaluating Models & Understanding Errors"
     ],
-    technologies: ["Python", "PyTorch", "scikit-learn", "NumPy & Pandas", "OpenCV", "Hugging Face", "Jupyter"],
+    technologies: ["Python", "PyTorch", "scikit-learn", "NumPy & Pandas", "OpenCV", "Hugging Face"],
     activities: [
       "Dataset Exploration",
       "Model Building & Experiments",
@@ -108,115 +97,53 @@ export const AREAS = [
     relatedEvents: []
   },
   {
-    id: "competitive-programming",
-    title: "Competitive Programming",
-    shortTitle: "Competitive Programming",
-    areaLabel: "OUR FOCUS",
-    contextLabel: "WHERE WE PRACTICE PROBLEM SOLVING",
-    tagline: "Practicing algorithms, logic puzzles, and sharpening contest problem solving.",
-    overview: "For members who enjoy solving algorithmic puzzles, logic challenges, and timed coding problems. We practice regularly to build intuition and confidence for technical interview rounds, online contests, and campus coding tournaments.",
-    description: "We work through problem sets, break down tricky logic, explore data structure trade-offs, and encourage friendly coding duels to make problem solving less intimidating.",
+    id: "dsa",
+    title: "Data Structures & Algorithms",
+    shortTitle: "DSA & Problem Solving",
+    areaLabel: "CORE FOUNDATION",
+    contextLabel: "PROBLEM SOLVING & LOGIC",
+    tagline: "Build strong problem-solving fundamentals through data structures, algorithms, complexity analysis, and practical implementation.",
+    overview: "Build strong problem-solving fundamentals through data structures, algorithms, complexity analysis, and practical implementation. We focus on understanding core data structure trade-offs, mastering recursive thinking, and breaking complex problems into structured algorithmic steps.",
+    description: "Build strong problem-solving fundamentals through data structures, algorithms, complexity analysis, and practical implementation. We practice regularly to build intuition and confidence for technical interviews and engineering problem solving.",
     topics: [
-      "Core Data Structures (Trees, Graphs, Stacks, Queues)",
-      "Dynamic Programming & Breaking Down Subproblems",
-      "Graph Traversal & Shortest Path Algorithms",
-      "Greedy Approaches & Two-Pointer Techniques",
-      "Number Theory & Math Fundamentals",
-      "Contest Strategy & Managing Timed Rounds"
+      "Arrays, Strings & Linked Lists",
+      "Stacks, Queues, Trees & Graphs",
+      "Searching, Sorting & Recursion",
+      "Dynamic Programming & Greedy Algorithms",
+      "Time & Space Complexity"
     ],
-    technologies: ["C++ STL", "Data Structures", "Algorithms", "Codeforces", "LeetCode", "CSES"],
+    technologies: ["C++", "STL", "Data Structures", "Algorithms", "Problem Solving"],
     activities: [
-      "Problem-Solving Ladders",
-      "Contest Retrospectives",
-      "Friendly Speed Duels",
-      "Interview Prep Rounds"
+      "Algorithmic Problem Ladders",
+      "Data Structure Implementations",
+      "Complexity & Logic Reviews",
+      "Interview Problem Walkthroughs"
     ],
     detailedActivities: [
       {
-        title: "Problem-Solving Ladders",
-        description: "Solve progressively challenging problems and discuss multiple ways to crack the same question."
+        title: "Algorithmic Problem Ladders",
+        description: "Solve structured problems progressively to build intuitive problem-solving confidence."
       },
       {
-        title: "Contest Retrospectives",
-        description: "Review recent contest problems, analyze failed submissions, and understand time complexity."
+        title: "Data Structure Implementations",
+        description: "Code trees, heaps, and graphs from scratch to master their inner mechanics."
       },
       {
-        title: "Friendly Speed Duels",
-        description: "Low-pressure, timed mini-contests to practice thinking clearly under a ticking clock."
+        title: "Complexity & Logic Reviews",
+        description: "Analyze Big-O time and memory trade-offs to write clean, optimal, and dependable code."
       },
       {
-        title: "Interview Prep Rounds",
-        description: "Walk through common data structure questions asked in technical internship interviews."
+        title: "Interview Problem Walkthroughs",
+        description: "Walk through common data structure questions asked in technical software internship interviews."
       }
     ],
     relatedProjects: [],
-    relatedEvents: [
-      {
-        title: "Weekend Project Showcase & Lightning Talks",
-        category: "Community"
-      }
-    ]
-  },
-  {
-    id: "open-source",
-    title: "Open Source & Developer Tools",
-    shortTitle: "Open Source & Tools",
-    areaLabel: "WHAT WE WORK WITH",
-    contextLabel: "TOOLS & HABITS WE RELY ON",
-    tagline: "Getting comfortable with Git, terminal workflows, and building in public.",
-    overview: "Most modern software development happens in the open. We demystify version control, guide members through making their first pull requests on GitHub, and share the command-line habits and tools that make everyday development faster and more fun.",
-    description: "Learn how to fork repositories, create meaningful commits, read and navigate large codebases, write clear documentation, and contribute to public student projects.",
-    topics: [
-      "Practical Git (Branching, Rebasing, Resolving Conflicts)",
-      "Pull Request Etiquette & Constructive Reviews",
-      "Command Line Navigation & Shell Scripting",
-      "Linux Environments & Developer Setups",
-      "Package Management & Semantic Versioning",
-      "Writing Great READMEs & Project Docs"
-    ],
-    technologies: ["Git", "GitHub & Actions", "Bash / Zsh", "Linux", "Markdown", "Docker", "Vim / Neovim"],
-    activities: [
-      "First Pull Request Sprints",
-      "Terminal & Shell Habits",
-      "Reading Real-World Repos",
-      "Community Documentation Sprints"
-    ],
-    detailedActivities: [
-      {
-        title: "First Pull Request Sprints",
-        description: "Fork a repository, make a clean commit, and submit your first real pull request with guidance."
-      },
-      {
-        title: "Terminal & Shell Habits",
-        description: "Learn helpful Bash commands, navigation shortcuts, and shell tools for everyday work."
-      },
-      {
-        title: "Reading Real-World Repos",
-        description: "Explore popular open-source repos to see how experienced developers organize their files."
-      },
-      {
-        title: "Community Documentation Sprints",
-        description: "Contribute documentation fixes, bug reports, and features to campus and student projects."
-      }
-    ],
-    relatedProjects: [
-      {
-        title: "BBS Coding Club Digital Platform",
-        category: "Open Source",
-        url: "https://github.com/bbs-coding-club"
-      }
-    ],
-    relatedEvents: [
-      {
-        title: "Hands-on Workshop: Git & Pull Requests",
-        category: "Workshop"
-      }
-    ]
+    relatedEvents: []
   },
   {
     id: "hackathons-innovation",
     title: "Hackathons & Innovation",
-    shortTitle: "Hackathons & Sprints",
+    shortTitle: "Hackathons & Innovation",
     areaLabel: "WHERE WE TEAM UP",
     contextLabel: "WHERE WE SPRINT & HACK",
     tagline: "Forming teams, brainstorming ideas, and building fast prototypes together.",
@@ -228,9 +155,9 @@ export const AREAS = [
       "Cross-Discipline Team Coordination",
       "Architecture Diagrams & System Flowcharts",
       "Demo Day Dry Runs & Presentation Prep",
-      "Smart India Hackathon (SIH) Internal Prep"
+      "Smart India Hackathon (SIH) Campus Prep"
     ],
-    technologies: ["Rapid Prototyping", "Full-Stack MVPs", "Figma", "REST APIs", "Vercel / Netlify", "Docker"],
+    technologies: ["Rapid Prototyping", "Full-Stack MVPs", "Figma", "REST APIs", "Vercel", "Docker"],
     activities: [
       "Team Assembly & Brainstorms",
       "Weekend Prototyping Sprints",
@@ -255,19 +182,8 @@ export const AREAS = [
         description: "Understand problem statements, evaluate feasibility, and prepare submissions effectively."
       }
     ],
-    relatedProjects: [
-      {
-        title: "SIH Campus Evaluation Hub",
-        category: "Student Prototype",
-        url: "/projects"
-      }
-    ],
-    relatedEvents: [
-      {
-        title: "SIH Internal Campus Hackathon 2026",
-        category: "Hackathon"
-      }
-    ]
+    relatedProjects: [],
+    relatedEvents: []
   }
 ];
 

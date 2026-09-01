@@ -11,7 +11,8 @@ import { AREAS } from '../data/areas.js';
  * Mobile: Responsive inline-expanding accordion with touch targets & CSS grid height animation
  */
 export default function AreasDirectory() {
-  const [activeId, setActiveId] = useState(AREAS[0].id);
+  const defaultArea = AREAS.find((a) => a.id === 'dsa') || AREAS[0];
+  const [activeId, setActiveId] = useState(defaultArea.id);
   const hoverTimeoutRef = useRef(null);
 
   // Subtle 60ms hover intent to prevent rapid thrashing on skimming
@@ -81,10 +82,10 @@ export default function AreasDirectory() {
 
                     {/* Tech / Focus Metadata */}
                     <div className="text-xs font-medium text-bbs-muted group-hover:text-bbs-text/90 mt-2 transition-colors duration-200 flex flex-wrap items-center gap-x-2 gap-y-1">
-                      {area.technologies.slice(0, 4).map((tech, sIdx) => (
+                      {area.technologies.slice(0, 5).map((tech, sIdx) => (
                         <React.Fragment key={sIdx}>
                           <span>{tech}</span>
-                          {sIdx < Math.min(area.technologies.length - 1, 3) && (
+                          {sIdx < Math.min(area.technologies.length - 1, 4) && (
                             <span className="text-bbs-border-focus select-none">·</span>
                           )}
                         </React.Fragment>
@@ -112,37 +113,37 @@ export default function AreasDirectory() {
 
         {/* RIGHT COLUMN: Stable Dynamic Detail Panel (~42% width) */}
         <div className="lg:col-span-5 sticky top-28">
-          <div className="bg-bbs-surface border border-bbs-border rounded p-7 sm:p-9 shadow-2xl flex flex-col justify-between min-h-[560px] relative overflow-hidden transition-colors duration-300">
+          <div className="bg-bbs-surface border border-bbs-border rounded-lg p-6 sm:p-7 shadow-sm flex flex-col justify-between relative overflow-hidden transition-colors duration-300">
             {/* Upper Content */}
             <div className="relative z-10">
               {/* Meta Header */}
-              <div className="flex justify-between items-center flex-wrap gap-2 mb-4">
-                <span className="text-xs font-bold px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent border border-blue-500/25 transition-colors tracking-wide uppercase">
+              <div className="flex justify-between items-center flex-wrap gap-2 mb-3">
+                <span className="text-xs font-bold px-2 py-0.5 rounded bg-bbs-accent-dim text-bbs-accent border border-blue-500/25 transition-colors tracking-wide uppercase">
                   {activeArea.shortTitle.toUpperCase()}
                 </span>
-                <span className="text-xs font-semibold text-bbs-dim uppercase tracking-wider">
+                <span className="text-[11px] font-mono font-medium text-bbs-dim uppercase tracking-wider">
                   INTEREST AREA
                 </span>
               </div>
 
               {/* Area Title */}
-              <h3 className="font-display text-2xl xl:text-3xl font-extrabold text-bbs-text tracking-tight uppercase leading-tight mb-3 transition-colors">
+              <h3 className="font-display text-xl xl:text-2xl font-extrabold text-bbs-text tracking-tight uppercase leading-snug mb-2 transition-colors">
                 {activeArea.title}
               </h3>
 
               {/* Tagline Narrative */}
-              <p className="text-sm sm:text-base text-bbs-muted leading-relaxed mb-6 font-sans min-h-[44px]">
+              <p className="text-xs sm:text-sm text-bbs-muted leading-relaxed mb-4 font-sans">
                 {activeArea.tagline}
               </p>
 
-              {/* What We Explore (Topics) */}
-              <div className="mb-6">
-                <div className="text-xs font-bold text-bbs-dim uppercase tracking-wider mb-2.5">
-                  WHAT WE EXPLORE
+              {/* What We Explore (Key 3 Topics) */}
+              <div className="mb-4">
+                <div className="text-[11px] font-mono font-bold text-bbs-dim uppercase tracking-wider mb-2">
+                  KEY FOCUS TOPICS
                 </div>
-                <div className="grid grid-cols-1 gap-2">
+                <div className="grid grid-cols-1 gap-1.5">
                   {activeArea.topics.slice(0, 3).map((topic, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-bbs-text/90 font-sans">
+                    <div key={idx} className="flex items-center gap-2 text-xs text-bbs-text/90 font-sans">
                       <CheckCircle2 className="w-3.5 h-3.5 text-bbs-accent shrink-0" />
                       <span className="truncate">{topic}</span>
                     </div>
@@ -151,51 +152,32 @@ export default function AreasDirectory() {
               </div>
 
               {/* Technologies Badges */}
-              <div className="mb-6">
-                <div className="text-xs font-bold text-bbs-dim uppercase tracking-wider mb-2.5">
-                  RELEVANT TECHNOLOGIES
+              <div className="mb-5">
+                <div className="text-[11px] font-mono font-bold text-bbs-dim uppercase tracking-wider mb-2">
+                  CORE TECHNOLOGIES
                 </div>
-                <div className="flex flex-wrap gap-1.5 min-h-[32px]">
-                  {activeArea.technologies.map((tech, idx) => (
+                <div className="flex flex-wrap gap-1.5">
+                  {activeArea.technologies.slice(0, 5).map((tech, idx) => (
                     <span
                       key={idx}
-                      className="text-xs font-medium px-2.5 py-1 bg-bbs-raised border border-bbs-border rounded text-bbs-text/90 transition-colors"
+                      className="text-xs font-medium px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-text transition-colors"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
               </div>
-
-              {/* Typical Activities */}
-              <div className="p-3.5 bg-bbs-raised/60 border border-bbs-border rounded mb-6 text-xs sm:text-sm text-bbs-muted leading-relaxed font-sans">
-                <span className="text-xs font-bold text-bbs-accent uppercase block mb-1">
-                  TYPICAL ACTIVITIES:
-                </span>
-                <span className="text-bbs-text font-medium">
-                  {activeArea.activities.join(' · ')}
-                </span>
-              </div>
             </div>
 
-            {/* Lower Content: Direct Actions */}
-            <div className="relative z-10 pt-5 border-t border-bbs-border">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  to={`/explore?area=${activeArea.id}`}
-                  className="flex-1 inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold px-4 py-3 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:scale-[1.02] shadow-md shadow-bbs-accent/20"
-                >
-                  <span>EXPLORE AREA</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </Link>
-                <Link
-                  to="/join"
-                  className="inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold px-4 py-3 rounded bg-bbs-raised border border-bbs-border text-bbs-text hover:border-bbs-accent transition-colors"
-                >
-                  <span>JOIN COMMUNITY</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
+            {/* Lower Content: Direct Action to Detailed Explore Page */}
+            <div className="relative z-10 pt-4 border-t border-bbs-border mt-auto">
+              <Link
+                to={`/explore?area=${activeArea.id}`}
+                className="w-full inline-flex items-center justify-between text-xs sm:text-sm font-semibold px-4 py-2.5 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-colors shadow-xs group"
+              >
+                <span>EXPLORE DETAILS & TOPICS</span>
+                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </Link>
             </div>
           </div>
         </div>
@@ -228,7 +210,7 @@ export default function AreasDirectory() {
                     {area.title}
                   </h3>
                   <p className="text-xs font-medium text-bbs-muted truncate mt-0.5">
-                    {area.technologies.slice(0, 3).join(' · ')}
+                    {area.technologies.slice(0, 4).join(' · ')}
                   </p>
                 </div>
 
@@ -251,21 +233,17 @@ export default function AreasDirectory() {
                 }`}
               >
                 <div className="overflow-hidden">
-                  <div className="pb-6 px-4 sm:px-5">
-                    <div className="p-5 bg-bbs-surface border border-bbs-border rounded shadow-md mt-1">
-                      <div className="text-xs font-bold text-bbs-accent uppercase mb-2">
-                        AREA OVERVIEW
-                      </div>
-
-                      <p className="text-xs sm:text-sm text-bbs-muted leading-relaxed mb-4">
-                        {area.overview}
+                  <div className="pb-5 px-4 sm:px-5">
+                    <div className="p-4 sm:p-5 bg-bbs-surface border border-bbs-border rounded-lg shadow-xs mt-1">
+                      <p className="text-xs sm:text-sm text-bbs-muted leading-relaxed mb-3">
+                        {area.tagline}
                       </p>
 
-                      <div className="mb-4">
-                        <div className="text-xs font-bold text-bbs-dim uppercase mb-1.5">
-                          WHAT WE EXPLORE
+                      <div className="mb-3">
+                        <div className="text-[11px] font-mono font-bold text-bbs-dim uppercase mb-1.5">
+                          KEY TOPICS
                         </div>
-                        <div className="space-y-1 mb-3">
+                        <div className="space-y-1 mb-2">
                           {area.topics.slice(0, 3).map((topic, tIdx) => (
                             <div key={tIdx} className="flex items-center gap-1.5 text-xs text-bbs-text/90">
                               <CheckCircle2 className="w-3 h-3 text-bbs-accent shrink-0" />
@@ -276,11 +254,11 @@ export default function AreasDirectory() {
                       </div>
 
                       <div className="mb-4">
-                        <div className="text-xs font-bold text-bbs-dim uppercase mb-1.5">
+                        <div className="text-[11px] font-mono font-bold text-bbs-dim uppercase mb-1.5">
                           TECHNOLOGIES
                         </div>
                         <div className="flex flex-wrap gap-1">
-                          {area.technologies.map((tech, sIdx) => (
+                          {area.technologies.slice(0, 5).map((tech, sIdx) => (
                             <span
                               key={sIdx}
                               className="text-xs font-medium px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-text"
@@ -291,29 +269,13 @@ export default function AreasDirectory() {
                         </div>
                       </div>
 
-                      <div className="p-3 bg-bbs-raised border border-bbs-border rounded text-xs text-bbs-muted mb-4">
-                        <span className="text-xs font-bold text-bbs-accent uppercase block mb-0.5">
-                          ACTIVITIES:
-                        </span>
-                        {area.activities.join(' · ')}
-                      </div>
-
-                      <div className="flex gap-2">
-                        <Link
-                          to={`/explore?area=${area.id}`}
-                          className="flex-1 inline-flex items-center justify-center gap-1.5 text-xs font-semibold px-3 py-2.5 rounded bg-bbs-accent text-white"
-                        >
-                          <span>EXPLORE</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </Link>
-                        <Link
-                          to="/join"
-                          className="inline-flex items-center justify-center gap-1 text-xs font-semibold px-3 py-2.5 rounded bg-bbs-raised border border-bbs-border text-bbs-text"
-                        >
-                          <span>JOIN</span>
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </Link>
-                      </div>
+                      <Link
+                        to={`/explore?area=${area.id}`}
+                        className="w-full inline-flex items-center justify-between text-xs font-semibold px-3.5 py-2.5 rounded bg-bbs-accent text-white"
+                      >
+                        <span>EXPLORE DETAILS</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </Link>
                     </div>
                   </div>
                 </div>
