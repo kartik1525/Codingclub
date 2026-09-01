@@ -166,7 +166,7 @@ export default function AboutBentoGrid() {
                 className="w-1.5 h-1.5 rounded-sm bg-bbs-accent group-hover:bg-white transition-colors duration-300 inline-block"
                 aria-hidden="true"
               />
-              <span className="font-mono text-xs font-semibold tracking-wider text-bbs-accent-light group-hover:text-white transition-colors duration-300">
+              <span className="text-xs font-bold tracking-wide uppercase text-bbs-accent group-hover:text-white transition-colors duration-300">
                 {card.title}
               </span>
             </div>
@@ -194,13 +194,13 @@ export default function AboutBentoGrid() {
 
           {/* Card Bottom: Technical Action Line with Directional Arrow */}
           <div className="relative z-10 pt-5 border-t border-bbs-border group-hover:border-white/20 transition-colors duration-300 flex items-center justify-between">
-            <span className="font-mono text-xs font-semibold tracking-wider text-bbs-accent-light group-hover:text-white transition-colors duration-300 flex items-center gap-1.5">
+            <span className="text-xs sm:text-sm font-semibold text-bbs-accent group-hover:text-white transition-colors duration-300 flex items-center gap-1.5">
               <span>{card.actionText}</span>
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 text-bbs-accent group-hover:text-white" />
             </span>
 
-            <span className="font-mono text-[10px] text-bbs-dim group-hover:text-white/70 transition-colors duration-300 uppercase">
-              BBS  2025–26
+            <span className="text-xs font-medium text-bbs-dim group-hover:text-white/70 transition-colors duration-300 uppercase">
+              BBS 2025–26
             </span>
           </div>
         </Link>

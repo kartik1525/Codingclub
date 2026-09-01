@@ -33,7 +33,7 @@ export default function ThemeToggle({ className = '' }) {
           >
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
           </svg>
-          <span className="font-mono text-[11px] font-medium tracking-wider text-bbs-muted pointer-events-none hidden sm:inline">
+          <span className="text-xs font-semibold tracking-wide text-bbs-muted pointer-events-none hidden sm:inline">
             DARK
           </span>
         </>
@@ -60,7 +60,7 @@ export default function ThemeToggle({ className = '' }) {
             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
           </svg>
-          <span className="font-mono text-[11px] font-medium tracking-wider text-bbs-muted pointer-events-none hidden sm:inline">
+          <span className="text-xs font-semibold tracking-wide text-bbs-muted pointer-events-none hidden sm:inline">
             LIGHT
           </span>
         </>

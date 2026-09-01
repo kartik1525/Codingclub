@@ -48,7 +48,7 @@ export default function HomePage() {
       {/* 3. About Preview — Normal Solid Background */}
       <Section variant="solid" id="about" className="py-20 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
+          <div className="flex items-center gap-2.5 text-xs font-bold text-bbs-accent tracking-wide uppercase mb-6">
             <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
             <span>{ABOUT_PREVIEW.badge}</span>
           </div>
@@ -68,7 +68,7 @@ export default function HomePage() {
               </p>
               <Link
                 to={ABOUT_PREVIEW.cta.path}
-                className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-semibold text-bbs-accent-light hover:text-bbs-text transition-colors group"
+                className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-bbs-accent hover:text-bbs-text transition-colors group"
               >
                 <span>{ABOUT_PREVIEW.cta.label}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -86,7 +86,7 @@ export default function HomePage() {
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
             <div>
-              <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-3">
+              <div className="flex items-center gap-2.5 text-xs font-bold text-bbs-accent tracking-wide uppercase mb-3">
                 <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
                 <span>{AREAS_PREVIEW.badge}</span>
               </div>
@@ -99,7 +99,7 @@ export default function HomePage() {
             </div>
             <Link
               to={AREAS_PREVIEW.cta.path}
-              className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-semibold text-bbs-accent-light hover:text-bbs-text transition-colors group shrink-0"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-bbs-accent hover:text-bbs-text transition-colors group shrink-0"
             >
               <span>{AREAS_PREVIEW.cta.label}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -116,7 +116,7 @@ export default function HomePage() {
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
             <div>
-              <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-3">
+              <div className="flex items-center gap-2.5 text-xs font-bold text-bbs-accent tracking-wide uppercase mb-3">
                 <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
                 <span>{PROJECTS_PREVIEW.badge}</span>
               </div>
@@ -126,7 +126,7 @@ export default function HomePage() {
             </div>
             <Link
               to={PROJECTS_PREVIEW.cta.path}
-              className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-semibold text-bbs-accent-light hover:text-bbs-text transition-colors group shrink-0"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-bbs-accent hover:text-bbs-text transition-colors group shrink-0"
             >
               <span>{PROJECTS_PREVIEW.cta.label}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -157,11 +157,11 @@ export default function HomePage() {
 
                     {/* Top Tag Badges */}
                     <div className="absolute top-3 left-3 flex items-center gap-2 z-20">
-                      <span className="bg-bbs-bg/90 backdrop-blur-sm border border-bbs-border px-2.5 py-1 rounded font-mono text-[11px] text-bbs-accent font-semibold flex items-center gap-1.5 shadow-sm">
+                      <span className="bg-bbs-bg/90 backdrop-blur-sm border border-bbs-border px-2.5 py-1 rounded text-xs text-bbs-accent font-semibold flex items-center gap-1.5 shadow-sm">
                         {isFeatured && <span className="w-1.5 h-1.5 rounded-full bg-bbs-accent inline-block animate-pulse" />}
                         <span>{isFeatured ? 'FLAGSHIP RELEASE' : 'STUDENT PROTOTYPE'}</span>
                       </span>
-                      <span className="bg-bbs-surface/85 backdrop-blur-sm border border-bbs-border px-2 py-1 rounded font-mono text-[10px] text-bbs-dim hidden sm:inline-block">
+                      <span className="bg-bbs-surface/85 backdrop-blur-sm border border-bbs-border px-2 py-1 rounded text-xs font-medium text-bbs-dim hidden sm:inline-block">
                         {project.category.toUpperCase()}
                       </span>
                     </div>
@@ -172,7 +172,7 @@ export default function HomePage() {
                       className="absolute inset-0 bg-bbs-bg/65 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 cursor-pointer"
                       aria-label={`Open details for ${project.title}`}
                     >
-                      <span className="font-mono text-xs font-semibold px-4 py-2 rounded bg-bbs-accent text-white border border-blue-400/30 shadow-lg shadow-bbs-accent/25 flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                      <span className="text-xs font-semibold px-4 py-2 rounded bg-bbs-accent text-white border border-blue-400/30 shadow-lg shadow-bbs-accent/25 flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                         <span>OPEN PROJECT</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
                       </span>
@@ -183,10 +183,10 @@ export default function HomePage() {
                   <div className="p-6 sm:p-7 flex flex-col justify-between flex-1">
                     <div>
                       <div className="flex items-center justify-between gap-2 mb-2">
-                        <span className="font-mono text-[11px] text-bbs-accent uppercase tracking-wider font-semibold">
+                        <span className="text-xs text-bbs-accent uppercase tracking-wide font-semibold">
                           {isFeatured ? 'FLAGSHIP BUILD' : 'CAMPUS HACK'}
                         </span>
-                        <span className="font-mono text-xs text-bbs-dim">
+                        <span className="text-xs font-medium text-bbs-dim">
                           {project.year}
                         </span>
                       </div>
@@ -203,7 +203,7 @@ export default function HomePage() {
                         {project.techTags.map((tag, idx) => (
                           <span
                             key={idx}
-                            className="font-mono text-xs px-2.5 py-1 bg-bbs-raised border border-bbs-border rounded text-bbs-text/85 transition-colors"
+                            className="text-xs font-medium px-2.5 py-1 bg-bbs-raised border border-bbs-border rounded text-bbs-text/85 transition-colors"
                           >
                             {tag}
                           </span>
@@ -212,7 +212,7 @@ export default function HomePage() {
                     </div>
 
                     {/* Bottom Meta & Code Action */}
-                    <div className="border-t border-bbs-border pt-4 flex justify-between items-center font-mono text-xs">
+                    <div className="border-t border-bbs-border pt-4 flex justify-between items-center text-xs font-medium">
                       <span className="text-bbs-dim flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
                         <span>{project.status}</span>
@@ -243,7 +243,7 @@ export default function HomePage() {
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
             <div>
-              <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-3">
+              <div className="flex items-center gap-2.5 text-xs font-bold text-bbs-accent tracking-wide uppercase mb-3">
                 <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
                 <span>{EVENTS_PREVIEW.badge}</span>
               </div>
@@ -253,7 +253,7 @@ export default function HomePage() {
             </div>
             <Link
               to={EVENTS_PREVIEW.cta.path}
-              className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-semibold text-bbs-accent-light hover:text-bbs-text transition-colors group shrink-0"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-bbs-accent hover:text-bbs-text transition-colors group shrink-0"
             >
               <span>{EVENTS_PREVIEW.cta.label}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -268,10 +268,10 @@ export default function HomePage() {
               >
                 <div>
                   <div className="flex justify-between items-center mb-3">
-                    <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/25">
+                    <span className="text-xs font-semibold px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent border border-blue-500/25 uppercase tracking-wide">
                       {event.formattedDate} — {event.category.toUpperCase()}
                     </span>
-                    <span className="font-mono text-[10px] text-bbs-dim uppercase">
+                    <span className="text-xs font-medium text-bbs-dim uppercase">
                       {event.status}
                     </span>
                   </div>
@@ -283,7 +283,7 @@ export default function HomePage() {
                     {event.description}
                   </p>
 
-                  <div className="font-mono text-xs text-bbs-dim mb-6">
+                  <div className="text-xs font-medium text-bbs-muted mb-6">
                     LOCATION: {event.location} · {event.time}
                   </div>
                 </div>
@@ -291,16 +291,17 @@ export default function HomePage() {
                 <div className="border-t border-bbs-border pt-4 flex justify-between items-center">
                   <div className="flex flex-wrap gap-1">
                     {event.tracks.slice(0, 2).map((t, idx) => (
-                      <span key={idx} className="font-mono text-[10px] text-bbs-dim px-2 py-0.5 bg-bbs-raised rounded">
+                      <span key={idx} className="text-xs font-medium text-bbs-dim px-2 py-0.5 bg-bbs-raised rounded">
                         {t}
                       </span>
                     ))}
                   </div>
                   <Link
                     to="/events"
-                    className="font-mono text-xs text-bbs-accent-light font-semibold hover:text-bbs-text transition-colors"
+                    className="text-xs font-semibold text-bbs-accent hover:text-bbs-text transition-colors inline-flex items-center gap-1"
                   >
-                    DETAILS ↗
+                    <span>DETAILS</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </div>
@@ -323,7 +324,7 @@ export default function HomePage() {
       {/* 9. Join CTA Banner Preview — Normal Solid Background */}
       <Section variant="solid" id="join" className="py-20 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full text-center">
-          <div className="flex items-center justify-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-3">
+          <div className="flex items-center justify-center gap-2.5 text-xs font-bold text-bbs-accent tracking-wide uppercase mb-3">
             <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
             <span>{JOIN_BANNER.badge}</span>
           </div>
@@ -335,7 +336,7 @@ export default function HomePage() {
           </p>
           <Link
             to={JOIN_BANNER.cta.path}
-            className="inline-flex items-center gap-2 font-mono text-sm font-semibold px-6 py-3 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:scale-105 shadow-xl shadow-bbs-accent/25"
+            className="inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:scale-105 shadow-xl shadow-bbs-accent/25"
           >
             <span>{JOIN_BANNER.cta.label}</span>
             <ArrowRight className="w-4 h-4" />

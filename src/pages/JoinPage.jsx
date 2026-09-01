@@ -98,7 +98,7 @@ export default function JoinPage() {
       <Section variant="solid" className="pt-14 sm:pt-20 pb-12 sm:pb-16">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="mb-14">
-            <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-4">
+            <div className="flex items-center gap-2.5 text-xs font-bold text-bbs-accent tracking-wide uppercase mb-4">
               <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
               <span>{JOIN_PAGE_HEADER.badge}</span>
             </div>
@@ -137,14 +137,14 @@ export default function JoinPage() {
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="flex justify-between items-end flex-wrap gap-4 mb-8">
             <div>
-              <div className="font-mono text-xs text-bbs-accent-light mb-1 uppercase">
+              <div className="text-xs font-bold text-bbs-accent mb-1 uppercase tracking-wide">
                 {JOIN_STEPS.step1.badge}
               </div>
               <h2 className="font-display text-2xl sm:text-4xl font-bold text-bbs-text">
                 {JOIN_STEPS.step1.title}
               </h2>
             </div>
-            <span className="font-mono text-xs text-bbs-dim">
+            <span className="text-xs font-medium text-bbs-dim">
               {JOIN_STEPS.step1.hint}
             </span>
           </div>
@@ -163,7 +163,7 @@ export default function JoinPage() {
                   }`}
                 >
                   <div className="flex justify-between items-start mb-3">
-                    <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-bbs-raised border border-bbs-border text-bbs-accent-light">
+                    <span className="text-xs font-semibold px-2 py-0.5 rounded bg-bbs-raised border border-bbs-border text-bbs-accent uppercase tracking-wide">
                       {area.shortTitle.toUpperCase()}
                     </span>
                     {isSelected && (
@@ -191,13 +191,13 @@ export default function JoinPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             {/* Left: Selected Area Overview */}
             <div className="lg:col-span-5 bg-bbs-surface border border-bbs-border rounded p-6 sm:p-8 shadow-sm">
-              <div className="font-mono text-xs text-bbs-accent-light mb-2 uppercase">
+              <div className="text-xs font-bold text-bbs-accent mb-2 uppercase tracking-wide">
                 SELECTED AREA OVERVIEW
               </div>
               <h3 className="font-display text-2xl font-bold text-bbs-text mb-2">
                 {activeArea.title}
               </h3>
-              <div className="font-mono text-xs text-bbs-dim mb-4">
+              <div className="text-xs font-medium text-bbs-dim mb-4 uppercase tracking-wide">
                 COMMUNITY INTEREST FOCUS
               </div>
               <p className="text-sm text-bbs-muted leading-relaxed mb-6">
@@ -205,12 +205,12 @@ export default function JoinPage() {
               </p>
 
               <div className="mb-6">
-                <div className="font-mono text-xs text-bbs-dim mb-2 uppercase">
+                <div className="text-xs font-bold text-bbs-dim mb-2 uppercase tracking-wide">
                   WHAT WE EXPLORE & LEARN:
                 </div>
                 <ul className="list-none p-0 m-0 space-y-2">
                   {activeArea.topics.slice(0, 3).map((topic, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-xs text-bbs-muted">
+                    <li key={idx} className="flex items-start gap-2 text-xs text-bbs-muted font-medium">
                       <CheckCircle2 className="w-3.5 h-3.5 text-bbs-accent shrink-0 mt-0.5" />
                       <span>{topic}</span>
                     </li>
@@ -219,19 +219,19 @@ export default function JoinPage() {
               </div>
 
               <div className="p-4 bg-bbs-raised border border-bbs-border rounded mb-6 text-xs text-bbs-text leading-relaxed">
-                <span className="font-mono text-[10px] text-bbs-dim block mb-1 uppercase">
+                <span className="text-xs font-bold text-bbs-dim block mb-1 uppercase tracking-wide">
                   TYPICAL ACTIVITIES:
                 </span>
                 {activeArea.activities.join(' · ')}
               </div>
 
               <div className="border-t border-bbs-border pt-4">
-                <div className="font-mono text-[11px] text-bbs-dim mb-2 uppercase">
+                <div className="text-xs font-bold text-bbs-dim mb-2 uppercase tracking-wide">
                   CORE TOOLS & TECHNOLOGIES:
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   {activeArea.technologies.map((t, idx) => (
-                    <span key={idx} className="font-mono text-[11px] px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-text">
+                    <span key={idx} className="text-xs font-medium px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-text">
                       {t}
                     </span>
                   ))}
@@ -241,7 +241,7 @@ export default function JoinPage() {
 
             {/* Right: Application Form */}
             <div className="lg:col-span-7 bg-bbs-surface border border-bbs-border rounded p-6 sm:p-10 shadow-xl">
-              <div className="font-mono text-xs text-bbs-accent-light mb-1 uppercase">
+              <div className="text-xs font-bold text-bbs-accent mb-1 uppercase tracking-wide">
                 {JOIN_STEPS.step2.badge}
               </div>
               <h2 className="font-display text-2xl sm:text-3xl font-bold text-bbs-text mb-2">
@@ -267,7 +267,7 @@ export default function JoinPage() {
                       href={CLUB_INFO.socials.discord}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold px-5 py-2.5 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold px-5 py-2.5 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-colors"
                     >
                       <span>JOIN DISCORD COMMUNITY</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -285,7 +285,7 @@ export default function JoinPage() {
                           honeypot: ''
                         });
                       }}
-                      className="font-mono text-xs font-semibold px-4 py-2 border border-bbs-border text-bbs-text rounded hover:bg-bbs-raised transition-colors"
+                      className="text-xs font-semibold px-4 py-2 border border-bbs-border text-bbs-text rounded hover:bg-bbs-raised transition-colors cursor-pointer"
                     >
                       SUBMIT ANOTHER RESPONSE
                     </button>
@@ -294,7 +294,7 @@ export default function JoinPage() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   {formState === 'error' && (
-                    <div className="p-3 bg-red-500/10 border border-red-500/40 text-red-400 text-xs font-mono rounded">
+                    <div className="p-3 bg-red-500/10 border border-red-500/40 text-red-400 text-xs font-medium rounded">
                       {errorMessage}
                     </div>
                   )}
@@ -312,7 +312,7 @@ export default function JoinPage() {
 
                   {/* Full Name */}
                   <div>
-                    <label htmlFor="fullName" className="block font-mono text-xs text-bbs-muted mb-2 uppercase tracking-wider">
+                    <label htmlFor="fullName" className="block text-xs font-bold text-bbs-text mb-2 uppercase tracking-wide">
                       Full Name *
                     </label>
                     <input
@@ -329,7 +329,7 @@ export default function JoinPage() {
 
                   {/* Email Address */}
                   <div>
-                    <label htmlFor="email" className="block font-mono text-xs text-bbs-muted mb-2 uppercase tracking-wider">
+                    <label htmlFor="email" className="block text-xs font-bold text-bbs-text mb-2 uppercase tracking-wide">
                       Email Address (Student or Personal) *
                     </label>
                     <input
@@ -346,7 +346,7 @@ export default function JoinPage() {
 
                   {/* Academic Year & Branch */}
                   <div>
-                    <label htmlFor="departmentYear" className="block font-mono text-xs text-bbs-muted mb-2 uppercase tracking-wider">
+                    <label htmlFor="departmentYear" className="block text-xs font-bold text-bbs-text mb-2 uppercase tracking-wide">
                       Academic Branch & Year *
                     </label>
                     <select
@@ -364,7 +364,7 @@ export default function JoinPage() {
 
                   {/* Primary Area of Interest */}
                   <div>
-                    <label htmlFor="interests" className="block font-mono text-xs text-bbs-muted mb-2 uppercase tracking-wider">
+                    <label htmlFor="interests" className="block text-xs font-bold text-bbs-text mb-2 uppercase tracking-wide">
                       Primary Area of Interest
                     </label>
                     <select
@@ -382,7 +382,7 @@ export default function JoinPage() {
 
                   {/* GitHub or Portfolio (Optional) */}
                   <div>
-                    <label htmlFor="portfolioUrl" className="block font-mono text-xs text-bbs-muted mb-2 uppercase tracking-wider">
+                    <label htmlFor="portfolioUrl" className="block text-xs font-bold text-bbs-text mb-2 uppercase tracking-wide">
                       GitHub Profile or Portfolio (Optional)
                     </label>
                     <input
@@ -398,7 +398,7 @@ export default function JoinPage() {
 
                   {/* What do you hope to build? */}
                   <div>
-                    <label htmlFor="experienceNote" className="block font-mono text-xs text-bbs-muted mb-2 uppercase tracking-wider">
+                    <label htmlFor="experienceNote" className="block text-xs font-bold text-bbs-text mb-2 uppercase tracking-wide">
                       What excites you about code or hackathons? (Short Note)
                     </label>
                     <textarea
@@ -416,7 +416,7 @@ export default function JoinPage() {
                   <button
                     type="submit"
                     disabled={formState === 'submitting'}
-                    className="w-full py-3.5 rounded bg-bbs-accent text-white font-mono text-sm font-semibold tracking-wider hover:bg-bbs-accent-hover transition-all hover:scale-101 shadow-lg shadow-bbs-accent/25 cursor-pointer disabled:opacity-50"
+                    className="w-full py-3.5 rounded bg-bbs-accent text-white text-sm font-semibold tracking-wide hover:bg-bbs-accent-hover transition-all hover:scale-101 shadow-lg shadow-bbs-accent/25 cursor-pointer disabled:opacity-50"
                   >
                     {formState === 'submitting' ? 'RECORDING APPLICATION...' : 'SUBMIT MEMBERSHIP APPLICATION →'}
                   </button>
@@ -432,7 +432,7 @@ export default function JoinPage() {
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="bg-bbs-surface border border-bbs-border rounded p-6 sm:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-md">
             <div>
-              <div className="font-mono text-xs text-bbs-accent-light mb-1 uppercase">
+              <div className="text-xs font-bold text-bbs-accent mb-1 uppercase tracking-wide">
                 {ALTERNATE_CHANNELS_CALLOUT.badge}
               </div>
               <h4 className="font-display text-lg font-bold text-bbs-text">
@@ -449,7 +449,7 @@ export default function JoinPage() {
                   href={ch.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-xs font-semibold px-4 py-2 border border-bbs-border text-bbs-text rounded hover:bg-bbs-raised hover:border-bbs-accent transition-colors"
+                  className="text-xs font-semibold px-4 py-2 border border-bbs-border text-bbs-text rounded hover:bg-bbs-raised hover:border-bbs-accent transition-colors"
                 >
                   {ch.label}
                 </a>

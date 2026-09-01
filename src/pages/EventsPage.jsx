@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Clock, MapPin, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { Calendar, Clock, MapPin, ArrowUpRight, ArrowRight, Images } from 'lucide-react';
 import Section from '../components/Section.jsx';
+import EventGalleryModal from '../components/EventGalleryModal.jsx';
 import { 
   EVENTS, 
   EVENTS_PAGE_HEADER, 
@@ -12,9 +13,23 @@ import {
 export default function EventsPage() {
   const [filterCategory, setFilterCategory] = useState('all');
   const [filterStatus, setFilterStatus] = useState('all');
+  const [selectedGalleryEvent, setSelectedGalleryEvent] = useState(null);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [galleryInitialIndex, setGalleryInitialIndex] = useState(0);
 
   const categories = EVENT_CATEGORIES;
   const statuses = EVENT_STATUSES;
+
+  const openGallery = (event, index = 0) => {
+    if (!event?.gallery || event.gallery.length === 0) return;
+    setSelectedGalleryEvent(event);
+    setGalleryInitialIndex(index);
+    setIsGalleryOpen(true);
+  };
+
+  const closeGallery = () => {
+    setIsGalleryOpen(false);
+  };
 
   const filteredEvents = EVENTS.filter((event) => {
     const matchCategory = filterCategory === 'all' || event.category === filterCategory;
@@ -27,7 +42,7 @@ export default function EventsPage() {
       {/* 1. Page Header & Filter Controls — Normal Solid Background */}
       <Section variant="solid" className="pt-14 sm:pt-20 pb-8 sm:pb-12">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-4">
+          <div className="flex items-center gap-2.5 text-xs font-bold text-bbs-accent tracking-wide uppercase mb-4">
             <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
             <span>{EVENTS_PAGE_HEADER.badge}</span>
           </div>
@@ -46,10 +61,10 @@ export default function EventsPage() {
                 <button
                   key={cat.id}
                   onClick={() => setFilterCategory(cat.id)}
-                  className={`px-3.5 py-1.5 rounded font-mono text-xs whitespace-nowrap transition-all cursor-pointer border ${
+                  className={`px-3.5 py-1.5 rounded text-xs whitespace-nowrap transition-all cursor-pointer border ${
                     filterCategory === cat.id
                       ? 'bg-bbs-accent text-white border-bbs-accent shadow-sm font-semibold'
-                      : 'bg-bbs-surface text-bbs-muted hover:text-bbs-text hover:bg-bbs-raised border-bbs-border'
+                      : 'bg-bbs-surface text-bbs-muted hover:text-bbs-text hover:bg-bbs-raised border-bbs-border font-medium'
                   }`}
                 >
                   {cat.label}
@@ -63,10 +78,10 @@ export default function EventsPage() {
                 <button
                   key={stat.id}
                   onClick={() => setFilterStatus(stat.id)}
-                  className={`px-3 py-1.5 rounded font-mono text-xs whitespace-nowrap transition-all cursor-pointer border ${
+                  className={`px-3.5 py-1.5 rounded text-xs whitespace-nowrap transition-all cursor-pointer border ${
                     filterStatus === stat.id
                       ? 'bg-bbs-raised text-bbs-text border-bbs-accent font-semibold'
-                      : 'bg-bbs-surface text-bbs-dim hover:text-bbs-text border-bbs-border'
+                      : 'bg-bbs-surface text-bbs-dim hover:text-bbs-text border-bbs-border font-medium'
                   }`}
                 >
                   {stat.label}
@@ -81,111 +96,154 @@ export default function EventsPage() {
       <Section variant="grid" className="py-16 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="flex flex-col gap-8">
-            {filteredEvents.map((event) => (
-              <article
-                key={event.id}
-                className="bg-bbs-surface border border-bbs-border rounded overflow-hidden shadow-md hover:border-bbs-border-focus transition-colors"
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
-                  {/* Left: Image / Photo */}
-                  <div className="lg:col-span-4 bg-black relative overflow-hidden min-h-[220px] sm:min-h-[260px] border-b lg:border-b-0 lg:border-r border-bbs-border group">
-                    <img
-                      src={event.image}
-                      alt={event.title}
-                      className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out"
-                      loading="lazy"
-                    />
-                    <div className="absolute top-3 left-3 bg-bbs-bg/90 border border-bbs-border px-2.5 py-1 rounded font-mono text-xs text-bbs-accent-light">
-                      {event.category.toUpperCase()}
-                    </div>
-                    <div className="absolute bottom-3 left-3 bg-bbs-bg/90 border border-bbs-border px-2.5 py-1 rounded font-mono text-[11px] text-bbs-text uppercase flex items-center gap-1.5">
-                      <span className={`w-1.5 h-1.5 rounded-full ${event.status === 'upcoming' ? 'bg-emerald-500 animate-ping' : 'bg-bbs-dim'}`} />
-                      <span>{event.status}</span>
-                    </div>
-                  </div>
+            {filteredEvents.map((event) => {
+              const hasGallery = Array.isArray(event.gallery) && event.gallery.length > 0;
 
-                  {/* Right: Event Details */}
-                  <div className="lg:col-span-8 p-6 sm:p-8 flex flex-col justify-between">
-                    <div>
-                      {/* Meta Schedule Header */}
-                      <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-bbs-accent-light mb-3">
-                        <span className="flex items-center gap-1.5">
-                          <Calendar className="w-3.5 h-3.5" />
-                          <span>{event.formattedDate}</span>
-                        </span>
-                        <span className="flex items-center gap-1.5 text-bbs-dim">
-                          <Clock className="w-3.5 h-3.5" />
-                          <span>{event.time}</span>
-                        </span>
-                        <span className="flex items-center gap-1.5 text-bbs-dim">
-                          <MapPin className="w-3.5 h-3.5" />
-                          <span>{event.location}</span>
-                        </span>
+              return (
+                <article
+                  key={event.id}
+                  className="bg-bbs-surface border border-bbs-border rounded overflow-hidden shadow-md hover:border-bbs-border-focus transition-colors"
+                >
+                  <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+                    {/* Left: Image / Photo */}
+                    <div className="lg:col-span-4 bg-black relative overflow-hidden min-h-[220px] sm:min-h-[260px] border-b lg:border-b-0 lg:border-r border-bbs-border group">
+                      <img
+                        src={event.image}
+                        alt={event.title}
+                        className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out"
+                        loading="lazy"
+                      />
+                      <div className="absolute top-3 left-3 bg-bbs-bg/90 border border-bbs-border px-2.5 py-1 rounded text-xs font-semibold text-bbs-accent uppercase tracking-wide">
+                        {event.category.toUpperCase()}
+                      </div>
+                      <div className="absolute bottom-3 left-3 bg-bbs-bg/90 border border-bbs-border px-2.5 py-1 rounded text-xs font-medium text-bbs-text uppercase flex items-center gap-1.5">
+                        <span className={`w-1.5 h-1.5 rounded-full ${event.status === 'upcoming' ? 'bg-emerald-500 animate-ping' : 'bg-bbs-dim'}`} />
+                        <span>{event.status}</span>
                       </div>
 
-                      <h2 className="font-display text-2xl sm:text-3xl font-bold text-bbs-text mb-2">
-                        {event.title}
-                      </h2>
-
-                      <div className="font-mono text-xs text-bbs-muted mb-4">
-                        {event.tagline}
-                      </div>
-
-                      <p className="text-sm sm:text-base text-bbs-muted leading-relaxed mb-6">
-                        {event.description}
-                      </p>
-
-                      {event.note && (
-                        <div className="p-3 bg-bbs-raised border border-bbs-border rounded mb-6 text-xs text-bbs-text font-mono">
-                          <span className="text-bbs-accent-light font-semibold">PARTICIPATION NOTE: </span>
-                          {event.note}
-                        </div>
-                      )}
-
-                      <div className="mb-6">
-                        <div className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider mb-2">
-                          TRACKS & FOCUS AREAS
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                          {event.tracks.map((track, idx) => (
-                            <span
-                              key={idx}
-                              className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-raised border border-bbs-border text-bbs-muted"
-                            >
-                              {track}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Footer & Registration CTA */}
-                    <div className="pt-6 border-t border-bbs-border flex items-center justify-between flex-wrap gap-4 font-mono text-xs">
-                      <span className="text-bbs-dim">
-                        AUDIENCE: ALL UNDERGRADUATE STUDENTS
-                      </span>
-
-                      {event.registrationOpen ? (
-                        <Link
-                          to="/join"
-                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-colors font-semibold"
+                      {/* Photo Gallery Indicator on Cover */}
+                      {hasGallery && (
+                        <button
+                          type="button"
+                          onClick={() => openGallery(event, 0)}
+                          aria-label={`View photo gallery for ${event.title}`}
+                          className="absolute top-3 right-3 bg-bbs-bg/90 hover:bg-bbs-accent text-bbs-text hover:text-white border border-bbs-border hover:border-bbs-accent px-2.5 py-1 rounded text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm backdrop-blur-sm cursor-pointer group/badge"
                         >
-                          <span>REGISTER FOR EVENT</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </Link>
-                      ) : (
-                        <span className="px-3 py-1.5 rounded bg-bbs-raised border border-bbs-border text-bbs-dim">
-                          EVENT CONCLUDED / ARCHIVED
-                        </span>
+                          <Images className="w-3.5 h-3.5 text-bbs-accent group-hover/badge:text-white transition-colors" />
+                          <span>{event.gallery.length} PHOTOS</span>
+                        </button>
                       )}
                     </div>
+
+                    {/* Right: Event Details */}
+                    <div className="lg:col-span-8 p-6 sm:p-8 flex flex-col justify-between">
+                      <div>
+                        {/* Meta Schedule Header */}
+                        <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-bbs-accent mb-3">
+                          <span className="flex items-center gap-1.5">
+                            <Calendar className="w-3.5 h-3.5 text-bbs-accent" />
+                            <span>{event.formattedDate}</span>
+                          </span>
+                          <span className="flex items-center gap-1.5 text-bbs-muted font-medium">
+                            <Clock className="w-3.5 h-3.5 text-bbs-dim" />
+                            <span>{event.time}</span>
+                          </span>
+                          <span className="flex items-center gap-1.5 text-bbs-muted font-medium">
+                            <MapPin className="w-3.5 h-3.5 text-bbs-dim" />
+                            <span>{event.location}</span>
+                          </span>
+                        </div>
+
+                        <h2 className="font-display text-2xl sm:text-3xl font-bold text-bbs-text mb-2">
+                          {event.title}
+                        </h2>
+
+                        <div className="text-xs sm:text-sm font-medium text-bbs-muted mb-4">
+                          {event.tagline}
+                        </div>
+
+                        <p className="text-sm sm:text-base text-bbs-muted leading-relaxed mb-6">
+                          {event.description}
+                        </p>
+
+                        {event.note && (
+                          <div className="p-3 bg-bbs-raised border border-bbs-border rounded mb-6 text-xs text-bbs-text leading-relaxed">
+                            <span className="text-bbs-accent font-semibold">PARTICIPATION NOTE: </span>
+                            {event.note}
+                          </div>
+                        )}
+
+                        <div className="mb-6">
+                          <div className="text-xs font-bold text-bbs-dim uppercase tracking-wide mb-2">
+                            TRACKS & FOCUS AREAS
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {event.tracks.map((track, idx) => (
+                              <span
+                                key={idx}
+                                className="text-xs font-medium px-2.5 py-1 rounded bg-bbs-raised border border-bbs-border text-bbs-muted"
+                              >
+                                {track}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Footer & Registration CTA */}
+                      <div className="pt-6 border-t border-bbs-border flex items-center justify-between flex-wrap gap-4 text-xs font-medium">
+                        <span className="text-bbs-dim">
+                          AUDIENCE: ALL UNDERGRADUATE STUDENTS
+                        </span>
+
+                        <div className="flex items-center gap-3 flex-wrap">
+                          {/* Subtle VIEW GALLERY action only when event has gallery images */}
+                          {hasGallery && (
+                            <button
+                              type="button"
+                              onClick={() => openGallery(event, 0)}
+                              className="inline-flex items-center gap-2 px-3.5 py-2 rounded bg-bbs-raised hover:bg-bbs-hover border border-bbs-border hover:border-bbs-accent text-bbs-accent hover:text-bbs-text transition-all cursor-pointer text-xs font-semibold group/gal"
+                            >
+                              <Images className="w-3.5 h-3.5 text-bbs-accent group-hover/gal:scale-110 transition-transform" />
+                              <span>VIEW GALLERY</span>
+                              <span className="text-bbs-dim group-hover/gal:text-bbs-accent text-xs">
+                                ({String(event.gallery.length).padStart(2, '0')})
+                              </span>
+                              <ArrowRight className="w-3.5 h-3.5 group-hover/gal:translate-x-1 transition-transform" />
+                            </button>
+                          )}
+
+                          {event.registrationOpen ? (
+                            <Link
+                              to="/join"
+                              className="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-colors text-xs font-semibold"
+                            >
+                              <span>REGISTER FOR EVENT</span>
+                              <ArrowUpRight className="w-3.5 h-3.5" />
+                            </Link>
+                          ) : (
+                            <span className="px-3 py-1.5 rounded bg-bbs-raised border border-bbs-border text-bbs-dim text-xs font-medium">
+                              EVENT CONCLUDED / ARCHIVED
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
         </div>
       </Section>
+
+      {/* 3. Event Gallery Modal Lightbox */}
+      <EventGalleryModal
+        isOpen={isGalleryOpen}
+        onClose={closeGallery}
+        event={selectedGalleryEvent}
+        initialIndex={galleryInitialIndex}
+      />
     </div>
   );
 }

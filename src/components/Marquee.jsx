@@ -17,7 +17,7 @@ export default function Marquee() {
             className="flex items-center gap-8 pr-8"
           >
             <span 
-              className={`font-mono text-sm sm:text-base font-semibold tracking-widest ${
+              className={`text-xs sm:text-sm font-bold tracking-wider uppercase ${
                 idx % 3 === 0 ? 'text-bbs-text' : 'text-bbs-muted'
               }`}
             >

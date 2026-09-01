@@ -6,7 +6,7 @@ export default function StatsSection() {
     <section id="stats" className="py-20 sm:py-28 border-t border-bbs-border relative">
       <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
         {/* Section Meta */}
-        <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
+        <div className="flex items-center gap-2.5 text-xs font-bold text-bbs-accent tracking-wide uppercase mb-6">
           <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
           <span>{STATS_SECTION_HEADER.badge}</span>
         </div>
@@ -33,11 +33,11 @@ export default function StatsSection() {
             >
               <div>
                 {item.isConceptual ? (
-                  <div className="font-mono text-xs text-bbs-accent-light mb-2">
+                  <div className="text-xs font-semibold text-bbs-accent mb-2 uppercase tracking-wide">
                     COMMUNITY PLEDGE
                   </div>
                 ) : (
-                  <div className="font-mono text-xs text-bbs-dim mb-2">
+                  <div className="text-xs font-medium text-bbs-dim mb-2 uppercase tracking-wide">
                     VERIFIED STATUS
                   </div>
                 )}
@@ -51,7 +51,7 @@ export default function StatsSection() {
               </div>
 
               <div>
-                <div className="font-mono text-xs sm:text-sm font-semibold tracking-wider text-bbs-text mb-2 uppercase">
+                <div className="text-xs sm:text-sm font-bold tracking-wide text-bbs-text mb-2 uppercase">
                   {item.label}
                 </div>
                 <div className="text-xs sm:text-sm text-bbs-muted leading-relaxed">

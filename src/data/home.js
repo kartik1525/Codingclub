@@ -1,10 +1,10 @@
 import { CLUB_INFO } from './clubInfo.js';
 
 export const HERO_CONTENT = {
-  words: ["LEARN.", "BUILD.", "EXPERIMENT."],
+  words: ["LEARN.", "BUILD.", "GROW."],
   staticPrefix: "WE",
-  longestWord: "EXPERIMENT.",
-  description: "We are a community of college students who love writing code, building software that people actually use, and staying up late debugging during hackathons. No corporate jargon—just genuine builders rooted at BBS.",
+  longestWord: "GROW.",
+  description: "BBS Coding Club is a student-led community at BBS where we learn, build, and grow together. From coding sessions and workshops to hackathons and real projects, we create a space where students can turn ideas into something they can actually build.",
   primaryCta: {
     label: "JOIN THE CLUB ↗",
     path: "/join"

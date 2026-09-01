@@ -18,7 +18,7 @@ export default function CoreLeadershipRoster() {
       {/* Header Row */}
       <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-10 sm:mb-12">
         <div>
-          <div className="flex items-center gap-2 font-mono text-xs font-semibold text-bbs-accent tracking-wider uppercase mb-2">
+          <div className="flex items-center gap-2 text-xs font-bold text-bbs-accent tracking-wide uppercase mb-2">
             <span className="w-1.5 h-1.5 rounded-full bg-bbs-accent inline-block" />
             <span>{ROSTER_SECTION_HEADER.badge}</span>
           </div>
@@ -34,7 +34,7 @@ export default function CoreLeadershipRoster() {
         <div className="shrink-0 pt-2">
           <Link
             to={ROSTER_SECTION_HEADER.cta.path}
-            className="inline-flex items-center gap-1.5 font-mono text-xs sm:text-sm font-semibold text-bbs-accent hover:text-bbs-text transition-colors group"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-bbs-accent hover:text-bbs-text transition-colors group"
           >
             <span>{ROSTER_SECTION_HEADER.cta.label}</span>
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -52,10 +52,10 @@ export default function CoreLeadershipRoster() {
             {/* Top Row: Branch Badge & Status */}
             <div>
               <div className="flex items-center justify-between gap-2 mb-3">
-                <span className="font-mono text-[10px] font-semibold px-2.5 py-0.5 rounded bg-blue-500/10 text-bbs-accent border border-blue-500/20 uppercase tracking-wider">
+                <span className="text-xs font-semibold px-2.5 py-0.5 rounded bg-blue-500/10 text-bbs-accent border border-blue-500/20 uppercase tracking-wide">
                   {member.branch}
                 </span>
-                <span className="font-mono text-[10px] text-bbs-dim">
+                <span className="text-xs font-medium text-bbs-dim">
                   CORE TEAM
                 </span>
               </div>
@@ -66,12 +66,12 @@ export default function CoreLeadershipRoster() {
               </h3>
 
               {/* Role */}
-              <div className="font-mono text-xs font-semibold text-bbs-accent tracking-wider uppercase mb-2">
+              <div className="text-xs sm:text-sm font-semibold text-bbs-accent uppercase mb-2">
                 {member.role}
               </div>
 
               {/* Short responsibility focus */}
-              <p className="text-xs text-bbs-muted leading-relaxed mb-4 min-h-[36px]">
+              <p className="text-xs sm:text-sm text-bbs-muted leading-relaxed mb-4 min-h-[36px]">
                 {member.focus}
               </p>
 
@@ -86,10 +86,10 @@ export default function CoreLeadershipRoster() {
                   />
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center text-center p-4 bg-gradient-to-b from-bbs-surface to-bbs-raised">
-                    <span className="font-mono text-2xl font-bold text-bbs-accent/80 mb-1">
+                    <span className="text-2xl font-extrabold text-bbs-accent/80 mb-1">
                       {member.name.split(' ').map(n => n[0]).join('')}
                     </span>
-                    <span className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider">
+                    <span className="text-xs font-medium text-bbs-dim uppercase tracking-wide">
                       {member.branch}
                     </span>
                   </div>

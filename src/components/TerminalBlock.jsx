@@ -49,7 +49,7 @@ export default function TerminalBlock({ onJoinClick }) {
     <section className="py-14 border-t border-bbs-border">
       <div className="max-w-4xl mx-auto px-5 sm:px-8 w-full">
         <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
-          <div className="flex items-center gap-2 font-mono text-xs text-bbs-accent-light tracking-wider uppercase">
+          <div className="flex items-center gap-2 text-xs font-bold text-bbs-accent tracking-wide uppercase">
             <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
             <span>{TERMINAL_CONFIG.badge}</span>
           </div>

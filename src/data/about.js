@@ -3,92 +3,102 @@ import { CLUB_INFO } from './clubInfo.js';
 export const ABOUT_PAGE_HEADER = {
   badge: "ABOUT BBS CODING CLUB",
   title: "BUILT BY STUDENTS.\nBACKED BY CODE.",
-  description: "The official student engineering collective and digital innovation society of BBS College of Engineering & Technology. We turn technical curiosity into deployed software, national hackathon finalists, and lifelong peer networks."
+  description: "BBS Coding Club is a student-led community for people who enjoy coding, building, and figuring things out together. From projects and workshops to hackathons and late-night debugging, we’re here to learn by doing and grow together.",
+  image: {
+    src: "/assets/bbs-students-campus.jpg",
+    alt: "BBS College students holding INNOVATION in front of the campus building",
+    title: "BBS COLLEGE OF ENGINEERING AND TECHNOLOGY",
+    subtitle: "OUR CAMPUS · WHERE THE COMMUNITY STARTED"
+  }
 };
 
 export const ORIGIN_ETHOS = {
   badge: "ORIGIN & ETHOS",
-  title: "WHY BBS CODING CLUB EXISTS",
+  title: "WHY WE STARTED",
   paragraphs: [
-    "Most college engineering curricula focus heavily on theoretical examinations and outdated slide presentations. Students graduate without ever deploying code to a live cloud server, resolving a multi-branch Git merge conflict, or building a software prototype under a 36-hour hackathon deadline.",
-    `BBS Coding Club was established in ${CLUB_INFO.estYear} to change that reality permanently. We created a student-governed engineering ecosystem where peers teach peers, code reviews happen over Discord, and juniors are mentored from their first \`git commit\` to national competition stages.`
+    "College teaches us a lot of theory, but some of the most important things in tech are learned by actually doing. Writing code that works, fixing bugs that make no sense, working with Git, building projects with friends, and figuring things out when there’s no step-by-step answer.",
+    `BBS Coding Club was started in 2025 to create that kind of space at BBS. A place where students can learn from each other, work on things outside the classroom, take part in hackathons and competitions, and simply get better at building.`
   ],
-  quote: "No corporate jargon, no gatekeeping—just genuine student builders learning in public.",
+  quote: "No pressure to know everything. Just a community where we learn, build, and help each other get better.",
   ethosCards: [
     {
       id: "mission",
       iconType: "terminal",
       title: "Our Mission",
-      description: CLUB_INFO.missionStatement
+      description: "Help students learn by doing — through projects, workshops, competitions, hackathons, and collaboration with peers."
     },
     {
       id: "vision",
       iconType: "award",
       title: "Our Vision",
-      description: `To establish ${CLUB_INFO.institution} as a recognized hub of competitive programming excellence, open-source contributors, and hackathon champions.`
+      description: `Build a strong student developer community at BBS where people can find teammates, share ideas, build projects, and grow together.`
     },
     {
       id: "governance",
       iconType: "users",
       title: "Student Governed",
-      description: "Every workshop, competition track, and review sprint is led by undergraduate students volunteering to elevate their peers."
+      description: "The club is run by students who volunteer their time to organize sessions, work on projects, participate in competitions, and help other members."
     },
     {
       id: "affiliation",
       iconType: "shield",
       title: "Institutional Alignment",
-      description: `Affiliated with ${CLUB_INFO.institution}, bridging academic resources with modern software development practices.`
+      description: `A growing community of students interested in coding, development, AI, open source, competitions, and building things together`
     }
   ]
 };
-
 export const PILLARS_SECTION_HEADER = {
-  badge: "OPERATIONAL PILLARS",
-  title: "HOW WE OPERATE EVERY SEMESTER"
+  badge: "WHAT WE DO",
+  title: "HOW WE LEARN, BUILD & COMPETE"
 };
 
 export const STUDENT_OUTCOMES = {
-  badge: "STUDENT OUTCOMES",
-  title: "WHAT YOU GAIN AS A MEMBER",
+  badge: "WHY JOIN US",
+  title: "WHAT YOU GET OUT OF IT",
   outcomes: [
-    "Deploy production-quality code to public repositories rather than solo academic exercises",
-    "Form validated squads for Smart India Hackathon (SIH) and regional collegiate hackathons",
-    "Learn modern collaborative Git workflows, code reviews, and CI/CD pipelines",
-    "Speed-coding contest practice with algorithmic problem-solving ladders",
-    "Direct mentorship from senior students who have cracked internships and national competitions",
-    "A tight-knit community of developers, designers, and systems enthusiasts on campus"
+    "Build real projects with other students instead of keeping everything limited to college assignments",
+    "Find people to team up with for hackathons, competitions, and side projects",
+    "Get comfortable with Git, GitHub, pull requests, and working on code with others",
+    "Practice problem-solving and competitive programming through contests and regular practice",
+    "Learn from seniors and other students who have already explored the things you're trying to learn",
+    "Be part of a campus community where you can ask questions, share ideas, and find people who enjoy building things"
   ]
 };
 
 export const COMMUNITY_GUIDELINES = {
-  badge: "CLUB CULTURE & CONDUCT",
-  title: "OUR COMMUNITY GUIDELINES",
-  description: "We cultivate a culture of curiosity and intellectual generosity. There is zero tolerance for condescension, gatekeeping, or harassment in our labs, workshops, or online Discord channels.",
+  badge: "OUR CULTURE",
+  title: "HOW WE BUILD TOGETHER",
+  description:
+    "You don't need to be an expert to be part of the club. We want BBS Coding Club to be a place where people can ask questions without hesitation, share what they're working on, and learn from each other. Whether you're writing your first program or already building projects, there's room for you here.",
   rules: [
     {
-      tag: "LEARN IN PUBLIC",
-      text: "Share your work-in-progress code, ask questions early, and help others when they are stuck."
+      tag: "LEARN TOGETHER",
+      text:
+        "Ask questions, share what you're learning, and help someone out when you know the answer. Nobody starts out knowing everything."
     },
     {
-      tag: "MERIT & CODE",
-      text: "Ideas are evaluated on architectural soundness and working demos, regardless of student year or branch."
+      tag: "BUILD, DON'T JUST TALK",
+      text:
+        "Ideas are great, but we believe the best way to learn is to actually build something, break it, fix it, and keep going."
     },
     {
-      tag: "RESPECT & INCLUSION",
-      text: "We welcome beginners from every engineering department. Curiosity is the only prerequisite."
+      tag: "RESPECT EVERYONE",
+      text:
+        "Everyone comes from a different background and skill level. Be respectful, give people space to learn, and never make someone feel bad for being a beginner."
     }
   ]
 };
 
 export const ABOUT_CTA = {
-  title: "WANT TO BUILD WITH BBS CODING CLUB?",
-  description: "Explore the areas we build in, meet the student core team, or join our community network on campus.",
+  title: "WANT TO BUILD SOMETHING WITH US?",
+  description:
+    "Whether you want to learn, work on projects, prepare for a hackathon, or just meet other people who enjoy coding, there's a place for you in the club.",
   primaryBtn: {
-    label: "JOIN COMMUNITY",
+    label: "JOIN THE COMMUNITY",
     path: "/join"
   },
   secondaryBtn: {
-    label: "EXPLORE AREAS",
+    label: "EXPLORE WHAT WE DO",
     path: "/explore"
   }
 };

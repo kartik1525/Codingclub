@@ -40,7 +40,7 @@ export default function TeamPage() {
       {/* 1. Page Header & Filter Tabs — Normal Solid Background */}
       <Section variant="solid" className="pt-14 sm:pt-20 pb-8 sm:pb-12">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-4">
+          <div className="flex items-center gap-2.5 text-xs font-bold text-bbs-accent tracking-wide uppercase mb-4">
             <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
             <span>{TEAM_PAGE_HEADER.badge}</span>
           </div>
@@ -57,10 +57,10 @@ export default function TeamPage() {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3.5 py-1.5 rounded font-mono text-xs whitespace-nowrap transition-all cursor-pointer border ${
+                className={`px-3.5 py-1.5 rounded text-xs whitespace-nowrap transition-all cursor-pointer border ${
                   selectedCategory === cat.id
                     ? 'bg-bbs-accent text-white border-bbs-accent shadow-sm font-semibold'
-                    : 'bg-bbs-surface text-bbs-muted hover:text-bbs-text hover:bg-bbs-raised border-bbs-border'
+                    : 'bg-bbs-surface text-bbs-muted hover:text-bbs-text hover:bg-bbs-raised border-bbs-border font-medium'
                 }`}
               >
                 {cat.label}
@@ -91,22 +91,22 @@ export default function TeamPage() {
                       />
                     ) : (
                       <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-gradient-to-b from-bbs-surface via-bbs-raised to-bbs-surface">
-                        <span className="font-mono text-4xl font-bold text-bbs-accent/70 mb-2">
+                        <span className="text-3xl font-extrabold text-bbs-accent/80 mb-1">
                           {member.name.split(' ').map(n => n[0]).join('')}
                         </span>
-                        <span className="font-mono text-xs text-bbs-dim uppercase tracking-wider">
+                        <span className="text-xs font-medium text-bbs-dim uppercase tracking-wide">
                           {member.branch}
                         </span>
                       </div>
                     )}
 
                     {/* Top Right: Status Badge */}
-                    <div className="absolute top-3 right-3 font-mono text-[10px] px-2 py-0.5 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-accent-light tracking-wider">
+                    <div className="absolute top-3 right-3 text-xs font-semibold px-2.5 py-0.5 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-accent tracking-wide uppercase">
                       {member.status}
                     </div>
 
                     {/* Bottom Left: Branch */}
-                    <div className="absolute bottom-3 left-3 font-mono text-[10px] px-2 py-0.5 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-text">
+                    <div className="absolute bottom-3 left-3 text-xs font-medium px-2 py-0.5 bg-bbs-bg/90 border border-bbs-border rounded text-bbs-text">
                       {member.branch}
                     </div>
                   </div>
@@ -114,7 +114,7 @@ export default function TeamPage() {
                   {/* Card Info */}
                   <div className="p-6 sm:p-7">
                     <div className="flex justify-between items-center mb-2">
-                      <span className="font-mono text-xs font-semibold text-bbs-accent-light tracking-wider uppercase">
+                      <span className="text-xs sm:text-sm font-semibold text-bbs-accent uppercase mb-1">
                         {member.role}
                       </span>
                     </div>
@@ -128,14 +128,14 @@ export default function TeamPage() {
                     </p>
 
                     <div className="mb-4">
-                      <div className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider mb-2">
+                      <div className="text-xs font-bold text-bbs-dim uppercase tracking-wide mb-2">
                         SPECIALTIES & FOCUS
                       </div>
                       <div className="flex flex-wrap gap-1.5">
                         {member.specialties.map((spec, sIdx) => (
                           <span
                             key={sIdx}
-                            className="font-mono text-[11px] px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-dim"
+                            className="text-xs font-medium px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-dim"
                           >
                             {spec}
                           </span>
@@ -147,7 +147,7 @@ export default function TeamPage() {
 
                 {/* Bottom Channels Row */}
                 <div className="px-6 py-4 bg-bbs-raised/40 border-t border-bbs-border flex items-center justify-between">
-                  <span className="font-mono text-[11px] text-bbs-dim">
+                  <span className="text-xs font-semibold text-bbs-dim uppercase">
                     CHANNELS:
                   </span>
                   <div className="flex items-center gap-2">
@@ -189,7 +189,7 @@ export default function TeamPage() {
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="bg-bbs-surface border border-bbs-border rounded p-6 sm:p-8 flex justify-between items-center flex-wrap gap-6 hover:border-bbs-border-focus transition-colors shadow-md">
             <div>
-              <div className="font-mono text-xs text-bbs-accent-light mb-1 uppercase">
+              <div className="text-xs font-bold text-bbs-accent mb-1 uppercase tracking-wide">
                 {LEADERSHIP_NOMINATIONS_CALLOUT.badge}
               </div>
               <h3 className="font-display text-lg sm:text-xl font-bold text-bbs-text">
@@ -201,7 +201,7 @@ export default function TeamPage() {
             </div>
             <Link
               to={LEADERSHIP_NOMINATIONS_CALLOUT.cta.path}
-              className="inline-flex items-center gap-1.5 font-mono text-xs sm:text-sm font-semibold tracking-wide px-5 py-2.5 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all shrink-0 hover:scale-102 shadow-md shadow-bbs-accent/20"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold px-5 py-2.5 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all shrink-0 hover:scale-102 shadow-md shadow-bbs-accent/20"
             >
               <span>{LEADERSHIP_NOMINATIONS_CALLOUT.cta.label}</span>
               <ArrowRight className="w-4 h-4" />

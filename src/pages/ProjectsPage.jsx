@@ -36,7 +36,7 @@ export default function ProjectsPage() {
       {/* 1. Page Header & Filter Tabs — Normal Solid Background */}
       <Section variant="solid" className="pt-14 sm:pt-20 pb-8 sm:pb-12">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-4">
+          <div className="flex items-center gap-2.5 text-xs font-bold text-bbs-accent tracking-wide uppercase mb-4">
             <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
             <span>{PROJECTS_PAGE_HEADER.badge}</span>
           </div>
@@ -53,10 +53,10 @@ export default function ProjectsPage() {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-2 rounded font-mono text-xs whitespace-nowrap transition-all cursor-pointer border ${
+                className={`px-4 py-2 rounded text-xs whitespace-nowrap transition-all cursor-pointer border ${
                   selectedCategory === cat.id
                     ? 'bg-bbs-accent text-white border-bbs-accent shadow-md shadow-bbs-accent/20 font-semibold'
-                    : 'bg-bbs-surface text-bbs-muted hover:text-bbs-text hover:bg-bbs-raised border-bbs-border'
+                    : 'bg-bbs-surface text-bbs-muted hover:text-bbs-text hover:bg-bbs-raised border-bbs-border font-medium'
                 }`}
               >
                 {cat.label}
@@ -84,10 +84,10 @@ export default function ProjectsPage() {
                       className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out"
                       loading="lazy"
                     />
-                    <div className="absolute top-4 left-4 bg-bbs-bg/90 border border-bbs-border px-3 py-1 rounded font-mono text-xs text-bbs-accent-light">
+                    <div className="absolute top-4 left-4 bg-bbs-bg/90 border border-bbs-border px-3 py-1 rounded text-xs font-semibold text-bbs-accent uppercase tracking-wide">
                       {project.category.toUpperCase()}
                     </div>
-                    <div className="absolute bottom-4 left-4 bg-bbs-bg/90 border border-bbs-border px-2.5 py-1 rounded font-mono text-[11px] text-bbs-dim">
+                    <div className="absolute bottom-4 left-4 bg-bbs-bg/90 border border-bbs-border px-2.5 py-1 rounded text-xs font-medium text-bbs-dim">
                       YEAR {project.year}
                     </div>
                   </div>
@@ -96,7 +96,7 @@ export default function ProjectsPage() {
                   <div className="lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
                     <div>
                       <div className="flex justify-between items-center mb-3">
-                        <span className="font-mono text-xs text-bbs-accent-light tracking-wider uppercase font-semibold">
+                        <span className="text-xs font-bold text-bbs-accent tracking-wide uppercase">
                           STATUS: {project.status}
                         </span>
                       </div>
@@ -105,7 +105,7 @@ export default function ProjectsPage() {
                         {project.title}
                       </h2>
 
-                      <div className="font-mono text-xs text-bbs-dim mb-4">
+                      <div className="text-xs sm:text-sm font-medium text-bbs-muted mb-4">
                         {project.tagline}
                       </div>
 
@@ -115,7 +115,7 @@ export default function ProjectsPage() {
 
                       {project.context && (
                         <div className="p-4 bg-bbs-raised border border-bbs-border rounded mb-6 text-xs sm:text-sm text-bbs-text leading-relaxed font-sans">
-                          <span className="font-mono text-[10px] text-bbs-dim block mb-1 uppercase tracking-wider">
+                          <span className="text-xs font-bold text-bbs-dim block mb-1 uppercase tracking-wide">
                             ARCHITECTURAL CONTEXT
                           </span>
                           {project.context}
@@ -123,14 +123,14 @@ export default function ProjectsPage() {
                       )}
 
                       <div className="mb-6">
-                        <div className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider mb-2">
+                        <div className="text-xs font-bold text-bbs-dim uppercase tracking-wide mb-2">
                           STACK & ARCHITECTURE
                         </div>
                         <div className="flex flex-wrap gap-2">
                           {project.techTags.map((tag, idx) => (
                             <span
                               key={idx}
-                              className="font-mono text-xs px-2.5 py-1 rounded bg-bbs-raised border border-bbs-border text-bbs-muted"
+                              className="text-xs font-medium px-2.5 py-1 rounded bg-bbs-raised border border-bbs-border text-bbs-text"
                             >
                               {tag}
                             </span>
@@ -140,7 +140,7 @@ export default function ProjectsPage() {
                     </div>
 
                     {/* Actions & Repos */}
-                    <div className="pt-6 border-t border-bbs-border flex items-center justify-between flex-wrap gap-4 font-mono text-xs">
+                    <div className="pt-6 border-t border-bbs-border flex items-center justify-between flex-wrap gap-4 text-xs font-medium">
                       <span className="text-bbs-dim">
                         CONTRIBUTORS: {project.contributors.join(', ')}
                       </span>
@@ -150,7 +150,7 @@ export default function ProjectsPage() {
                           href={project.repoUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-bbs-raised border border-bbs-border text-bbs-text hover:border-bbs-accent transition-colors"
+                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded bg-bbs-raised border border-bbs-border text-bbs-text hover:border-bbs-accent transition-colors text-xs font-semibold"
                         >
                           <GithubIcon className="w-3.5 h-3.5" />
                           <span>SOURCE CODE</span>
@@ -171,7 +171,7 @@ export default function ProjectsPage() {
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
           <div className="bg-bbs-surface border border-bbs-border rounded p-8 sm:p-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-md">
             <div>
-              <div className="font-mono text-xs text-bbs-accent-light mb-1 uppercase">
+              <div className="text-xs font-bold text-bbs-accent mb-1 uppercase tracking-wide">
                 {PROJECTS_SUBMISSION_CALLOUT.badge}
               </div>
               <h3 className="font-display text-xl sm:text-2xl font-bold text-bbs-text">
@@ -185,7 +185,7 @@ export default function ProjectsPage() {
               href={CLUB_INFO.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-mono text-xs sm:text-sm font-semibold px-5 py-2.5 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-colors shrink-0"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold px-5 py-2.5 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-colors shrink-0"
             >
               <span>{PROJECTS_SUBMISSION_CALLOUT.cta.label}</span>
               <ArrowUpRight className="w-4 h-4" />

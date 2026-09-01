@@ -9,7 +9,7 @@ export const PROJECTS = [
     description: "Designed and implemented in-house to give BBS Coding Club an editorial, technically credible digital identity. Built with React and a strict custom CSS design token system without bloated UI templates.",
     techTags: ["React", "JavaScript", "Vite", "Custom CSS", "Design Systems"],
     contributors: ["Student Core Developers"],
-    image: "/assets/project-mockup.jpg",
+    image: "/assets/home.png",
     demoUrl: "#hero",
     repoUrl: "https://github.com/bbs-coding-club",
     isReal: true,

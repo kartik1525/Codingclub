@@ -10,7 +10,7 @@ export default function ActivityUniverse() {
     <section id="universe" className="subtle-grid py-20 sm:py-28 border-t border-bbs-border relative">
       <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
         {/* Section Header */}
-        <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-6">
+        <div className="flex items-center gap-2.5 text-xs font-bold text-bbs-accent tracking-wide uppercase mb-6">
           <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block"></span>
           <span>WHAT WE ACTUALLY DO</span>
         </div>
@@ -25,7 +25,7 @@ export default function ActivityUniverse() {
             </ViewportText>
           </div>
           <div>
-            <span className="font-mono text-xs sm:text-sm text-bbs-muted">
+            <span className="text-xs sm:text-sm font-medium text-bbs-muted">
               TAP OR HOVER TO EXPLORE HOW SQUADS OPERATE
             </span>
           </div>
@@ -42,7 +42,7 @@ export default function ActivityUniverse() {
                   key={zone.id}
                   onClick={() => setSelectedId(zone.id)}
                   onMouseEnter={() => setSelectedId(zone.id)}
-                  className={`flex items-center justify-between p-4 sm:p-5 rounded border text-left w-full transition-all ${
+                  className={`flex items-center justify-between p-4 sm:p-5 rounded border text-left w-full transition-all cursor-pointer ${
                     isSelected 
                       ? 'bg-bbs-raised border-bbs-accent text-white' 
                       : 'bg-bbs-surface border-bbs-border text-bbs-muted hover:text-bbs-text hover:border-bbs-border-focus'
@@ -77,7 +77,7 @@ export default function ActivityUniverse() {
                   className="w-full h-full object-cover block"
                   loading="lazy"
                 />
-                <div className="absolute bottom-3 left-3 bg-bbs-bg/85 backdrop-blur-sm px-3 py-1 rounded font-mono text-xs text-bbs-accent-light border border-bbs-border">
+                <div className="absolute bottom-3 left-3 bg-bbs-bg/85 backdrop-blur-sm px-3 py-1 rounded text-xs font-semibold text-bbs-accent uppercase tracking-wide border border-bbs-border">
                   FORMAT: {activeZone.howItWorks.toUpperCase()}
                 </div>
               </div>
@@ -86,7 +86,7 @@ export default function ActivityUniverse() {
             {/* Inspector Body */}
             <div className="p-6 sm:p-8 flex flex-col justify-between flex-1">
               <div>
-                <div className="font-mono text-xs text-bbs-accent-light uppercase mb-2">
+                <div className="text-xs font-bold text-bbs-accent uppercase tracking-wide mb-2">
                   {activeZone.role}
                 </div>
 
@@ -99,12 +99,12 @@ export default function ActivityUniverse() {
                 </p>
 
                 <div className="mb-6">
-                  <div className="font-mono text-xs text-bbs-dim mb-2 uppercase">
+                  <div className="text-xs font-bold text-bbs-dim mb-2 uppercase tracking-wide">
                     COMMON TRACKS & EXPERIENCES:
                   </div>
                   <div className="flex gap-2 flex-wrap">
                     {activeZone.tags.map((tag, i) => (
-                      <span key={i} className="inline-flex items-center font-mono text-[11px] font-medium tracking-wider uppercase px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/30">
+                      <span key={i} className="inline-flex items-center text-xs font-medium uppercase px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent border border-blue-500/30">
                         {tag}
                       </span>
                     ))}
@@ -113,13 +113,13 @@ export default function ActivityUniverse() {
               </div>
 
               <div className="border-t border-bbs-border pt-4 flex items-center justify-between flex-wrap gap-3">
-                <div className="font-mono text-xs text-bbs-dim">
+                <div className="text-xs font-medium text-bbs-dim">
                   OPEN TO ALL UNDERGRADUATE STUDENTS
                 </div>
 
                 <a 
                   href="#join" 
-                  className="font-mono text-xs font-semibold px-4 py-2 border border-bbs-border-light text-bbs-text rounded hover:bg-bbs-raised hover:border-bbs-muted transition-colors"
+                  className="text-xs font-semibold px-4 py-2 border border-bbs-border-light text-bbs-text rounded hover:bg-bbs-raised hover:border-bbs-muted transition-colors"
                 >
                   GET INVOLVED ↗
                 </a>

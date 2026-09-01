@@ -21,13 +21,13 @@ export function PrivacyModal({ isOpen, onClose }) {
     >
       <div className="max-w-xl w-full max-h-[85vh] overflow-y-auto bg-bbs-surface border border-bbs-border-light rounded p-6 sm:p-10 shadow-2xl">
         <div className="flex justify-between items-center mb-6">
-          <span className="font-mono text-xs text-bbs-accent-light tracking-wider">
+          <span className="text-xs font-bold text-bbs-accent tracking-wide uppercase">
             LEGAL & DATA CHARTER
           </span>
           <button 
             onClick={onClose} 
             aria-label="Close modal" 
-            className="font-mono text-xs text-bbs-muted hover:text-bbs-text transition-colors"
+            className="text-xs font-semibold text-bbs-muted hover:text-bbs-text transition-colors cursor-pointer"
           >
             [ESC] ✕
           </button>
@@ -54,7 +54,7 @@ export function PrivacyModal({ isOpen, onClose }) {
         <div className="mt-8 border-t border-bbs-border pt-4 text-right">
           <button 
             onClick={onClose} 
-            className="font-mono text-xs font-semibold px-4 py-2 border border-bbs-border-light text-bbs-text rounded hover:bg-bbs-raised transition-colors"
+            className="text-xs font-semibold px-4 py-2 border border-bbs-border-light text-bbs-text rounded hover:bg-bbs-raised transition-colors cursor-pointer"
           >
             CLOSE CHARTER
           </button>
@@ -84,13 +84,13 @@ export function TermsModal({ isOpen, onClose }) {
     >
       <div className="max-w-xl w-full max-h-[85vh] overflow-y-auto bg-bbs-surface border border-bbs-border-light rounded p-6 sm:p-10 shadow-2xl">
         <div className="flex justify-between items-center mb-6">
-          <span className="font-mono text-xs text-bbs-accent-light tracking-wider">
+          <span className="text-xs font-bold text-bbs-accent tracking-wide uppercase">
             COMMUNITY PROTOCOL
           </span>
           <button 
             onClick={onClose} 
             aria-label="Close modal" 
-            className="font-mono text-xs text-bbs-muted hover:text-bbs-text transition-colors"
+            className="text-xs font-semibold text-bbs-muted hover:text-bbs-text transition-colors cursor-pointer"
           >
             [ESC] ✕
           </button>
@@ -117,7 +117,7 @@ export function TermsModal({ isOpen, onClose }) {
         <div className="mt-8 border-t border-bbs-border pt-4 text-right">
           <button 
             onClick={onClose} 
-            className="font-mono text-xs font-semibold px-4 py-2 border border-bbs-border-light text-bbs-text rounded hover:bg-bbs-raised transition-colors"
+            className="text-xs font-semibold px-4 py-2 border border-bbs-border-light text-bbs-text rounded hover:bg-bbs-raised transition-colors cursor-pointer"
           >
             ACKNOWLEDGE & CLOSE
           </button>

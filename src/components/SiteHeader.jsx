@@ -40,21 +40,21 @@ export default function SiteHeader() {
             <span className="font-display font-bold text-sm sm:text-base tracking-tight text-bbs-text leading-tight">
               {CLUB_INFO.name.toUpperCase()}
             </span>
-            <span className="font-mono text-[10px] sm:text-[11px] text-bbs-muted tracking-wider">
+            <span className="text-[11px] sm:text-xs font-medium text-bbs-muted tracking-wide">
               EST. {CLUB_INFO.estYear} — STUDENT COMMUNITY
             </span>
           </div>
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-6 font-mono text-xs text-bbs-muted">
+        <nav className="hidden lg:flex items-center gap-7 text-xs sm:text-sm font-medium text-bbs-muted">
           {HEADER_NAV_LINKS.map((item) => (
             <NavLink
               key={item.path}
               to={item.path}
               className={({ isActive }) =>
                 `hover:text-bbs-text transition-colors py-1 ${
-                  isActive ? 'text-bbs-accent-light font-semibold border-b border-bbs-accent' : ''
+                  isActive ? 'text-bbs-accent font-semibold border-b-2 border-bbs-accent' : ''
                 }`
               }
             >
@@ -71,7 +71,7 @@ export default function SiteHeader() {
           {/* Primary CTA */}
           <Link
             to={HEADER_CTA.path}
-            className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold px-3.5 py-2 border border-bbs-border-light bg-bbs-surface text-bbs-text rounded hover:border-bbs-accent hover:text-bbs-accent transition-all shrink-0"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold px-4 py-2 border border-bbs-border-light bg-bbs-surface text-bbs-text rounded hover:border-bbs-accent hover:text-bbs-accent transition-all shrink-0 shadow-xs"
             id="desktop-join-btn"
           >
             {HEADER_CTA.label}

@@ -87,7 +87,7 @@ export default function Hero({ onJoinClick }) {
             <div className="hero-ctas flex gap-4 flex-wrap mb-8">
               <Link
                 to={HERO_CONTENT.primaryCta.path}
-                className="inline-flex items-center justify-center font-mono text-xs sm:text-sm font-semibold tracking-wide px-6 py-3 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:-translate-y-0.5 shadow-lg shadow-bbs-accent/25"
+                className="inline-flex items-center justify-center text-xs sm:text-sm font-semibold px-6 py-3 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:-translate-y-0.5 shadow-lg shadow-bbs-accent/25"
                 id="hero-join-btn"
               >
                 {HERO_CONTENT.primaryCta.label}
@@ -95,7 +95,7 @@ export default function Hero({ onJoinClick }) {
               
               <a
                 href={HERO_CONTENT.secondaryCta.href}
-                className="inline-flex items-center justify-center font-mono text-xs sm:text-sm font-semibold tracking-wide px-6 py-3 rounded border border-bbs-border-light text-bbs-text bg-transparent hover:bg-bbs-surface hover:border-bbs-muted transition-all hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center text-xs sm:text-sm font-semibold px-6 py-3 rounded border border-bbs-border-light text-bbs-text bg-transparent hover:bg-bbs-surface hover:border-bbs-muted transition-all hover:-translate-y-0.5"
               >
                 {HERO_CONTENT.secondaryCta.label}
               </a>
@@ -123,7 +123,7 @@ export default function Hero({ onJoinClick }) {
                   {HERO_CONTENT.campusPhoto.title}
                 </div>
 
-                <div className="font-mono text-xs text-bbs-muted flex justify-between flex-wrap gap-2">
+                <div className="text-xs font-medium text-bbs-muted flex justify-between flex-wrap gap-2">
                   <span>{HERO_CONTENT.campusPhoto.subtitle}</span>
                 </div>
               </div>
@@ -132,7 +132,7 @@ export default function Hero({ onJoinClick }) {
         </div>
 
         {/* Bottom Technical Coordinates Bar */}
-        <div className="hero-bottom-meta flex flex-wrap justify-between items-center gap-4 pt-6 border-t border-bbs-border font-mono text-xs text-bbs-dim">
+        <div className="hero-bottom-meta flex flex-wrap justify-between items-center gap-4 pt-6 border-t border-bbs-border text-xs font-medium text-bbs-dim">
           <div>
             <span>{HERO_CONTENT.bottomMeta.estText}</span>
             <span className="mx-2">—</span>

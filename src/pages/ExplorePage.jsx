@@ -27,7 +27,7 @@ export default function ExplorePage() {
       {/* 1. Page Header & Selector — Normal Solid Background */}
       <Section variant="solid" className="pt-14 sm:pt-20 pb-8 sm:pb-12">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="flex items-center gap-3 font-mono text-xs text-bbs-accent-light tracking-wider uppercase mb-4">
+          <div className="flex items-center gap-2.5 text-xs font-bold text-bbs-accent tracking-wide uppercase mb-4">
             <span className="w-1.5 h-1.5 bg-bbs-accent rounded-sm inline-block" aria-hidden="true" />
             <span>{AREAS_PAGE_HEADER.badge}</span>
           </div>
@@ -46,10 +46,10 @@ export default function ExplorePage() {
                 <button
                   key={area.id}
                   onClick={() => setSelectedAreaId(area.id)}
-                  className={`px-4 py-2 rounded font-mono text-xs whitespace-nowrap transition-all cursor-pointer border ${
+                  className={`px-4 py-2 rounded text-xs whitespace-nowrap transition-all cursor-pointer border ${
                     isSelected
                       ? 'bg-bbs-accent text-white border-bbs-accent shadow-md shadow-bbs-accent/20 font-semibold'
-                      : 'bg-bbs-surface text-bbs-muted hover:text-bbs-text hover:bg-bbs-raised border-bbs-border'
+                      : 'bg-bbs-surface text-bbs-muted hover:text-bbs-text hover:bg-bbs-raised border-bbs-border font-medium'
                   }`}
                 >
                   {area.shortTitle}
@@ -68,10 +68,10 @@ export default function ExplorePage() {
               {/* Left: Area Details & Exploration */}
               <div className="lg:col-span-8">
                 <div className="flex justify-between items-center flex-wrap gap-4 mb-4">
-                  <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/25">
+                  <span className="text-xs font-semibold px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent border border-blue-500/25 uppercase tracking-wide">
                     ACTIVE AREA
                   </span>
-                  <span className="font-mono text-xs text-bbs-dim">
+                  <span className="text-xs font-medium text-bbs-dim uppercase tracking-wide">
                     OPEN FOR COMMUNITY COLLABORATION
                   </span>
                 </div>
@@ -80,7 +80,7 @@ export default function ExplorePage() {
                   {activeArea.title}
                 </h2>
 
-                <div className="font-mono text-sm text-bbs-accent-light mb-6">
+                <div className="text-sm sm:text-base font-semibold text-bbs-accent mb-6">
                   "{activeArea.tagline}"
                 </div>
 
@@ -90,12 +90,12 @@ export default function ExplorePage() {
 
                 {/* What We Explore: Topics List */}
                 <div className="mb-8">
-                  <div className="font-mono text-xs text-bbs-dim mb-3 uppercase tracking-wider">
+                  <div className="text-xs font-bold text-bbs-dim mb-3 uppercase tracking-wide">
                     WHAT WE EXPLORE & LEARN
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {activeArea.topics.map((topic, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-bbs-muted">
+                      <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-bbs-muted font-medium">
                         <CheckCircle2 className="w-4 h-4 text-bbs-accent shrink-0 mt-0.5" />
                         <span>{topic}</span>
                       </div>
@@ -105,12 +105,12 @@ export default function ExplorePage() {
 
                 {/* Technologies & Toolsets */}
                 <div className="mb-8">
-                  <div className="font-mono text-xs text-bbs-dim mb-3 uppercase tracking-wider">
+                  <div className="text-xs font-bold text-bbs-dim mb-3 uppercase tracking-wide">
                     RELEVANT TECHNOLOGIES & TOOLS
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {activeArea.technologies.map((tech, idx) => (
-                      <span key={idx} className="font-mono text-xs px-3 py-1 bg-bbs-raised border border-bbs-border rounded text-bbs-text">
+                      <span key={idx} className="text-xs font-medium px-3 py-1 bg-bbs-raised border border-bbs-border rounded text-bbs-text">
                         {tech}
                       </span>
                     ))}
@@ -121,14 +121,14 @@ export default function ExplorePage() {
                 <div className="pt-6 border-t border-bbs-border flex items-center gap-4 flex-wrap">
                   <Link
                     to={`/join?area=${activeArea.id}`}
-                    className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-semibold px-5 py-2.5 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:scale-105 shadow-md shadow-bbs-accent/25"
+                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-5 py-2.5 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:scale-105 shadow-md shadow-bbs-accent/25"
                   >
                     <span>JOIN THIS AREA</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                   <Link
                     to="/projects"
-                    className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-semibold px-5 py-2.5 rounded bg-bbs-raised border border-bbs-border text-bbs-text hover:border-bbs-accent transition-colors"
+                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-5 py-2.5 rounded bg-bbs-raised border border-bbs-border text-bbs-text hover:border-bbs-accent transition-colors"
                   >
                     <span>VIEW RELEVANT BUILDS</span>
                     <ArrowUpRight className="w-4 h-4" />
@@ -139,7 +139,7 @@ export default function ExplorePage() {
               {/* Right: Activities & Community Cadence Card */}
               <div className="lg:col-span-4 bg-bbs-raised border border-bbs-border rounded p-6 sm:p-7 flex flex-col justify-between">
                 <div>
-                  <div className="font-mono text-xs text-bbs-dim uppercase tracking-wider mb-4">
+                  <div className="text-xs font-bold text-bbs-dim uppercase tracking-wide mb-4">
                     TYPICAL ACTIVITIES
                   </div>
 
@@ -149,7 +149,7 @@ export default function ExplorePage() {
                         <span className="w-1.5 h-1.5 rounded-full bg-bbs-accent shrink-0 mt-2" />
                         <div>
                           <span className="font-display text-sm font-bold text-bbs-text block">{act}</span>
-                          <span className="text-[11px] text-bbs-muted">Peer-driven session with working demos and code reviews.</span>
+                          <span className="text-xs text-bbs-muted">Peer-driven session with working demos and code reviews.</span>
                         </div>
                       </div>
                     ))}
@@ -157,7 +157,7 @@ export default function ExplorePage() {
 
                   {activeArea.relatedProjects && activeArea.relatedProjects.length > 0 && (
                     <div className="mb-6 pt-4 border-t border-bbs-border">
-                      <div className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider mb-2">
+                      <div className="text-xs font-bold text-bbs-dim uppercase tracking-wide mb-2">
                         FEATURED BUILD
                       </div>
                       <Link 
@@ -167,7 +167,7 @@ export default function ExplorePage() {
                         <div className="text-xs font-bold text-bbs-text group-hover:text-bbs-accent transition-colors">
                           {activeArea.relatedProjects[0].title}
                         </div>
-                        <div className="text-[10px] text-bbs-muted mt-0.5">
+                        <div className="text-xs font-medium text-bbs-muted mt-0.5">
                           {activeArea.relatedProjects[0].category} ↗
                         </div>
                       </Link>
@@ -178,7 +178,7 @@ export default function ExplorePage() {
                 <div className="border-t border-bbs-border pt-4 mt-4">
                   <Link
                     to="/team"
-                    className="font-mono text-xs text-bbs-text hover:text-bbs-accent-light inline-flex items-center gap-1 transition-colors"
+                    className="text-xs font-semibold text-bbs-text hover:text-bbs-accent inline-flex items-center gap-1 transition-colors"
                   >
                     <span>MEET THE CORE TEAM</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -193,7 +193,7 @@ export default function ExplorePage() {
       {/* 3. Complete Areas Catalogue — Normal Solid Background */}
       <Section variant="solid" className="py-16 sm:py-24 border-t border-bbs-border relative">
         <div className="max-w-container mx-auto px-5 sm:px-8 w-full">
-          <div className="font-mono text-xs text-bbs-accent-light mb-2 uppercase">
+          <div className="text-xs font-bold text-bbs-accent mb-2 uppercase tracking-wide">
             {AREAS_CATALOGUE_HEADER.badge}
           </div>
           <h2 className="font-display text-2xl sm:text-4xl font-bold text-bbs-text mb-8">
@@ -208,10 +208,10 @@ export default function ExplorePage() {
               >
                 <div>
                   <div className="flex justify-between items-center mb-3">
-                    <span className="font-mono text-xs text-bbs-accent-light tracking-wider font-semibold">
+                    <span className="text-xs font-bold text-bbs-accent tracking-wide uppercase">
                       {area.shortTitle.toUpperCase()}
                     </span>
-                    <span className="font-mono text-[10px] text-bbs-dim">
+                    <span className="text-xs font-medium text-bbs-dim uppercase">
                       INTEREST AREA
                     </span>
                   </div>
@@ -225,12 +225,12 @@ export default function ExplorePage() {
                   </p>
 
                   <div className="mb-5">
-                    <div className="font-mono text-[10px] text-bbs-dim uppercase mb-2">
+                    <div className="text-xs font-bold text-bbs-dim uppercase mb-2 tracking-wide">
                       CORE TECHNOLOGIES
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       {area.technologies.slice(0, 5).map((t, idx) => (
-                        <span key={idx} className="font-mono text-[10px] px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-dim">
+                        <span key={idx} className="text-xs font-medium px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-dim">
                           {t}
                         </span>
                       ))}
@@ -244,13 +244,13 @@ export default function ExplorePage() {
                       setSelectedAreaId(area.id);
                       window.scrollTo({ top: 300, behavior: 'smooth' });
                     }}
-                    className="font-mono text-xs text-bbs-muted hover:text-bbs-text transition-colors cursor-pointer"
+                    className="text-xs font-semibold text-bbs-muted hover:text-bbs-text transition-colors cursor-pointer"
                   >
                     INSPECT DETAILS ↑
                   </button>
                   <Link
                     to={`/join?area=${area.id}`}
-                    className="font-mono text-xs font-semibold text-bbs-accent-light hover:text-bbs-text transition-colors inline-flex items-center gap-1"
+                    className="text-xs font-semibold text-bbs-accent hover:text-bbs-text transition-colors inline-flex items-center gap-1"
                   >
                     <span>JOIN</span>
                     <ArrowRight className="w-3.5 h-3.5" />

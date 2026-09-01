@@ -48,14 +48,14 @@ export default function MenuOverlay({ isOpen, onClose, onNavigate }) {
         {/* Navigation Header Meta */}
         <div className="flex justify-between items-center border-b border-bbs-border pb-4 mb-8">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs text-bbs-accent-light tracking-wider uppercase">
+            <span className="text-xs font-semibold text-bbs-accent tracking-wide uppercase">
               SITE NAVIGATION INDEX
             </span>
             <ThemeToggle />
           </div>
           <button
             onClick={onClose}
-            className="font-mono text-xs text-bbs-muted hover:text-bbs-text flex items-center gap-2 transition-colors cursor-pointer"
+            className="text-xs font-medium text-bbs-muted hover:text-bbs-text flex items-center gap-2 transition-colors cursor-pointer"
             aria-label="Close navigation"
           >
             <span>[ESC] CLOSE</span>
@@ -75,7 +75,7 @@ export default function MenuOverlay({ isOpen, onClose, onNavigate }) {
                     e.preventDefault();
                     onNavigate(item.id);
                   }}
-                  className="group flex items-baseline gap-4 text-bbs-text hover:text-bbs-accent-light font-display text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-none no-underline transition-all hover:translate-x-3"
+                  className="group flex items-baseline gap-4 text-bbs-text hover:text-bbs-accent font-display text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-none no-underline transition-all hover:translate-x-3"
                 >
                   <span>{item.label}</span>
                 </a>
@@ -93,7 +93,7 @@ export default function MenuOverlay({ isOpen, onClose, onNavigate }) {
               href={CLUB_INFO.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-bbs-muted hover:text-bbs-text transition-colors"
+              className="text-xs sm:text-sm font-medium text-bbs-muted hover:text-bbs-text transition-colors"
             >
               GITHUB ↗
             </a>
@@ -101,7 +101,7 @@ export default function MenuOverlay({ isOpen, onClose, onNavigate }) {
               href={CLUB_INFO.socials.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-bbs-muted hover:text-bbs-text transition-colors"
+              className="text-xs sm:text-sm font-medium text-bbs-muted hover:text-bbs-text transition-colors"
             >
               LINKEDIN ↗
             </a>
@@ -109,7 +109,7 @@ export default function MenuOverlay({ isOpen, onClose, onNavigate }) {
               href={CLUB_INFO.socials.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-bbs-muted hover:text-bbs-text transition-colors"
+              className="text-xs sm:text-sm font-medium text-bbs-muted hover:text-bbs-text transition-colors"
             >
               INSTAGRAM ↗
             </a>
@@ -117,13 +117,13 @@ export default function MenuOverlay({ isOpen, onClose, onNavigate }) {
               href={CLUB_INFO.socials.discord}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-bbs-muted hover:text-bbs-text transition-colors"
+              className="text-xs sm:text-sm font-medium text-bbs-muted hover:text-bbs-text transition-colors"
             >
               DISCORD ↗
             </a>
           </div>
 
-          <span className="font-mono text-xs text-bbs-dim">
+          <span className="text-xs font-medium text-bbs-dim">
             {CLUB_INFO.coordinates} · {CLUB_INFO.location}
           </span>
         </div>

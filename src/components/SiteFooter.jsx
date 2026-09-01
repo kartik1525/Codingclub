@@ -96,7 +96,7 @@ export default function SiteFooter({ onOpenPrivacy, onOpenTerms }) {
             </div>
 
             {/* Primary Tagline */}
-            <div className="font-mono text-xs sm:text-sm text-bbs-accent tracking-[0.25em] uppercase font-bold mb-3">
+            <div className="text-xs sm:text-sm text-bbs-accent tracking-wider uppercase font-bold mb-3">
               {FOOTER_NAV.tagline}
             </div>
 
@@ -106,7 +106,7 @@ export default function SiteFooter({ onOpenPrivacy, onOpenTerms }) {
             </p>
 
             {/* Affiliation Pill */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-bbs-surface border border-bbs-border text-bbs-dim font-mono text-[11px] sm:text-xs">
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-bbs-surface border border-bbs-border text-bbs-dim text-xs font-medium">
               <img
                 src="/bbs-college-logo.png"
                 alt=""
@@ -121,7 +121,7 @@ export default function SiteFooter({ onOpenPrivacy, onOpenTerms }) {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8 max-w-4xl mx-auto">
             {/* Column 1: EXPLORE */}
             <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-              <div className="font-mono text-xs text-bbs-accent tracking-wider uppercase mb-5 font-semibold flex items-center gap-2">
+              <div className="text-xs font-bold text-bbs-accent tracking-wider uppercase mb-5 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-sm bg-bbs-accent inline-block" aria-hidden="true" />
                 <span>EXPLORE</span>
               </div>
@@ -130,7 +130,7 @@ export default function SiteFooter({ onOpenPrivacy, onOpenTerms }) {
                   <li key={item.label}>
                     <Link
                       to={item.path}
-                      className="group inline-flex items-center gap-1.5 font-mono text-xs sm:text-sm text-bbs-muted hover:text-bbs-text transition-colors duration-200"
+                      className="group inline-flex items-center gap-1.5 text-sm font-normal text-bbs-muted hover:text-bbs-text transition-colors duration-200"
                     >
                       <span className="group-hover:translate-x-1 transition-transform duration-200">
                         {item.label}
@@ -143,7 +143,7 @@ export default function SiteFooter({ onOpenPrivacy, onOpenTerms }) {
 
             {/* Column 2: COMMUNITY */}
             <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-              <div className="font-mono text-xs text-bbs-accent tracking-wider uppercase mb-5 font-semibold flex items-center gap-2">
+              <div className="text-xs font-bold text-bbs-accent tracking-wider uppercase mb-5 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-sm bg-bbs-accent inline-block" aria-hidden="true" />
                 <span>COMMUNITY</span>
               </div>
@@ -152,7 +152,7 @@ export default function SiteFooter({ onOpenPrivacy, onOpenTerms }) {
                   <li key={item.label}>
                     <Link
                       to={item.path}
-                      className="group inline-flex items-center gap-1.5 font-mono text-xs sm:text-sm text-bbs-muted hover:text-bbs-text transition-colors duration-200"
+                      className="group inline-flex items-center gap-1.5 text-sm font-normal text-bbs-muted hover:text-bbs-text transition-colors duration-200"
                     >
                       <span className="group-hover:translate-x-1 transition-transform duration-200">
                         {item.label}
@@ -168,7 +168,7 @@ export default function SiteFooter({ onOpenPrivacy, onOpenTerms }) {
 
             {/* Column 3: CONNECT */}
             <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-              <div className="font-mono text-xs text-bbs-accent tracking-wider uppercase mb-5 font-semibold flex items-center gap-2">
+              <div className="text-xs font-bold text-bbs-accent tracking-wider uppercase mb-5 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-sm bg-bbs-accent inline-block" aria-hidden="true" />
                 <span>CONNECT</span>
               </div>
@@ -181,7 +181,7 @@ export default function SiteFooter({ onOpenPrivacy, onOpenTerms }) {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group inline-flex items-center gap-2 font-mono text-xs sm:text-sm text-bbs-muted hover:text-bbs-text transition-colors duration-200"
+                        className="group inline-flex items-center gap-2 text-sm font-normal text-bbs-muted hover:text-bbs-text transition-colors duration-200"
                       >
                         <Icon className="w-3.5 h-3.5 text-bbs-dim group-hover:text-bbs-accent transition-colors duration-200 shrink-0" />
                         <span className="group-hover:translate-x-1 transition-transform duration-200">
@@ -271,7 +271,7 @@ export default function SiteFooter({ onOpenPrivacy, onOpenTerms }) {
           </div>
 
           {/* Understated Bottom Metadata */}
-          <div className="border-t border-bbs-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 font-mono text-xs text-bbs-dim">
+          <div className="border-t border-bbs-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-bbs-dim font-medium">
             {/* Copyright & College Affiliation */}
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-1 text-center sm:text-left">
               <span>© 2025 BBS Coding Club</span>
@@ -301,7 +301,7 @@ export default function SiteFooter({ onOpenPrivacy, onOpenTerms }) {
               )}
               <button
                 onClick={scrollToTop}
-                className="group inline-flex items-center gap-1.5 text-bbs-muted hover:text-bbs-text transition-colors cursor-pointer"
+                className="group inline-flex items-center gap-1.5 text-xs font-semibold text-bbs-muted hover:text-bbs-text transition-colors cursor-pointer"
                 aria-label="Scroll to top of page"
               >
                 <span>BACK TO TOP</span>

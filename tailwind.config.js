@@ -24,7 +24,8 @@ export default {
         'bbs-accent-dim': 'var(--bbs-accent-dim)',
       },
       fontFamily: {
-        display: ['"Space Grotesk"', 'sans-serif'],
+        sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+        display: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       maxWidth: {

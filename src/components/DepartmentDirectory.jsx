@@ -79,8 +79,8 @@ export default function AreasDirectory() {
                       {area.title}
                     </h3>
 
-                    {/* Monospace Tech / Focus Metadata */}
-                    <div className="font-mono text-xs text-bbs-muted group-hover:text-bbs-text/90 mt-2 transition-colors duration-200 flex flex-wrap items-center gap-x-2 gap-y-1">
+                    {/* Tech / Focus Metadata */}
+                    <div className="text-xs font-medium text-bbs-muted group-hover:text-bbs-text/90 mt-2 transition-colors duration-200 flex flex-wrap items-center gap-x-2 gap-y-1">
                       {area.technologies.slice(0, 4).map((tech, sIdx) => (
                         <React.Fragment key={sIdx}>
                           <span>{tech}</span>
@@ -117,10 +117,10 @@ export default function AreasDirectory() {
             <div className="relative z-10">
               {/* Meta Header */}
               <div className="flex justify-between items-center flex-wrap gap-2 mb-4">
-                <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent-light border border-blue-500/25 transition-colors">
+                <span className="text-xs font-bold px-2.5 py-1 rounded bg-bbs-accent-dim text-bbs-accent border border-blue-500/25 transition-colors tracking-wide uppercase">
                   {activeArea.shortTitle.toUpperCase()}
                 </span>
-                <span className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider">
+                <span className="text-xs font-semibold text-bbs-dim uppercase tracking-wider">
                   INTEREST AREA
                 </span>
               </div>
@@ -137,12 +137,12 @@ export default function AreasDirectory() {
 
               {/* What We Explore (Topics) */}
               <div className="mb-6">
-                <div className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider mb-2.5">
+                <div className="text-xs font-bold text-bbs-dim uppercase tracking-wider mb-2.5">
                   WHAT WE EXPLORE
                 </div>
                 <div className="grid grid-cols-1 gap-2">
                   {activeArea.topics.slice(0, 3).map((topic, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-xs text-bbs-text/90 font-sans">
+                    <div key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-bbs-text/90 font-sans">
                       <CheckCircle2 className="w-3.5 h-3.5 text-bbs-accent shrink-0" />
                       <span className="truncate">{topic}</span>
                     </div>
@@ -152,14 +152,14 @@ export default function AreasDirectory() {
 
               {/* Technologies Badges */}
               <div className="mb-6">
-                <div className="font-mono text-[10px] text-bbs-dim uppercase tracking-wider mb-2.5">
+                <div className="text-xs font-bold text-bbs-dim uppercase tracking-wider mb-2.5">
                   RELEVANT TECHNOLOGIES
                 </div>
                 <div className="flex flex-wrap gap-1.5 min-h-[32px]">
                   {activeArea.technologies.map((tech, idx) => (
                     <span
                       key={idx}
-                      className="font-mono text-xs px-2.5 py-1 bg-bbs-raised border border-bbs-border rounded text-bbs-text/90 transition-colors"
+                      className="text-xs font-medium px-2.5 py-1 bg-bbs-raised border border-bbs-border rounded text-bbs-text/90 transition-colors"
                     >
                       {tech}
                     </span>
@@ -168,8 +168,8 @@ export default function AreasDirectory() {
               </div>
 
               {/* Typical Activities */}
-              <div className="p-3.5 bg-bbs-raised/60 border border-bbs-border rounded mb-6 text-xs text-bbs-muted leading-relaxed font-sans">
-                <span className="font-mono text-[10px] text-bbs-accent-light uppercase block mb-1">
+              <div className="p-3.5 bg-bbs-raised/60 border border-bbs-border rounded mb-6 text-xs sm:text-sm text-bbs-muted leading-relaxed font-sans">
+                <span className="text-xs font-bold text-bbs-accent uppercase block mb-1">
                   TYPICAL ACTIVITIES:
                 </span>
                 <span className="text-bbs-text font-medium">
@@ -183,14 +183,14 @@ export default function AreasDirectory() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
                   to={`/explore?area=${activeArea.id}`}
-                  className="flex-1 inline-flex items-center justify-center gap-2 font-mono text-xs font-semibold px-4 py-3 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:scale-[1.02] shadow-md shadow-bbs-accent/20"
+                  className="flex-1 inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold px-4 py-3 rounded bg-bbs-accent text-white hover:bg-bbs-accent-hover transition-all hover:scale-[1.02] shadow-md shadow-bbs-accent/20"
                 >
                   <span>EXPLORE AREA</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </Link>
                 <Link
                   to={`/join?area=${activeArea.id}`}
-                  className="inline-flex items-center justify-center gap-1.5 font-mono text-xs font-semibold px-4 py-3 rounded bg-bbs-raised border border-bbs-border text-bbs-text hover:border-bbs-accent transition-colors"
+                  className="inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold px-4 py-3 rounded bg-bbs-raised border border-bbs-border text-bbs-text hover:border-bbs-accent transition-colors"
                 >
                   <span>JOIN COMMUNITY</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -227,7 +227,7 @@ export default function AreasDirectory() {
                   >
                     {area.title}
                   </h3>
-                  <p className="font-mono text-xs text-bbs-muted truncate mt-0.5">
+                  <p className="text-xs font-medium text-bbs-muted truncate mt-0.5">
                     {area.technologies.slice(0, 3).join(' · ')}
                   </p>
                 </div>
@@ -253,7 +253,7 @@ export default function AreasDirectory() {
                 <div className="overflow-hidden">
                   <div className="pb-6 px-4 sm:px-5">
                     <div className="p-5 bg-bbs-surface border border-bbs-border rounded shadow-md mt-1">
-                      <div className="font-mono text-xs text-bbs-accent-light mb-2">
+                      <div className="text-xs font-bold text-bbs-accent uppercase mb-2">
                         AREA OVERVIEW
                       </div>
 
@@ -262,7 +262,7 @@ export default function AreasDirectory() {
                       </p>
 
                       <div className="mb-4">
-                        <div className="font-mono text-[10px] text-bbs-dim uppercase mb-1.5">
+                        <div className="text-xs font-bold text-bbs-dim uppercase mb-1.5">
                           WHAT WE EXPLORE
                         </div>
                         <div className="space-y-1 mb-3">
@@ -276,14 +276,14 @@ export default function AreasDirectory() {
                       </div>
 
                       <div className="mb-4">
-                        <div className="font-mono text-[10px] text-bbs-dim uppercase mb-1.5">
+                        <div className="text-xs font-bold text-bbs-dim uppercase mb-1.5">
                           TECHNOLOGIES
                         </div>
                         <div className="flex flex-wrap gap-1">
                           {area.technologies.map((tech, sIdx) => (
                             <span
                               key={sIdx}
-                              className="font-mono text-[10px] px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-text"
+                              className="text-xs font-medium px-2 py-0.5 bg-bbs-raised border border-bbs-border rounded text-bbs-text"
                             >
                               {tech}
                             </span>
@@ -292,7 +292,7 @@ export default function AreasDirectory() {
                       </div>
 
                       <div className="p-3 bg-bbs-raised border border-bbs-border rounded text-xs text-bbs-muted mb-4">
-                        <span className="font-mono text-[10px] text-bbs-accent-light uppercase block mb-0.5">
+                        <span className="text-xs font-bold text-bbs-accent uppercase block mb-0.5">
                           ACTIVITIES:
                         </span>
                         {area.activities.join(' · ')}
@@ -301,14 +301,14 @@ export default function AreasDirectory() {
                       <div className="flex gap-2">
                         <Link
                           to={`/explore?area=${area.id}`}
-                          className="flex-1 inline-flex items-center justify-center gap-1.5 font-mono text-xs font-semibold px-3 py-2.5 rounded bg-bbs-accent text-white"
+                          className="flex-1 inline-flex items-center justify-center gap-1.5 text-xs font-semibold px-3 py-2.5 rounded bg-bbs-accent text-white"
                         >
                           <span>EXPLORE</span>
                           <ArrowUpRight className="w-3.5 h-3.5" />
                         </Link>
                         <Link
                           to={`/join?area=${area.id}`}
-                          className="inline-flex items-center justify-center gap-1 font-mono text-xs font-semibold px-3 py-2.5 rounded bg-bbs-raised border border-bbs-border text-bbs-text"
+                          className="inline-flex items-center justify-center gap-1 text-xs font-semibold px-3 py-2.5 rounded bg-bbs-raised border border-bbs-border text-bbs-text"
                         >
                           <span>JOIN</span>
                           <ArrowRight className="w-3.5 h-3.5" />
